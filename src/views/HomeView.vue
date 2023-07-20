@@ -31,7 +31,7 @@
         </div>
     </div>
 </template>
-<style lang="sass" scoped>
+<style lang="scss" scoped>
     #login {
         
         display: flex;background: url(img/img_login.png) left bottom/35% auto no-repeat;justify-content: right;
