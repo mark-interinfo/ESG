@@ -1,12 +1,13 @@
 <template>
   <div class="body">
     <CommonHeaderContainer/>
-    <HelloWorld msg="Vite + Vue" />
+    <router-view/>
+    <!-- <HelloWorld msg="Vite + Vue" /> -->
     <CommonFooterContainer/>
   </div>
 </template>
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+// import HelloWorld from './components/HelloWorld.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
 </script>
