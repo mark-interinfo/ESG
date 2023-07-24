@@ -20,7 +20,7 @@
                         </span>
                     </li>
                     <li>
-                        <span>109年ESG資料尚未申請</span>
+                        <span>109年ESG資料</span>
                         <span>
                             <input class="button buttonColor2" type="button" value="閱覽">
                             <input class="button buttonColor2" type="button" value="編輯">
@@ -45,8 +45,6 @@
         transition: .3s;
         cursor:pointer;
     }
-
-
 
     .buttonColor1{
         background-color: #37D880;
