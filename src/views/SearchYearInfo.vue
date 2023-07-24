@@ -1,0 +1,201 @@
+<template>
+    <div id="searchYearInfo">
+        <div id="searchBlock">
+            <h1>查閱年度資料</h1>
+            <div id="company">
+                <span>公司代號 : 0714</span>
+                <span>公司名稱 : 英特內股份有限公司</span>
+            </div>
+            <div id="searchBar">
+                <input id="search" type="text" placeholder="請輸入民國年份">
+                <input type="button" id="searchButton" class="button buttonColor1">
+            </div>
+            <div id="queryInfo">
+                <h2>查詢結果</h2>
+                <ul>
+                    <li>
+                        <span>110年ESG資料尚未申請</span>
+                        <span>
+                            <input class="button buttonColor1" type="button" value="申請ESG資料">
+                        </span>
+                    </li>
+                    <li>
+                        <span>109年ESG資料</span>
+                        <span>
+                            <input class="button buttonColor2" type="button" value="閱覽">
+                            <input class="button buttonColor2" type="button" value="編輯">
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="qa">
+            <a href="javascript:;">「企業ESG資訊揭」露申報作業說明及適用問答</a>
+        </div>
+    </div>
+</template>
+<style lang="scss" scoped>
+
+    .button {
+        height: 40px;
+        padding: 9px 20px;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 3px;
+        transition: .3s;
+        cursor:pointer;
+    }
+
+    .buttonColor1{
+        background-color: #37D880;
+        color: #fff;
+        border: none;
+    }
+
+    .buttonColor1:hover{
+        background-color: #2FB86D;
+    }
+
+    .buttonColor2{
+        border: 1px solid #bebebe;
+        background: #fff;
+        color: #525252;
+    }
+
+    .buttonColor2:hover{
+        background: #efefef;
+    }
+
+
+
+    #searchYearInfo {
+        margin: 20px;
+        
+        h1 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+            font-weight: inherit;
+        }
+
+        #searchBlock {
+            padding: 20px 40px 40px;
+            box-shadow: 1px 1px 8px rgba(0,0,0,.3);
+            width: 800px;
+            max-width: 80%;
+            margin: 0 auto;
+            border-radius: 3px;
+
+            #company {
+                font-size: 14px;
+                margin-bottom: 15px;
+                display: flex;
+                
+                &:before {
+                    content: "";
+                    width: 20px;
+                    height: 20px;
+                    background: url(img/company.svg) center / cover;
+                    vertical-align: bottom;
+                }
+
+                > span {
+                    padding: 0 10px;
+                }
+
+                > span:first-of-type {
+                    border-right: 1px solid #aaa
+                }
+            }
+
+            #searchBar {
+                display: flex;
+
+                #searchInput {
+                    height: 44px;
+                    border: 1px solid #dfdfdf;
+                    padding: 0 10px;
+                    box-sizing: border-box;
+                    width: 400px;
+                    font-size: 16px;
+                    background: #efefef;
+
+                    &::placeholder {
+                        color: #aaa
+                    }
+                }
+
+                #searchButton {
+                    width: 44px;
+                    height: 44px;
+                    background-image: url(img/search.svg);
+                    background-position:center;
+                    background-repeat:no-repeat;
+                    border-radius: 0;
+                }
+            }
+
+            #queryInfo {
+                h2 {
+                    font-size: 18px;
+                    color: #37D880;
+                    font-weight: inherit;
+                    border-bottom: 1px solid #efefef;
+                    line-height: 25px;
+                    padding-bottom: 5px;
+                }
+
+                ul {
+                    padding: 0;
+                    list-style: none;
+                    width: 100%;
+
+                    li{
+                        > span {
+                            display: inline-block;
+
+                            &:first-of-type {
+                                width: 50%;
+                                font-size: 20px;
+                            }
+
+                            &first-of-type  + span{
+                                width: calc(50% - 4px);
+                                text-align:right;
+                            }
+                        }
+
+                        + li{
+                            margin-top:15px;
+                        }
+
+                        + input {
+                            width: 134px;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        #qa {
+            text-align: center;
+            margin: 15px 0;
+
+            a {
+                color: #808080;
+                text-decoration: none;
+                font-size: 14px;
+
+                &:after {
+                    content: "";
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    background: url(img/quill.svg) center / cover;
+                    vertical-align: bottom;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+</style>

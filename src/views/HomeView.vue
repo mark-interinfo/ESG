@@ -35,7 +35,7 @@
     #login {
         height: 100vh;
         
-        display: flex;background: url(../assets/ESG/Login_img/img_login.png) left bottom/35% auto no-repeat;justify-content: right;
+        display: flex;background: url(../assets/images/login.png) left bottom/35% auto no-repeat;justify-content: right;
 
         > div {display: flex;justify-content: center;width: 65vw;align-items: center;flex-direction: column;}
         
@@ -54,18 +54,18 @@
 
                 > span{display:inline-block;height: 48px;vertical-align: middle;}
             }
-            .id > div:before{background:url(../assets/ESG/Login_icon/Icon_account.svg) center / cover;}
+            .id > div:before{background:url(../assets/images/account.svg) center / cover;}
         
-            .pw > div:before{background:url(../assets/ESG/Login_icon/Icon_password.svg) center / cover;}
+            .pw > div:before{background:url(../assets/images/password.svg) center / cover;}
             
             .verify{
                 
-                > div:before{background:url(../assets/ESG/Login_icon/icon_verify.svg) center / cover;}
+                > div:before{background:url(../assets/images/icon_verify.svg) center / cover;}
                 
                 #verifyBlock{border:1px solid #efefef;box-sizing:border-box;border-radius: 5px;width: calc(45% - 20px);margin-left: 15px;}
                 #verifyInput{width: 55%;}
-                #verifyImg{background: url(../assets/ESG/verify_code.svg)center / auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
-                #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/ESG/Login_icon/icon_again.svg) center / 60% no-repeat;}
+                #verifyImg{background: url(../assets/images/verify_code.svg)center / auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
+                #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/images/icon_again.svg) center / 60% no-repeat;}
             }
             
             .submit{
