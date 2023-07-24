@@ -29,9 +29,9 @@
                 </ul>
             </div>
         </div>
-        <div id="qa">
+        <span id="qa">
             <a href="javascript:;">「企業ESG資訊揭」露申報作業說明及適用問答</a>
-        </div>
+        </span>
     </div>
 </template>
 <style lang="scss" scoped>
