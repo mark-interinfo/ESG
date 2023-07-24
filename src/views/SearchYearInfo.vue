@@ -7,7 +7,7 @@
                 <span>公司名稱 : 英特內股份有限公司</span>
             </span>
             <div id="searchBar">
-                <input id="search" type="text" placeholder="請輸入民國年份">
+                <input id="searchInput" type="text" placeholder="請輸入民國年份">
                 <input type="button" id="searchButton" class="button buttonColor1">
             </div>
             <div id="queryInfo">
@@ -121,13 +121,17 @@
                         > span {
                             display: inline-block;
 
+                            > input + input{
+                                margin-left:5px;
+                            }
+
                             &:first-of-type {
                                 width: 50%;
                                 font-size: 20px;
                             }
 
-                            &first-of-type  + span{
-                                width: calc(50% - 4px);
+                            + span{
+                                width: 50%;
                                 text-align:right;
                             }
                         }
