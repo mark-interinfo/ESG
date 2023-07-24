@@ -60,12 +60,12 @@
             
             .verify{
                 
-                > div:before{background:url(../assets/images/icon_verify.svg) center / cover;}
+                > div:before{background:url(../assets/images/verify.svg) center / cover;}
                 
                 #verifyBlock{border:1px solid #efefef;box-sizing:border-box;border-radius: 5px;width: calc(45% - 20px);margin-left: 15px;}
                 #verifyInput{width: 55%;}
-                #verifyImg{background: url(../assets/images/verify_code.svg)center / auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
-                #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/images/icon_again.svg) center / 60% no-repeat;}
+                #verifyImg{background: url(../assets/images/verify.png)center / auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
+                #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/images/again.svg) center / 60% no-repeat;}
             }
             
             .submit{

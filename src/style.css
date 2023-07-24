@@ -1,0 +1,38 @@
+html,body,section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    height: 40px;
+    padding: 9px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 3px;
+    transition: .3s;
+    cursor:pointer;
+}
+
+
+
+.buttonColor1{
+    background-color: #37D880;
+    color: #fff;
+    border: none;
+}
+
+.buttonColor1:hover{
+    background-color: #2FB86D;
+}
+
+.buttonColor2{
+    border: 1px solid #bebebe;
+    background: #fff;
+    color: #525252;
+}
+
+.buttonColor2:hover{
+    background: #efefef;
+}

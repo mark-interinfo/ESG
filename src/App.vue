@@ -17,7 +17,7 @@ const route = useRoute();
 <style lang="scss">
 @font-face {
   font-family: 'NotoSans';
-  src: url(../assets/font/NotoSansTC-Regular.otf)format('opentype');
+  src: url(/src/assets/font/NotoSansTC-Regular.otf)format('opentype');
 }
 .body{
   font-family: NotoSans;

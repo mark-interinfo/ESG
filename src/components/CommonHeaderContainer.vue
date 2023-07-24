@@ -52,12 +52,12 @@
       </router-link>
     </div>
     <div id="header-bottom">
-      <div id="esg-declare" class="pointer">
+      <router-link to="searchYearInfo" id="esg-declare" class="pointer">
         <span>ESG資料申報</span>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </div>
+      </router-link>
       <div id="sustainable-declare" class="pointer">
         <span>永續報告書申報</span>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

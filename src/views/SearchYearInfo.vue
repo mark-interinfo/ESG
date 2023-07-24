@@ -1,11 +1,11 @@
 <template>
     <div id="searchYearInfo">
-        <div id="searchBlock">
+        <div>
             <h1>查閱年度資料</h1>
-            <div id="company">
+            <span id="company">
                 <span>公司代號 : 0714</span>
                 <span>公司名稱 : 英特內股份有限公司</span>
-            </div>
+            </span>
             <div id="searchBar">
                 <input id="search" type="text" placeholder="請輸入民國年份">
                 <input type="button" id="searchButton" class="button buttonColor1">
@@ -36,38 +36,6 @@
 </template>
 <style lang="scss" scoped>
 
-    .button {
-        height: 40px;
-        padding: 9px 20px;
-        font-size: 16px;
-        font-weight: 400;
-        border-radius: 3px;
-        transition: .3s;
-        cursor:pointer;
-    }
-
-    .buttonColor1{
-        background-color: #37D880;
-        color: #fff;
-        border: none;
-    }
-
-    .buttonColor1:hover{
-        background-color: #2FB86D;
-    }
-
-    .buttonColor2{
-        border: 1px solid #bebebe;
-        background: #fff;
-        color: #525252;
-    }
-
-    .buttonColor2:hover{
-        background: #efefef;
-    }
-
-
-
     #searchYearInfo {
         margin: 20px;
         
@@ -77,7 +45,7 @@
             font-weight: inherit;
         }
 
-        #searchBlock {
+        > div {
             padding: 20px 40px 40px;
             box-shadow: 1px 1px 8px rgba(0,0,0,.3);
             width: 800px;
@@ -94,7 +62,7 @@
                     content: "";
                     width: 20px;
                     height: 20px;
-                    background: url(img/company.svg) center / cover;
+                    background: url(/src/assets/images/company.svg) center / cover;
                     vertical-align: bottom;
                 }
 
@@ -127,7 +95,7 @@
                 #searchButton {
                     width: 44px;
                     height: 44px;
-                    background-image: url(img/search.svg);
+                    background-image: url(/src/assets/images/search.svg);
                     background-position:center;
                     background-repeat:no-repeat;
                     border-radius: 0;
@@ -180,6 +148,7 @@
         #qa {
             text-align: center;
             margin: 15px 0;
+            display:block;
 
             a {
                 color: #808080;
@@ -191,7 +160,7 @@
                     width: 20px;
                     height: 20px;
                     display: inline-block;
-                    background: url(img/quill.svg) center / cover;
+                    background: url(/src/assets/images/quill.svg) center / cover;
                     vertical-align: bottom;
                     margin-left: 5px;
                 }
