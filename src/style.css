@@ -1,61 +1,89 @@
-html,body,section {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-.button {
-    height: 40px;
-    padding: 9px 20px;
-    font-size: 16px;
-    font-weight: 400;
-    border-radius: 3px;
-    transition: .3s;
-    cursor:pointer;
-    vertical-align: middle;
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
-.button + .button{margin-left:5px;}
-
-
-
-.buttonColor1{
-    background-color: #37D880;
-    color: #fff;
-    border: none;
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
-.buttonColor1:hover{
-    background-color: #2FB86D;
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-.buttonColor2{
-    border: 1px solid #bebebe;
-    background: #fff;
-    color: #525252;
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-.buttonColor2:hover{
-    background: #efefef;
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-input{
-    box-sizing: border-box;
+.card {
+  padding: 2em;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus{
-    outline: none;
-    border:1px solid #37d880!important;
-    background-color:#fff!important;
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-a{
-    color: #fff;
-    text-decoration: none;
-}
-
-a:hover{
-    text-decoration: underline;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
