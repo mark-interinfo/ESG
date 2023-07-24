@@ -4,12 +4,7 @@
       <div id="header-logo">
         <img class="w-100" src="../assets/ESG/Home_img/Homepage_logo.png" alt="">
       </div>
-      <div id="header-search">
-        <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.9519 23.264L18.758 18.07C19.564 17.028 19.9999 15.754 19.9999 14.414C19.9999 12.81 19.374 11.306 18.242 10.1721C17.11 9.03806 15.602 8.41406 14 8.41406C12.398 8.41406 10.89 9.04006 9.75799 10.1721C8.624 11.304 8 12.81 8 14.414C8 16.016 8.626 17.524 9.75799 18.656C10.89 19.79 12.396 20.414 14 20.414C15.34 20.414 16.612 19.978 17.654 19.174L22.8479 24.366C22.8632 24.3812 22.8812 24.3933 22.9012 24.4016C22.9211 24.4098 22.9424 24.4141 22.9639 24.4141C22.9855 24.4141 23.0068 24.4098 23.0267 24.4016C23.0466 24.3933 23.0647 24.3812 23.0799 24.366L23.9519 23.496C23.9672 23.4808 23.9793 23.4627 23.9875 23.4428C23.9958 23.4229 24 23.4015 24 23.38C24 23.3585 23.9958 23.3371 23.9875 23.3172C23.9793 23.2973 23.9672 23.2792 23.9519 23.264ZM17.168 17.582C16.32 18.428 15.196 18.894 14 18.894C12.804 18.894 11.68 18.428 10.832 17.582C9.98599 16.734 9.51999 15.61 9.51999 14.414C9.51999 13.218 9.98599 12.092 10.832 11.2461C11.68 10.4001 12.804 9.93406 14 9.93406C15.196 9.93406 16.322 10.3981 17.168 11.2461C18.014 12.094 18.48 13.218 18.48 14.414C18.48 15.61 18.014 16.736 17.168 17.582Z" fill="#37D880"/>
-        </svg>
-        <input type="text" placeholder="輸入關鍵字">
-      </div>
+      <input id="header-search" type="text" placeholder="輸入關鍵字">
     </div>
     <div id="header-middle">
       <div id="header-links">
@@ -58,12 +53,12 @@
           <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </router-link>
-      <div id="sustainable-declare" class="pointer">
+      <router-link to="searchYearInfo" id="sustainable-declare" class="pointer">
         <span>永續報告書申報</span>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </div>
+      </router-link>
     </div>
     <div id="bread-crumbs">
       首頁 / 申請作業 / ESG資料申請
@@ -157,15 +152,9 @@ header{
       padding: 0px 12px;
       font-size: 16px;
       border-radius: 3px;
-      input{
-        border: 0px;
-        font-size: 16px;
-        color: #BEBEBE;
-        &:focus{
-          border: 0px;
-          outline: none;
-        }
-      }
+      padding-left:40px;
+      background: url(/src/assets/images/search1.svg) left center/auto 100% no-repeat;
+
     }
   }
   #header-middle{
@@ -224,7 +213,6 @@ header{
   }
   #header-bottom{
     display: flex;
-    color: #fff;
     margin-bottom: 20px;
     #esg-declare{
       flex: 0 0 50%;

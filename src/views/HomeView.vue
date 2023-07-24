@@ -40,7 +40,7 @@
         > div {display: flex;justify-content: center;width: 65vw;align-items: center;flex-direction: column;}
         
         #logo {width: 30%;}
-        input{background:#efefef;border:none;height:48px;border-radius:5px;width: calc(100% - 20px);padding:0 10px;}
+        input{background:#efefef;border:1px solid #efefef;height:48px;border-radius:5px;width: calc(100% - 20px);padding:0 10px;}
         input::placeholder{font-size:16px;color:#aaa;}
 
         #form{width:40%;

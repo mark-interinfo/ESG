@@ -7,24 +7,30 @@
                 <span>公司名稱 : 英特內股份有限公司</span>
             </span>
             <div id="searchBar">
-                <input id="searchInput" type="text" placeholder="請輸入民國年份">
+                <input id="searchInput" type="text" placeholder="請輸入民國年份" @change="change">
                 <input type="button" id="searchButton" class="button buttonColor1">
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
                 <ul>
-                    <li>
+                    <li id="apply">
                         <span>110年ESG資料尚未申請</span>
                         <span>
-                            <input class="button buttonColor1" type="button" value="申請ESG資料">
+                            <router-link to="ApplyEsgInfo">
+                                <input class="button buttonColor1" type="button" value="申請ESG資料">
+                            </router-link>
                         </span>
                     </li>
-                    <li>
+                    <li id="edit">
                         <span>109年ESG資料</span>
                         <span>
                             <input class="button buttonColor2" type="button" value="閱覽">
                             <input class="button buttonColor2" type="button" value="編輯">
                         </span>
+                    </li>
+
+                    <li id="nodata">
+                        <span>無資料</span>
                     </li>
                 </ul>
             </div>
@@ -34,6 +40,33 @@
         </span>
     </div>
 </template>
+<script>
+    export default {
+        methods: {
+            change: function(event) {
+                if(document.querySelector("#queryInfo .show")){
+                    document.querySelector("#queryInfo .show").classList.remove("show");
+                }
+
+                if(event.target.value == "110"){
+                    apply.classList.add("show");
+                    return;
+                }
+
+                if(event.target.value == "109"){
+                    edit.classList.add("show");
+                    return;
+                }
+
+                nodata.classList.add("show");
+
+                
+                
+            }
+        }
+    }
+    
+</script>
 <style lang="scss" scoped>
 
     #searchYearInfo {
@@ -90,7 +123,10 @@
                     &::placeholder {
                         color: #aaa
                     }
+
+                    
                 }
+                #searchInput:focus{border:1px solid #37D880;}
 
                 #searchButton {
                     width: 44px;
@@ -103,6 +139,12 @@
             }
 
             #queryInfo {
+                display:none;
+
+                &:has(.show){display:inherit;}
+
+
+                .show{display:inherit!important;}
                 h2 {
                     font-size: 18px;
                     color: #37D880;
@@ -118,6 +160,7 @@
                     width: 100%;
 
                     li{
+                        display:none;
                         > span {
                             display: inline-block;
 

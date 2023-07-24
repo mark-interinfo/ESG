@@ -13,7 +13,10 @@ html,body,section {
     border-radius: 3px;
     transition: .3s;
     cursor:pointer;
+    vertical-align: middle;
 }
+
+.button + .button{margin-left:5px;}
 
 
 
@@ -35,4 +38,24 @@ html,body,section {
 
 .buttonColor2:hover{
     background: #efefef;
+}
+
+input{
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+    outline: none;
+    border:1px solid #37d880!important;
+    background-color:#fff!important;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
 }
