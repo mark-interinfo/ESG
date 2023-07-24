@@ -1,15 +1,18 @@
 <template>
-  <div class="body">
+  <div class="body" v-if="route.path !== '/HomeView'">
     <CommonHeaderContainer/>
     <router-view/>
-    <!-- <HelloWorld msg="Vite + Vue" /> -->
     <CommonFooterContainer/>
   </div>
+  <router-view v-else/>
 </template>
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
 </script>
 <style lang="scss">
 @font-face {
