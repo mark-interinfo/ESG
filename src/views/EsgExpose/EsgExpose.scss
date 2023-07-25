@@ -1,0 +1,60 @@
+.color-waring{
+  color: #F76868;
+}
+.d-flex{
+  display: flex;
+}
+.align-items-center{
+  align-items: center;
+}
+.me-8{
+  margin-right: 8px;
+}
+.mb-0{
+  margin-bottom: 0px;
+}
+.mb-8{
+  margin-bottom: 8px;
+}
+.mb-20{
+  margin-bottom: 20px;
+}
+p{
+  margin-top: 0;
+}
+input{
+  height: 40px;
+  width: 180px;
+  font-size: 14px;
+  background: #EFEFEF;
+  border: 1px solid #EFEFEF;
+}
+input[placeholder]{
+  background: #fff;
+}
+
+.issue-content{
+  display: flex;
+  flex-direction: column;
+  height: 0;
+  overflow: hidden;
+  transition-duration: .3s;
+  &.opening{
+    height: auto;
+  }
+  .issue-group{
+    display: flex;
+    flex-direction: row;
+    .issue-left{
+      flex: 0 0 180px;
+      border: 1px solid #EFEFEF;
+      padding: 12px 20px;
+      background: #FAFAFA ;
+    }
+    .issue-right{
+      flex: 1 1 auto;
+      border: 1px solid #EFEFEF;
+      padding: 12px 20px;
+    }
+  }
+}

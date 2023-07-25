@@ -24,10 +24,17 @@
         <path d="M6 9.5L11.7778 14.5L18 9.5" stroke="#272727" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
+    <EsgExposeSociety/>
+    <EsgExposeGovernance/>
   </div>
 </template>
 <script setup>
 import { ref, computed } from 'vue';
+import EsgExposeSociety from './EsgExpose/EsgExposeSociety.vue';
+import EsgExposeGovernance from './EsgExpose/EsgExposeGovernance.vue';
+
+import { testCallAPI } from '../mixin/api';
+
 const issueTypeSelected = ref(false);
 const issueType = ref([
   {name:'全部議題', key:false},
@@ -53,6 +60,8 @@ const issueListFilter = computed(() => {
   }
   return issueList.value;
 })
+
+testCallAPI();
 </script>
 <style lang="scss" scoped>
   #issue{

@@ -60,9 +60,7 @@
         </svg>
       </router-link>
     </div>
-    <div id="bread-crumbs">
-      首頁 / 申請作業 / ESG資料申請
-    </div>
+
   </header>
 </template>
 <script setup>
@@ -216,7 +214,6 @@ header{
   }
   #header-bottom{
     display: flex;
-    margin-bottom: 20px;
     #esg-declare{
       flex: 0 0 50%;
       display: flex;
@@ -231,10 +228,6 @@ header{
       background: #1D8844;
       padding: 18px 0;
     }
-  }
-  #bread-crumbs{
-    max-width: 960px;
-    margin: 0 auto;
   }
 }
 </style>
