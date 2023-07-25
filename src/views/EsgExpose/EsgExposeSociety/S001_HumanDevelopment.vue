@@ -48,18 +48,19 @@
         管理職女性主管
       </div>
       <div class="issue-right">
-        <span class="d-flex align-items-center">
-          <span class="input-label me-8">
+        <span class="d-inline-flex align-items-center">
+          <span class="input-label">
             1.佔比
-            <span class="color-waring">*</span>
+            <span class="color-waring me-8">*</span>
             <CommonNoticeComponent
-            :info="'範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)'"
+            :info="['請申報資料年度當年底在任席次，如申報110年度資料，即以110年12月31日在任席次申報)']"
+            :position="'center'"
             />
           </span>
-          <div class="input-area">
-            <input type="text">
-            <span>%</span>
-          </div>
+        </span>
+        <span class="input-group">
+          <input type="text">
+          <span class="unit">%</span>
         </span>
       </div>
     </div>
@@ -69,18 +70,24 @@
       </div>
       <div class="issue-right">
         <span class="d-flex align-items-center mb-20">
-          <span class="input-label me-8">
+          <span class="input-label">
             1.人數
             <span class="color-waring">*</span>
           </span>
-          <input type="text">
+          <div class="input-group">
+            <input type="text">
+            <span class="unit">人</span>
+          </div>
         </span>
         <span class="d-flex align-items-center">
-          <span class="input-label me-8">
+          <span class="input-label">
             2.比率
             <span class="color-waring">*</span>
           </span>
-          <input type="text" placeholder="職災 / 總員工">
+          <div class="input-group">
+            <input type="text" placeholder="職災 / 總員工">
+            <span class="unit">%</span>
+          </div>
         </span>
       </div>
     </div>
@@ -99,5 +106,17 @@ const props = defineProps({
 @import '../EsgExpose.scss';
 .input-label{
   width: 108px;
+}
+.input-group{
+  position: relative;
+  input{
+    padding-right: 36px;
+  }
+  .unit{
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translate(-12px, -50%);
+  }
 }
 </style>
