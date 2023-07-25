@@ -56,8 +56,8 @@ const issueListFilter = computed(() => {
 </script>
 <style lang="scss" scoped>
   #issue{
-    width: 90%;
-    max-width: 960px;
+    width: 1000px;
+    max-width: 90%;
     margin: 0 auto 12px auto;
     border: 1px solid #EFEFEF;
     box-shadow: 0px 4px 4px 0px #EFEFEF;

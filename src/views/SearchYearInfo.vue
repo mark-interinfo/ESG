@@ -40,30 +40,24 @@
         </span>
     </div>
 </template>
-<script>
-    export default {
-        methods: {
-            change: function(event) {
-                if(document.querySelector("#queryInfo .show")){
-                    document.querySelector("#queryInfo .show").classList.remove("show");
-                }
-
-                if(event.target.value == "110"){
-                    apply.classList.add("show");
-                    return;
-                }
-
-                if(event.target.value == "109"){
-                    edit.classList.add("show");
-                    return;
-                }
-
-                nodata.classList.add("show");
-
-                
-                
-            }
+<script setup>  
+    const change = function(event) {
+        if(document.querySelector("#queryInfo .show")){
+            document.querySelector("#queryInfo .show").classList.remove("show");
         }
+
+        if(event.target.value == "110"){
+            apply.classList.add("show");
+            return;
+        }
+
+        if(event.target.value == "109"){
+            edit.classList.add("show");
+            return;
+        }
+
+        nodata.classList.add("show");
+
     }
     
 </script>

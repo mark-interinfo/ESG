@@ -12,8 +12,14 @@
                 <input class="button buttonColor1" id="submit" type="button" value="送出">
             </span>
         </div>
+        <span>
+            <EsgExposeInfo/>
+        </span>
     </div>
 </template>
+<script setup>
+    import EsgExposeInfo from "../views/EsgExposeInfo.vue";
+</script>
 <style lang="scss" scoped>
     #esgInfoContent {
         padding: 20px;
@@ -28,10 +34,12 @@
         > div {
             padding: 20px 40px 40px;
             box-shadow: 1px 1px 8px rgba(0,0,0,.3);
-            width: 800px;
-            max-width: 80%;
-            margin: 0 auto;
+            width: 1000px;
+            max-width: 90%;
+            margin: 0 auto 20px;
             border-radius: 3px;
+
+            box-sizing: border-box;
 
             > span{
                 display:inline-block;width: calc(50% - 12px);
