@@ -154,6 +154,9 @@ header{
       border-radius: 3px;
       padding-left:40px;
       background: url(/src/assets/images/search1.svg) left center/auto 100% no-repeat;
+      transition: .3s;
+
+      &:focus{padding:0 12px;background:#fff;}
 
     }
   }
