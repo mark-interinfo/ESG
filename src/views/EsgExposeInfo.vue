@@ -27,6 +27,7 @@
     </template>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import EsgExposeEnvironment from './EsgExpose/EsgExposeEnvironment.vue';
@@ -89,5 +90,51 @@ testCallAPI();
       font-size: 14px;
       border: 1px solid #EFEFEF;
     }
+  }
+
+  :deep(.issue-content){
+    height: 0;
+    overflow: hidden;
+    &.opening{
+        height: auto;
+    }
+    table{
+        background:#ccc;border-spacing:1px;width: 100%;
+        
+        tr > td:first-of-type{
+          background:#fafafa;
+          vertical-align: text-top;
+          width:25%;
+      } 
+
+        td{
+            background:#fff;
+            padding:10px;
+            color:#525252;
+            span{padding:5px;vertical-align: middle;}
+        }
+    }
+
+    .small{width: 167px!important;}
+
+    li{
+        + li{margin-top:20px;}
+        div > span{
+            vertical-align: middle;
+            &:first-of-type{width:90px;text-align:right;}
+            + span{width: calc(100% - 114px);}
+
+            > input[type="text"],select{
+                width:350px;
+            }
+            > input[type="text"] + .unit{margin-left: -80px;font-size:14px;padding: 0 20px;}
+            > input[type="text"]:has( + .unit){padding-right:60px;}
+        }
+    }
+
+    div > input[type="text"]{
+        width: 460px;margin-top:10px;
+    }
+
   }
 </style>

@@ -46,6 +46,10 @@
                 &:last-of-type{text-align:right;}
             }
         }
+        > span{
+            margin:0 auto;
+            display:block;
+        }
 
         #company {
             font-size: 14px;

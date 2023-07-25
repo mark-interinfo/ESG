@@ -372,38 +372,5 @@ const props = defineProps({
 })
 </script>
 <style lang="scss" scoped>
-  #E001{
-    height: 0;
-    overflow: hidden;
-    &.opening{
-        height: auto;
-    }
-      table{
-          background:#ccc;border-spacing:1px;width: 100%;
-          td{
-              background:#fff;padding:5px;
-              span{padding:5px;}
-          }
-      }
-
-      .small{width: 167px!important;}
-      li{
-          + li{margin-top:20px;}
-          div > span{
-              vertical-align: middle;
-              &:first-of-type{width:90px;text-align:right;}
-              + span{width: calc(100% - 114px);}
-
-              > input[type="text"],select{
-                  width:350px;
-              }
-              > input[type="text"] + .unit{margin-left: -80px;font-size:14px;padding: 0 20px;}
-              > input[type="text"]:has( + .unit){padding-right:60px;}
-          }
-      }
-
-      div > input[type="text"]{
-          width: 460px;margin-top:10px;
-      }
-  }
+  
 </style>
