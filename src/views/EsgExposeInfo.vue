@@ -16,28 +16,28 @@
         展開全部
       </div>
     </div>
-    <div class="issue-item pointer" v-for="issue in issueListFilter" :key="issue.id">
-      <span>
-        {{ issueType.find(item => item.key === issue.type).name }} - {{ issue.id }} {{ issue.name }}
-      </span>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 9.5L11.7778 14.5L18 9.5" stroke="#272727" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <EsgExposeSociety/>
-    <EsgExposeGovernance/>
+    <template v-if="issueTypeSelected === 'environment' || issueTypeSelected === 'all'">
+      <EsgExposeEnvironment/>
+    </template>
+    <template v-if="issueTypeSelected === 'society' || issueTypeSelected === 'all'">
+      <EsgExposeSociety/>
+    </template>
+    <template v-if="issueTypeSelected === 'governance' || issueTypeSelected === 'all'">
+      <EsgExposeGovernance/>
+    </template>
   </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
+import EsgExposeEnvironment from './EsgExpose/EsgExposeEnvironment.vue';
 import EsgExposeSociety from './EsgExpose/EsgExposeSociety.vue';
 import EsgExposeGovernance from './EsgExpose/EsgExposeGovernance.vue';
 
 import { testCallAPI } from '../mixin/api';
 
-const issueTypeSelected = ref(false);
+const issueTypeSelected = ref('all');
 const issueType = ref([
-  {name:'全部議題', key:false},
+  {name:'全部議題', key:'all'},
   {name:'環境', key:'environment'},
   {name:'社會', key:'society'},
   {name:'治理', key:'governance'},
@@ -45,21 +45,6 @@ const issueType = ref([
 const selectIssueType = function(key){
   issueTypeSelected.value = key;
 }
-
-const issueList = ref([
-  {type: 'environment', id:'E001', name:'溫室氣體排放'},
-  {type: 'environment', id:'E002', name:'能源管理'},
-  {type: 'environment', id:'E003', name:'水資源管理'},
-  {type: 'society', id:'S001', name:'人力發展'},
-  {type: 'governance', id:'G001', name:'董事會'},
-  {type: 'governance', id:'G002', name:'投資人溝通'},
-]);
-const issueListFilter = computed(() => {
-  if(issueTypeSelected.value){
-    return issueList.value.filter(item => item.type === issueTypeSelected.value);
-  }
-  return issueList.value;
-})
 
 testCallAPI();
 </script>
