@@ -22,7 +22,9 @@
                     </span>
                 </div>
                 <div class="submit">
-                    <input type="submit" value="登入">
+                    <router-link to="/searchYearInfo">
+                        <input type="button" value="登入">
+                    </router-link>
                 </div>
                 <div class="forget">
                     <a href="javascript:;">忘記密碼?</a>

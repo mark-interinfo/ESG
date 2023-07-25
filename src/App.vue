@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="body" v-if="route.path !== '/HomeView'">
+    <CommonHeaderContainer/>
+    <router-view/>
+    <CommonFooterContainer/>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <router-view v-else/>
 </template>
+<script setup>
+import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
+import CommonFooterContainer  from './components/CommonFooterContainer.vue';
+import { useRoute } from 'vue-router';
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+const route = useRoute();
+
+</script>
+<style lang="scss">
+@font-face {
+  font-family: 'NotoSans';
+  src: url(/src/assets/font/NotoSansTC-Regular.otf)format('opentype');
 }
 .body{
   font-family: NotoSans;

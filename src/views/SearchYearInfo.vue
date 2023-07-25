@@ -126,7 +126,6 @@
 
                     
                 }
-                #searchInput:focus{border:1px solid #37D880;}
 
                 #searchButton {
                     width: 44px;
