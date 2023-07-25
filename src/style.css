@@ -45,9 +45,9 @@ input{
 }
 
 input[type="text"],
-select{
+input[type="password"]{
     height: 44px;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #efefef;
     padding: 0 10px;
     box-sizing: border-box;
     font-size: 16px;
@@ -55,11 +55,45 @@ select{
     border-radius:3px;
 }
 
+select{
+    height: 44px;
+    border: 1px solid #efefef;
+    padding: 0 40px 0 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border-radius:3px;
+    appearance: none;
+    background:url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
+}
+
+input[type="radio"]{
+    border:none;
+    background: url(/src/assets/images/radio.svg) center/100% no-repeat;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    display:inline-block;
+    vertical-align: middle;
+    margin:0;
+    padding:0;
+    appearance: none;
+
+    &:checked{
+        border:none;
+        background: url(/src/assets/images/radioCheck.svg) center/100% no-repeat;
+    }
+}
+
 input[type="text"]:focus,
 input[type="password"]:focus{
     outline: none;
     border:1px solid #37d880!important;
     background-color:#fff!important;
+}
+
+select:focus{
+    outline: none;
+    border:1px solid #37d880!important;
 }
 
 a{
@@ -74,3 +108,5 @@ a:hover{
 span{display:inline-block;}
 
 .fontRed{color:#f00;}
+
+::placeholder{color:#bebebe;}
