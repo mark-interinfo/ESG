@@ -5,6 +5,10 @@ html,body,section {
     height: 100%;
 }
 
+body{
+    font-family: NotoSans;
+}
+
 .button {
     height: 40px;
     padding: 9px 20px;
@@ -14,11 +18,8 @@ html,body,section {
     transition: .3s;
     cursor:pointer;
     vertical-align: middle;
+    margin:2px;
 }
-
-.button + .button{margin-left:5px;}
-
-
 
 .buttonColor1{
     background-color: #37D880;
@@ -53,6 +54,10 @@ input[type="password"]{
     font-size: 16px;
     background: #efefef;
     border-radius:3px;
+}
+
+input[type="button"]{
+    cursor: pointer;
 }
 
 select{

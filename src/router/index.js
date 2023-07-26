@@ -3,8 +3,13 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const routes = [
   {
     path: "/HomeView",
-    name: "首頁",
+    name: "登入",
     component: () => import("../views/HomeView.vue"),
+  },
+  {
+    path: "/",
+    name: "首頁",
+    component: () => import("../views/IndexView.vue"),
   },
   {
     path: "/searchYearInfo",
@@ -13,8 +18,13 @@ const routes = [
   },
   {
     path: "/ApplyEsgInfo",
-    name: "ESG揭露",
+    name: "110年度ESG揭露",
     component: () => import("../views/ApplyEsgInfo.vue"),
+  },
+  {
+    path: "/EditEsgInfo",
+    name: "109年度ESG揭露",
+    component: () => import("../views/EditEsgInfo.vue"),
   },
 ]
 

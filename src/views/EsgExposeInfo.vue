@@ -61,7 +61,7 @@ testCallAPI();
     #issue-header{
       display: flex;
       justify-content: space-between;
-      
+
       #issue-tags{
         font-size: 0;
         .issue-tag{
@@ -77,6 +77,9 @@ testCallAPI();
           &.selected{
             color: #fff;
             background: #37D880;
+          }
+          &:not(.selected){
+            cursor: pointer;
           }
         }
       }
