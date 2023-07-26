@@ -26,7 +26,7 @@
                         <span>109年ESG資料</span>
                         <span>
                             <input class="button buttonColor2" type="button" value="閱覽">
-                            <router-link to="EditEsgInfo">
+                            <router-link to="/EditEsgInfo">
                                 <input class="button buttonColor2" type="button" value="編輯">
                             </router-link>
                         </span>

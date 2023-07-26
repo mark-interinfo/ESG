@@ -8,16 +8,8 @@
        /
       <span id="bread-last">{{ route.name }}</span>
     </div>
-<<<<<<< HEAD
     <router-view/>
     <CommonFooterContainer  v-if="route.path !== '/HomeView'"/>
-=======
-    <img id="home-img" v-if="route.path === '/'" src="./assets/images/index.png" alt="">
-    <main>
-      <router-view/>
-    </main>
-    <CommonFooterContainer/>
->>>>>>> 832f3e128d8fd03b6ed91a63015caab3fd3911ea
   </div>
 </template>
 <script setup>
