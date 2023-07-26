@@ -1,7 +1,5 @@
 <template>
-    <div id="IndexView">
-        <img src="" alt="">
-    </div>
+    <div id="IndexView"></div>
 </template>
 
 <style lang="scss" scoped>
