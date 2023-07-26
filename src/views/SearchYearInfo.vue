@@ -46,7 +46,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-// import { APICollection } from '../mixin/api';
+import { APICollection } from '../mixin/api';
 const apiData = ref({
     companyId: "1101",
     year: ''
@@ -54,10 +54,11 @@ const apiData = ref({
 const searched = ref(false);
 const hasData = ref(false);
 
-const change = function(event) {
+const change = async function(event) {
     searched.value = true;
     // hasData = getAccessYearDemand(apiData.value).responseBody.dataExist.value;
-    // hasData.value = APICollection.AccessYearDemand(apiData);
+    hasData.value = await APICollection.AccessYearDemand(apiData);
+    // console.log(APICollection.AccessYearDemand(apiData))
 
     if(document.querySelector("#queryInfo .show")){
         document.querySelector("#queryInfo .show").classList.remove("show");
