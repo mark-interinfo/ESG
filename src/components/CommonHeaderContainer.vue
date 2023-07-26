@@ -38,10 +38,15 @@
               </template>
             </div>
           </div>
-          <div v-if="mainLinkIndex < linkGroup.length - 1" class="gap-line"></div>
+          <div class="gap-line"></div>
         </template>
+        <router-link to="/EsgDownload">
+          <div class="main-link pointer color-black">
+            ESG資訊下載
+          </div>
+        </router-link>
       </div>
-      <router-link to="HomeView">
+      <router-link to="/HomeView">
         <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="20" cy="20.4141" r="13.4" fill="#808080" stroke="#808080" stroke-width="1.2"/>
           <path d="M13.75 27.9141C13.75 27.9141 12.5 27.9141 12.5 26.6641C12.5 25.4141 13.75 21.6641 20 21.6641C26.25 21.6641 27.5 25.4141 27.5 26.6641C27.5 27.9141 26.25 27.9141 26.25 27.9141H13.75ZM20 20.4141C20.9946 20.4141 21.9484 20.019 22.6517 19.3157C23.3549 18.6125 23.75 17.6586 23.75 16.6641C23.75 15.6695 23.3549 14.7157 22.6517 14.0124C21.9484 13.3092 20.9946 12.9141 20 12.9141C19.0054 12.9141 18.0516 13.3092 17.3483 14.0124C16.6451 14.7157 16.25 15.6695 16.25 16.6641C16.25 17.6586 16.6451 18.6125 17.3483 19.3157C18.0516 20.019 19.0054 20.4141 20 20.4141Z" fill="white"/>
@@ -108,9 +113,9 @@ const linkGroup = ref([
       '申請資料更正',
     ]
   },
-  {
-    name: 'ESG資訊下載',
-  }
+  // {
+  //   name: 'ESG資訊下載',
+  // }
 ]);
 const isLinkShow = ref(-1);
 const showLink = function(i){
@@ -125,6 +130,9 @@ const showLink = function(i){
 // common setting
 p{
   margin: 0;
+}
+.color-black{
+  color: #272727;
 }
 .w-100{
   width: 100%;

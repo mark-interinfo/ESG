@@ -31,7 +31,7 @@ import { ref } from 'vue';
 const props = defineProps({
   info: {
     type: Array,
-    // require: true,
+    require: true,
   },
   position: {
     type: String,
