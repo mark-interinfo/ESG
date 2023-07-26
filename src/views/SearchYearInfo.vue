@@ -16,10 +16,8 @@
                     <li id="edit">
                         <span>109年ESG資料</span>
                         <span>
-                            <router-link to="/ApplyEsgInfo">
-                                <input class="button buttonColor2" type="button" value="閱覽">
-                            </router-link>
-                            <router-link to="/ApplyEsgInfo">
+                            <input class="button buttonColor2" type="button" value="閱覽">
+                            <router-link to="/EditEsgInfo">
                                 <input class="button buttonColor2" type="button" value="編輯">
                             </router-link>
                         </span>
@@ -125,6 +123,7 @@ const change = function(event) {
                     width: 400px;
                     font-size: 16px;
                     background: #efefef;
+                    border-radius: 3px 0 0 3px;
 
                     &::placeholder {
                         color: #aaa
@@ -139,7 +138,8 @@ const change = function(event) {
                     background-image: url(/src/assets/images/search.svg);
                     background-position:center;
                     background-repeat:no-repeat;
-                    border-radius: 0;
+                    border-radius: 0 3px 3px 0;
+                    margin:0;
                 }
             }
 

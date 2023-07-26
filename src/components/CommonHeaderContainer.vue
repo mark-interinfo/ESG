@@ -2,7 +2,9 @@
   <header>
     <div id="header-top">
       <div id="header-logo">
-        <img class="w-100" src="../assets/ESG/Home_img/Homepage_logo.png" alt="">
+        <router-link to="/">
+          <img class="w-100" src="../assets/ESG/Home_img/Homepage_logo.png">
+        </router-link>
       </div>
       <input id="header-search" type="text" placeholder="輸入關鍵字">
     </div>
@@ -222,19 +224,27 @@ header{
   }
   #header-bottom{
     display: flex;
+
+    > a {
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     #esg-declare{
       flex: 0 0 50%;
       display: flex;
       justify-content: center;
       background: #37D880;
-      padding: 18px 0;
+      
     }
     #sustainable-declare{
       flex: 0 0 50%;
       display: flex;
       justify-content: center;
       background: #1D8844;
-      padding: 18px 0;
+      
     }
   }
 }

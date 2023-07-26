@@ -58,7 +58,7 @@ const selectIssueType = function(key){
     #issue-header{
       display: flex;
       justify-content: space-between;
-      
+
       #issue-tags{
         font-size: 0;
         .issue-tag{
@@ -74,6 +74,9 @@ const selectIssueType = function(key){
           &.selected{
             color: #fff;
             background: #37D880;
+          }
+          &:not(.selected){
+            cursor: pointer;
           }
         }
       }
