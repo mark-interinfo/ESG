@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <CommonHeaderContainer  v-if="route.path !== '/HomeView'"/>
-    <div id="bread-crumbs"  v-if="['/','HomeView'].includes(route.path)">
+    <div id="bread-crumbs"  v-if="!['/','/HomeView'].includes(route.path)">
       <span>
         申請作業
       </span>
@@ -43,10 +43,5 @@ const route = useRoute();
   width: 100%;
   height: 480px;
   object-fit: cover;
-}
-main{
-  // width: calc(100% - 40px);
-  // max-width: 960px;
-  // margin: 0 auto;
 }
 </style>
