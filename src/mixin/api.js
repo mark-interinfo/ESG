@@ -10,15 +10,18 @@ function callAPI(apiName, requestBody, method='POST'){
   })
   .then((response) => response.json())
   .then((result) => {
-    return result;
+    return result.responseBody;
   })
   .catch(err => console.log(err));
 };
 
 const APICollection = {
-  AccessYearDemand: function(requestData){
-    return callAPI('AccessYearDemand', requestData);
-  },
+  AccessYearDemand: ((requestData) => callAPI('AccessYearDemand', requestData)),
+  ESGLogin: ((requestData) => callAPI('ESGLogin', requestData)),
+  // {
+  //   "uid":"admin",
+  //   "mima":"admin"
+  // }
 };
 
 export { APICollection };
