@@ -106,4 +106,16 @@ const props = defineProps({
 .input-label{
   width: 108px;
 }
+.input-group{
+  position: relative;
+  input{
+    padding-right: 36px;
+  }
+  .unit{
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translate(-12px, -50%);
+  }
+}
 </style>

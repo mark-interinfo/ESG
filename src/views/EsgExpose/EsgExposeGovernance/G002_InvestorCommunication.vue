@@ -35,4 +35,20 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 @import '../EsgExpose.scss';
+@import '../EsgExpose.scss';
+.input-label{
+  min-width: 240px;
+}
+.input-group{
+  position: relative;
+  input{
+    padding-right: 48px;
+  }
+  .unit{
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translate(-12px, -50%);
+  }
+}
 </style>
