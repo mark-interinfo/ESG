@@ -5,8 +5,10 @@
       申請作業 /
       <span id="bread-last">{{ route.name }}</span>
     </div>
-    <img v-if="route.path === '/'" src="./assets/images/index.png" alt="">
-    <router-view/>
+    <img id="home-img" v-if="route.path === '/'" src="./assets/images/index.png" alt="">
+    <main>
+      <router-view/>
+    </main>
     <CommonFooterContainer/>
   </div>
   <router-view v-else/>
@@ -35,5 +37,15 @@ const route = useRoute();
   #bread-last{
     color: #37D880;
   }
+}
+#home-img{
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+}
+main{
+  // width: calc(100% - 40px);
+  // max-width: 960px;
+  // margin: 0 auto;
 }
 </style>

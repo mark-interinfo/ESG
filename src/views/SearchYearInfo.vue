@@ -1,13 +1,14 @@
 <template>
     <div id="searchYearInfo">
+        {{ hasData }}
         <div>
             <h1>查閱年度資料</h1>
             <span id="company">
-                <span>公司代號 : 0714</span>
+                <span>公司代號 : 1101</span>
                 <span>公司名稱 : 英特內股份有限公司</span>
             </span>
             <div id="searchBar">
-                <input id="searchInput" type="text" placeholder="請輸入民國年份" @change="change">
+                <input id="searchInput" type="text" placeholder="請輸入民國年份" v-model.number="apiData.year" @change="change">
                 <input type="button" id="searchButton" class="button buttonColor1">
             </div>
             <div id="queryInfo">
@@ -16,7 +17,7 @@
                     <li id="apply">
                         <span>110年ESG資料尚未申請</span>
                         <span>
-                            <router-link to="ApplyEsgInfo">
+                            <router-link to="/ApplyEsgInfo">
                                 <input class="button buttonColor1" type="button" value="申請ESG資料">
                             </router-link>
                         </span>
@@ -24,11 +25,14 @@
                     <li id="edit">
                         <span>109年ESG資料</span>
                         <span>
-                            <input class="button buttonColor2" type="button" value="閱覽">
-                            <input class="button buttonColor2" type="button" value="編輯">
+                            <router-link to="/ApplyEsgInfo">
+                                <input class="button buttonColor2" type="button" value="閱覽">
+                            </router-link>
+                            <router-link to="/ApplyEsgInfo">
+                                <input class="button buttonColor2" type="button" value="編輯">
+                            </router-link>
                         </span>
                     </li>
-
                     <li id="nodata">
                         <span>無資料</span>
                     </li>
@@ -40,32 +44,42 @@
         </span>
     </div>
 </template>
-<script setup>  
-    const change = function(event) {
-        if(document.querySelector("#queryInfo .show")){
-            document.querySelector("#queryInfo .show").classList.remove("show");
-        }
+<script setup>
+import { ref } from 'vue';
+// import { APICollection } from '../mixin/api';
+const apiData = ref({
+    companyId: "1101",
+    year: ''
+});
+const searched = ref(false);
+const hasData = ref(false);
 
-        if(event.target.value == "110"){
-            apply.classList.add("show");
-            return;
-        }
+const change = function(event) {
+    searched.value = true;
+    // hasData = getAccessYearDemand(apiData.value).responseBody.dataExist.value;
+    // hasData.value = APICollection.AccessYearDemand(apiData);
 
-        if(event.target.value == "109"){
-            edit.classList.add("show");
-            return;
-        }
-
-        nodata.classList.add("show");
-
+    if(document.querySelector("#queryInfo .show")){
+        document.querySelector("#queryInfo .show").classList.remove("show");
     }
-    
+
+    if(event.target.value == "110"){
+        apply.classList.add("show");
+        return;
+    }
+
+    if(event.target.value == "109"){
+        edit.classList.add("show");
+        return;
+    }
+    nodata.classList.add("show");
+}
+
 </script>
 <style lang="scss" scoped>
 
     #searchYearInfo {
         margin: 20px;
-        
         h1 {
             font-size: 24px;
             margin: 0 0 10px 0;
@@ -157,7 +171,7 @@
                         > span {
                             display: inline-block;
 
-                            > input + input{
+                            > a + a{
                                 margin-left:5px;
                             }
 

@@ -18,7 +18,7 @@
     </div>
 </template>
 <script setup>
-    import EsgExposeInfo from "../views/EsgExposeInfo.vue";
+import EsgExposeInfo from "../views/EsgExposeInfo.vue";
 </script>
 <style lang="scss" scoped>
     #esgInfoContent {

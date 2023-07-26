@@ -34,8 +34,6 @@ import EsgExposeEnvironment from './EsgExpose/EsgExposeEnvironment.vue';
 import EsgExposeSociety from './EsgExpose/EsgExposeSociety.vue';
 import EsgExposeGovernance from './EsgExpose/EsgExposeGovernance.vue';
 
-import { testCallAPI } from '../mixin/api';
-
 const issueTypeSelected = ref('all');
 const issueType = ref([
   {name:'全部議題', key:'all'},
@@ -47,7 +45,6 @@ const selectIssueType = function(key){
   issueTypeSelected.value = key;
 }
 
-testCallAPI();
 </script>
 <style lang="scss" scoped>
   #issue{
