@@ -3,14 +3,25 @@
   class="issue-content"
   :class="{'opening': props.opening}"
   >
-    <div class="issue-group">
-      <div class="issue-left"></div>
-      <div class="issue-right">
-        <span class="mb-8">
-          1.公司年度召開法說會次數<span class="color-waring">*</span>
-        </span>
-        <input type="text">
-      </div>
+    <div>
+        <table>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <ol>
+                <li>
+                    <span>公司年度召開法說會次數*</span>
+                    <span class="fontRed">*</span>
+                    <span>
+                      <input type="text">
+                      <span class="unit">場次</span>
+                    </span>
+                  </li>
+              </ol>
+            </td>
+          </tr>
+        </table>
     </div>
   </div>
 </template>

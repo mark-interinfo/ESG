@@ -34,6 +34,7 @@ import EsgExposeEnvironment from './EsgExpose/EsgExposeEnvironment.vue';
 import EsgExposeSociety from './EsgExpose/EsgExposeSociety.vue';
 import EsgExposeGovernance from './EsgExpose/EsgExposeGovernance.vue';
 
+
 import { testCallAPI } from '../mixin/api';
 
 const issueTypeSelected = ref('all');
@@ -56,9 +57,11 @@ testCallAPI();
     margin: 0 auto 12px auto;
     border: 1px solid #EFEFEF;
     box-shadow: 0px 4px 4px 0px #EFEFEF;
+
     #issue-header{
       display: flex;
       justify-content: space-between;
+      
       #issue-tags{
         font-size: 0;
         .issue-tag{
@@ -97,43 +100,85 @@ testCallAPI();
     overflow: hidden;
     &.opening{
         height: auto;
+        overflow: inherit;
     }
+
     table{
-        background:#ccc;border-spacing:1px;width: 100%;
-        
-        tr > td:first-of-type{
-          background:#fafafa;
-          vertical-align: text-top;
-          width:25%;
+      background:#ccc;border-spacing:1px;width: 100%;
+      
+      tr > td:first-of-type{
+        background:#fafafa;
+        vertical-align: text-top;
+        width:25%;
       } 
 
-        td{
-            background:#fff;
-            padding:10px;
-            color:#525252;
-            span{padding:5px;vertical-align: middle;}
+      td{
+        background:#fff;
+        padding:10px;
+        color:#525252;
+
+        span{
+          padding:0 5px;
         }
+        
+        input{
+          vertical-align: middle;
+        }
+
+        span:has( + .notice-icon){
+          padding:0;
+        }
+        .notice-icon{
+          height:16px;width:16px;cursor: pointer;
+        }
+
+        .notice-icon svg{
+          position: absolute;top:0;
+        }
+      }
     }
 
     .small{width: 167px!important;}
 
     li{
-        + li{margin-top:20px;}
-        div > span{
-            vertical-align: middle;
-            &:first-of-type{width:90px;text-align:right;}
-            + span{width: calc(100% - 114px);}
+      + li{
+        margin-top:20px;
+      }
 
-            > input[type="text"],select{
-                width:350px;
-            }
-            > input[type="text"] + .unit{margin-left: -80px;font-size:14px;padding: 0 20px;}
-            > input[type="text"]:has( + .unit){padding-right:60px;}
-        }
+      div > span{
+          padding:5px;
+
+          &:first-of-type{
+            width:90px;text-align:right;
+          }
+
+          + span{
+            width: calc(100% - 114px);
+          }
+
+          > input[type="text"],select{
+              width:350px;
+          }
+      }
+
+      input[type="text"] + .unit{
+        margin-left: -70px;
+        font-size: 14px;
+        width:60px;
+        padding: 0 10px 0 0;
+        text-align: right;
+      }
+
+      input[type="text"]:has( + .unit){
+        padding-right:60px;
+      }
+      .unit + *{
+        margin-left: 15px;
+      }
     }
 
     div > input[type="text"]{
-        width: 460px;margin-top:10px;
+      width: 460px;margin-top:10px;
     }
 
   }
