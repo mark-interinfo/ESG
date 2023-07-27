@@ -54,13 +54,13 @@
       </router-link>
     </div>
     <div id="header-bottom">
-      <router-link to="searchYearInfo" id="esg-declare" class="pointer">
+      <router-link to="SearchYearInfo" id="esg-declare" class="pointer">
         <span>ESG資料申報</span>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </router-link>
-      <router-link to="searchYearInfo" id="sustainable-declare" class="pointer">
+      <router-link to="SearchYearInfo" id="sustainable-declare" class="pointer">
         <span>永續報告書申報</span>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -95,7 +95,7 @@ const linkGroup = ref([
       '證交所核心指標設定',
       '國際準則指標設定',
       'ESG資訊矩陣設定',
-    ]
+    ],
   },
   {
     name: '申報管理',

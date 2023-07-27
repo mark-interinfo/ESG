@@ -12,18 +12,33 @@ const routes = [
     component: () => import("../views/IndexView.vue"),
   },
   {
-    path: "/searchYearInfo",
+    path: "/SearchYearInfo",
     name: "ESG資料申報",
     component: () => import("../views/SearchYearInfo.vue"),
   },
   {
     path: "/ApplyEsgInfo",
     name: "110年度ESG揭露",
-    component: () => import("../views/ApplyEsgInfo.vue"),
+    component: () => import("../views/EditEsgInfo.vue"),
   },
   {
     path: "/EditEsgInfo",
     name: "109年度ESG揭露",
+    component: () => import("../views/EditEsgInfo.vue"),
+  },
+  {
+    path: "/ExchangeIndicators",
+    name: "證交所核心指標設定",
+    component: () => import("../views/EditEsgInfo.vue"),
+  },
+  {
+    path: "/InternationalIndicators",
+    name: "國際準則指標設定",
+    component: () => import("../views/EditEsgInfo.vue"),
+  },
+  {
+    path: "/EsgMatrix",
+    name: "ESG資訊矩陣設定",
     component: () => import("../views/EditEsgInfo.vue"),
   },
 ]
