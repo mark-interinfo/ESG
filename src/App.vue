@@ -30,6 +30,9 @@ const route = useRoute();
   max-width: 960px;
   margin: 20px auto 0 auto;
   font-size: 14px;
+  width: 1000px;
+  max-width: 90%;
+  color:#808080;
 
   > span + span{
     margin-left:5px;

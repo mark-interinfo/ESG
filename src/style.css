@@ -7,6 +7,7 @@ html,body,section {
 
 body{
     font-family: NotoSans;
+    color:#272727;
 }
 
 .button {
@@ -39,6 +40,16 @@ body{
 
 .buttonColor2:hover{
     background: #efefef;
+}
+
+.buttonColor3{
+    border: 1px solid #37D880;
+    background: #fff;
+    color: #37D880;
+}
+
+.buttonColor3:hover{
+    background: #F5FDF9;
 }
 
 input{
@@ -113,5 +124,7 @@ a:hover{
 span{display:inline-block;}
 
 .fontRed{color:#f00;}
+
+.fontRedOrange{color:#F76868}
 
 ::placeholder{color:#bebebe;}

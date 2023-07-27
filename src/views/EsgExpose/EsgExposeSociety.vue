@@ -30,27 +30,3 @@ const toggleIssue = function(id){
   issueList.value.find(item => item.id === id).opening = !issueList.value.find(item => item.id === id).opening;
 }
 </script>
-<style lang="scss" scoped>
-.issue-title{
-  display: flex;
-  justify-content: space-between;
-  padding: 13px 20px;
-  font-size: 14px;
-  border: 1px solid #EFEFEF;
-  svg{
-    transition-duration: .3s;
-    path{
-      stroke: #272727;
-    }
-  }
-  &.opening{
-    background: #ebfbf2;
-    svg{
-      transform: rotate(180deg);
-      path{
-        stroke: #37d880;
-      }
-    }
-  }
-}
-</style>

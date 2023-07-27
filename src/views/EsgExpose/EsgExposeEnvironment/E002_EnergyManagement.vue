@@ -108,12 +108,3 @@ const props = defineProps({
   }
 })
 </script>
-<style lang="scss" scoped>
-.issue-content{
-  height: 0;
-  overflow: hidden;
-  &.opening{
-    height: auto;
-  }
-}
-</style>
