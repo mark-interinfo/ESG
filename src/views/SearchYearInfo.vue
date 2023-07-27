@@ -1,6 +1,5 @@
 <template>
     <div id="searchYearInfo">
-        {{ hasData }}
         <div>
             <h1>查閱年度資料</h1>
             <span id="company">
@@ -14,20 +13,20 @@
             <div id="queryInfo">
                 <h2>查詢結果</h2>
                 <ul>
-                    <li id="apply">
-                        <span>110年ESG資料尚未申請</span>
-                        <span>
-                            <router-link to="/ApplyEsgInfo">
-                                <input class="button buttonColor1" type="button" value="申請ESG資料">
-                            </router-link>
-                        </span>
-                    </li>
                     <li id="edit">
                         <span>109年ESG資料</span>
                         <span>
                             <input class="button buttonColor2" type="button" value="閱覽">
                             <router-link to="/EditEsgInfo">
                                 <input class="button buttonColor2" type="button" value="編輯">
+                            </router-link>
+                        </span>
+                    </li>
+                    <li id="apply">
+                        <span>110年ESG資料尚未申請</span>
+                        <span>
+                            <router-link to="/ApplyEsgInfo">
+                                <input class="button buttonColor1" type="button" value="申請ESG資料">
                             </router-link>
                         </span>
                     </li>
@@ -49,14 +48,12 @@ const apiData = ref({
     companyId: "1101",
     year: ''
 });
-const searched = ref(false);
-const hasData = ref(false);
 
-const change = async function(event) {
-    searched.value = true;
-    // hasData = getAccessYearDemand(apiData.value).responseBody.dataExist.value;
-    hasData.value = await APICollection.AccessYearDemand(apiData);
-    // console.log(APICollection.AccessYearDemand(apiData))
+const change = function(event) {
+    (async() => {
+        hasData.value = await APICollection.AccessYearDemand(apiData);
+        hasData.value = hasData.value.dataExist.value;
+    })();
 
     if(document.querySelector("#queryInfo .show")){
         document.querySelector("#queryInfo .show").classList.remove("show");
