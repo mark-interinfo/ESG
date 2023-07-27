@@ -3,12 +3,10 @@
   class="issue-item pointer"
   v-for="issue in issueList"
   :key="issue.id"
+  :class="{'opening': issue.opening}"
+  @click="toggleIssue(issue.id)"
   >
-    <div
-    class="issue-title"
-    :class="{'opening': issue.opening}"
-    @click="toggleIssue(issue.id)"
-    >
+    <div class="issue-title">
       <span>
         社會 - {{ issue.id }} {{ issue.name }}
       </span>

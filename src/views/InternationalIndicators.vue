@@ -1,5 +1,5 @@
 <template>
-  <div id="issue">
+  <div id="issue" class="InternationalIndicatorsContent">
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer" :class="{ 'selected': item.key === issueTypeSelected }" v-for="item in issueType"
@@ -11,28 +11,19 @@
         展開全部
       </div>
     </div>
-    <template v-if="issueTypeSelected === 'environment' || issueTypeSelected === 'all'">
-      <EsgExposeEnvironment />
-    </template>
-    <template v-if="issueTypeSelected === 'society' || issueTypeSelected === 'all'">
-      <EsgExposeSociety />
-    </template>
-    <template v-if="issueTypeSelected === 'governance' || issueTypeSelected === 'all'">
-      <EsgExposeGovernance />
+    <template v-if="issueTypeSelected === 'environment'">
+      <InternationalIndicatorsContent />
     </template>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import EsgExposeEnvironment from './EsgExpose/EsgExposeEnvironment.vue';
-import EsgExposeSociety from './EsgExpose/EsgExposeSociety.vue';
-import EsgExposeGovernance from './EsgExpose/EsgExposeGovernance.vue';
+import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
 
 
-const issueTypeSelected = ref('all');
+const issueTypeSelected = ref('environment');
 const issueType = ref([
-  { name: '全部議題', key: 'all' },
   { name: '環境', key: 'environment' },
   { name: '社會', key: 'society' },
   { name: '治理', key: 'governance' },
@@ -42,3 +33,13 @@ const selectIssueType = function (key) {
 }
 
 </script>
+<style lang="scss">
+
+  .InternationalIndicatorsContent{
+    margin-top:20px!important;
+    
+    span > input[type="button"]{width:350px;}
+    td[colspan]{text-align: right;}
+  }
+
+</style>

@@ -52,6 +52,12 @@ body{
     background: #F5FDF9;
 }
 
+.buttonColor4{
+    border: none;
+    background: #fff;
+    color: #808080;
+}
+
 input{
     box-sizing: border-box;
 }
