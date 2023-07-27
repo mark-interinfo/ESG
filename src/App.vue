@@ -5,7 +5,7 @@
       <span>
         申請作業
       </span>
-       /
+      /
       <span id="bread-last">{{ route.name }}</span>
     </div>
     <router-view/>

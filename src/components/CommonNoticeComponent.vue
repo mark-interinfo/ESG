@@ -16,7 +16,8 @@
         {{ item }}
       </p>
     </div>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+    <svg
+    width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
     @mousemove="showNoticeInfo"
     @mouseleave="hiddenNoticeInfo"
     >
@@ -57,7 +58,7 @@ const hiddenNoticeInfo = function(){
     position: absolute;
     z-index: 9999;
     transition: .3s;
-    top: 0%;
+    top: -8px;
     padding: 4px 8px;
     color: #fff;
     background: #525252;
@@ -72,14 +73,36 @@ const hiddenNoticeInfo = function(){
     &.position-center{
       left: 50%;
       transform: translate(-50%, -100%);
+      &::before{
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
     }
     &.position-left{
       left: 0%;
       transform: translate(0%, -100%);
+      &::before{
+        top: 100%;
+        left: 12px;
+        transform: translate(-50%, 0);
+      }
     }
     &.position-right{
       right: 0%;
       transform: translate(0%, -100%);
+      &::before{
+        top: 100%;
+        left: 100%;
+        transform: translate(-50%, 0);
+      }
+    }
+    &::before{
+      content: '';
+      position: absolute;
+      border-top: 8px solid #525252;
+      border-left: 4px solid #fff;
+      border-right: 4px solid #fff;
     }
     p{
       margin: 0;
