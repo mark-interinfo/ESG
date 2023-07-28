@@ -14,6 +14,12 @@
     <template v-if="issueTypeSelected === 'environment'">
       <ExchangeIndicatorsContent />
     </template>
+    <template v-if="issueTypeSelected === 'society'">
+      <ExchangeIndicatorsContent />
+    </template>
+    <template v-if="issueTypeSelected === 'governance'">
+      <ExchangeIndicatorsContent />
+    </template>
   </div>
 </template>
 
