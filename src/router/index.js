@@ -17,6 +17,11 @@ const routes = [
     component: () => import("../views/SearchYearInfo.vue"),
   },
   {
+    path: "/EsgDownload",
+    name: "ESG資訊下載",
+    component: () => import("../views/EsgDownload.vue"),
+  },
+  {
     path: "/ApplyEsgInfo",
     name: "110年度ESG揭露",
     component: () => import("../views/EditEsgInfo.vue"),
