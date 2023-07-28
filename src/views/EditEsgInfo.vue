@@ -253,10 +253,11 @@
       top:20px;
     }
   }
-
+  
   input[type="text"],
   select {
     width: 350px;
+    max-width:100%;
   }
 
   > div {
