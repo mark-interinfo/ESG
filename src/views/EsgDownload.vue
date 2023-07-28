@@ -50,6 +50,7 @@
   h1{
     font-size:24px;
     font-weight: inherit;
+    margin: 0 0 20px 0;
   }
 
   table{
