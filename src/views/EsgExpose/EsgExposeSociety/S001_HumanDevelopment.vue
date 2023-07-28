@@ -13,7 +13,6 @@
               <ol>
                   <li>
                     <span>福利平均數</span>
-                    <CommonNoticeComponent :info="['aaaa','bbbbb']"/>
                     <span class="fontRed">*</span>
                     <div class="fontRedOrange">
                       系統將自動帶出「(年度財報)員工人數與福利(薪資)費用資訊」項下「員工人數、福利費用與平均資訊申報作業」之資料並於6月初統一於公開資訊觀測站對外公告。
@@ -61,8 +60,12 @@
               <li>
                 <span>佔比</span>
                 <span class="fontRed">*</span>
+                <CommonNoticeComponent
+                :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                :position="'center'"
+                />
                 <input type="text" class="small">
-                <span class="unit">噸CO2e</span>
+                <span class="unit">%</span>
               </li>
             </ol>
           </td>
