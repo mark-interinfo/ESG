@@ -47,10 +47,16 @@
   border-radius: 3px;
   box-sizing: border-box;
 
+  h1{
+    font-size:24px;
+    font-weight: inherit;
+  }
+
   table{
     width: 100%;
     background: #EFEFEF;
     border-collapse: collapse;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
     tr{
       &:first-of-type td{background: #F5FDF9;}
       td{
@@ -79,6 +85,7 @@
             background:url(../assets/images/download.svg)center/cover no-repeat;
             vertical-align: middle;
             transition: .3s;
+            margin-left:5px;
           }
 
           &.download:hover{
