@@ -60,7 +60,9 @@
                         </select>
                     </div>
                     <div>
-                      <input type="button" value="+新增選項" class="button buttonColor4">
+                      <div class="center add">
+                        <span>新增選項</span>
+                      </div>
                     </div>
                   </span>
                   <span>
@@ -72,7 +74,9 @@
                     </div>
                     
                     <div>
-                      <input type="button" value="+新增選項" class="button buttonColor4">
+                      <div class="center add">
+                        <span>新增選項</span>
+                      </div>
                     </div>
                   </span>
                   <span>
@@ -84,7 +88,9 @@
                     </div>
                     
                     <div>
-                      <input type="button" value="+新增選項" class="button buttonColor4">
+                      <div class="center add">
+                        <span>新增選項</span>
+                      </div>
                     </div>
                   </span>
                 </div>
@@ -136,7 +142,9 @@
                           </select>
                       </div>
                       <div>
-                        <input type="button" value="+新增選項" class="button buttonColor4">
+                        <div class="center add">
+                        <span>新增選項</span>
+                      </div>
                       </div>
                     </span>
                     <span>
@@ -148,7 +156,9 @@
                       </div>
                       
                       <div>
-                        <input type="button" value="+新增選項" class="button buttonColor4">
+                        <div class="center add">
+                        <span>新增選項</span>
+                      </div>
                       </div>
                     </span>
                     <span>
@@ -158,17 +168,13 @@
                               <option>指標和目標b.</option>
                           </select>
                       </div>
-                      
-                      <div>
-                        <input type="button" value="+新增選項" class="button buttonColor4">
+                      <div class="center add">
+                        <span>新增選項</span>
                       </div>
                     </span>
                   </div>
-
-                  
                 </td>
             </tr>
-            
             <tr>
               <td colspan="2">
                 <input type="button" value="更新設定" class="button buttonColor1">

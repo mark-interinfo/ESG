@@ -153,10 +153,11 @@
         padding: 10px;
         color: #525252;
 
-        span {
+        span:not([class]) {
           padding: 0 5px;
-          vertical-align: middle;
         }
+
+        span{vertical-align: middle;}
 
         input {
           vertical-align: middle;
@@ -177,7 +178,9 @@
           top: 0;
         }
 
-        > div{padding:5px 0;}
+        > div{
+            padding:5px 0;
+        }
       }
     }
 
@@ -190,6 +193,20 @@
         margin-top: 20px;
       }
 
+      div>span {
+        padding: 5px;
+
+        &:first-of-type {
+            width: 90px;
+            text-align: right;
+        }
+
+        +span {
+            width: calc(100% - 114px);
+        }
+
+        }
+
       
     }
 
@@ -198,18 +215,8 @@
       margin-top: 10px;
     }
 
-    div>span {
+    div:not([class]) >span:not([class]) {
       padding: 5px;
-
-      &:first-of-type {
-        width: 90px;
-        text-align: right;
-      }
-
-      +span {
-        width: calc(100% - 114px);
-      }
-
     }
 
     input[type="text"]+.unit {

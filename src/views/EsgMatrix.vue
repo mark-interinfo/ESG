@@ -39,9 +39,9 @@ const selectIssueType = function (key) {
     margin-top:20px!important;
     
     .issue-title{display:none!important;}
-    select{background:#fff;}
+    select{background-color:#fff;}
 
-    
+    .add:before{content:"";width:20px;height:20px;display:inline-block;background:url(../assets/images/add.svg)center/cover no-repeat;vertical-align: middle;}
 
     div > span:first-of-type{text-align: inherit!important;}
 
