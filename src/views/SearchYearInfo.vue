@@ -49,9 +49,10 @@ const apiData = ref({
     year: ''
 });
 
+const hasData = ref();
 const change = function(event) {
     (async() => {
-        hasData.value = await APICollection.AccessYearDemand(apiData);
+        hasData.value = await APICollection.QueryYear(apiData);
         hasData.value = hasData.value.dataExist.value;
     })();
 

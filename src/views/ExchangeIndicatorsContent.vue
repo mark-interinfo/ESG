@@ -70,7 +70,7 @@
                         <input
                         type="button"
                         class="button buttonColor3"
-                        value="文字"
+                        :value="inputMethodComputed"
                         @click="openDialog"
                         >
                     </span>
@@ -95,11 +95,12 @@
     <CommonDialogComponent
     :isShowDialog="isShowDialog"
     @closeDialog="closeDialog"
+    @inputSetting="inputSetting"
     />
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import CommonDialogComponent from '../components/CommonDialogComponent.vue';
 
 const issueList = ref([
@@ -109,12 +110,32 @@ const issueList = ref([
   { id:'E004', name:'廢物物管理', opening: false },
 ]);
 
+const inputMethod = ref('unSelect');
+const inputMethodComputed = computed(()=>{
+  switch (inputMethod.value){
+    case 'unSelect':
+      return '請選擇';
+    case 'text':
+      return '文字';
+    case 'select':
+      return '下拉選單';
+    case 'number':
+      return '數值';
+    case 'file':
+      return '檔案上傳';
+  }
+})
+
 const isShowDialog = ref(false);
 const openDialog = function(){
     isShowDialog.value = true;
 }
 const closeDialog = function(){
     isShowDialog.value = false;
+}
+const inputSetting = function(method){
+  inputMethod.value = method;
+  isShowDialog.value = false;
 }
 
 const toggleIssue = function(id){

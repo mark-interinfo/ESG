@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body" ref="bodyRef" @scroll="scroll($event)">
     <CommonHeaderContainer  v-if="route.path !== '/HomeView'"/>
     <section>
       <div id="bread-crumbs"  v-if="!['/','/HomeView'].includes(route.path)">
@@ -11,15 +11,32 @@
       </div>
       <router-view/>
     </section>
-    <CommonFooterContainer  v-if="route.path !== '/HomeView'"/>
+    <CommonFooterContainer
+    v-if="route.path !== '/HomeView'"
+    :toTopDistance="toTopDistance"
+    @scrollToTop="scrollToTop"
+    />
   </div>
 </template>
 <script setup>
-import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
+import { ref } from 'vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
+import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
+
+const bodyRef = ref(null);
+const toTopDistance = ref(0);
+const scroll = function(e){
+  toTopDistance.value = e.target.scrollTop;
+}
+const scrollToTop = function(){
+  bodyRef.value.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
 
 </script>
 <style lang="scss">
@@ -27,7 +44,10 @@ const route = useRoute();
   font-family: 'NotoSans';
   src: url(/src/assets/font/NotoSansTC-Regular.otf)format('opentype');
 }
-
+.body{
+  overflow: auto;
+  height: 100vh;
+}
 #bread-crumbs{
   max-width: 960px;
   margin: 20px auto 0 auto;

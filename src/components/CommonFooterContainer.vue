@@ -23,9 +23,26 @@
       <p>(02) 8101-3905</p>
       <p></p>
     </div>
+    <div
+    id="toTop"
+    :class="{'show': props.toTopDistance > 100}"
+    @click="scrollToTop"
+    >
+      <p class="center">回頂部</p>
+      <img src="../assets/images/to-top.svg" alt="">
+    </div>
   </footer>
 </template>
 <script setup>
+const props = defineProps({
+  toTopDistance: {
+    type: Number,
+  }
+});
+const emits = defineEmits(['scrollToTop']);
+const scrollToTop = function(){
+  emits('scrollToTop');
+}
 </script>
 <style lang="scss" scoped>
 // common setting
@@ -40,6 +57,7 @@ p{
 }
 // page setting
 footer{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,5 +84,20 @@ footer{
       height: 18px;
     }
   }
+  #toTop{
+    display: none;
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    cursor: pointer;
+    &.show{
+      display: block;
+    }
+    p{
+      color: #37D880;
+      margin-bottom: 8px;
+    }
+  }
+  
 }
 </style>

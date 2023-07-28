@@ -17,8 +17,8 @@
         </div>
         <div id="selecter">
           <select
-          :class="{'unSelect': selected === 'unSelect'}"
-          v-model="selected"
+          :class="{'unSelect': inputMethod === 'unSelect'}"
+          v-model="inputMethod"
           >
             <option value="unSelect">請選擇</option>
             <option value="text">文字</option>
@@ -27,83 +27,91 @@
             <option value="file">檔案上傳</option>
           </select>
         </div>
-        <template v-if="selected === 'text'">
-          <label for="text-length">
+        <div>
+          <template v-if="inputMethod === 'text'">
+            <label for="text-length">
+              <p class="label-title">
+                設定值
+              </p>
+              <div class="input-group">
+                <input type="text" id="text-length" v-model.number="textLength" placeholder="請輸入字數上限">
+                <span class="unit">字</span>
+              </div>
+            </label>
+          </template>
+          <template v-if="inputMethod === 'select'">
+            <p class="label-title">
+              選項名稱
+            </p>
+            <div
+            v-for="(option, i) in optionSetting"
+            :key="option"
+            class="input-group"
+            >
+              <input
+              type="text"
+              placeholder="請輸入選項名稱"
+              :value="option"
+              @blur="setOption($event, i)"
+              >
+            </div>
+            <div class="add-group">
+              <div
+              class="add-button"
+              @click="addOption"
+              >
+                ＋ 新增項目
+              </div>
+              <div
+              class="del-button"
+              v-if="optionSetting.length > 1"
+              @click="delOption"
+              >
+                刪除
+              </div>
+            </div>
+          </template>
+          <template v-if="inputMethod === 'number'">
             <p class="label-title">
               設定值
             </p>
             <div class="input-group">
-              <input type="text" id="text-length" v-model.number="textLength" placeholder="請輸入字數上限">
-              <span class="unit">字</span>
+              <label
+              v-for="option in numberSettingOption"
+              :key="option.id"
+              :for="option.id"
+              >
+                <input type="checkbox" v-model="numberSettingSelected" :id="option.id" :value="option.id" name="numberSetting">
+                {{ option.title }}
+              </label>
             </div>
-          </label>
-        </template>
-        <template v-if="selected === 'select'">
-          <p class="label-title">
-            選項名稱
-          </p>
-          <div
-          v-for="(option, i) in optionSetting"
-          :key="option"
-          class="input-group"
-          >
-            <input
-            type="text"
-            placeholder="請輸入選項名稱"
-            :value="option"
-            @blur="setOption($event, i)"
-            >
-          </div>
-          <div class="add-group">
-            <div
-            class="add-button"
-            @click="addOption"
-            >
-              ＋ 新增項目
+          </template>
+          <template v-if="inputMethod === 'file'">
+            <p class="label-title">
+              檔案格式
+            </p>
+            <div class="input-group">
+              <select
+              v-model="fileSettingSelected"
+              :class="{'unSelect': fileSettingSelected === 'unSelect'}"
+              >
+                <option
+                v-for="option in fileSettingOption"
+                :key="option.id"
+                :value="option.id">
+                  {{ option.title }}
+                </option>
+              </select>
             </div>
-            <div
-            class="del-button"
-            v-if="optionSetting.length > 1"
-            @click="delOption"
-            >
-              刪除
+            <p class="label-title">
+              檔案大小
+            </p>
+            <div class="input-group">
+              <input type="text" id="text-length" v-model.number="fileSettingSize" placeholder="請輸入">
+              <span class="unit">MB</span>
             </div>
-          </div>
-        </template>
-        <template v-if="selected === 'number'">
-          <p class="label-title">
-            設定值
-          </p>
-          <div class="input-group">
-            <label
-            v-for="option in numberSettingOption"
-            :key="option.id"
-            :for="option.id"
-            >
-              <input type="checkbox" v-model="numberSettingSelected" :id="option.id" :value="option.id" name="numberSetting">
-              {{ option.title }}
-            </label>
-          </div>
-        </template>
-        <template v-if="selected === 'file'">
-          <p class="label-title">
-            檔案格式
-          </p>
-          <div class="input-group">
-            <select name="" id="">
-              <option value="jpg">jpg</option>
-              <option value="png">png</option>
-              <option value="pdf">pdf</option>
-            </select>
-          </div>
-          <p class="label-title">
-            檔案大小
-          </p>
-          <div class="input-group">
-            <input type="text" id="text-length" v-model.number="textLength" placeholder="請輸入字數上限">
-            <span class="unit">MB</span>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
       <div id="dialog-footer">
         <button
@@ -112,7 +120,10 @@
         >
           取消
         </button>
-        <button class="button buttonColor1">
+        <button
+        class="button buttonColor1"
+        @click="inputSetting"
+        >
           確認
         </button>
       </div>
@@ -120,7 +131,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
   isShowDialog: {
@@ -128,12 +139,16 @@ const props = defineProps({
     default: false,
   },
 });
-const emits = defineEmits(['closeDialog']);
+const emits = defineEmits(['closeDialog', 'inputSetting']);
 
-const selected = ref('unSelect');
+// inputMethod 輸入方式
+const inputMethod = ref('unSelect');
+
+// 文字
 const textLength = ref(0);
-const optionSetting = ref(['']);
 
+// 選單
+const optionSetting = ref(['']);
 const addOption = function(){
   optionSetting.value.push('')
 };
@@ -144,10 +159,11 @@ const setOption = function(e, optionIndex){
   optionSetting.value[optionIndex] = e.target.value;
 }
 
+// 數值
 const numberSettingOption = ref([
   {
-    title: '允許0',
-    id: 'zero'
+    title: '請選擇',
+    id: 'unSelect'
   },
   {
     title: '允許負值',
@@ -164,8 +180,33 @@ const numberSettingOption = ref([
 ]);
 const numberSettingSelected = ref([]);
 
+// 檔案
+const fileSettingOption = ref([
+  {
+    title: '請選擇',
+    id: 'unSelect'
+  },
+  {
+    title: 'jpg',
+    id: 'jpg'
+  },
+  {
+    title: 'png',
+    id: 'png'
+  },
+  {
+    title: 'pdf',
+    id: 'pdf'
+  },
+]);
+const fileSettingSelected = ref('unSelect');
+const fileSettingSize = ref();
+
 const closeDialog = function(){
   emits('closeDialog');
+};
+const inputSetting = function(){
+  emits('inputSetting', inputMethod.value);
 };
 
 </script>
@@ -194,6 +235,17 @@ label{
 }
 input[type=checkbox]{
   width: unset;
+}
+select{
+  &.unSelect{
+    color: #BEBEBE;
+  }
+  option{
+    color: #272727;
+    &:first-of-type{
+      display: none;
+    }
+  }
 }
 // page setting
 #dialog-background{
@@ -232,19 +284,9 @@ input[type=checkbox]{
           position: absolute;
           width: 100%;
           height: 1px;
+          left: 0;
           bottom: -12px;
           background: #EFEFEF;
-        }
-        select{
-          &.unSelect{
-            color: #BEBEBE;
-          }
-          option{
-            color: #272727;
-            &:first-of-type{
-              display: none;
-            }
-          }
         }
       }
       .add-group{

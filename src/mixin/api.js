@@ -16,7 +16,7 @@ function callAPI(apiName, requestBody, method='POST'){
 };
 
 const APICollection = {
-  AccessYearDemand: ((requestData) => callAPI('AccessYearDemand', requestData)),
+  QueryYear: ((requestData) => callAPI('QueryYear', requestData)),
   ESGLogin: ((requestData) => callAPI('ESGLogin', requestData)),
   // {
   //   "uid":"admin",
