@@ -58,10 +58,13 @@
     border-collapse: collapse;
     box-shadow: 0 0 5px rgba(0,0,0,.1);
     tr{
-      &:first-of-type td{background: #F5FDF9;}
+      &:first-of-type td{
+        background: #F5FDF9;
+        padding:8px;
+      }
       td{
         border: 1px solid #EFEFEF;
-        padding: 8px;
+        padding: 12px 8px;
         background: #fff;
       }
       td:first-of-type{
