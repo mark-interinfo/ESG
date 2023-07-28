@@ -61,6 +61,7 @@
       &:first-of-type td{
         background: #F5FDF9;
         padding:8px;
+        color: #808080;
       }
       td{
         border: 1px solid #EFEFEF;
