@@ -15,43 +15,93 @@
             輸入方式設定
           </span>
         </div>
-        <select
-        id="selecter"
-        :class="{'unSelect': selected === 'unSelect'}"
-        v-model="selected"
-        >
-          <option value="unSelect">請選擇</option>
-          <option value="text">文字</option>
-          <option value="select">下拉選單</option>
-          <option value="number">數值</option>
-          <option value="file">檔案上傳</option>
-        </select>
+        <div id="selecter">
+          <select
+          :class="{'unSelect': selected === 'unSelect'}"
+          v-model="selected"
+          >
+            <option value="unSelect">請選擇</option>
+            <option value="text">文字</option>
+            <option value="select">下拉選單</option>
+            <option value="number">數值</option>
+            <option value="file">檔案上傳</option>
+          </select>
+        </div>
         <template v-if="selected === 'text'">
-          <div>
-            <label for="text-max">
-              <p class="label-title">
-                設定值
-              </p>
-              <div class="input-group">
-                <input type="text" id="text-max" placeholder="請輸入字數上限">
-                <span class="unit">字</span>
-              </div>
-            </label>
-          </div>
+          <label for="text-length">
+            <p class="label-title">
+              設定值
+            </p>
+            <div class="input-group">
+              <input type="text" id="text-length" v-model.number="textLength" placeholder="請輸入字數上限">
+              <span class="unit">字</span>
+            </div>
+          </label>
         </template>
         <template v-if="selected === 'select'">
-          <div>
-            下拉選單
+          <p class="label-title">
+            選項名稱
+          </p>
+          <div
+          v-for="(option, i) in optionSetting"
+          :key="option"
+          class="input-group"
+          >
+            <input
+            type="text"
+            placeholder="請輸入選項名稱"
+            :value="option"
+            @blur="setOption($event, i)"
+            >
+          </div>
+          <div class="add-group">
+            <div
+            class="add-button"
+            @click="addOption"
+            >
+              ＋ 新增項目
+            </div>
+            <div
+            class="del-button"
+            v-if="optionSetting.length > 1"
+            @click="delOption"
+            >
+              刪除
+            </div>
           </div>
         </template>
         <template v-if="selected === 'number'">
-          <div>
-            數值
+          <p class="label-title">
+            設定值
+          </p>
+          <div class="input-group">
+            <label
+            v-for="option in numberSettingOption"
+            :key="option.id"
+            :for="option.id"
+            >
+              <input type="checkbox" v-model="numberSettingSelected" :id="option.id" :value="option.id" name="numberSetting">
+              {{ option.title }}
+            </label>
           </div>
         </template>
         <template v-if="selected === 'file'">
-          <div>
-            檔案上傳
+          <p class="label-title">
+            檔案格式
+          </p>
+          <div class="input-group">
+            <select name="" id="">
+              <option value="jpg">jpg</option>
+              <option value="png">png</option>
+              <option value="pdf">pdf</option>
+            </select>
+          </div>
+          <p class="label-title">
+            檔案大小
+          </p>
+          <div class="input-group">
+            <input type="text" id="text-length" v-model.number="textLength" placeholder="請輸入字數上限">
+            <span class="unit">MB</span>
           </div>
         </template>
       </div>
@@ -70,7 +120,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const props = defineProps({
   isShowDialog: {
@@ -81,6 +131,39 @@ const props = defineProps({
 const emits = defineEmits(['closeDialog']);
 
 const selected = ref('unSelect');
+const textLength = ref(0);
+const optionSetting = ref(['']);
+
+const addOption = function(){
+  optionSetting.value.push('')
+};
+const delOption = function(){
+  optionSetting.value.pop();
+};
+const setOption = function(e, optionIndex){
+  optionSetting.value[optionIndex] = e.target.value;
+}
+
+const numberSettingOption = ref([
+  {
+    title: '允許0',
+    id: 'zero'
+  },
+  {
+    title: '允許負值',
+    id: 'negative'
+  },
+  {
+    title: '設定整數位數',
+    id: 'integer'
+  },
+  {
+    title: '設定小數位數',
+    id: 'float'
+  },
+]);
+const numberSettingSelected = ref([]);
+
 const closeDialog = function(){
   emits('closeDialog');
 };
@@ -88,24 +171,29 @@ const closeDialog = function(){
 </script>
 <style lang="scss" scoped>
 // common setting
+.label-title{
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.input-group{
+  position: relative;
+  margin-bottom: 4px;
+  input{
+    width: 100%;
+    padding-right: 48px;
+  }
+  .unit{
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translate(-50%, -50%);
+  }
+}
 label{
-  .label-title{
-    margin-top: 0;
-    margin-bottom: 4px;
-  }
-  .input-group{
-    position: relative;
-    input{
-      width: 100%;
-      padding-right: 48px;
-    }
-    .unit{
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translate(-50%, -50%);
-    }
-  }
+  display: block;
+}
+input[type=checkbox]{
+  width: unset;
 }
 // page setting
 #dialog-background{
@@ -136,17 +224,34 @@ label{
         color: #37D880;
       }
       #selecter{
+        position: relative;
         width: 100%;
-        margin-bottom: 12px;
-        &.unSelect{
-          color: #BEBEBE;
+        margin-bottom: 20px;
+        &::after{
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          bottom: -12px;
+          background: #EFEFEF;
         }
-        option{
-          color: #272727;
-          &:first-of-type{
-            display: none;
+        select{
+          &.unSelect{
+            color: #BEBEBE;
+          }
+          option{
+            color: #272727;
+            &:first-of-type{
+              display: none;
+            }
           }
         }
+      }
+      .add-group{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 4px;
+        color: #808080;
       }
     }
     #dialog-footer{
