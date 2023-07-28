@@ -64,13 +64,111 @@
                 <input type="button" value="更新設定" class="button buttonColor1">
               </td>
             </tr>
-          </table>
+        </table>
       </div>
-      <div v-if="issue.id === 'SASB'">
-        <!-- <I002_EnergyManagement :opening="issue.opening"/> -->
+      <div v-if="issue.id === 'SASB'"  id="SASB" class="issue-content">
+        <table>
+            <tr>
+                <td>
+                  適用產業別
+                </td>
+                <td>
+                  <span>
+                      <select>
+                          <option>請選擇</option>
+                      </select>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標代碼
+                </td>
+                <td>
+                  <span>
+                      <input type="text" placeholder="請填寫">
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  使用狀態
+                </td>
+                <td>
+                  <span>
+                      <span><input type="radio" name="a"><span>開啟</span></span>
+                      <span><input type="radio" name="a"><span>停用</span></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標名稱
+                </td>
+                <td>
+                  <span>
+                    <input type="text" placeholder="請描述">
+                  </span>
+                </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input type="button" value="更新設定" class="button buttonColor1">
+              </td>
+            </tr>
+        </table>
       </div>
-      <div v-if="issue.id === 'TCFD'">
-        <!-- <I003_WaterManagement :opening="issue.opening"/> --> 
+      <div v-if="issue.id === 'TCFD'"  id="TCFD" class="issue-content">
+        <table>
+            <tr>
+                <td>
+                  適用產業別
+                </td>
+                <td>
+                  <span>
+                      <select>
+                          <option>請選擇</option>
+                      </select>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標代碼
+                </td>
+                <td>
+                  <span>
+                      <input type="text" placeholder="請填寫">
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  使用狀態
+                </td>
+                <td>
+                  <span>
+                      <span><input type="radio" name="a"><span>開啟</span></span>
+                      <span><input type="radio" name="a"><span>停用</span></span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標名稱
+                </td>
+                <td>
+                  <span>
+                    <input type="text" placeholder="請描述">
+                  </span>
+                </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input type="button" value="更新設定" class="button buttonColor1">
+              </td>
+            </tr>
+        </table>
       </div>
     </div>
   </div>

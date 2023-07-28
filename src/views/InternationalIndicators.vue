@@ -14,6 +14,12 @@
     <template v-if="issueTypeSelected === 'environment'">
       <InternationalIndicatorsContent />
     </template>
+    <template v-if="issueTypeSelected === 'society'">
+      <InternationalIndicatorsContent />
+    </template>
+    <template v-if="issueTypeSelected === 'governance'">
+      <InternationalIndicatorsContent />
+    </template>
   </div>
 </template>
 
@@ -37,7 +43,7 @@ const selectIssueType = function (key) {
 
   .InternationalIndicatorsContent{
     margin-top:20px!important;
-    
+
     span > input[type="button"]{width:350px;}
     td[colspan]{text-align: right;}
   }
