@@ -31,19 +31,21 @@
               v-for="(subLink, subLinkIndex) in mainLink.children"
               :key="subLink"
               >
-                <div class="sub-link">
-                  {{ subLink }}
-                </div>
-                <div class="line" v-if="subLinkIndex < mainLink.children.length - 1"></div>
+                <router-link
+                class="sub-link"
+                :to="subLink.href"
+                >
+                  {{ subLink.name }}
+                </router-link>
               </template>
             </div>
           </div>
-          <div class="gap-line"></div>
         </template>
-        <router-link to="/EsgDownload">
-          <div class="main-link pointer color-black">
-            ESG資訊下載
-          </div>
+        <router-link
+        class="main-link pointer color-black"
+        to="/EsgDownload"
+        >
+          ESG資訊下載
         </router-link>
       </div>
       <router-link to="/HomeView">
@@ -77,40 +79,82 @@ const linkGroup = ref([
   {
     name: '系統管理',
     children: [
-      '模組管理',
-      '監控單位建立',
-      '系統參數維護'
+      {
+        name: '模組管理',
+        href: '/'
+      },
+      {
+        name: '監控單位建立',
+        href: '/'
+      },
+      {
+        name: '系統參數維護',
+        href: '/'
+      },
     ]
   },
   {
     name: '帳號與權限',
     children: [
-      '監控單位使用者建立',
-      '申報單位權限設定',
+      {
+        name: '監控單位使用者建立',
+        href: '/'
+      },
+      {
+        name: '申報單位權限設定',
+        href: '/'
+      },
     ]
   },
   {
     name: '指標維護',
     children: [
-      '證交所核心指標設定',
-      '國際準則指標設定',
-      'ESG資訊矩陣設定',
+      {
+        name: '證交所核心指標設定',
+        href: '/'
+      },
+      {
+        name: '國際準則指標設定',
+        href: '/'
+      },
+      {
+        name: 'ESG資訊矩陣設定',
+        href: '/'
+      }
     ],
   },
   {
     name: '申報管理',
     children: [
-      '更正審核作業',
-      '申報情形控管表',
+      {
+        name: '更正審核作業',
+        href: '/'
+      },
+      {
+        name: '申報情形控管表',
+        href: '/'
+      }
     ]
   },
   {
     name: '申報作業',
     children: [
-      'ESG資料申報',
-      '永續報告書套表',
-      '永續報告書申報',
-      '申請資料更正',
+      {
+        name: 'ESG資料申報',
+        href: '/'
+      },
+      {
+        name: '永續報告書套表',
+        href: '/'
+      },
+      {
+        name: '永續報告書申報',
+        href: '/'
+      },
+      {
+        name: '申請資料更正',
+        href: '/'
+      },
     ]
   },
   // {
@@ -177,26 +221,34 @@ header{
       display: flex;
       align-items: center;
       .main-link{
+        position: relative;
         display: inline-flex;
         align-items: center;
         gap: 4px;
         padding: 18px 30px;
-        position: relative;
-        path{
-          stroke: #272727;
-        }
         &.selected{
           color: #37D880;
           path{
             stroke: #37D880;
           }
         }
+        +.main-link::before{
+          content: '';
+          position: absolute;
+          left: 0;
+          height: 24px;
+          width: 1px;
+          background: #BEBEBE;
+        }
+        path{
+          stroke: #272727;
+        }
         .dropdown{
           display: none;
           position: absolute;
           top: calc(100% + 1px);
           left: 50%;
-          width: 100%;
+          z-index: 1;
           background: #fff;
           border: 1px solid #ddd;
           transform: translate(-50%, 0%);
@@ -204,21 +256,24 @@ header{
             display: block;
           }
           .sub-link{
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
             padding: 12px 16px;
             color: #272727;
-          }
-          .line{
+            text-wrap: nowrap;
             width: 100%;
-            height: 1px;
-            background: #eee;
+            +.sub-link::before{
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              background: #eee;
+            }
           }
         }
-      }
-      .gap-line{
-        display: inline-block;
-        height: 24px;
-        width: 1px;
-        background: #BEBEBE;
       }
     }
   }
