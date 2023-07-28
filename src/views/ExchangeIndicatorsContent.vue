@@ -67,7 +67,12 @@
                       輸入方式
                     </span>
                     <span>
-                        <input type="button" value="文字" class="button buttonColor3">
+                        <input
+                        type="button"
+                        class="button buttonColor3"
+                        value="文字"
+                        @click="openDialog"
+                        >
                     </span>
                   </div>
                 </td>
@@ -87,16 +92,30 @@
         <!-- <E003_WaterManagement :opening="issue.opening"/> -->
       </div>
     </div>
+    <CommonDialogComponent
+    :isShowDialog="isShowDialog"
+    @closeDialog="closeDialog"
+    />
   </div>
 </template>
 <script setup>
 import { ref } from 'vue';
+import CommonDialogComponent from '../components/CommonDialogComponent.vue';
+
 const issueList = ref([
   { id:'E001', name:'溫室氣體排放', opening: false },
   { id:'E002', name:'能源管理', opening: false },
   { id:'E003', name:'水資源管理', opening: false },
   { id:'E004', name:'廢物物管理', opening: false },
 ]);
+
+const isShowDialog = ref(false);
+const openDialog = function(){
+    isShowDialog.value = true;
+}
+const closeDialog = function(){
+    isShowDialog.value = false;
+}
 
 const toggleIssue = function(id){
   issueList.value.find(item => item.id === id).opening = !issueList.value.find(item => item.id === id).opening;

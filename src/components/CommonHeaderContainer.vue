@@ -111,15 +111,15 @@ const linkGroup = ref([
     children: [
       {
         name: '證交所核心指標設定',
-        href: '/'
+        href: '/ExchangeIndicators'
       },
       {
         name: '國際準則指標設定',
-        href: '/'
+        href: '/InternationalIndicators'
       },
       {
         name: 'ESG資訊矩陣設定',
-        href: '/'
+        href: '/EsgMatrix'
       }
     ],
   },

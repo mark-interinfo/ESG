@@ -68,14 +68,9 @@
       </div>
     </div>
   </div>
-  <!-- <CommonDialogComponent
-  :isShowDialog="showDialog"
-  @closeDialog="closeDialog"
-  /> -->
 </template>
 <script setup>
 import { ref } from "vue";
-// import CommonDialogComponent from '../components/CommonDialogComponent.vue';
 
 const props = defineProps({
   isShowDialog: {
@@ -89,14 +84,6 @@ const selected = ref('unSelect');
 const closeDialog = function(){
   emits('closeDialog');
 };
-
-// const showDialog = ref(false);
-// const openDialog = function(){
-//     showDialog.value = true;
-// }
-// const closeDialog = function(){
-//     showDialog.value = false;
-// }
 
 </script>
 <style lang="scss" scoped>
@@ -125,7 +112,7 @@ label{
   position: fixed;
   top: 0;
   left: 0;
-  background: #11111199;
+  background: #cccccc33;
   width: 100vw !important;
   max-width: unset !important;
   height: 100vh;
