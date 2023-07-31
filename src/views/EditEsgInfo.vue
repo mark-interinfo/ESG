@@ -85,6 +85,10 @@
         }
       }
     }
+
+    & + .issue-item .issue-title{
+      border-top:none;
+    }
   }
 
   .issue-title {
