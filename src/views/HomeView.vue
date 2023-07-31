@@ -5,11 +5,15 @@
             <form id="form">
                 <div class="id">
                     <div>帳號</div>
-                    <input type="text" id="id" name="id" placeholder="帳號為SLL">
+                    <input type="text" id="id" name="id" placeholder="帳號為SLL"
+                    v-model="accountData.uid"
+                    >
                 </div>
                 <div class="pw">
                     <div>密碼</div>
-                    <input type="password" id="pw" name="pw" placeholder="請輸入8碼英數字">
+                    <input type="password" id="pw" name="pw" placeholder="請輸入8碼英數字"
+                    v-model="accountData.mima"
+                    >
                 </div>
                 <div class="verify">
                     <div>驗證碼</div>
@@ -23,7 +27,11 @@
                 </div>
                 <div class="submit">
                     <router-link to="/">
-                        <input type="button" value="登入">
+                        <input
+                        type="button"
+                        value="登入"
+                        @click="login"
+                        >
                     </router-link>
                 </div>
                 <div class="forget">
@@ -33,6 +41,25 @@
         </div>
     </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+
+import { APICollection } from '../mixin/api.js';
+import { useUserStore } from '../pinia/user.js';
+
+const userStore = useUserStore();
+
+const accountData = ref({
+    uid: "",
+    mima: ""
+});
+
+const login = function(){
+    (async() => {
+        userStore.setUser(await APICollection.ESGLogin(accountData));
+    })()
+}
+</script>
 <style lang="scss" scoped>
     #login {
         height: 100vh;

@@ -11,7 +11,7 @@
             <td>
               <ol>
                 <li>
-                    <span>公司年度召開法說會次數*</span>
+                    <span>公司年度召開法說會次數</span>
                     <span class="fontRed">*</span>
                     <span>
                       <input type="text">

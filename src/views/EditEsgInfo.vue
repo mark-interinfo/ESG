@@ -74,23 +74,14 @@
   }
 
   .issue-item {
-    border: 1px solid #EFEFEF;
-    cursor: pointer;
-
-    +.issue-item {
-      border-top: none;
-    }
 
     &.opening {
       background: #ebfbf2;
 
       .issue-content{height:auto;}
-
-      svg {
-        transform: rotate(180deg);
-
-        path {
-          stroke: #37d880;
+      .issue-title{
+        svg {
+          transform: rotate(180deg);
         }
       }
     }
@@ -101,6 +92,11 @@
     justify-content: space-between;
     padding: 13px 20px;
     font-size: 14px;
+    border: 1px solid #EFEFEF;
+    cursor: pointer;
+    + .issue-title {
+      border-top: none;
+    }
 
     svg {
       transition-duration: .3s;
@@ -171,11 +167,6 @@
           height: 16px;
           width: 16px;
           cursor: pointer;
-        }
-
-        .notice-icon svg {
-          position: absolute;
-          top: 0;
         }
 
         > div{

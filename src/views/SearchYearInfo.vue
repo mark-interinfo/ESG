@@ -7,14 +7,20 @@
                 <span>公司名稱 : 英特內股份有限公司</span>
             </span>
             <div id="searchBar">
-                <input id="searchInput" type="text" placeholder="請輸入民國年份" v-model.number="apiData.year" @change="change">
+                <input id="searchInput" type="text" placeholder="請輸入民國年份"
+                v-model.number="apiRequest.year"
+                @change="change"
+                >
                 <input type="button" id="searchButton" class="button buttonColor1">
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
                 <ul>
-                    <li id="edit">
-                        <span>109年ESG資料</span>
+                    <!-- 有資料 -->
+                    <li id="edit"
+                    :class="{'show': hasData === 'YES'}"
+                    >
+                        <span>{{queryYear}}年ESG資料</span>
                         <span>
                             <input class="button buttonColor2" type="button" value="閱覽">
                             <router-link to="/EditEsgInfo">
@@ -22,16 +28,16 @@
                             </router-link>
                         </span>
                     </li>
-                    <li id="apply">
-                        <span>110年ESG資料尚未申請</span>
+                    <!-- 無資料 -->
+                    <li id="apply"
+                    :class="{'show': hasData === 'NO'}"
+                    >
+                        <span>{{queryYear}}年ESG資料尚未申請</span>
                         <span>
                             <router-link to="/ApplyEsgInfo">
                                 <input class="button buttonColor1" type="button" value="申請ESG資料">
                             </router-link>
                         </span>
-                    </li>
-                    <li id="nodata">
-                        <span>無資料</span>
                     </li>
                 </ul>
             </div>
@@ -43,33 +49,47 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { APICollection } from '../mixin/api';
-const apiData = ref({
+import { APICollection, asyncAjax } from '../mixin/api';
+import { useUserStore } from '../pinia/user.js';
+
+const userStore = useUserStore();
+const apiRequest = ref({
     companyId: "1101",
     year: ''
 });
+const queryYear = ref()
 
-const hasData = ref();
+const hasData = ref('');
 const change = function(event) {
+    // Nick
     (async() => {
-        hasData.value = await APICollection.QueryYear(apiData);
+        hasData.value = await APICollection.QueryYear(apiRequest, userStore.returnUser());
         hasData.value = hasData.value.dataExist.value;
+
+        queryYear.value = apiRequest.value.year;
     })();
 
-    if(document.querySelector("#queryInfo .show")){
-        document.querySelector("#queryInfo .show").classList.remove("show");
-    }
+    // Mark
+    // function test(e){
+    //     console.log(JSON.parse(e.data));
+    // }
+    // let data = JSON.stringify(apiData.value);
+    // asyncAjax('QueryYear', test, true, 'post',data);
 
-    if(event.target.value == "110"){
-        apply.classList.add("show");
-        return;
-    }
+    // if(document.querySelector("#queryInfo .show")){
+    //     document.querySelector("#queryInfo .show").classList.remove("show");
+    // }
 
-    if(event.target.value == "109"){
-        edit.classList.add("show");
-        return;
-    }
-    nodata.classList.add("show");
+    // if(event.target.value == "110"){
+    //     apply.classList.add("show");
+    //     return;
+    // }
+
+    // if(event.target.value == "109"){
+    //     edit.classList.add("show");
+    //     return;
+    // }
+    // nodata.classList.add("show");
 }
 
 </script>
@@ -130,7 +150,6 @@ const change = function(event) {
                         color: #aaa
                     }
 
-                    
                 }
 
                 #searchButton {
