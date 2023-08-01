@@ -8,12 +8,12 @@
                 <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
                 <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出">
             </span>
-            <ExchangeIndicators  v-if="['/ExchangeIndicators'].includes(route.path)"/>
-            <InternationalIndicators  v-if="['/InternationalIndicators'].includes(route.path)"/>
-            <EsgMatrix  v-if="['/EsgMatrix'].includes(route.path)"/>
+            <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
+            <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
+            <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
         </div>
         <span>
-            <EsgExposeInfo  v-if="pathName.includes(route.path)"/>
+            <EsgExposeInfo v-if="pathName.includes(route.path)"/>
         </span>
     </div>
 </template>

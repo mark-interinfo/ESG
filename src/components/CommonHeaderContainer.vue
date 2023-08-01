@@ -19,9 +19,8 @@
             <span>
               {{ mainLink.name }}
             </span>
-            <svg v-if="mainLink.children" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img v-if="mainLinkIndex === isLinkShow" src="../assets//images/arrow-green.svg" alt="">
+            <img v-else src="../assets//images/arrow-black.svg" alt="">
             <div
             class="dropdown"
             :class="{'show': mainLinkIndex === isLinkShow}"
@@ -44,32 +43,33 @@
         <router-link
         class="main-link pointer color-black"
         to="/EsgDownload"
+        @click="showLink(-1)"
         >
           ESG資訊下載
         </router-link>
       </div>
       <router-link to="/HomeView">
-        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20.4141" r="13.4" fill="#808080" stroke="#808080" stroke-width="1.2"/>
-          <path d="M13.75 27.9141C13.75 27.9141 12.5 27.9141 12.5 26.6641C12.5 25.4141 13.75 21.6641 20 21.6641C26.25 21.6641 27.5 25.4141 27.5 26.6641C27.5 27.9141 26.25 27.9141 26.25 27.9141H13.75ZM20 20.4141C20.9946 20.4141 21.9484 20.019 22.6517 19.3157C23.3549 18.6125 23.75 17.6586 23.75 16.6641C23.75 15.6695 23.3549 14.7157 22.6517 14.0124C21.9484 13.3092 20.9946 12.9141 20 12.9141C19.0054 12.9141 18.0516 13.3092 17.3483 14.0124C16.6451 14.7157 16.25 15.6695 16.25 16.6641C16.25 17.6586 16.6451 18.6125 17.3483 19.3157C18.0516 20.019 19.0054 20.4141 20 20.4141Z" fill="white"/>
-        </svg>
+        <img src="../assets/images/account.svg" alt="">
       </router-link>
     </div>
     <div id="header-bottom">
-      <router-link to="SearchYearInfo" id="esg-declare" class="pointer">
+      <router-link
+      id="esg-declare" class="pointer"
+      to="/SearchYearInfo"
+      @click="showLink(-1)"
+      >
         <span>ESG資料申報</span>
-        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="../assets/images/arrow-white.svg" alt="">
       </router-link>
-      <router-link to="SearchYearInfo" id="sustainable-declare" class="pointer">
+      <router-link
+      id="sustainable-declare" class="pointer"
+      to="/SearchYearInfo"
+      @click="showLink(-1)"
+      >
         <span>永續報告書申報</span>
-        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 18L15 12.2222L10 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="../assets/images/arrow-white.svg" alt="">
       </router-link>
     </div>
-
   </header>
 </template>
 <script setup>
@@ -157,16 +157,13 @@ const linkGroup = ref([
       },
     ]
   },
-  // {
-  //   name: 'ESG資訊下載',
-  // }
 ]);
 const isLinkShow = ref(-1);
-const showLink = function(i){
-  if(i === isLinkShow.value){
+const showLink = function(targetIndex){
+  if(targetIndex === isLinkShow.value){
     isLinkShow.value = -1;
   } else {
-    isLinkShow.value = i;
+    isLinkShow.value = targetIndex;
   }
 }
 </script>
