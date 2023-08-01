@@ -84,7 +84,7 @@
         if(value == "loadingFile"){
             setTimeout(function(){
                 closeDialog();
-            },5500);
+            },2500);
         }
     }
     const closeDialog = function(){

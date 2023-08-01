@@ -277,7 +277,7 @@ const inputSetting = function(){
         position: relative;
         text-align: left;
 
-        &:before{content:"";display:block;height:4px;border-radius:2px;background:#37D880;animation: progress 5s both;}
+        &:before{content:"";display:block;height:4px;border-radius:2px;background:#37D880;animation: progress 2s both;}
       }
     }
 
