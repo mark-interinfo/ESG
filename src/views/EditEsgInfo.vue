@@ -19,7 +19,7 @@
 </template>
 <script setup>
     import EsgExposeInfo from "../views/EsgExposeInfo.vue";
-    import ExchangeIndicators from "../views/ExchangeIndicators.vue";
+    import ExchangeIndicators from "../views/InternationalIndicators.vue";
     import InternationalIndicators from "../views/InternationalIndicators.vue";
     import EsgMatrix from "../views/EsgMatrix.vue";
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
