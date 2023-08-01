@@ -21,7 +21,7 @@ function deleteDir(url){
             
         fs.rmdirSync(url); //清除文件夹
     }else{
-        console.log("给定的路径不存在！");
+        console.log("不存在！");
     }
 
 }
