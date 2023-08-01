@@ -125,6 +125,3 @@ const toggleAll = function(){
 };
 
 </script>
-<style lang="scss" scoped>
-@import './EsgExpose/EsgExpose.scss';
-</style>

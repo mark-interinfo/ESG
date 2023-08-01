@@ -94,8 +94,9 @@
     </div>
     <CommonDialogComponent
     :isShowDialog="isShowDialog"
+    :dailogType = "'input'"
     @closeDialog="closeDialog"
-    @inputSetting="inputSetting"
+    @dailogType="dailogType"
     />
   </div>
 </template>
@@ -133,7 +134,7 @@ const openDialog = function(){
 const closeDialog = function(){
     isShowDialog.value = false;
 }
-const inputSetting = function(method){
+const dailogType = function(method){
   inputMethod.value = method;
   isShowDialog.value = false;
 }

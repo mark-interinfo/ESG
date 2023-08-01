@@ -49,8 +49,9 @@ const scrollToTop = function(){
   height: 100vh;
 }
 #bread-crumbs{
-  max-width: 960px;
-  margin: 20px auto 0 auto;
+  max-width: 100%;
+  margin: 0 auto;
+  padding:20px 0;
   font-size: 14px;
   width: 1000px;
   max-width: 90%;

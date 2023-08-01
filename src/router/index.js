@@ -51,6 +51,11 @@ const routes = [
     name: "ESG資訊下載",
     component: () => import("../views/EsgDownload.vue"),
   },
+  {
+    path: "/EsgTemplate",
+    name: "永續報告書套表",
+    component: () => import("../views/EsgTemplate.vue"),
+  },
 ]
 
 const router = createRouter({

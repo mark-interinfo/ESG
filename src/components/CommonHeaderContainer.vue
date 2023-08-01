@@ -144,16 +144,16 @@ const linkGroup = ref([
         href: '/'
       },
       {
-        name: '永續報告書套表',
-        href: '/'
-      },
-      {
         name: '永續報告書申報',
         href: '/'
       },
       {
         name: '申請資料更正',
         href: '/'
+      },
+      {
+        name: '永續報告書套表',
+        href: '/EsgTemplate'
       },
     ]
   },
@@ -263,6 +263,7 @@ header{
             color: #272727;
             text-wrap: nowrap;
             width: 100%;
+            white-space: nowrap;
             +.sub-link::before{
               content: '';
               position: absolute;

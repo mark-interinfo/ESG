@@ -4,7 +4,7 @@
   :class="{'show': props.isShowDialog}"
   @click.self="closeDialog"
   >
-    <div id="dialog-block">
+    <div id="dialog-block" class="selectInput" v-if="props.dailogType == 'input'">
       <div id="dialog-content">
         <div id="dialog-title">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,6 +128,14 @@
         </button>
       </div>
     </div>
+    <div id="dialog-block" class="displayImg" v-if="props.dailogType == 'img'">
+      <img src="../assets/images/template1-1.png">
+    </div>
+
+    <div id="dialog-block" class="loadingFile" v-if="props.dailogType == 'loadingFile'">
+      <h3>報告書製作中...</h3>
+      <div></div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -138,8 +146,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  dailogType : {
+    tyep : String,
+  }
 });
-const emits = defineEmits(['closeDialog', 'inputSetting']);
+const emits = defineEmits(['closeDialog', 'dailogType']);
 
 // inputMethod 輸入方式
 const inputMethod = ref('unSelect');
@@ -206,7 +217,7 @@ const closeDialog = function(){
   emits('closeDialog');
 };
 const inputSetting = function(){
-  emits('inputSetting', inputMethod.value);
+  emits('dailogType', inputMethod.value);
 };
 
 </script>
@@ -219,7 +230,7 @@ const inputSetting = function(){
 .input-group{
   position: relative;
   margin-bottom: 4px;
-  input{
+  input:not([type="checkbox"]){
     width: 100%;
     padding-right: 48px;
   }
@@ -230,44 +241,51 @@ const inputSetting = function(){
     transform: translate(-50%, -50%);
   }
 }
-label{
-  display: block;
-}
-input[type=checkbox]{
-  width: unset;
-}
-select{
-  &.unSelect{
-    color: #BEBEBE;
-  }
-  option{
-    color: #272727;
-    &:first-of-type{
-      display: none;
-    }
-  }
-}
+
+
 // page setting
 #dialog-background{
   position: fixed;
   top: 0;
   left: 0;
-  background: #cccccc33;
-  width: 100vw !important;
+  background: rgba(0,0,0,.3);
+  width:100%;
   max-width: unset !important;
-  height: 100vh;
+  height: 100%;
   display: none;
+  z-index: 1;
+
   &.show{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   #dialog-block{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 360px;
+    display: flex;
     background: #fff;
     border-radius: 3px;
+
+    &.loadingFile{
+      padding:20px 40px;
+      flex-direction: column;
+      text-align: center;
+      
+      > div{
+        border-radius:2px;
+        height:4px;
+        background:#eee;width:400px;
+        position: relative;
+        text-align: left;
+
+        &:before{content:"";display:block;height:4px;border-radius:2px;background:#37D880;animation: progress 5s both;}
+      }
+    }
+
+    &.selectInput{
+      flex-direction: column;
+    }
+
+
     #dialog-content{
       padding: 20px;
       #dialog-title{
@@ -305,4 +323,6 @@ select{
     }
   }
 }
+
+@keyframes progress {from {width: 0;}100% {width: 100%;}}
 </style>

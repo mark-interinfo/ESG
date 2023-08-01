@@ -58,6 +58,7 @@ p{
 // page setting
 footer{
   position: relative;
+  width:100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,13 +86,17 @@ footer{
     }
   }
   #toTop{
-    display: none;
+    
+    opacity: 0;
     position: fixed;
     right: 40px;
     bottom: 40px;
     cursor: pointer;
+    transition: .3s;
+    visibility: hidden;
     &.show{
-      display: block;
+      opacity: 1;
+      visibility: inherit;
     }
     p{
       color: #37D880;

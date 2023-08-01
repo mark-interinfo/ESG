@@ -37,19 +37,35 @@ const selectIssueType = function (key) {
 
   .EsgMatrix{
     margin-top:20px!important;
-    
-    .issue-title{display:none!important;}
-    select{background-color:#fff;}
 
-    .add:before{content:"";width:20px;height:20px;display:inline-block;background:url(../assets/images/add.svg)center/cover no-repeat;vertical-align: middle;}
+    select{
+      background-color:#fff;
+    }
 
-    div > span:first-of-type{text-align: inherit!important;}
+    .add:before{
+      content:"";
+      width:20px;
+      height:20px;
+      display:inline-block;
+      background:url(../assets/images/add.svg)center/cover no-repeat;
+      vertical-align: middle;
+    }
 
-    div > span > div:first-of-type{color:#37D880;}
+    div > span:first-of-type{
+      text-align: inherit!important;
+    }
+
+    div > span > div:first-of-type{
+      color:#37D880;
+    }
 
     .title{
       background-color:#fafafa!important;
-      select{width:100%!important}
+
+      select{
+        width:100%!important;
+      }
+
       > span{
         width:calc(50% - 10px);
         > span:nth-of-type(1){

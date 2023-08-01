@@ -1,11 +1,7 @@
 <template>
-    <div id="searchYearInfo">
+    <div id="searchYearInfo" class="content">
         <div>
-            <h1>查閱年度資料</h1>
-            <span id="company">
-                <span>公司代號 : 1101</span>
-                <span>公司名稱 : 英特內股份有限公司</span>
-            </span>
+            <CommonCompanyTitle/>
             <div id="searchBar">
                 <input id="searchInput" type="text" placeholder="請輸入民國年份"
                 v-model.number="apiRequest.year"
@@ -51,6 +47,7 @@
 import { ref } from 'vue';
 import { APICollection, asyncAjax } from '../mixin/api';
 import { useUserStore } from '../pinia/user.js';
+import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
 const userStore = useUserStore();
 const apiRequest = ref({
@@ -68,73 +65,20 @@ const change = function(event) {
 
         queryYear.value = apiRequest.value.year;
     })();
-
-    // Mark
-    // function test(e){
-    //     console.log(JSON.parse(e.data));
-    // }
-    // let data = JSON.stringify(apiData.value);
-    // asyncAjax('QueryYear', test, true, 'post',data);
-
-    // if(document.querySelector("#queryInfo .show")){
-    //     document.querySelector("#queryInfo .show").classList.remove("show");
-    // }
-
-    // if(event.target.value == "110"){
-    //     apply.classList.add("show");
-    //     return;
-    // }
-
-    // if(event.target.value == "109"){
-    //     edit.classList.add("show");
-    //     return;
-    // }
-    // nodata.classList.add("show");
 }
 
 </script>
 <style lang="scss" scoped>
 
     #searchYearInfo {
-        margin: 20px;
-        h1 {
-            font-size: 24px;
-            margin: 0 0 10px 0;
-            font-weight: inherit;
-        }
+        margin: 0 20px 20px;
 
         > div {
-            padding: 20px 40px 40px;
-            box-shadow: 1px 1px 8px rgba(0,0,0,.3);
-            width: 800px;
-            max-width: 80%;
-            margin: 0 auto;
-            border-radius: 3px;
-
-            #company {
-                font-size: 14px;
-                margin-bottom: 15px;
-                display: flex;
-                
-                &:before {
-                    content: "";
-                    width: 20px;
-                    height: 20px;
-                    background: url(/src/assets/images/company.svg) center / cover;
-                    vertical-align: bottom;
-                }
-
-                > span {
-                    padding: 0 10px;
-                }
-
-                > span:first-of-type {
-                    border-right: 1px solid #aaa
-                }
-            }
+            
 
             #searchBar {
                 display: flex;
+                margin-top:10px;
 
                 #searchInput {
                     height: 44px;
