@@ -12,24 +12,24 @@
                 <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
                 <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出">
             </span>
-            <ExchangeIndicators  v-if="['/ExchangeIndicators'].includes(route.path)"/>
-            <InternationalIndicators  v-if="['/InternationalIndicators'].includes(route.path)"/>
-            <EsgMatrix  v-if="['/EsgMatrix'].includes(route.path)"/>
+            <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
+            <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
+            <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
         </div>
         <span>
-            <EsgExposeInfo  v-if="pathName.includes(route.path)"/>
+            <EsgExposeInfo v-if="pathName.includes(route.path)"/>
         </span>
     </div>
 </template>
 <script setup>
-    import EsgExposeInfo from "../views/EsgExposeInfo.vue";
-    import ExchangeIndicators from "../views/ExchangeIndicators.vue";
-    import InternationalIndicators from "../views/InternationalIndicators.vue";
-    import EsgMatrix from "../views/EsgMatrix.vue";
-    import { useRoute } from 'vue-router';
-    import { ref } from 'vue';
-    const route = useRoute();
-    const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
+import EsgExposeInfo from "../views/EsgExposeInfo.vue";
+import ExchangeIndicators from "../views/ExchangeIndicators.vue";
+import InternationalIndicators from "../views/InternationalIndicators.vue";
+import EsgMatrix from "../views/EsgMatrix.vue";
+import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+const route = useRoute();
+const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
 </script>
 <style lang="scss">
 #issue {
