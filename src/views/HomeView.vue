@@ -25,12 +25,14 @@
                         <span id="verifyChange"></span>
                     </span>
                 </div>
-                <div class="submit">
+                <div
+                class="submit"
+                @click="login"
+                >
                     <router-link to="/">
                         <input
                         type="button"
                         value="登入"
-                        @click="login"
                         >
                     </router-link>
                 </div>

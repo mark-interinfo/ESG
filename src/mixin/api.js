@@ -1,10 +1,14 @@
 let base = 'http://192.168.10.108/servlet/apiM/esg/V1/interfaces/';
 
 function callAPI(apiName, requestBody, requestHeader, method='POST'){
+  if(requestBody.value){
+    requestBody = requestBody.value;
+  }
   return new Promise((resolve, reject) => {
-    let fetchBody = `requestBody=${JSON.stringify(requestBody.value)}&requestHeader={}`;
+    let fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader={}`;
+
     if(requestHeader){
-      fetchBody = `requestBody=${JSON.stringify(requestBody.value)}&requestHeader=${JSON.stringify(requestHeader)}`;
+      fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader=${JSON.stringify(requestHeader)}`;
     }
     fetch(base + apiName, {
       method: method,
@@ -27,10 +31,9 @@ function callAPI(apiName, requestBody, requestHeader, method='POST'){
 const APICollection = {
   ESGLogin: ((requestBody) => callAPI('ESGLogin', requestBody)),
   QueryYear: ((requestBody, requestHeader) => callAPI('QueryYear', requestBody, requestHeader)),
-  // {
-  //   "uid":"admin",
-  //   "mima":"admin"
-  // }
+  QueryESGData: ((requestBody, requestHeader) => callAPI('QueryESGData', requestBody, requestHeader)),
+  UploadPDF: ((requestBody, requestHeader) => callAPI('UploadPDF', requestBody, requestHeader)),
+  GetPDFData: ((requestBody, requestHeader) => callAPI('GetPDFData', requestBody, requestHeader)),
 };
 
 function asyncAjax(url,back,async,type,data){

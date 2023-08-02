@@ -52,12 +52,12 @@ import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 const userStore = useUserStore();
 const apiRequest = ref({
     companyId: "1101",
-    year: ''
+    year: '110'
 });
-const queryYear = ref()
+const queryYear = ref();
 
 const hasData = ref('');
-const change = function(event) {
+const change = function() {
     // Nick
     (async() => {
         hasData.value = await APICollection.QueryYear(apiRequest, userStore.returnUser());
@@ -65,7 +65,21 @@ const change = function(event) {
 
         queryYear.value = apiRequest.value.year;
     })();
-}
+};
+
+let uploadPDFResponseBody = {
+    fileName:"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
+};
+(async() => {
+    console.log(await APICollection.UploadPDF(uploadPDFResponseBody, userStore.returnUser()));
+})();
+
+let GetPDFDataResponseBody = {
+    keyWord: "有關廢棄物的議題",
+};
+(async() => {
+    console.log(await APICollection.GetPDFData(GetPDFDataResponseBody, userStore.returnUser()));
+})();
 
 </script>
 <style lang="scss" scoped>
@@ -74,7 +88,6 @@ const change = function(event) {
         margin: 0 20px 20px;
 
         > div {
-            
 
             #searchBar {
                 display: flex;
