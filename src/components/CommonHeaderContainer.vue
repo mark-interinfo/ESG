@@ -258,7 +258,7 @@ header{
             box-sizing: border-box;
             padding: 12px 16px;
             color: #272727;
-            text-wrap: nowrap;
+            white-space: nowrap;
             width: 100%;
             white-space: nowrap;
             +.sub-link::before{

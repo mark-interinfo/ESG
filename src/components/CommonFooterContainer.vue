@@ -29,7 +29,7 @@
     @click="scrollToTop"
     >
       <p class="center">回頂部</p>
-      <img src="../assets/images/to-top.svg" alt="">
+      <img src="../assets/images/goTop.png" alt="">
     </div>
   </footer>
 </template>
