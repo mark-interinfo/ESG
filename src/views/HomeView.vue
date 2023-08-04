@@ -14,6 +14,10 @@
                     <input type="password" id="pw" name="pw" placeholder="請輸入8碼英數字"
                     v-model="accountData.mima"
                     >
+                    <span 
+                    id="passwordCheckButton"
+                    @click="passwordCheck"
+                    ></span>
                 </div>
                 <div class="verify">
                     <div>驗證碼</div>
@@ -33,6 +37,7 @@
                         <input
                         type="button"
                         value="登入"
+                        class="button buttonColor1"
                         >
                     </router-link>
                 </div>
@@ -61,6 +66,17 @@ const login = function(){
         userStore.setUser(await APICollection.ESGLogin(accountData));
     })()
 }
+
+const passwordCheck = function(){
+
+    passwordCheckButton.classList.toggle("show");
+
+    if(passwordCheckButton.getAttribute("class").match("show")){
+        pw.type = "text";
+    }else{
+        pw.type = "password";
+    };
+};
 </script>
 <style lang="scss" scoped>
 
@@ -111,6 +127,25 @@ const login = function(){
                 a{
                     color:#333;
                     text-decoration: underline;
+                }
+            }
+
+            .pw{
+                position: relative;
+            }
+            
+            #passwordCheckButton{
+                width:30px;
+                height:30px;
+                position: absolute;
+                right:9px;
+                bottom:9px;
+                background:url("../assets/images/eye.svg")center/cover no-repeat;
+                transition: .3s;
+                cursor: pointer;
+
+                &.show{
+                    background:url("../assets/images/eye1.svg")center/cover no-repeat;
                 }
             }
         }
