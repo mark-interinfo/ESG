@@ -39,33 +39,49 @@
             </div>
         </div>
         <span id="qa">
-            <a href="javascript:;">「企業ESG資訊揭」露申報作業說明及適用問答</a>
+            <!-- 「企業ESG資訊揭」露申報作業說明及適用問答 ->「企業ESG資訊揭露」申報作業說明及適用問答 -->
+            <a href="javascript:;">「企業ESG資訊揭露」申報作業說明及適用問答</a>
         </span>
     </div>
 </template>
 <script setup>
 import { ref } from 'vue';
 import { APICollection, asyncAjax } from '../mixin/api';
-import { useUserStore } from '../pinia/user.js';
+// import { unicodeToString } from '../mixin/mixin.js';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
-const userStore = useUserStore();
 const apiRequest = ref({
     companyId: "1101",
-    year: ''
+    year: '110'
 });
-const queryYear = ref()
+const queryYear = ref();
 
 const hasData = ref('');
-const change = function(event) {
+const change = function() {
     // Nick
     (async() => {
-        hasData.value = await APICollection.QueryYear(apiRequest, userStore.returnUser());
+        hasData.value = await APICollection.QueryYear(apiRequest);
         hasData.value = hasData.value.dataExist.value;
 
         queryYear.value = apiRequest.value.year;
     })();
-}
+};
+
+// let uploadPDFResponseBody = {
+//     fileName:"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
+// };
+// (async() => {
+//     console.log(await APICollection.UploadPDF(uploadPDFResponseBody));
+// })();
+
+// let GetPDFDataResponseBody = {
+//     keyWord: "有關廢棄物的議題",
+// };
+// let theWord = ref('');
+// (async() => {
+//     theWord.value = (await APICollection.GetPDFData(GetPDFDataResponseBody)).msg;
+//     theWord.value = unicodeToString(theWord.value)
+// })();
 
 </script>
 <style lang="scss" scoped>
@@ -74,7 +90,6 @@ const change = function(event) {
         margin: 0 20px 20px;
 
         > div {
-            
 
             #searchBar {
                 display: flex;

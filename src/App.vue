@@ -3,9 +3,10 @@
     <CommonHeaderContainer  v-if="route.path !== '/HomeView'"/>
     <section>
       <div id="bread-crumbs"  v-if="!['/','/HomeView'].includes(route.path)">
-        <span>
-          申請作業
-        </span>
+        <!-- 麵包屑少首頁 -->
+        <span>首頁</span>
+        /
+        <span>申請作業</span>
         /
         <span id="bread-last">{{ route.name }}</span>
       </div>

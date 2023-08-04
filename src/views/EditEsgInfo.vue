@@ -25,9 +25,23 @@
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
     import { ref } from 'vue';
+
+    import { APICollection } from '../mixin/api';
+    import { useUserStore } from '../pinia/user.js';
+
+    const userStore = useUserStore();
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators"]);
+
+    const apiRequest = ref({
+        companyId: "1101",
+        year: '110'
+    });
+    (async() => {
+        console.log(await APICollection.QueryESGData(apiRequest));
+    })();
+
 </script>
 <style lang="scss">
   #issue {

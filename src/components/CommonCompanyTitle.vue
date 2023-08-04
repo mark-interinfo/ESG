@@ -2,8 +2,9 @@
     <span id="company">
         <h1>{{route.name}}</h1>
         <span v-if="pathName.includes(route.path)">
-            <span>公司代號 : 1101</span>
-            <span>公司名稱 : 英特內股份有限公司</span>
+            <!-- 代號改1532 公司名稱 勤美 -->
+            <span>公司代號 : 1532</span>
+            <span>公司名稱 : 勤美</span>
         </span>
     </span>
 </template>

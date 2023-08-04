@@ -97,12 +97,17 @@ select{
     font-size: 16px;
     border-radius:3px;
     appearance: none;
-    background:url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
+
+    /* 下拉項目選擇前 文字顏色 #BEBEBE 底色#FAFAFA */
+    color: #BEBEBE;
+    background: url(/src/assets/images/select.svg) #FAFAFA calc(100% - 10px) center/auto no-repeat;
 }
 
 input[type="radio"]{
     border:none;
-    background: url(/src/assets/images/radio.svg) center/100% no-repeat;
+    /* input 底色FAFAF 文字BEBEBE */
+    background: url(/src/assets/images/radio.svg) #FAFAFA center/100% no-repeat;
+    color: #BEBEBE;
     width:20px;
     height:20px;
     border-radius:50%;
@@ -135,9 +140,10 @@ a{
     text-decoration: none;
 }
 
-a:hover{
+/* Nav Hover效果為顏色差異 非底線 */
+/* a:hover{
     text-decoration: underline;
-}
+} */
 
 span{display:inline-block;}
 
@@ -153,7 +159,8 @@ label{
 
 .content > div{
     padding: 20px 40px;
-    box-shadow: 1px 1px 8px rgba(0,0,0,.1);
+    /* 陰影值請改0.2 */
+    box-shadow: 1px 1px 8px rgba(0,0,0,.2);
     width: 920px;
     max-width:100%;
     margin: 0 auto 20px;

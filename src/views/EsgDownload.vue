@@ -57,7 +57,8 @@
     width: 100%;
     background: #EFEFEF;
     border-collapse: collapse;
-    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    // 陰影值請用0.2
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
     tr{
       &:first-of-type td{
         background: #F5FDF9;

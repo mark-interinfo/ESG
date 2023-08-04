@@ -81,12 +81,12 @@ footer{
     background: #BEBEBE;
   }
   .phone-single{
+    // footer border-top 0.5 (目前是1)、電話需對齊
     p{
-      height: 18px;
+      height:24px;
     }
   }
   #toTop{
-    
     opacity: 0;
     position: fixed;
     right: 40px;
@@ -103,6 +103,5 @@ footer{
       margin-bottom: 8px;
     }
   }
-  
 }
 </style>

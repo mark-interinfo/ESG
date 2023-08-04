@@ -131,7 +131,6 @@
     <div id="dialog-block" class="displayImg" v-if="props.dailogType == 'img'">
       <img src="../assets/images/template1-1.png">
     </div>
-
     <div id="dialog-block" class="loadingFile" v-if="props.dailogType == 'loadingFile'">
       <h3>報告書製作中...</h3>
       <div></div>
