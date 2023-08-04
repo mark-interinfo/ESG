@@ -1,15 +1,20 @@
+import { useUserStore } from '../pinia/user';
+
+const userStore = useUserStore();
+
 let base = 'http://192.168.10.108/servlet/apiM/esg/V1/interfaces/';
 
-function callAPI(apiName, requestBody, requestHeader, method='POST'){
+function callAPI(apiName, requestBody, method='POST'){
   if(requestBody.value){
     requestBody = requestBody.value;
   }
   return new Promise((resolve, reject) => {
-    let fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader={}`;
+    let fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader=${JSON.stringify(userStore.returnUser())}`;
 
-    if(requestHeader){
-      fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader=${JSON.stringify(requestHeader)}`;
+    if(apiName === 'ESGLogin'){
+      fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader={}`;
     }
+
     fetch(base + apiName, {
       method: method,
       body: fetchBody,
@@ -30,10 +35,10 @@ function callAPI(apiName, requestBody, requestHeader, method='POST'){
 
 const APICollection = {
   ESGLogin: ((requestBody) => callAPI('ESGLogin', requestBody)),
-  QueryYear: ((requestBody, requestHeader) => callAPI('QueryYear', requestBody, requestHeader)),
-  QueryESGData: ((requestBody, requestHeader) => callAPI('QueryESGData', requestBody, requestHeader)),
-  UploadPDF: ((requestBody, requestHeader) => callAPI('UploadPDF', requestBody, requestHeader)),
-  GetPDFData: ((requestBody, requestHeader) => callAPI('GetPDFData', requestBody, requestHeader)),
+  QueryYear: ((requestBody) => callAPI('QueryYear', requestBody)),
+  QueryESGData: ((requestBody) => callAPI('QueryESGData', requestBody)),
+  UploadPDF: ((requestBody) => callAPI('UploadPDF', requestBody)),
+  GetPDFData: ((requestBody) => callAPI('GetPDFData', requestBody)),
 };
 
 function asyncAjax(url,back,async,type,data){

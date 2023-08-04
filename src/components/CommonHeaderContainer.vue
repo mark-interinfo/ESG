@@ -143,6 +143,11 @@ const linkGroup = ref([
         name: 'ESG資料申報',
         href: '/'
       },
+      // Nav申報作業 項目順序 套表在第二項
+      {
+        name: '永續報告書套表',
+        href: '/EsgTemplate'
+      },
       {
         name: '永續報告書申報',
         href: '/'
@@ -150,10 +155,6 @@ const linkGroup = ref([
       {
         name: '申請資料更正',
         href: '/'
-      },
-      {
-        name: '永續報告書套表',
-        href: '/EsgTemplate'
       },
     ]
   },
@@ -214,6 +215,8 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
+    // nav少上方線
+    border-top: 1px solid #EFEFEF;
     #header-links{
       display: flex;
       align-items: center;
@@ -290,14 +293,12 @@ header{
       display: flex;
       justify-content: center;
       background: #37D880;
-      
     }
     #sustainable-declare{
       flex: 0 0 50%;
       display: flex;
       justify-content: center;
       background: #1D8844;
-      
     }
   }
 }

@@ -27,6 +27,13 @@
 import { ref } from 'vue';
 import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
 
+const apiRequest = ref({
+    companyId: "1101",
+    year: '110'
+});
+// (async() => {
+//     console.log(await APICollection.QueryESGData(apiRequest));
+// })();
 
 const issueTypeSelected = ref('environment');
 const issueType = ref([

@@ -8,14 +8,14 @@ export const useUserStore = defineStore('userStore', () => {
   const setUser = function(data){
     uid.value = data.uid;
     uidCode.value = data.uidCode;
-  }
+  };
 
   const returnUser = function(){
     return {
       uid: uid.value,
       uidCode: uidCode.value
-    }
-  }
+    };
+  };
 
   return {
     uid,
@@ -23,10 +23,9 @@ export const useUserStore = defineStore('userStore', () => {
 
     setUser,
     returnUser
-  }
+  };
 },
 {
   persist: true,
   storage: sessionStorage,
-}
-);
+});
