@@ -27,6 +27,7 @@ function callAPI(apiName, requestBody, requestHeader, method='POST'){
 const APICollection = {
   ESGLogin: ((requestBody) => callAPI('ESGLogin', requestBody)),
   QueryYear: ((requestBody, requestHeader) => callAPI('QueryYear', requestBody, requestHeader)),
+  UploadPdf: ((requestBody, requestHeader) => callAPI('UploadPdf', requestBody, requestHeader)),
   // {
   //   "uid":"admin",
   //   "mima":"admin"

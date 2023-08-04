@@ -3,5 +3,8 @@
 </template>
 
 <style lang="scss" scoped>
-    #IndexView{background:url(../assets/images/index.png)right center/auto 100% no-repeat;height:480px;}
+    #IndexView{
+        background:url(../assets/images/index.png)right center/auto 100% no-repeat,url(../assets/images/index-1.png)left center/auto 100%;
+        height:calc(100vh - 352px);
+        }
 </style>

@@ -31,6 +31,7 @@
                         type="button"
                         value="登入"
                         @click="login"
+                        class="button buttonColor1"
                         >
                     </router-link>
                 </div>
@@ -61,15 +62,18 @@ const login = function(){
 }
 </script>
 <style lang="scss" scoped>
+
     #login {
         height: 100vh;
         
-        display: flex;background: url(../assets/images/login.png) left bottom/35% auto no-repeat;justify-content: right;
+        display: flex;
+        background: url(../assets/images/login.png) left bottom/35% auto no-repeat;
+        justify-content: right;
 
         > div {display: flex;justify-content: center;width: 65vw;align-items: center;flex-direction: column;}
         
         #logo {width: 30%;}
-        input{background:#efefef;border:1px solid #efefef;height:48px;border-radius:5px;width: 100%;padding:0 10px;}
+        input:not([type="button"]){background:#efefef;border:1px solid #efefef;height:48px;border-radius:3px;width: 100%;padding:0 10px;}
         input::placeholder{font-size:16px;color:#aaa;}
 
         #form{width:40%;
@@ -77,8 +81,9 @@ const login = function(){
                 margin-top: 4%;
 
                 > div{
-                    margin-bottom:2%;font-weight: bold;
-                    &:before{content:"";width: 24px;height: 24px;display: inline-block;vertical-align: bottom;margin-right:5px;}
+                    margin-bottom:2%;
+
+                    &:before{content:"";width: 20px;height: 20px;display: inline-block;vertical-align: bottom;margin-right:5px;}
                 }
 
                 > span{display:inline-block;height: 48px;vertical-align: middle;}
@@ -96,15 +101,16 @@ const login = function(){
                 #verifyImg{background: url(../assets/images/verify.png)center / 100% auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
                 #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/images/again.svg) center / 60% no-repeat;}
             }
-            
-            .submit{
-                margin-top: 7%;
-                input{background:#37D880;width: 100%;color: #fff;font-size: 16px;}
-            }
 
+            .submit input{width:100%;}
+            
             .forget{
-                text-align:center;margin-top: 3%;
-                a{color:#333;}
+                text-align:center;
+                margin-top: 3%;
+                a{
+                    color:#333;
+                    text-decoration: underline;
+                }
             }
         }
     }

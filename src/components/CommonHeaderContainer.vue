@@ -49,7 +49,7 @@
         </router-link>
       </div>
       <router-link to="/HomeView">
-        <img src="../assets/images/account.svg" alt="">
+        <img src="../assets/images/account1.svg" alt="">
       </router-link>
     </div>
     <div id="header-bottom">

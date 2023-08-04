@@ -103,6 +103,17 @@
 <script setup>
 import { computed, ref } from 'vue';
 import CommonDialogComponent from '../components/CommonDialogComponent.vue';
+import {APICollection} from "../mixin/api";
+
+let requestHeader={
+  "uid": "admin",
+  "uidCode": "MCfJKotYWRtaW46MTY5MDg4Mzc5MzM4NA=="
+}
+let requestBody ={
+  "fileName":"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
+}
+
+
 
 const issueList = ref([
   { id:'E001', name:'溫室氣體排放', opening: false },
