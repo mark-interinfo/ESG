@@ -127,7 +127,6 @@ input[type="text"]:focus,
 input[type="password"]:focus{
     outline: none;
     border:1px solid #37d880!important;
-    background-color:#fff!important;
 }
 
 select:focus{

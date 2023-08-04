@@ -133,6 +133,8 @@ const passwordCheck = function(){
             .pw{
                 position: relative;
             }
+
+            
             
             #passwordCheckButton{
                 width:30px;

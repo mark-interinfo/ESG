@@ -218,12 +218,11 @@ header{
     // nav少上方線
     border-top: 1px solid #EFEFEF;
     #header-links{
-      display: flex;
-      align-items: center;
+      display: block;
       .main-link{
         position: relative;
-        display: inline-flex;
-        align-items: center;
+        display: inline-block;
+        vertical-align: middle;
         gap: 4px;
         padding: 18px 30px;
         &.selected{
@@ -231,6 +230,11 @@ header{
           path{
             stroke: #37D880;
           }
+        }
+
+        img{
+          display: inline-block;
+          vertical-align: middle;
         }
         +.main-link::before{
           content: '';
@@ -244,16 +248,18 @@ header{
           stroke: #272727;
         }
         .dropdown{
-          display: none;
+          visibility: hidden;
           position: absolute;
           top: calc(100% + 1px);
-          left: 50%;
+          left: 0;
           z-index: 1;
           background: #fff;
           border: 1px solid #ddd;
-          transform: translate(-50%, 0%);
+          transition: .3s;
+          opacity: 0;
           &.show{
-            display: block;
+            visibility:inherit;
+            opacity: 1;
           }
           .sub-link{
             display: inline-block;
