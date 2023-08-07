@@ -2,14 +2,14 @@
   <div id="issue" class="EsgMatrix">
     <div id="issue-header">
       <div id="issue-tags">
-        <div class="issue-tag pointer" :class="{ 'selected': item.key === issueTypeSelected }" v-for="item in issueType"
-          :key="item.key" @click="selectIssueType(item.key)">
+        <div class="issue-tag pointer" 
+        v-for="item in issueType"
+        :key="item.key"
+        :id="item.key">
           {{ item.name }}
         </div>
       </div>
-      <div id="issue-toggle" class="pointer">
-        展開全部
-      </div>
+      <div id="issue-toggle" class="pointer"></div>
     </div>
     <template v-if="issueTypeSelected === 'environment'">
       <EsgMatrixContent />
@@ -18,19 +18,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import EsgMatrixContent from './EsgMatrixContent.vue';
+  import { ref } from 'vue';
+  import { onMounted } from 'vue';
+  import { switchOpen } from '../mixin/mixin.js';
+  import EsgMatrixContent from './EsgMatrixContent.vue';
 
-
-const issueTypeSelected = ref('environment');
-const issueType = ref([
-  { name: '環境', key: 'environment' },
-  { name: '社會', key: 'society' },
-  { name: '治理', key: 'governance' },
-]);
-const selectIssueType = function (key) {
-  issueTypeSelected.value = key;
-}
+  const issueTypeSelected = ref('environment');
+  const issueType = ref([
+    { name: '環境', key: 'environment' },
+    { name: '社會', key: 'society' },
+    { name: '治理', key: 'governance' },
+  ]);
+  onMounted(() => {
+    switchOpen();
+  });
 
 </script>
 <style lang="scss">

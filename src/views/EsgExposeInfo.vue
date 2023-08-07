@@ -37,7 +37,7 @@
         <E003_WaterManagement/>
       </template>
       <template v-if="issue.id === 'S001'">
-             <S001_HumanDevelopment/>
+        <S001_HumanDevelopment/>
       </template>
       <template v-if="issue.id === 'G001'">
         <G001_DirectorsBoard/>
@@ -52,6 +52,7 @@
 <script setup>
   import { ref, computed } from 'vue';
   import { onMounted } from 'vue';
+  import { switchOpen } from '../mixin/mixin.js';
   import E001_GreenhouseGases from './EsgExpose/EsgExposeEnvironment/E001_GreenhouseGases.vue';
   import E002_EnergyManagement from './EsgExpose/EsgExposeEnvironment/E002_EnergyManagement.vue';
   import E003_WaterManagement from './EsgExpose/EsgExposeEnvironment/E003_WaterManagement.vue';
@@ -79,74 +80,7 @@
   ]);
 
   onMounted(() => {
-    
-    var titles = document.querySelectorAll(".issue-tag");
-    var items = document.querySelectorAll(".issue-item");
-
-    var open = "全部展開";
-    var close = "全部收合";
-
-    titles[0].classList.add("selected");
-    issue.dataset.open = titles[0].id;
-
-    for(let i=0;i<titles.length;i++){
-      titles[i].onclick = function(){
-        for(let i=0;i<items.length;i++){
-          items[i].classList.remove("opening");
-        };
-
-        toggle.dataset.name = open;
-        document.querySelector("#issue-tags .selected").classList.remove("selected");
-        this.classList.add("selected");
-        issue.dataset.open = this.id;
-
-        if(this.id == "all"){
-          for(let a=0;a<items.length;a++){
-            items[a].style.display="";
-          };
-        }else{
-          for(let a=0;a<items.length;a++){
-            if(items[a].dataset.item != this.id ){
-              items[a].style.display="none";
-            }else{
-              items[a].style.display="";
-            };
-          };
-        };
-      };
-    };
-
-    var toggle = document.querySelector("#issue-toggle");
-    toggle.dataset.name = open;
-
-    for(let i=0;i<items.length;i++){
-      items[i].onclick = function(){
-        this.classList.toggle("opening");
-        var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
-        var type = open;
-        if(itemOpen.length == 0){
-          type = close;
-        };
-        toggle.dataset.name = type;
-      };
-    };
-    
-    toggle.onclick = function(){
-      if(this.dataset.name == open){
-        for(let i=0;i<items.length;i++){
-          items[i].classList.add("opening");
-        };
-        this.dataset.name = close;
-      }else{
-        for(let i=0;i<items.length;i++){
-          items[i].classList.remove("opening");
-        };
-        this.dataset.name = open;
-      };
-    }
-
-  })
-  
-  
+    switchOpen();
+  });
   
 </script>

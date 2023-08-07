@@ -2,41 +2,35 @@
   <div id="issue" class="InternationalIndicatorsContent">
     <div id="issue-header">
       <div id="issue-tags">
-        <div class="issue-tag pointer" :class="{ 'selected': item.key === issueTypeSelected }" v-for="item in issueType"
-          :key="item.key" @click="selectIssueType(item.key)">
+        <div class="issue-tag pointer" 
+        :class="{ 'selected': item.key === issueTypeSelected }" 
+        v-for="item in issueType"
+        :key="item.key"
+        :id="item.key">
           {{ item.name }}
         </div>
       </div>
-      <div id="issue-toggle" class="pointer">
-        展開全部
-      </div>
+      <div id="issue-toggle" class="pointer"></div>
     </div>
-    <template v-if="issueTypeSelected === 'environment'">
-      <InternationalIndicatorsContent />
-    </template>
-    <template v-if="issueTypeSelected === 'society'">
-      <InternationalIndicatorsContent />
-    </template>
-    <template v-if="issueTypeSelected === 'governance'">
-      <InternationalIndicatorsContent />
-    </template>
+    <InternationalIndicatorsContent/>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
+  import { ref } from 'vue';
+  import { onMounted } from 'vue';
+  import { switchOpen } from '../mixin/mixin.js';
+  import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
 
+  const issueType = ref([
+    { name: '環境', key: 'environment' },
+    { name: '社會', key: 'society' },
+    { name: '治理', key: 'governance' },
+  ]);
 
-const issueTypeSelected = ref('environment');
-const issueType = ref([
-  { name: '環境', key: 'environment' },
-  { name: '社會', key: 'society' },
-  { name: '治理', key: 'governance' },
-]);
-const selectIssueType = function (key) {
-  issueTypeSelected.value = key;
-}
+  onMounted(() => {
+    switchOpen();
+  });
 
 </script>
 <style lang="scss">

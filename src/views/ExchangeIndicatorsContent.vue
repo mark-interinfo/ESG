@@ -3,10 +3,10 @@
   class="issue-item pointer"
   v-for="issue in issueList"
   :key="issue.id"
-  :class="{'opening': issue.opening}"
+  :data-item ="issue.key"
   >
     <div>
-      <div class="issue-title"  @click="toggleIssue(issue.id)">
+      <div class="issue-title">
         <span>
           {{ issue.id }} {{ issue.name }}
         </span>
@@ -101,29 +101,27 @@
   </div>
 </template>
 <script setup>
-import { computed, ref } from 'vue';
-import CommonDialogComponent from '../components/CommonDialogComponent.vue';
-import {APICollection} from "../mixin/api";
+  import { computed, ref } from 'vue';
+  import CommonDialogComponent from '../components/CommonDialogComponent.vue';
+  import {APICollection} from "../mixin/api";
 
-let requestHeader={
+  let requestHeader={
   "uid": "admin",
   "uidCode": "MCfJKotYWRtaW46MTY5MDg4Mzc5MzM4NA=="
-}
-let requestBody ={
+  }
+  let requestBody ={
   "fileName":"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
-}
+  }
 
+  const issueList = ref([
+  { id:'E001', key: 'environment', name:'溫室氣體排放', },
+  { id:'E002', key: 'environment', name:'能源管理',},
+  { id:'E003', key: 'environment', name:'水資源管理',},
+  { id:'E004', key: 'environment', name:'廢物物管理',},
+  ]);
 
-
-const issueList = ref([
-  { id:'E001', name:'溫室氣體排放', opening: false },
-  { id:'E002', name:'能源管理', opening: false },
-  { id:'E003', name:'水資源管理', opening: false },
-  { id:'E004', name:'廢物物管理', opening: false },
-]);
-
-const inputMethod = ref('unSelect');
-const inputMethodComputed = computed(()=>{
+  const inputMethod = ref('unSelect');
+  const inputMethodComputed = computed(()=>{
   switch (inputMethod.value){
     case 'unSelect':
       return '請選擇';
@@ -136,21 +134,18 @@ const inputMethodComputed = computed(()=>{
     case 'file':
       return '檔案上傳';
   }
-})
+  })
 
-const isShowDialog = ref(false);
-const openDialog = function(){
+  const isShowDialog = ref(false);
+  const openDialog = function(){
     isShowDialog.value = true;
-}
-const closeDialog = function(){
+  }
+  const closeDialog = function(){
     isShowDialog.value = false;
-}
-const dailogType = function(method){
+  }
+  const dailogType = function(method){
   inputMethod.value = method;
   isShowDialog.value = false;
-}
+  }
 
-const toggleIssue = function(id){
-  issueList.value.find(item => item.id === id).opening = !issueList.value.find(item => item.id === id).opening;
-}
 </script>
