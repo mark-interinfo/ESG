@@ -84,6 +84,12 @@
         font-size: 14px;
         padding: 10px 20px;
         color: #808080;
+        cursor: pointer;
+
+        &:before{
+          content:attr(data-name);
+          display:block;
+        }
       }
     }
 

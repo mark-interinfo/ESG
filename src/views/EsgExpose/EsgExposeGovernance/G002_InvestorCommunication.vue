@@ -1,5 +1,6 @@
 <template>
   <div
+  id="G002"
   class="issue-content"
   :class="{'opening': props.opening}"
   >
