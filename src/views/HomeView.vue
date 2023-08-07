@@ -14,10 +14,11 @@
                     <input type="password" id="pw" name="pw" placeholder="請輸入8碼英數字"
                     v-model="accountData.mima"
                     >
-                    <span 
+                    <span
                     id="passwordCheckButton"
                     @click="passwordCheck"
-                    ></span>
+                    >
+                    </span>
                 </div>
                 <div class="verify">
                     <div>驗證碼</div>

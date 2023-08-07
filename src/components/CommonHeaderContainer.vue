@@ -19,15 +19,13 @@
             <span>
               {{ mainLink.name }}
             </span>
-            <img v-if="mainLinkIndex === isLinkShow" src="../assets//images/arrow-green.svg" alt="">
-            <img v-else src="../assets//images/arrow-black.svg" alt="">
+            <div class="arrow"></div>
             <div
             class="dropdown"
-            :class="{'show': mainLinkIndex === isLinkShow}"
             v-if="mainLink.children"
             >
               <template
-              v-for="(subLink, subLinkIndex) in mainLink.children"
+              v-for="subLink in mainLink.children"
               :key="subLink"
               >
                 <router-link
@@ -227,12 +225,19 @@ header{
         padding: 18px 30px;
         &.selected{
           color: #37D880;
-          path{
-            stroke: #37D880;
+          .arrow{
+            background: url("../assets/images/arrow-green.svg");
+          }
+          .dropdown{
+            visibility:inherit;
+            opacity: 1;
           }
         }
 
-        img{
+        .arrow{
+          width: 25px;
+          height: 25px;
+          background: url("../assets/images/arrow-black.svg");
           display: inline-block;
           vertical-align: middle;
         }
@@ -244,23 +249,17 @@ header{
           width: 1px;
           background: #BEBEBE;
         }
-        path{
-          stroke: #272727;
-        }
         .dropdown{
           visibility: hidden;
           position: absolute;
           top: calc(100% + 1px);
-          left: 0;
+          left: 50%;
+          transform: translate(-50%, 0);
           z-index: 1;
           background: #fff;
           border: 1px solid #ddd;
           transition: .3s;
           opacity: 0;
-          &.show{
-            visibility:inherit;
-            opacity: 1;
-          }
           .sub-link{
             display: inline-block;
             position: relative;
