@@ -105,7 +105,7 @@
   </div>
 </template>
 <script setup>
-  import { computed, ref , onUpdated } from 'vue';
+  import { computed, ref , onUpdated ,onMounted} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
 
@@ -140,6 +140,11 @@
   const dailogType = function(method){
     isShowDialog.value = false;
   }
+
+  onMounted(()=>{
+    switchOpen();
+  });
+  
   
   onUpdated(()=>{
     switchOpen();

@@ -51,7 +51,7 @@
 
 <script setup>
   import { ref } from 'vue';
-  import { onUpdated } from 'vue';
+  import { onUpdated ,onMounted} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import E001_GreenhouseGases from './EsgExpose/EsgExposeEnvironment/E001_GreenhouseGases.vue';
   import E002_EnergyManagement from './EsgExpose/EsgExposeEnvironment/E002_EnergyManagement.vue';
@@ -78,6 +78,10 @@
     { id:'G001', key: 'governance', name:'董事會' },
     { id:'G002', key: 'governance', name:'投資人溝通' },
   ]);
+
+  onMounted(()=>{
+    switchOpen();
+  });
 
   onUpdated(()=>{
     switchOpen();
