@@ -1,3 +1,15 @@
+document.body.onclick = function(event){
+  console.log(event.target.tagName)
+  if(event.target.tagName == "SELECT"){
+    if(event.target.value != ""){
+      event.target.classList.add("selected");
+    }else{
+      event.target.classList.remove("selected");
+    };
+  };
+};
+
+
 const unicodeToString = function(unicode){
   unicode = unicode.split("\\u");
   unicode.shift();
