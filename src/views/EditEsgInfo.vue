@@ -111,6 +111,9 @@
           svg {
             transform: rotate(180deg);
           }
+          img {
+            transform: rotate(180deg);
+          }
         }
       }
 
@@ -136,6 +139,9 @@
         path {
           stroke: #808080;
         }
+      }
+      img {
+        transition-duration: .3s;
       }
     }
 

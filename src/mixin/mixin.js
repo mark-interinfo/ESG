@@ -11,7 +11,7 @@ const unicodeToString = function(unicode){
 }
 
 const switchOpen = function(){
-  
+
   var titles = document.querySelectorAll(".issue-tag");
   var items = document.querySelectorAll(".issue-item");
 
@@ -59,10 +59,9 @@ const switchOpen = function(){
 
   var listTitle = document.querySelectorAll(".issue-title")
 
-  console.log(listTitle)
-
   for(let i=0;i<listTitle.length;i++){
     listTitle[i].onclick = function(){
+      console.log('123');
       this.parentNode.classList.toggle("opening");
       var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
       var type = open;

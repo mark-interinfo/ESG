@@ -174,7 +174,6 @@ const props = defineProps({
   }
 });
 
-console.log(props.inputOption)
 const emits = defineEmits(['closeDialog', 'dailogType']);
 
 // inputMethod 輸入方式
