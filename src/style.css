@@ -101,6 +101,10 @@ select{
     background: url(/src/assets/images/select.svg) #FAFAFA calc(100% - 10px) center/auto no-repeat;
 }
 
+select.selected{
+    color: #333;
+}
+
 select:focus{
     outline: none;
     border:1px solid #37d880!important;
