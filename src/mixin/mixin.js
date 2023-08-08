@@ -11,6 +11,7 @@ const unicodeToString = function(unicode){
 }
 
 const switchOpen = function(){
+  
   var titles = document.querySelectorAll(".issue-tag");
   var items = document.querySelectorAll(".issue-item");
 
@@ -57,6 +58,8 @@ const switchOpen = function(){
   toggle.dataset.name = open;
 
   var listTitle = document.querySelectorAll(".issue-title")
+
+  console.log(listTitle)
 
   for(let i=0;i<listTitle.length;i++){
     listTitle[i].onclick = function(){

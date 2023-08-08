@@ -31,7 +31,8 @@
                                       </span>
                                       <span>
                                           <select>
-                                              <option>其他</option>
+                                              <option value>其他</option>
+                                              <option value="0">選擇1</option>
                                           </select>
                                       </span>
                                   </div>
