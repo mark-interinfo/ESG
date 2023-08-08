@@ -14,7 +14,6 @@
           <div
           class="main-link pointer"
           @click="showLink(mainLinkIndex)"
-          :class="{'selected': mainLinkIndex === isLinkShow}"
           >
             <span>
               {{ mainLink.name }}
@@ -231,8 +230,8 @@ header{
         color: #37D880;
         transition: .3s;
         user-select: none;
-
-        &.selected{
+        
+        &:hover{
           color: #272727;
           background: #fafafa;
           .arrow{
