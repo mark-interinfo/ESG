@@ -10,7 +10,12 @@
                 v-model.number="apiRequest.year"
                 @change="change"
                 >
-                <input type="button" id="searchButton" class="button buttonColor1">
+                <input 
+                type="button" 
+                id="searchButton" 
+                class="button buttonColor1"
+                @click="change"
+                >
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
