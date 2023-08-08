@@ -1,5 +1,4 @@
 document.body.onclick = function(event){
-  console.log(event.target.tagName)
   if(event.target.tagName == "SELECT"){
     if(event.target.value != ""){
       event.target.classList.add("selected");
@@ -23,6 +22,12 @@ const unicodeToString = function(unicode){
 }
 
 const switchOpen = function(){
+
+  if(issue.dataset.switch == "true"){
+    return;
+  };
+
+  issue.dataset.switch = "true";
 
   var titles = document.querySelectorAll(".issue-tag");
   var items = document.querySelectorAll(".issue-item");
@@ -73,7 +78,6 @@ const switchOpen = function(){
 
   for(let i=0;i<listTitle.length;i++){
     listTitle[i].onclick = function(){
-      console.log('123');
       this.parentNode.classList.toggle("opening");
       var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
       var type = open;

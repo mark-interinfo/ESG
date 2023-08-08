@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api.js';
   import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
