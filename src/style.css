@@ -146,7 +146,9 @@ a{
 
 span{display:inline-block;}
 
-.fontRed{color:#f00;}
+.fontRed{
+    color:#f00;
+}
 
 .fontRedOrange{color:#F76868}
 
@@ -166,4 +168,19 @@ label{
     border-radius: 3px;
     background: #fff;
     position: relative;
+}
+
+#buttonBox{
+    position: absolute;
+    width:60%!important;
+    right:10px;
+    top:20px;
+    text-align: right;
+}
+
+.notice-icon {
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    margin-left: 5px;
 }

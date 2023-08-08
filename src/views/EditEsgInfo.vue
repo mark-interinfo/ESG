@@ -85,10 +85,15 @@
         padding: 10px 20px;
         color: #808080;
         cursor: pointer;
+        transition: .3s;
 
         &:before{
           content:attr(data-name);
           display:block;
+        }
+
+        &:hover{
+          color:#37D880;
         }
       }
     }
@@ -98,7 +103,10 @@
       &.opening {
         background: #ebfbf2;
 
-        .issue-content{height:auto;}
+        .issue-content{
+          height:auto;
+          overflow: inherit;
+        }
         .issue-title{
           svg {
             transform: rotate(180deg);
@@ -187,12 +195,6 @@
             padding: 0;
           }
 
-          .notice-icon {
-            height: 16px;
-            width: 16px;
-            cursor: pointer;
-          }
-
           > div{
               padding:5px 0;
           }
@@ -256,13 +258,6 @@
   #esgInfoContent {
     padding: 20px;
 
-    #buttonBox{
-      position: absolute;
-      width:60%!important;
-      right:10px;
-      top:20px;
-    }
-    
     input[type="text"],
     select {
       width: 350px;
@@ -278,10 +273,6 @@
       >span {
         display: inline-block;
         vertical-align: middle;
-
-        &:last-of-type {
-          text-align: right;
-        }
       }
     }
 
