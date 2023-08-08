@@ -67,7 +67,7 @@ const switchOpen = function(){
       toggle.dataset.name = type;
     };
   };
-    
+
   toggle.onclick = function(){
     if(this.dataset.name == open){
       for(let i=0;i<items.length;i++){

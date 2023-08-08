@@ -22,8 +22,9 @@
               </td>
               <td>
                 <span>
-                    <select>
+                    <select v-model="industrySelected">
                         <option>請選擇</option>
+                        <option v-for="item in props.allIndustry" :value="item.value">{{item.name}}</option>
                     </select>
                 </span>
               </td>
@@ -95,6 +96,7 @@
     <CommonDialogComponent
     :isShowDialog="isShowDialog"
     :dailogType = "'input'"
+    :inputOption = "allType"
     @closeDialog="closeDialog"
     @dailogType="dailogType"
     />
@@ -103,14 +105,26 @@
 <script setup>
   import { computed, ref } from 'vue';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
-  import {APICollection} from "../mixin/api";
+  // import { APICollection } from "../mixin/api";
+
+  const props = defineProps({
+    allIndustry: {
+      type: Array,
+    },
+    allType: {
+      type: Array,
+    },
+  });
+
+  const industrySelected = ref([]);
+  const typeSelected = ref();
 
   let requestHeader={
-  "uid": "admin",
-  "uidCode": "MCfJKotYWRtaW46MTY5MDg4Mzc5MzM4NA=="
+    "uid": "admin",
+    "uidCode": "MCfJKotYWRtaW46MTY5MDg4Mzc5MzM4NA=="
   }
   let requestBody ={
-  "fileName":"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
+    "fileName":"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
   }
 
   const issueList = ref([
@@ -120,20 +134,12 @@
   { id:'E004', key: 'environment', name:'廢物物管理',},
   ]);
 
-  const inputMethod = ref('unSelect');
+  const inputMethod = ref();
   const inputMethodComputed = computed(()=>{
-  switch (inputMethod.value){
-    case 'unSelect':
-      return '請選擇';
-    case 'text':
-      return '文字';
-    case 'select':
-      return '下拉選單';
-    case 'number':
-      return '數值';
-    case 'file':
-      return '檔案上傳';
-  }
+    if(inputMethod.value){
+      return props.allType.find(item => item.value === inputMethod.value).name
+    }
+    return '請選擇'
   })
 
   const isShowDialog = ref(false);
@@ -144,8 +150,8 @@
     isShowDialog.value = false;
   }
   const dailogType = function(method){
-  inputMethod.value = method;
-  isShowDialog.value = false;
+    inputMethod.value = method;
+    isShowDialog.value = false;
   }
 
 </script>

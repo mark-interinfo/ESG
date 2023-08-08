@@ -21,14 +21,18 @@
           v-model="inputMethod"
           >
             <option value="unSelect">請選擇</option>
-            <option value="text">文字</option>
-            <option value="select">下拉選單</option>
-            <option value="number">數值</option>
-            <option value="file">檔案上傳</option>
+            <option
+            v-for="item in inputOption"
+            :key="item.value"
+            :value="item.value"
+            >
+              {{ item.name }}
+            </option>
           </select>
         </div>
         <div>
-          <template v-if="inputMethod === 'text'">
+          <!-- 文字輸入框 -->
+          <template v-if="inputMethod === 'D'">
             <label for="text-length">
               <p class="label-title">
                 設定值
@@ -39,7 +43,9 @@
               </div>
             </label>
           </template>
-          <template v-if="inputMethod === 'select'">
+
+          <!-- 單選、多選、下拉選單 -->
+          <template v-if="['A', 'B', 'C'].includes(inputMethod)">
             <p class="label-title">
               選項名稱
             </p>
@@ -71,7 +77,9 @@
               </div>
             </div>
           </template>
-          <template v-if="inputMethod === 'number'">
+
+          <!-- 數值 -->
+          <template v-if="inputMethod === 'E'">
             <p class="label-title">
               設定值
             </p>
@@ -86,7 +94,9 @@
               </label>
             </div>
           </template>
-          <template v-if="inputMethod === 'file'">
+
+          <!-- 檔案上傳 -->
+          <template v-if="inputMethod === 'F'">
             <p class="label-title">
               檔案格式
             </p>
@@ -109,6 +119,16 @@
             <div class="input-group">
               <input type="text" id="text-length" v-model.number="fileSettingSize" placeholder="請輸入">
               <span class="unit">MB</span>
+            </div>
+          </template>
+
+          <!-- 參考來源 -->
+          <template v-if="inputMethod === 'G'">
+            <p class="label-title">
+              網址
+            </p>
+            <div class="input-group">
+              <input type="text" id="text-length" v-model.number="fileSettingSize" placeholder="請輸入">
             </div>
           </template>
         </div>
@@ -146,9 +166,15 @@ const props = defineProps({
     default: false,
   },
   dailogType : {
-    tyep : String,
+    tyep: String,
+  },
+  // selectInput
+  inputOption: {
+    type: Array,
   }
 });
+
+console.log(props.inputOption)
 const emits = defineEmits(['closeDialog', 'dailogType']);
 
 // inputMethod 輸入方式
