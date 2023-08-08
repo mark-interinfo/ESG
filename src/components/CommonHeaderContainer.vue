@@ -217,6 +217,11 @@ header{
     border-top: 1px solid #EFEFEF;
     #header-links{
       display: block;
+
+      a.main-link{
+        color:#272727;
+      }
+
       .main-link{
         position: relative;
         display: inline-block;
