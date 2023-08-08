@@ -42,9 +42,7 @@
     allIndustry.value = apiData.allIndustry;
     allIssue.value = apiData.allIssue;
     allType.value = apiData.allType;
-    setTimeout(()=>{
-      switchOpen();
-    }, 0);
+
   })();
 
   const issueTypeSelected = ref('environment');
@@ -53,10 +51,6 @@
     { name: '社會', key: 'society' },
     { name: '治理', key: 'governance' },
   ]);
-
-  // onMounted(()=>{
-  //   switchOpen();
-  // });
 
 </script>
 <style lang="scss">
