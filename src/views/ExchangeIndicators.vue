@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onUpdated } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api.js';
   import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
@@ -51,6 +51,10 @@
     { name: '社會', key: 'society' },
     { name: '治理', key: 'governance' },
   ]);
+
+  onUpdated(()=>{
+    switchOpen();
+  });
 
 </script>
 <style lang="scss">
