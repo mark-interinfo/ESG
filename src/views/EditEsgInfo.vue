@@ -256,13 +256,6 @@
   #esgInfoContent {
     padding: 20px;
 
-    #buttonBox{
-      position: absolute;
-      width:60%!important;
-      right:10px;
-      top:20px;
-    }
-    
     input[type="text"],
     select {
       width: 350px;
@@ -278,10 +271,6 @@
       >span {
         display: inline-block;
         vertical-align: middle;
-
-        &:last-of-type {
-          text-align: right;
-        }
       }
     }
 

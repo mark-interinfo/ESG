@@ -2,6 +2,9 @@
     <div id="searchYearInfo" class="content">
         <div>
             <CommonCompanyTitle/>
+            <span id="buttonBox">
+                <input class="button buttonColor3" id="downloadTemplate" type="button" value="下載範本">
+            </span>
             <div id="searchBar">
                 <input id="searchInput" type="text" placeholder="請輸入民國年份"
                 v-model.number="apiRequest.year"

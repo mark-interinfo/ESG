@@ -167,3 +167,11 @@ label{
     background: #fff;
     position: relative;
 }
+
+#buttonBox{
+    position: absolute;
+    width:60%!important;
+    right:10px;
+    top:20px;
+    text-align: right;
+}
