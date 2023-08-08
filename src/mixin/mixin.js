@@ -22,7 +22,7 @@ const switchOpen = function(){
 
       if(this.getAttribute("class").match("selected")){
         return;
-      };
+      }
 
       for(let i=0;i<items.length;i++){
         items[i].classList.remove("opening");
@@ -56,9 +56,11 @@ const switchOpen = function(){
   var toggle = document.querySelector("#issue-toggle");
   toggle.dataset.name = open;
 
-  for(let i=0;i<items.length;i++){
-    items[i].onclick = function(){
-      this.classList.toggle("opening");
+  var listTitle = document.querySelectorAll(".issue-title")
+
+  for(let i=0;i<listTitle.length;i++){
+    listTitle[i].onclick = function(){
+      this.parentNode.classList.toggle("opening");
       var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
       var type = open;
       if(itemOpen.length == 0){

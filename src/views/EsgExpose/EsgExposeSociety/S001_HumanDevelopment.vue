@@ -65,8 +65,10 @@
                 :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
                 :position="'center'"
                 />
-                <input type="text" class="small">
-                <span class="unit">%</span>
+                <span>
+                  <input type="text" class="small">
+                  <span class="unit">%</span>
+                </span>
               </li>
             </ol>
           </td>
@@ -80,14 +82,19 @@
               <li>
                 <span>人數</span>
                 <span class="fontRed">*</span>
-                <input type="text">
-                <span class="unit">人</span>
+                <span>
+                  <input type="text">
+                  <span class="unit">人</span>
+                </span>
               </li>
               <li>
                 <span>比率</span>
                 <span class="fontRed">*</span>
-                <input type="text" placeholder="職災 / 總員工">
-                <span class="unit">%</span>
+                <span>
+                  <input type="text" placeholder="職災 / 總員工">
+                  <span class="unit">%</span>
+                </span>
+                
               </li>
             </ol>
           </td>

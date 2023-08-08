@@ -110,6 +110,8 @@ const hiddenNoticeInfo = function(){
   }
   svg{
     cursor: pointer;
+    vertical-align: middle;
+    margin-top: -11px;
     path{
       transition: .3s;
       fill: #BEBEBE;

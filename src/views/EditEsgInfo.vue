@@ -103,7 +103,10 @@
       &.opening {
         background: #ebfbf2;
 
-        .issue-content{height:auto;}
+        .issue-content{
+          height:auto;
+          overflow: inherit;
+        }
         .issue-title{
           svg {
             transform: rotate(180deg);
@@ -190,12 +193,6 @@
 
           span:has(+ .notice-icon) {
             padding: 0;
-          }
-
-          .notice-icon {
-            height: 16px;
-            width: 16px;
-            cursor: pointer;
           }
 
           > div{
