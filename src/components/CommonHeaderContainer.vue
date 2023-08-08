@@ -230,6 +230,7 @@ header{
         padding: 18px 30px;
         color: #37D880;
         transition: .3s;
+        user-select: none;
 
         &.selected{
           color: #272727;
