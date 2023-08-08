@@ -85,10 +85,15 @@
         padding: 10px 20px;
         color: #808080;
         cursor: pointer;
+        transition: .3s;
 
         &:before{
           content:attr(data-name);
           display:block;
+        }
+
+        &:hover{
+          color:#37D880;
         }
       }
     }
