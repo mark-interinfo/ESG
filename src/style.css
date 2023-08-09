@@ -11,7 +11,7 @@ body{
 
 section{
     min-height:calc(100% - 352px);
-    background: url(../src/assets/images/bg.png) center/cover ;
+    background: url(../src/assets/images/bg.png) center/cover fixed ;
 }
 
 section:has(#login){

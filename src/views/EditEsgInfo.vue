@@ -61,7 +61,6 @@
         .issue-tag {
           box-sizing: border-box;
           display: inline-block;
-          width: 96px;
           font-size: 14px;
           text-align: center;
           padding: 10px 20px;
