@@ -209,11 +209,3 @@ label{
     cursor: pointer;
     margin-left: 5px;
 }
-
-.dialog-background .dialog .dialog-content .option label{
-    display: none;
-}
-
-.dialog-background .dialog .dialog-content .option label[data-info*=";"]{
-    display: block;
-}

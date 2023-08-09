@@ -1,8 +1,9 @@
 <template>
   <div
   class="dialog-background"
-  :class="{'show': props.isShowDialog}"
+  v-if="props.isShowDialog"
   @click.self="closeDialog"
+  id="selectList"
   >
     <div class="dialog">
       <div class="dialog-content">
@@ -22,7 +23,8 @@
         <input
         type="text"
         v-model="searcher"
-        @input="search($event)"
+        @focus="addStyle"
+        @keyup.enter="search($event)"
         >
         <div class="option">
           <div
@@ -30,7 +32,7 @@
           :key="item.name"
           >
             <label
-            :data-info="`${item.name};${item.value}`"
+            :data-info="`${item.name} ${item.value}`"
             :for="item.name"
             >
               <input
@@ -45,7 +47,7 @@
         </div>
       </div>
       <div class="dialog-footer">
-        <button class="button buttonColor2">取消</button>
+        <button class="button buttonColor2" @click="closeDialog">取消</button>
         <button class="button buttonColor1">確認</button>
       </div>
     </div>
@@ -53,7 +55,6 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 const props = defineProps({
   isShowDialog: {
@@ -71,8 +72,6 @@ const props = defineProps({
 });
 
 const emits = defineEmits(['closeDialog']);
-
-const router = useRouter();
 
 const searcher = ref('');
 const selected = ref('');
@@ -93,25 +92,31 @@ const selectedClear = function(){
 };
 
 const closeDialog = function(){
-  emit('closeDialog');
+  emits('closeDialog');
 }
 
-let cssArray = ref([]);
-let searchText = ref(';');
-const search = function(event){
-  cssArray.value = document.querySelector('style').innerHTML.split(`"${searchText.value}"`);
-  if(event.target.value){
-    document.querySelector('style').innerHTML = cssArray.value[0] + `"${event.target.value}"` + cssArray.value[1];
-    searchText.value = event.target.value;
-  } else {
-    document.querySelector('style').innerHTML = cssArray.value[0] + '";"' + cssArray.value[1];
-    searchText.value = ';';
-  }
+const addStyle = function(){
+  if(!document.querySelector("#selectListStyle")){
+    let style = document.createElement("style");
+    style.id = "selectListStyle";
+    style.setAttribute("rel","stylesheet");
+    selectList.appendChild(style);
+  };
 };
 
-router.afterEach(() => {
-  document.querySelector('style').innerHTML = cssArray.value[0] + '";"' + cssArray.value[1];
-});
+const search = function(event){
+  let css = "";
+  if(event.target.value.length > 0){
+    css = `.dialog label:not([data-info*="${event.target.value}"]){display:none;}`;
+  };
+  selectListStyle.innerHTML = css;
+
+  if(document.querySelector(".option").offsetHeight == 0){
+    document.querySelector(".option").setAttribute("data-msg", "無資料");
+  }else{
+    document.querySelector(".option").removeAttribute("data-msg");
+  };
+};
 
 </script>
 <style lang="scss" scoped>
@@ -123,6 +128,11 @@ router.afterEach(() => {
   justify-content: center;
   align-items: center;
   background: #0000004d;
+
+  .option[data-msg]:before{
+    content:attr(data-msg);
+  }
+
   .dialog{
     background: #fff;
     border-radius: 3px;
