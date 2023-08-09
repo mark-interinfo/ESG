@@ -227,16 +227,13 @@ header{
         vertical-align: middle;
         gap: 4px;
         padding: 18px 30px;
-        color: #37D880;
         transition: .3s;
         user-select: none;
         
         &:hover{
           color: #272727;
           background: #fafafa;
-          .arrow{
-            background: url("../assets/images/arrow-black.svg");
-          }
+          
           .dropdown{
             visibility:inherit;
             opacity: 1;
@@ -246,7 +243,7 @@ header{
         .arrow{
           width: 25px;
           height: 25px;
-          background: url("../assets/images/arrow-green.svg");
+          background: url("../assets/images/arrow-black.svg");
           display: inline-block;
           vertical-align: middle;
         }

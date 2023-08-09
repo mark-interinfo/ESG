@@ -1,4 +1,6 @@
-html,body,section {
+html,
+body,
+section {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -10,7 +12,7 @@ body{
 }
 
 section{
-    min-height:calc(100% - 352px);
+    min-height:calc(100% - 356px);
     background: url(../src/assets/images/bg.png) center/cover fixed ;
 }
 
