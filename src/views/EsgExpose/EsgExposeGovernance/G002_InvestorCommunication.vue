@@ -14,10 +14,10 @@
                 <li>
                     <span>公司年度召開法說會次數</span>
                     <span class="fontRed">*</span>
-                    <span>
+                    <div>
                       <input type="text">
                       <span class="unit">場次</span>
-                    </span>
+                    </div>
                   </li>
               </ol>
             </td>

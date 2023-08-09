@@ -21,23 +21,23 @@
                   <li>
                     <span>董事總席次(含獨立董事)</span>
                     <span class="fontRed">*</span>
-                    <span>
+                    <div>
                       <input type="text">
-                    </span>
+                    </div>
                   </li>
                   <li>
                     <span>獨立董事席次</span>
                     <span class="fontRed">*</span>
-                    <span>
+                    <div>
                       <input type="text">
-                    </span>
+                    </div>
                   </li>
                   <li>
                     <span>女性董事席次及比率</span>
                     <span class="fontRed">*</span>
-                    <span>
+                    <div>
                       <input type="text">
-                    </span>
+                    </div>
                   </li>
               </ol>
           </td>
@@ -60,9 +60,9 @@
                 <li>
                   <span>董事出席董事會出席率</span>
                   <span class="fontRed">*</span>
-                  <span>
+                  <div>
                     <input type="text">
-                  </span>
+                  </div>
                 </li>
               </ol>
           </td>
@@ -85,9 +85,9 @@
                 <li>
                   <span>董監事進修時數符合進修要點比率</span>
                   <span class="fontRed">*</span>
-                  <span>
+                  <div>
                     <input type="text">
-                  </span>
+                  </div>
                 </li>
               </ol>
           </td>

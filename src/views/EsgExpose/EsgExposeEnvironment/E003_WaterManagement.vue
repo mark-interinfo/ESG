@@ -11,127 +11,90 @@
             </td>
             <td>
               <ol>
-                  <li>
-                      是否取得驗證
-                      <span class="fontRed">*</span>
-                      <div>
-                          <div>
-                              <span>
-                                  <input type="radio" name="e003a">
-                                  <span>否</span>
-                              </span>
-                          </div>
-                          <div>
-                              <span>
-                                  <input type="radio" name="e003a">
-                                  <span>是</span>
-                              </span>
-                              <span>
-                                  <select>
-                                      <option>請選擇驗證機構</option>
-                                  </select>
-                              </span>
-                          </div>
-                          <div>
-                              <span></span>
-                              <span>
-                                  <select>
-                                      <option>請選擇驗證標準</option>
-                                  </select>
-                              </span>
-                          </div>
-                      </div>
-                  </li>
-              </ol>
-          </td>
-        </tr>
-        <tr>
-            <td>
-              水資源使用率
-            </td>
-
-              <td>
-                <ol>
-                  <li>
-                    用水量
+                <li>
+                    <span>是否取得驗證</span>
                     <span class="fontRed">*</span>
+                    <CommonNoticeComponent
+                    :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                    :position="'center'"
+                    />
                     <div>
                         <span>
-                            <input type="radio" name="e003b">
-                            <span>無資料</span>
+                            <input type="radio" name="c1">
+                            <span>是</span>
                         </span>
                         <span>
-                          <select>
-                              <option>請選擇原因</option>
-                          </select>
+                            <input type="radio" name="c1">
+                            <span>否</span>
                         </span>
                     </div>
+                </li>
+                <li>
+                    <span>驗證機構</span>
                     <div>
-                        <span>
-                            <input type="radio" name="e002a">
-                            <span>有資料</span>
-                        </span>
-                        <span>
-                          <input type="text">
-                          <span class="unit">公噸</span>
-                        </span>
+                        <select>
+                            <option value>請選擇驗證機構</option>
+                            <option value="0">驗證機構1</option>
+                        </select>
                     </div>
+                </li>
+                <li>
+                    <span>驗證標準</span>
                     <div>
-                        <span>
-                            <span>資料範圍</span>
-                        </span>
-                        <span>
-                          <select>
-                              <option>請選擇範疇</option>
-                          </select>
-                        </span>
+                        <select>
+                            <option value>請選擇驗證標準</option>
+                            <option value="0">驗證標準1</option>
+                        </select>
                     </div>
-                  </li>
-                  <li>
-                    用水密集度
-                    <span class="fontRed">*</span>
-                    <div>
-                        <span>
-                            <input type="radio" name="e003c">
-                            <span>無資料</span>
-                        </span>
-                        <span>
-                          <select>
-                              <option>請選擇原因</option>
-                          </select>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <input type="radio" name="e002a">
-                            <span>有資料</span>
-                        </span>
-                        <span>
-                          <input type="text" class="small">
-                          <span class="unit">噸CO2e</span>
-                          <select class="small">
-                              <option>請選單位</option>
-                          </select>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <span>資料範圍</span>
-                        </span>
-                        <span>
-                          <select>
-                              <option>請選擇範疇</option>
-                          </select>
-                        </span>
-                    </div>
-                  </li>
-                  <li>
-                    水資源管理或減量目標
-                    <div>
-                        <input type="text" placeholder="請說明政策">
-                    </div>
-                  </li>
-              </ol>
+                </li>
+                <li>
+                  <span>用水密集度</span>
+                  <span class="fontRed">*</span>
+                  <CommonNoticeComponent
+                  :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                  :position="'center'"
+                  />
+                  <div>
+                      <span>
+                          <input type="radio" name="a6">
+                          <span>是</span>
+                      </span>
+                      <span>
+                          <input type="radio" name="a6">
+                          <span>否</span>
+                      </span>
+                  </div>
+              </li>
+              <li>
+                  <span>排放量</span>
+                  <div>
+                      <input type="text">
+                      <span class="unit">噸CO2e</span>
+                  </div>
+              </li>
+              <li>
+                  <span>資料範圍</span>
+                  <div>
+                      <input type="text" placeHolder="請描述各項範疇一資料範圍 （涵蓋子公司）">
+                  </div>
+              </li>
+              <li>
+                  <span>無資料</span>
+                  <div>
+                      <select>
+                          <option value>請選擇原因</option>
+                          <option value="0">原因1</option>
+                      </select>
+                  </div>
+              </li>
+              <li>
+                  <span>水資源管理或減量目標</span>
+                  <span class="fontRed">*</span>
+                  <div>
+                      <input type="text" placeHolder="請說明政策">
+                  </div>
+              </li>
+            </ol>
           </td>
         </tr>
       </table>

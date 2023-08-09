@@ -149,6 +149,19 @@
       height: 0;
       overflow: hidden;
 
+      &[id^="E0"] select,
+      &[id^="E0"] input[type="text"],
+      &[id^="G0"] select,
+      &[id^="G0"] input[type="text"] {
+        width: 460px;
+      }
+
+      &[id="ExchangeIndicators"] select,
+      &[id="ExchangeIndicators"] input[type="text"],
+      &[id="ExchangeIndicators"] div > .button{
+        width: 400px;
+      }
+
       &.opening {
         height: auto;
         overflow: inherit;
@@ -176,7 +189,7 @@
         border-spacing: 1px;
         width: 100%;
 
-        tr>td:first-of-type {
+        tr > td:first-of-type {
           background: #fafafa;
           vertical-align: text-top;
           width: 25%;
@@ -187,59 +200,54 @@
           padding: 10px;
           color: #525252;
 
-          span:not([class]) {
-            padding: 0 5px;
+          span{
+            vertical-align: middle;
           }
-
-          span{vertical-align: middle;}
 
           input {
             vertical-align: middle;
           }
 
-          span:has(+ .notice-icon) {
+          span:has(+ .notice-icon){
             padding: 0;
           }
 
           > div{
               padding:5px 0;
+
+
+              + div{
+                margin-top: 10px;
+              }
+
+              > div{
+                margin-top:10px;
+
+                > span{
+                  + span{
+                    margin-left:10px;
+                  }
+                }
+              }
           }
         }
-      }
-
-      .small {
-        width: 167px !important;
       }
 
       li {
-        +li {
+        + li {
           margin-top: 20px;
         }
 
-        div>span {
-          padding: 5px;
+        div{
+          margin-top:10px;
 
-          &:first-of-type {
-              width: 90px;
-              text-align: right;
+          span{
+            + span{
+              margin-left:10px;
+            }
           }
+        }
 
-          +span {
-              width: calc(100% - 114px);
-          }
-
-      }
-
-        
-      }
-
-      div>input[type="text"] {
-        width: 460px;
-        margin-top: 10px;
-      }
-
-      div:not([class]) >span:not([class]) {
-        padding: 5px;
       }
 
       input[type="text"]+.unit {
@@ -263,12 +271,6 @@
 
   #esgInfoContent {
     padding: 20px;
-
-    input[type="text"],
-    select {
-      width: 350px;
-      max-width:100%;
-    }
 
     > div {
 
