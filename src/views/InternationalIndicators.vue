@@ -18,7 +18,7 @@
 
 <script setup>
   import { ref } from 'vue';
-  import { onUpdated } from 'vue';
+  import { onUpdated ,onMounted } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
 
@@ -27,6 +27,10 @@
     { name: '社會', key: 'society' },
     { name: '治理', key: 'governance' },
   ]);
+
+  onMounted(()=>{
+    switchOpen();
+  });
 
   onUpdated(()=>{
     switchOpen();

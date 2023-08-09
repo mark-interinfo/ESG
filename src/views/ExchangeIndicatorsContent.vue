@@ -12,25 +12,23 @@
         </span>
         <img src="../assets/images/select.svg" alt="">
       </div>
-      <div class="issue-content">
+      <div class="issue-content" id="ExchangeIndicators">
         <table>
           <tr>
               <td>
                 適用產業別
               </td>
               <td>
-                <span>
-                    <select>
-                        <option>請選擇</option>
-                        <option
-                        v-for="item in props.allIndustry"
-                        :key="item.value"
-                        :value="item.value"
-                        >
-                          {{item.name}}
-                        </option>
-                    </select>
-                </span>
+                <select>
+                    <option>請選擇</option>
+                    <option
+                    v-for="item in props.allIndustry"
+                    :key="item.value"
+                    :value="item.value"
+                    >
+                      {{item.name}}
+                    </option>
+                </select>
               </td>
           </tr>
           <template v-for="item in issue.issueList">
@@ -39,49 +37,53 @@
                   指標名稱
                 </td>
                 <td>
-                  <span>
-                      <select>
-                          <option>請填寫</option>
-                          <option selected :value="item.targetTitle">{{ item.targetTitle }}</option>
-                      </select>
-                  </span>
+                  <select>
+                      <option>請填寫</option>
+                      <option selected :value="item.targetTitle">{{ item.targetTitle }}</option>
+                  </select>
                 </td>
             </tr>
-            <tr v-for="input in item.targetList">
+            <tr v-for="(input,index) in item.targetList">
                 <td>
-                  指標細項（一）
+                  指標細項 {{index + 1}}
                 </td>
                 <td>
                   <div>
                     <span>
                       使用狀態
                     </span>
-                    <span>
-                        <span><input type="radio" name="a"><span>開啟</span></span>
-                        <span><input type="radio" name="a"><span>停用</span></span>
-                    </span>
+                    <div>
+                        <span>
+                          <input type="radio" name="a">
+                          <span>開啟</span>
+                        </span>
+                        <span>
+                          <input type="radio" name="a">
+                          <span>停用</span>
+                        </span>
+                    </div>
                   </div>
                   <div>
                     <span>
                       細項名稱
                     </span>
-                    <span>
+                    <div>
                         <input type="text" placeholder="請填寫"
                         :value="input.title">
-                    </span>
+                    </div>
                   </div>
                   <div>
                     <span>
                       輸入方式
                     </span>
-                    <span>
+                    <div>
                         <input
                         type="button"
                         class="button buttonColor3"
                         :value="inputMethodComputed(input.type)"
                         @click="openDialog"
                         >
-                    </span>
+                    </div>
                   </div>
                 </td>
             </tr>
@@ -139,5 +141,4 @@
   const dailogType = function(method){
     isShowDialog.value = false;
   }
-
 </script>

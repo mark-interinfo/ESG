@@ -14,7 +14,6 @@
           <div
           class="main-link pointer"
           @click="showLink(mainLinkIndex)"
-          :class="{'selected': mainLinkIndex === isLinkShow}"
           >
             <span>
               {{ mainLink.name }}
@@ -217,17 +216,24 @@ header{
     border-top: 1px solid #EFEFEF;
     #header-links{
       display: block;
+
+      a.main-link{
+        color:#272727;
+      }
+
       .main-link{
         position: relative;
         display: inline-block;
         vertical-align: middle;
         gap: 4px;
         padding: 18px 30px;
-        &.selected{
-          color: #37D880;
-          .arrow{
-            background: url("../assets/images/arrow-green.svg");
-          }
+        transition: .3s;
+        user-select: none;
+        
+        &:hover{
+          color: #272727;
+          background: #fafafa;
+          
           .dropdown{
             visibility:inherit;
             opacity: 1;
@@ -241,13 +247,13 @@ header{
           display: inline-block;
           vertical-align: middle;
         }
-        +.main-link::before{
-          content: '';
+        +.main-link:before{
+          content: "";
           position: absolute;
           left: 0;
           height: 24px;
           width: 1px;
-          background: #BEBEBE;
+          background: #efefef;
         }
         .dropdown{
           visibility: hidden;
@@ -269,6 +275,11 @@ header{
             white-space: nowrap;
             width: 100%;
             white-space: nowrap;
+
+            &:hover{
+              background:#fafafa;
+            }
+
             +.sub-link::before{
               content: '';
               position: absolute;

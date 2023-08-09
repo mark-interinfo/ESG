@@ -15,77 +15,80 @@
                   <td>
                       <ol>
                           <li>
-                            <span>是否取得驗證</span>
-                              <span class="fontRed">*</span>
-                              <div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001a">
-                                          <span>否</span>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001a">
-                                          <span>是</span>
-                                      </span>
-                                      <span>
-                                          <select>
-                                              <option value>其他</option>
-                                              <option value="0">選擇1</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span></span>
-                                      <span>
-                                          <input type="text" placeholder="請說明原因">
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span></span>
-                                      <span>
-                                          <select>
-                                              <option>請選擇驗證標準</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                              </div>
+                            <span>有無排放</span>
+                            <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
+                            <div>
+                                <span>
+                                    <input type="radio" name="a1">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a1">
+                                    <span>否</span>
+                                </span>
+                            </div>
                           </li>
                           <li>
                             <span>排放量</span>
-                              <span class="fontRed">*</span>
-                              <div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001b">
-                                          <span>無資料</span>
-                                      </span>
-                                      
-                                      <span>
-                                          <select>
-                                              <option>請選擇原因</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001b">
-                                          <span>排放量</span>
-                                      </span>
-                                  
-                                      <span>
-                                          <input type="text">
-                                          <span class="unit">噸CO2e</span>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>資料範圍</span>
-                                      <span>
-                                          <input type="text" placeholder="請描述各項範疇依資料範圍 (涵蓋子公司)">
-                                      </span>
-                                  </div>
-                              </div>
+                            <div>
+                                <input type="text">
+                                <span class="unit">噸CO2e</span>
+                            </div>
+                          </li>
+                          <li>
+                            <span>資料範圍</span>
+                            <div>
+                                <input type="text" placeHolder="請描述各項範疇一資料範圍 （涵蓋子公司）">
+                            </div>
+                          </li>
+                          <li>
+                            <span>無資料</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇原因</option>
+                                    <option value="0">原因1</option>
+                                </select>
+                            </div>
+                          </li>
+                          <li>
+                            <span>是否取得驗證</span>
+                            <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
+                            <div>
+                                <span>
+                                    <input type="radio" name="a2">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a2">
+                                    <span>否</span>
+                                </span>
+                            </div>
+                          </li>
+                          <li>
+                            <span>驗證機構</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證機構</option>
+                                    <option value="0">驗證機構1</option>
+                                </select>
+                            </div>
+                          </li>
+                          <li>
+                            <span>驗證標準</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證標準</option>
+                                    <option value="0">驗證標準1</option>
+                                </select>
+                            </div>
                           </li>
                       </ol>
                   </td>
@@ -98,76 +101,84 @@
                       (範疇二)
                   </td>
                   <td>
-                      <ol>
-                          <li>
-                            <span>是否取得驗證</span>
-                              <span class="fontRed">*</span>
-                              <div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001c">
-                                          <span>否</span>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001c">
-                                          <span>是</span>
-                                      </span>
-                                      
-                                      <span>
-                                          <select>
-                                              <option>請選擇驗證機構</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span></span>
-                                      <span>
-                                          <select>
-                                              <option>請選擇驗證標準</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                              </div>
-                          </li>
-                          <li>
-                            <span>排放量</span>
-                              <span class="fontRed">*</span>
-                              <div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001d">
-                                          <span>無資料</span>
-                                      </span>
-                                      
-                                      <span>
-                                          <select>
-                                              <option>請選擇原因</option>
-                                          </select>
-                                      </span>
-                                      
-                                      <div>
-                                          <span>
-                                              <input type="radio" name="e001d">
-                                              <span>排放量</span>
-                                          </span>
-                                          <span>
-                                              <input type="text">
-                                              <span class="unit">噸CO2e</span>
-                                          </span>
-                                      </div>
-                                      <div>
-                                          <span>資料範圍</span>
-                                          <span>
-                                              <input type="text" placeholder="請描述各項範疇依資料範圍 (涵蓋子公司)">
-                                          </span>
-                                      </div>
-                                      
-                                  </div>
-                              </div>
-                          </li>
-                      </ol>
+                    <ol>
+                        <li>
+                            <span>有無排放</span>
+                            <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
+                            <div>
+                                <span>
+                                    <input type="radio" name="a3">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a3">
+                                    <span>否</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                        <span>排放量</span>
+                        <div>
+                            <input type="text">
+                            <span class="unit">噸CO2e</span>
+                        </div>
+                        </li>
+                        <li>
+                        <span>資料範圍</span>
+                        <div>
+                            <input type="text" placeHolder="請描述各項範疇一資料範圍 （涵蓋子公司）">
+                        </div>
+                        </li>
+                        <li>
+                        <span>無資料</span>
+                        <div>
+                            <select>
+                                <option value>請選擇原因</option>
+                                <option value="0">原因1</option>
+                            </select>
+                        </div>
+                        </li>
+                        <li>
+                        <span>是否取得驗證</span>
+                        <span class="fontRed">*</span>
+                        <CommonNoticeComponent
+                        :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                        :position="'center'"
+                        />
+                        <div>
+                            <span>
+                                <input type="radio" name="e001a">
+                                <span>是</span>
+                            </span>
+                            <span>
+                                <input type="radio" name="e001a">
+                                <span>否</span>
+                            </span>
+                        </div>
+                        </li>
+                        <li>
+                            <span>驗證機構</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證機構</option>
+                                    <option value="0">驗證機構1</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <span>驗證標準</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證標準</option>
+                                    <option value="0">驗證標準1</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ol>
                   </td>
               </tr>
 
@@ -178,74 +189,84 @@
                       (範疇三)
                   </td>
                   <td>
-                      <ol>
-                          <li>
+                    <ol>
+                        <li>
+                            <span>有無排放</span>
+                            <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
+                            <div>
+                                <span>
+                                    <input type="radio" name="a4">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a4">
+                                    <span>否</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <span>排放量</span>
+                            <div>
+                                <input type="text">
+                                <span class="unit">噸CO2e</span>
+                            </div>
+                            </li>
+                            <li>
+                            <span>資料範圍</span>
+                            <div>
+                                <input type="text" placeHolder="請描述各項範疇一資料範圍 （涵蓋子公司）">
+                            </div>
+                        </li>
+                        <li>
+                            <span>無資料</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇原因</option>
+                                    <option value="0">原因1</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
                             <span>是否取得驗證</span>
                             <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
                             <div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001e">
-                                        <span>否</span>
-                                    </span>
-                                    
-                                </div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001e">
-                                        <span>是</span>
-                                    </span>
-                                    <span>
-                                        <select>
-                                            <option>請選擇驗證機構</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span></span>
-                                    <span>
-                                        <select>
-                                            <option>請選擇驗證標準</option>
-                                        </select>
-                                    </span>
-                                </div>
+                                <span>
+                                    <input type="radio" name="a5">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a5">
+                                    <span>否</span>
+                                </span>
                             </div>
-                          </li>
-                          <li>
-                            <span>排放量</span>
-                              <span class="fontRed">*</span>
-                              <div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001f">
-                                          <span>無資料</span>
-                                      </span>
-                                      
-                                      <span>
-                                          <select>
-                                              <option>請選擇原因</option>
-                                          </select>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>
-                                          <input type="radio" name="e001f">
-                                          <span>排放量</span>
-                                      </span>
-                                      <span>
-                                          <input type="text">
-                                          <span class="unit">噸CO2e</span>
-                                      </span>
-                                  </div>
-                                  <div>
-                                      <span>資料範圍</span>
-                                      <span>
-                                          <input type="text" placeholder="請描述各項範疇依資料範圍 (涵蓋子公司)">
-                                      </span>
-                                  </div>
-                              </div>
-                          </li>
-                      </ol>
+                        </li>
+                        <li>
+                            <span>驗證機構</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證機構</option>
+                                    <option value="0">驗證機構1</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <span>驗證標準</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇驗證標準</option>
+                                    <option value="0">驗證標準1</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ol>
                   </td>
               </tr>
 
@@ -254,75 +275,48 @@
                       溫室氣體排放密集度
                   </td>
                   <td>
-                      <ol>
-                          <li>
-                            <span>溫室氣體排放密集度</span>
+                    <ol>
+                        <li>
+                            <span>有無排放</span>
                             <span class="fontRed">*</span>
+                            <CommonNoticeComponent
+                            :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                            :position="'center'"
+                            />
                             <div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001g">
-                                        <span>無資料</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001g">
-                                        <span>排放量</span>
-                                    </span>                                            
-                                    <span>
-                                        <input type="text" class="small">
-                                        <span class="unit">噸CO2e</span>
-                                        <select class="small">
-                                            <option>請選單位</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>資料範圍</span>
-                                    <span>
-                                        <input type="text">
-                                    </span>
-                                </div>
+                                <span>
+                                    <input type="radio" name="a6">
+                                    <span>是</span>
+                                </span>
+                                <span>
+                                    <input type="radio" name="a6">
+                                    <span>否</span>
+                                </span>
                             </div>
-                          </li>
-                          <li>
+                        </li>
+                        <li>
                             <span>排放量</span>
-                            <span class="fontRed">*</span>
                             <div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001h">
-                                        <span>無資料</span>
-                                    </span>
-                                    <span>
-                                        <select>
-                                            <option>請選擇原因</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>
-                                        <input type="radio" name="e001h">
-                                        <span>排放量</span>
-                                    </span>
-                                    <span>
-                                        <input type="text" class="small">
-                                        <span class="unit">噸CO2e</span>
-                                        <select class="small">
-                                            <option>請選擇原因</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>資料範圍</span>
-                                    <span>
-                                        <input type="text" placeholder="請描述各項範疇依資料範圍 (涵蓋子公司)">
-                                    </span>
-                                </div>
+                                <input type="text">
+                                <span class="unit">噸CO2e</span>
                             </div>
-                          </li>
-                      </ol>
+                        </li>
+                        <li>
+                            <span>資料範圍</span>
+                            <div>
+                                <input type="text" placeHolder="請描述各項範疇一資料範圍 （涵蓋子公司）">
+                            </div>
+                        </li>
+                        <li>
+                            <span>無資料</span>
+                            <div>
+                                <select>
+                                    <option value>請選擇原因</option>
+                                    <option value="0">原因1</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ol>
                   </td>
               </tr>
 
@@ -364,10 +358,12 @@
   </div>
 </template>
 <script setup>
-const props = defineProps({
-  opening: {
-    type: Boolean,
-    require: true,
-  }
-})
+    import CommonNoticeComponent from '../../../components/CommonNoticeComponent.vue';
+
+    const props = defineProps({
+    opening: {
+        type: Boolean,
+        require: true,
+    }
+    })
 </script>
