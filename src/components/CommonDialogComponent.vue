@@ -89,7 +89,12 @@
               :key="option.id"
               :for="option.id"
               >
-                <input type="checkbox" v-model="numberSettingSelected" :id="option.id" :value="option.id" name="numberSetting">
+                <input
+                type="checkbox" name="numberSetting"
+                v-model="numberSettingSelected"
+                :id="option.id"
+                :value="option.id"
+                >
                 {{ option.title }}
               </label>
             </div>
@@ -272,7 +277,7 @@ const inputSetting = function(){
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,.3);
+  background: #0000004d;
   width:100%;
   max-width: unset !important;
   height: 100%;

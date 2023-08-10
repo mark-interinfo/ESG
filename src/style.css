@@ -90,6 +90,19 @@ input[type="password"]{
 input[type="button"]{
     cursor: pointer;
 }
+input[type="checkbox"]{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    background: url(/src/assets/images/checkbox.svg) #FAFAFA center/100% no-repeat;
+}
+
+input[type="checkbox"]:checked{
+    background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
+}
 
 select{
     height: 44px;
