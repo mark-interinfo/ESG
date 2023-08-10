@@ -34,14 +34,6 @@
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators"]);
 
-    const apiRequest = ref({
-        companyId: "1101",
-        year: '110'
-    });
-    (async() => {
-        console.log(await APICollection.QueryESGData(apiRequest));
-    })();
-
 </script>
 <style lang="scss">
   #issue {

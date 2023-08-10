@@ -54,8 +54,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { APICollection, asyncAjax } from '../mixin/api';
-// import { unicodeToString } from '../mixin/mixin.js';
+import { APICollection } from '../mixin/api';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
 const apiRequest = ref({

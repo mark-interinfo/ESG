@@ -39,53 +39,7 @@ const APICollection = {
   QueryESGData: ((requestBody) => callAPI('QueryESGData', requestBody)),
   UploadPDF: ((requestBody) => callAPI('UploadPDF', requestBody)),
   GetPDFData: ((requestBody) => callAPI('GetPDFData', requestBody)),
+  QueryReportData: ((requestBody) => callAPI('QueryReportData', requestBody)),
 };
 
-function asyncAjax(url,back,async,type,data){
-
-  url = base + url;
-
-  var method={}
-  method.url=url
-  method.back = back
-  method.async = async
-  method.type = type
-  method.data = data
-
-  //url 路徑
-  //back is call back function
-  //async 同步/非同步 true or false
-  //type post or get
-
-  var sendValue = "";
-
-  if(type == "post"){
-      sendValue = data;
-  }else{
-      type = "get";
-  };
-
-  if(!back){
-      console.log("missing back function!");
-      return;
-  };
-
-  if(!async){
-      var XML = new XMLHttpRequest();
-      XML.onload = function() {
-          if(this.readyState == 4 && this.status == 200){
-              back(this);
-          };
-      };
-      XML.open(type , base + url + "?" + Math.floor(Math.random()*1000));
-      XML.send(sendValue);
-  }else{
-      var worker = new Worker("../../src/mixin/worker.js");
-      worker.postMessage(["asyncAjax",url,type,data]);
-      worker.onmessage = function(e){
-          back(e);
-      };
-  };
-};
-
-export { APICollection, asyncAjax };
+export { APICollection };
