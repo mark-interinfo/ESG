@@ -53,7 +53,7 @@ const switchOpen = function(){
       };
 
       this.classList.add("selected");
-      issue.dataset.open = this.dataset.id;
+      document.querySelector("#issue").dataset.open = this.dataset.id;
 
       if(this.dataset.id == "全部議題"){
         for(let a=0;a<items.length;a++){
