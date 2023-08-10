@@ -35,8 +35,8 @@
     const watchData = (data) =>{
       console.log(data.value)
     }
-
 </script>
+
 <style lang="scss">
   #issue {
     width: 1000px;

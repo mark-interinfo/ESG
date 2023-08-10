@@ -103,10 +103,7 @@
   (async() => {
       data.value = await APICollection.QueryReportData(apiRequest);
       console.log(await APICollection.QueryReportData(apiRequest))
-
   })();
-
-  
   
   onUpdated(()=>{
     switchOpen();
