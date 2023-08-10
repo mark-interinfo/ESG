@@ -229,7 +229,7 @@
           margin-top: 20px;
         }
 
-        div{
+        > div{
           margin-top:10px;
 
           span{
