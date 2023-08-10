@@ -3,11 +3,11 @@
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer"
-        :class="{ 'selected': item.key === issueTypeSelected }"
-        v-for="item in issueType"
-        :key="item.key"
-        :id="item.key">
-          {{ item.name }}
+        :class="{ 'selected': item === issueTypeSelected }"
+        v-for="item in top"
+        :key="item"
+        :id="item">
+          {{ item }}
         </div>
       </div>
       <div id="issue-toggle" class="pointer"></div>
@@ -28,29 +28,23 @@
   import { APICollection } from '../mixin/api.js';
   import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
 
-  const apiRequest = ref({
-    companyId: "1101",
-    year: '110'
-  });
+  const apiRequest = ref({});
 
   const allIndustry = ref([]);
   const allIssue = ref([]);
   const allType = ref([]);
+  const top = ref([]);
 
   (async() => {
     let apiData = await APICollection.QueryESGData(apiRequest);
     allIndustry.value = apiData.allIndustry;
     allIssue.value = apiData.allIssue;
     allType.value = apiData.allType;
-
+    top.value = apiData.top;
+    issueTypeSelected.value = top.value[0];
   })();
 
-  const issueTypeSelected = ref('environment');
-  const issueType = ref([
-    { name: '環境', key: 'environment' },
-    { name: '社會', key: 'society' },
-    { name: '治理', key: 'governance' },
-  ]);
+  const issueTypeSelected = ref();
 
   onUpdated(()=>{
     switchOpen();
