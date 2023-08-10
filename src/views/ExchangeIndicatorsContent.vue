@@ -14,24 +14,25 @@
       </div>
       <div class="issue-content" id="ExchangeIndicators">
         <table>
-          <tr>
-              <td>
-                適用產業別
-              </td>
-              <td>
-                <select>
-                    <option>請選擇</option>
-                    <option
-                    v-for="item in props.allIndustry"
-                    :key="item.value"
-                    :value="item.value"
-                    >
-                      {{item.name}}
-                    </option>
-                </select>
-              </td>
-          </tr>
           <template v-for="item in issue.issueList">
+            {{ item }}
+            <tr>
+                <td>
+                  適用產業別
+                </td>
+                <td>
+                  <select>
+                      <option>請選擇</option>
+                      <option
+                      v-for="item in props.allIndustry"
+                      :key="item.value"
+                      :value="item.value"
+                      >
+                        {{item.name}}
+                      </option>
+                  </select>
+                </td>
+            </tr>
             <tr>
                 <td>
                   指標名稱
