@@ -10,9 +10,9 @@
                 v-model.number="apiRequest.year"
                 @change="change"
                 >
-                <input 
-                type="button" 
-                id="searchButton" 
+                <input
+                type="button"
+                id="searchButton"
                 class="button buttonColor1"
                 @click="change"
                 >
@@ -56,11 +56,15 @@
 import { ref } from 'vue';
 import { APICollection } from '../mixin/api';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
+import { useUserStore } from "../pinia/user.js";
 
 const apiRequest = ref({
     companyId: "1101",
     year: '110'
 });
+
+const userStore = useUserStore();
+
 const queryYear = ref();
 
 const hasData = ref('');
@@ -71,6 +75,7 @@ const change = function() {
         hasData.value = hasData.value.dataExist.value;
 
         queryYear.value = apiRequest.value.year;
+        userStore.setYear(queryYear.value);
     })();
 };
 

@@ -27,6 +27,7 @@
     import { ref } from 'vue';
     import { useUserStore } from '../pinia/user.js';
 
+
     const userStore = useUserStore();
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
@@ -35,6 +36,8 @@
     const watchData = (data) =>{
       console.log(data.value)
     }
+
+    console.log(userStore.getYear());
 
 </script>
 <style lang="scss">

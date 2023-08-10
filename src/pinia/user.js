@@ -17,12 +17,22 @@ export const useUserStore = defineStore('userStore', () => {
     };
   };
 
+  const searchYear = ref('');
+  const getYear = function(){
+    return searchYear.value
+  }
+  const setYear = function(year){
+    searchYear.value = year
+  }
+
   return {
     uid,
     uidCode,
 
     setUser,
-    returnUser
+    returnUser,
+    getYear,
+    setYear
   };
 },
 {
