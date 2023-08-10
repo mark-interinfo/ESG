@@ -6,14 +6,14 @@
                 <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
                 <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="匯入">
                 <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出">
+                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="watchData">
             </span>
             <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
             <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
             <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
         </div>
         <span>
-            <EsgExposeInfo v-if="pathName.includes(route.path)"/>
+            <EsgExposeInfo @watchData="watchData" v-if="pathName.includes(route.path)"/>
         </span>
     </div>
 </template>
@@ -25,14 +25,16 @@
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
     import { ref } from 'vue';
-
-    import { APICollection } from '../mixin/api';
     import { useUserStore } from '../pinia/user.js';
 
     const userStore = useUserStore();
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators"]);
+
+    const watchData = (data) =>{
+      console.log(data.value)
+    }
 
 </script>
 <style lang="scss">

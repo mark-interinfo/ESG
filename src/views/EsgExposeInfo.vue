@@ -44,30 +44,31 @@
                                 
                                 <div v-if="targetList.type == 'A'">
                                     <span v-for="option in targetList.optionList">
-                                        <input type="radio" :name="targetList.fieldId" :value="option.value">
+                                        <input type="radio" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
                                         <span>{{option.name}}</span>
                                     </span>
                                 </div>
-                                <div v-if="targetList.type == 'E'">
-                                  <div v-for="option in targetList.optionList">
-                                    <input type="text" :name="targetList.fieldId">
-                                    <span class="unit">{{option.unit}}</span>
-                                  </div>
-                                </div>
 
                                 <div v-if="targetList.type == 'C'">
-                                    <select :name="targetList.fieldId">
+                                    <select :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
                                         <option v-for="option in targetList.optionList" :value="option.value">{{option.name}}</option>
                                     </select>
                                 </div>
 
                                 <div v-if="targetList.type == 'D'">
-                                    <input type="text" :name="targetList.fieldId">
+                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                </div>
+
+                                <div v-if="targetList.type == 'E'">
+                                  <div v-for="option in targetList.optionList">
+                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                    <span class="unit">{{option.unit}}</span>
+                                  </div>
                                 </div>
 
                                 <div v-if="targetList.type == 'G'"  v-for="option in targetList.optionList">
                                   <div>
-                                    <input type="text" :name="targetList.fieldId">
+                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
                                   </div>
                                 </div>
                               </li>
@@ -84,7 +85,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref ,watch} from 'vue';
   import { onUpdated } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api';
@@ -99,11 +100,13 @@
       year: '112'
   });
 
-
   (async() => {
       data.value = await APICollection.QueryReportData(apiRequest);
       console.log(await APICollection.QueryReportData(apiRequest))
+
   })();
+
+  
   
   onUpdated(()=>{
     switchOpen();
@@ -112,7 +115,6 @@
       let name = Object.keys(data.value.data)[i];
       let value = data.value.data[name];
 
-
       if(document.querySelector("input[name='"+name+"'][type='radio']")){
         document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
       }else{
@@ -120,5 +122,11 @@
       }
     };
   });
+
+  watch(data, ()=>{
+    emits('watchData', data)
+  },{deep: true});
+
+  const emits  = defineEmits(["watchData"]);
 
 </script>
