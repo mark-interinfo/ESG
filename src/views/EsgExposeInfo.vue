@@ -44,7 +44,7 @@
                                 
                                 <div v-if="targetList.type == 'A'">
                                     <span v-for="option in targetList.optionList">
-                                        <input type="radio" :name="targetList.fieldId" :value="option.value" checked>
+                                        <input type="radio" :name="targetList.fieldId" :value="option.value">
                                         <span>{{option.name}}</span>
                                     </span>
                                 </div>
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div v-if="targetList.type == 'C'">
-                                    <select>
+                                    <select :name="targetList.fieldId">
                                         <option v-for="option in targetList.optionList" :value="option.value">{{option.name}}</option>
                                     </select>
                                 </div>
@@ -107,5 +107,18 @@
   
   onUpdated(()=>{
     switchOpen();
+
+    for(var i=0;i<Object.keys(data.value.data).length;i++){
+      let name = Object.keys(data.value.data)[i];
+      let value = data.value.data[name];
+
+
+      if(document.querySelector("input[name='"+name+"'][type='radio']")){
+        document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
+      }else{
+        document.querySelector("[name='"+name+"']").value = value;
+      }
+    };
   });
+
 </script>
