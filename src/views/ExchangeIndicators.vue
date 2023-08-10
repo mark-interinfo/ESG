@@ -5,20 +5,20 @@
         <div class="issue-tag pointer"
         :class="{ 'selected': item === issueTypeSelected }"
         v-for="item in top"
+        :data-id="item"
         :key="item"
-        :id="item">
+        :id="item"
+        >
           {{ item }}
         </div>
       </div>
       <div id="issue-toggle" class="pointer"></div>
     </div>
-    <template v-if="issueTypeSelected === 'environment'">
-      <ExchangeIndicatorsContent
-      :allIndustry="allIndustry"
-      :allIssue="allIssue"
-      :allType="allType"
-      />
-    </template>
+    <ExchangeIndicatorsContent
+    :allIndustry="allIndustry"
+    :allIssue="allIssue"
+    :allType="allType"
+    />
   </div>
 </template>
 
