@@ -9,9 +9,7 @@
       'position-right': props.position === 'right'
     }"
     >
-      <div :key="item">
-        {{ props.info }}
-      </div>
+      {{ props.info }}
     </div>
     <svg
     width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +26,7 @@
 import { ref } from 'vue';
 const props = defineProps({
   info: {
-    type: Array,
+    type: String,
     require: true,
   },
   position: {
@@ -63,7 +61,8 @@ const hiddenNoticeInfo = function(){
     border-radius: 3px;
     font-size: 14px;
     margin: 0;
-    text-wrap: nowrap;
+    max-width: 50vw;
+    width: 400px;
     &.show{
       opacity: .6;
     }
