@@ -4,7 +4,7 @@
     class="issue-item pointer"
     v-for="issue in props.allIssue"
     :key="issue.issueType"
-    data-item="environment"
+    :data-item="issue.issueKind"
     >
       <div class="issue-title">
         <span>
