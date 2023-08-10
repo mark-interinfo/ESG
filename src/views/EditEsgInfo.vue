@@ -242,15 +242,15 @@
       }
 
       input[type="text"]+.unit {
-        margin-left: -70px;
+        margin-left: -110px;
         font-size: 14px;
-        width: 60px;
+        width: 100px;
         padding: 0 10px 0 0;
         text-align: right;
       }
 
       input[type="text"]:has(+ .unit) {
-        padding-right: 60px;
+        padding-right: 110px;
       }
 
       .unit+* {
