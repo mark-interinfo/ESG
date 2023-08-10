@@ -28,30 +28,35 @@
       <div :id="issue.issueType" class="issue-content">
           <div>
               <table>
-                  <tr>
+                  <tr v-for="list in issue.issueList">
                       <td>
-                          直接溫室氣體
-                          <br>
-                          (範疇一)
+                          {{list.targetTitle}}
                       </td>
                       <td>
                           <ol>
-                              <li>
-                                <span>有無排放</span>
-                                <span class="fontRed">*</span>
+                              <li v-for="targetList in list.targetList">
+                                <span>{{targetList.title}}</span>
+                                <span v-if="targetList.required" class="fontRed">*</span>
                                 <CommonNoticeComponent
-                                :info="['範例：20% (占比之分母，為所有管理職人數。區間 0%~100%、小數最多2位)']"
+                                v-if="targetList.note"
+                                :info="targetList.note"
                                 :position="'center'"
                                 />
-                                <div>
+                                <div v-if="targetList.type == 'A'">
                                     <span>
-                                        <input type="radio" name="a1">
+                                        <input type="radio" :name="targetList.fieldId" value="true" checked>
                                         <span>是</span>
                                     </span>
                                     <span>
-                                        <input type="radio" name="a1">
+                                        <input type="radio"  :name="targetList.fieldId" value="false">
                                         <span>否</span>
                                     </span>
+                                </div>
+                                <div v-if="targetList.type == 'E'">
+                                  <div>
+                                    <input type="text" :name="targetList.fieldId">
+                                    <span class="unit">噸CO2e</span>
+                                </div>
                                 </div>
                               </li>
                               <li>
