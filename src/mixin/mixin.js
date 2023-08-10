@@ -53,15 +53,15 @@ const switchOpen = function(){
       };
 
       this.classList.add("selected");
-      issue.dataset.open = this.id;
+      issue.dataset.open = this.dataset.id;
 
-      if(this.id == "all"){
+      if(this.dataset.id == "全部議題"){
         for(let a=0;a<items.length;a++){
           items[a].style.display="";
         };
       }else{
         for(let a=0;a<items.length;a++){
-          if(items[a].dataset.item != this.id ){
+          if(items[a].dataset.item != this.dataset.id ){
             items[a].style.display="none";
           }else{
             items[a].style.display="";

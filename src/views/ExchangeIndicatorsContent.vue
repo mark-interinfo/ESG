@@ -48,7 +48,8 @@
                   指標細項 {{index + 1}}
                 </td>
                 <td>
-                  <div>
+                  <ul>
+                  <li>
                     <span>
                       使用狀態
                     </span>
@@ -62,8 +63,8 @@
                           <span>停用</span>
                         </span>
                     </div>
-                  </div>
-                  <div>
+                  </li>
+                  <li>
                     <span>
                       細項名稱
                     </span>
@@ -71,8 +72,8 @@
                         <input type="text" placeholder="請填寫"
                         :value="input.title">
                     </div>
-                  </div>
-                  <div>
+                  </li>
+                  <li>
                     <span>
                       輸入方式
                     </span>
@@ -84,7 +85,8 @@
                         @click="openDialog"
                         >
                     </div>
-                  </div>
+                  </li>
+                </ul>
                 </td>
             </tr>
           </template>
