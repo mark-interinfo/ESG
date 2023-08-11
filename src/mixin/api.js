@@ -9,7 +9,8 @@ function callAPI(apiName, requestBody, method='POST'){
     requestBody = requestBody.value;
   }
   return new Promise((resolve, reject) => {
-    let fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader=${JSON.stringify(userStore.returnUser())}`;
+    
+    let fetchBody = `requestBody=${ encodeURI( JSON.stringify(requestBody))}&requestHeader=${JSON.stringify(userStore.returnUser())}`;
 
     if(apiName === 'ESGLogin'){
       fetchBody = `requestBody=${JSON.stringify(requestBody)}&requestHeader={}`;
@@ -40,6 +41,7 @@ const APICollection = {
   UploadPDF: ((requestBody) => callAPI('UploadPDF', requestBody)),
   GetPDFData: ((requestBody) => callAPI('GetPDFData', requestBody)),
   QueryReportData: ((requestBody) => callAPI('QueryReportData', requestBody)),
+  ExecReportData: ((requestBody) => callAPI('ExecReportData', requestBody)),
 };
 
 export { APICollection };

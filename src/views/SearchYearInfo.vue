@@ -60,7 +60,7 @@ import { useUserStore } from "../pinia/user.js";
 
 const apiRequest = ref({
     companyId: "1101",
-    year: '110'
+    year: ''
 });
 
 const userStore = useUserStore();

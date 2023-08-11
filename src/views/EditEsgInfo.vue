@@ -6,14 +6,14 @@
                 <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
                 <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="匯入">
                 <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="watchData">
+                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
             </span>
             <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
             <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
             <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
         </div>
         <span>
-            <EsgExposeInfo @watchData="watchData" v-if="pathName.includes(route.path)"/>
+            <EsgExposeInfo @watchData="watchData" @safeData="safeData" v-if="pathName.includes(route.path)"/>
         </span>
     </div>
 </template>
@@ -25,21 +25,35 @@
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
     import { ref } from 'vue';
-    import { useUserStore } from '../pinia/user.js';
+    import { APICollection } from '../mixin/api';
 
-
-    const userStore = useUserStore();
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators"]);
 
+    const getData = ref();
+
     const watchData = (data) =>{
-      console.log(data.value)
+      getData.value = data.value;
+    };
+
+    const safeData = () =>{
+      
+      const data={};
+      data.year = getData.value.year;
+      data.data = getData.value.data;
+      data.companyId = getData.value.companyId;
+      console.log(data);
+
+      (async() => {
+        let back = await APICollection.ExecReportData(data);
+        console.log(back);
+      })();
+      
     }
 
-    console.log(userStore.getYear());
-
 </script>
+
 <style lang="scss">
   #issue {
     width: 1000px;
