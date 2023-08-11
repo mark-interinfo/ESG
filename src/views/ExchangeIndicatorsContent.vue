@@ -15,14 +15,13 @@
       <div class="issue-content" id="ExchangeIndicators">
         <table>
           <template v-for="item in issue.issueList">
-            {{ item }}
+            <!-- {{ item }} -->
             <tr>
                 <td>
                   適用產業別
                 </td>
                 <td>
-                  <select>
-                      <option>請選擇</option>
+                  <select v-model="item.targetCodeArray[0]">
                       <option
                       v-for="item in props.allIndustry"
                       :key="item.value"
@@ -38,10 +37,15 @@
                   指標名稱
                 </td>
                 <td>
-                  <select>
-                      <option>請填寫</option>
-                      <option selected :value="item.targetTitle">{{ item.targetTitle }}</option>
-                  </select>
+                  <input type="text" name="" id="" v-model="item.targetTitle">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標備註
+                </td>
+                <td>
+                  <input type="text" name="" id="" v-model="item.note">
                 </td>
             </tr>
             <tr v-for="(input,index) in item.targetList">
