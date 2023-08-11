@@ -6,180 +6,40 @@
   :data-item ="issue.key"
   >
     
-    <div class="issue-title">
-      <span>
-        {{ issue.id }} {{ issue.name }}
-      </span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div v-if="issue.id === 'M001'"  id="M001" class="issue-content">
+    
+    <div class="issue-content">
       <table>
         <tr>
-          <td rowspan="2">
-            (ㄧ)
-          </td>
           <td class="title">
-            <span>
-              <span>
-                適用產業別
-              </span>
-              <span>
-                  <select>
-                      <option>請選擇</option>
-                  </select>
-              </span>
-            </span>
-
-            <span>
-              <span>
-                證交所核心指標
-              </span>
-              <span>
-                  <select>
-                      <option>請選擇</option>
-                  </select>
-              </span>
-            </span>
+            項目
           </td>
-        </tr>
-        <tr>
           <td>
-            <div class="item">
-              <span>
-                <div>GRI</div>
-                <div>
-                  <select>
-                        <option>GRI 305-1</option>
-                    </select>
-                </div>
-                <div>
-                  <select>
-                        <option>請選擇</option>
-                    </select>
-                </div>
-                <div>
-                  <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                </div>
-              </span>
-              <span>
-                <div>SASB</div>
-                <div>
-                  <select>
-                        <option>TC-SC-110a.1</option>
-                    </select>
-                </div>
-                
-                <div>
-                  <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                </div>
-              </span>
-              <span>
-                <div>TCFD</div>
-                <div>
-                  <select>
-                        <option>指標和目標b.</option>
-                    </select>
-                </div>
-                
-                <div>
-                  <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                </div>
-              </span>
-            </div>
-
-            
+            國際準則
           </td>
         </tr>
         <tr>
-            <td rowspan="2">
-              (二)
-            </td>
-            <td class="title">
-              <span>
-                <span>
-                  適用產業別
-                </span>
-                <span>
-                    <select>
-                        <option>請選擇</option>
-                    </select>
-                </span>
-              </span>
-
-              <span>
-                <span>
-                  證交所核心指標
-                </span>
-                <span>
-                    <select>
-                        <option>請選擇</option>
-                    </select>
-                </span>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="item">
-                <span>
-                  <div>GRI</div>
-                  <div>
-                    <select>
-                          <option>GRI 305-1</option>
-                      </select>
-                  </div>
-                  <div>
-                    <select>
-                          <option>請選擇</option>
-                      </select>
-                  </div>
-                  <div>
-                    <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                  </div>
-                </span>
-                <span>
-                  <div>SASB</div>
-                  <div>
-                    <select>
-                          <option>TC-SC-110a.1</option>
-                      </select>
-                  </div>
-                  
-                  <div>
-                    <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                  </div>
-                </span>
-                <span>
-                  <div>TCFD</div>
-                  <div>
-                    <select>
-                          <option>指標和目標b.</option>
-                      </select>
-                  </div>
-                  <div class="center add">
-                    <span>新增選項</span>
-                  </div>
-                </span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <input type="button" value="更新設定" class="button buttonColor1">
-            </td>
-          </tr>
+          <td class="title">
+            直接溫室氣體<br>
+            (範疇一)
+          </td>
+          <td>
+            <div class="items">
+              <span>全部產業別</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="title">
+            能源間接<br>
+            (範疇二)
+          </td>
+          <td>
+            <select>
+              <option value>請選擇</option>
+              <option value="1">選擇1</option>
+            </select>
+          </td>
+        </tr>
         </table>
     </div>
     

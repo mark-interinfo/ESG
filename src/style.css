@@ -209,3 +209,19 @@ label{
     cursor: pointer;
     margin-left: 5px;
 }
+
+.items{
+    border:1px solid #efefef;
+    box-sizing: border-box;
+    padding:8px 10px;
+    width:550px;
+    border-radius: 3px;
+    background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
+}
+
+.items span{
+    background: #F5FDF9;
+    color:#2FB86D;
+    font-size: 12px;
+    padding:4px 8px;
+}

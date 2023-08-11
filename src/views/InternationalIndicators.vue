@@ -6,7 +6,7 @@
         :class="{ 'selected': item.key === issueTypeSelected }" 
         v-for="item in issueType"
         :key="item.key"
-        :id="item.key">
+        :data-id="item.key">
           {{ item.name }}
         </div>
       </div>
@@ -23,9 +23,9 @@
   import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
 
   const issueType = ref([
-    { name: '環境', key: 'environment' },
-    { name: '社會', key: 'society' },
-    { name: '治理', key: 'governance' },
+    { name: 'GRI', key: 'environment' },
+    { name: 'SASB', key: 'society' },
+    { name: 'TCFD', key: 'governance' },
   ]);
 
   onMounted(()=>{

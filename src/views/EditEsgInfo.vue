@@ -139,6 +139,7 @@
       font-size: 14px;
       border: 1px solid #EFEFEF;
       cursor: pointer;
+      
       + .issue-title {
         border-top: none;
       }
@@ -155,9 +156,13 @@
       }
     }
 
-    .issue-content {
+    .issue-title + .issue-content{
       height: 0;
       overflow: hidden;
+    }
+
+    .issue-content {
+      
 
       &[id^="E0"] select,
       &[id^="E0"] input[type="text"],
@@ -234,21 +239,7 @@
             }
           }
 
-          .items{
-            border:1px solid #efefef;
-            padding:8px 10px;
-            width:550px;
-            border-radius: 3px;
-            background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
-
-            span{
-              background: #F5FDF9;
-              color:#2FB86D;
-              font-size: 12px;
-              padding:4px 8px;
-            }
-
-          }
+          
         }
 
         tr > td:first-of-type {
@@ -274,9 +265,8 @@
             padding: 0;
           }
 
-          > div{
+          > div:not[class]{
               padding:5px 0;
-
 
               + div{
                 margin-top: 10px;
