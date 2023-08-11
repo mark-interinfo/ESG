@@ -57,6 +57,7 @@
       (async() => {
         let back = await APICollection.ExecReportData(data);
         console.log(back);
+        alert(back.state);
       })();
       
     }
@@ -79,12 +80,14 @@
             (async() => {
               let back = await APICollection.UploadRepotExcel(fileDetail);
               console.log(back);
+              alert("匯入成功")
             })();
           };
 
           //AI智能輸入
           if(id == "aiInner"){
             console.log(fileDetail);
+            alert("AI智能輸入成功")
             /* let back = await APICollection.UploadRepotExcel(fileDetail);
             console.log(back); */
           };
