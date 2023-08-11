@@ -49,15 +49,16 @@
             <p class="label-title">
               選項名稱
             </p>
+            {{ optionSetting }}
             <div
             v-for="(option, i) in optionSetting"
-            :key="option"
+            :key="option.value"
             class="input-group"
             >
               <input
               type="text"
               placeholder="請輸入選項名稱"
-              :value="option"
+              :value="option.name"
               @blur="setOption($event, i)"
               >
             </div>
@@ -70,7 +71,7 @@
               </div>
               <div
               class="del-button"
-              v-if="optionSetting.length > 1"
+              v-if="optionSetting && optionSetting.length > 1"
               @click="delOption"
               >
                 刪除
@@ -82,21 +83,64 @@
           <template v-if="inputMethod === 'E'">
             <p class="label-title">
               設定值
+              {{ optionSetting }}
             </p>
             <div class="input-group">
-              <label
-              v-for="option in numberSettingOption"
-              :key="option.id"
-              :for="option.id"
-              >
-                <input
-                type="checkbox" name="numberSetting"
-                v-model="numberSettingSelected"
-                :id="option.id"
-                :value="option.id"
-                >
-                {{ option.title }}
-              </label>
+              <table>
+                <!-- unit -->
+                <tr>
+                  <td>
+                    <input type="checkbox" checked disabled>
+                  </td>
+                  <td>顯示單位</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input type="text" placeholder="請輸入 例:公噸">
+                  </td>
+                </tr>
+                <!-- integerLength -->
+                <tr>
+                  <td>
+                    <input type="checkbox" checked disabled>
+                  </td>
+                  <td>設定整數位數</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input type="text" placeholder="請輸入">
+                  </td>
+                </tr>
+                <!-- decimalLength -->
+                <tr>
+                  <td>
+                    <input type="checkbox" checked disabled>
+                  </td>
+                  <td>設定小數位數</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input type="text" placeholder="請輸入">
+                  </td>
+                </tr>
+                <!-- allowZero -->
+                <tr>
+                  <td>
+                    <input type="checkbox" v-model="optionSetting.allowZero" :value="true">
+                  </td>
+                  <td>允許0（選填）</td>
+                </tr>
+                <!-- allowNegative -->
+                <tr>
+                  <td>
+                    <input type="checkbox" v-model="optionSetting.allowNegative" :value="true">
+                  </td>
+                  <td>允許負值（選填）</td>
+                </tr>
+              </table>
             </div>
           </template>
 
@@ -163,7 +207,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   isShowDialog: {
@@ -176,49 +220,68 @@ const props = defineProps({
   // selectInput
   inputOption: {
     type: Array,
+  },
+  inputMethod: {
+    type: String,
+  },
+  optionList: {
+    type: Array || Object
   }
 });
 
-const emits = defineEmits(['closeDialog', 'dailogType']);
+const emits = defineEmits(['closeDialog', 'inputSetting']);
+const optionSetting = ref();
+const inputMethod = ref('');
+watch(props, ()=>{
+  if(!props.optionList){
+    return;
+  }
+  optionSetting.value = JSON.parse(JSON.stringify(props.optionList));
+  inputMethod.value = props.inputMethod;
+});
 
-// inputMethod 輸入方式
-const inputMethod = ref('unSelect');
 
 // 文字
 const textLength = ref(0);
 
 // 選單
-const optionSetting = ref(['']);
 const addOption = function(){
-  optionSetting.value.push('')
+  optionSetting.value.push({
+    isOnYear: "",
+    name: "",
+    value: Number(optionSetting.value.at(-1).value) + 1,
+    isOn: true
+  })
 };
 const delOption = function(){
   optionSetting.value.pop();
 };
 const setOption = function(e, optionIndex){
-  optionSetting.value[optionIndex] = e.target.value;
+  if(['A', 'B', 'C'].includes(inputMethod.value)){
+    optionSetting.value[optionIndex].name = e.target.value;
+  }
 }
 
 // 數值
-const numberSettingOption = ref([
-  {
-    title: '請選擇',
-    id: 'unSelect'
-  },
-  {
-    title: '允許負值',
-    id: 'negative'
-  },
-  {
-    title: '設定整數位數',
-    id: 'integer'
-  },
-  {
-    title: '設定小數位數',
-    id: 'float'
-  },
-]);
-const numberSettingSelected = ref([]);
+// const numberSettingOption = ref([
+//   {
+//     title: '請選擇',
+//     id: 'unSelect'
+//   },
+//   {
+//     title: '允許負值',
+//     id: 'negative'
+//   },
+//   {
+//     title: '設定整數位數',
+//     id: 'integer'
+//   },
+//   {
+//     title: '設定小數位數',
+//     id: 'float'
+//   },
+// ]);
+// const numberSettingSelected = ref([]);
 
 // 檔案
 const fileSettingOption = ref([
@@ -245,8 +308,12 @@ const fileSettingSize = ref();
 const closeDialog = function(){
   emits('closeDialog');
 };
+
 const inputSetting = function(){
-  emits('dailogType', inputMethod.value);
+  emits('inputSetting', {
+    optionSetting: optionSetting.value,
+    inputMethod: inputMethod.value
+  });
 };
 
 </script>
@@ -271,6 +338,9 @@ const inputSetting = function(){
   }
 }
 
+select{
+  width: 100%;
+}
 
 // page setting
 #dialog-background{
@@ -293,6 +363,8 @@ const inputSetting = function(){
     display: flex;
     background: #fff;
     border-radius: 3px;
+    width: 100%;
+    max-width: 480px;
 
     &.loadingFile{
       padding:20px 40px;

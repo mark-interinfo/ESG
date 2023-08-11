@@ -37,7 +37,6 @@
 
   (async() => {
     let apiData = await APICollection.QueryESGData(apiRequest);
-    console.log(apiData);
     allIndustry.value = apiData.allIndustry;
     allIssue.value = apiData.allIssue;
     allType.value = apiData.allType;
