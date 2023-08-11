@@ -82,12 +82,12 @@
                   </div>
                 </td>
             </tr>
-            <tr v-for="target in list.targetList">
+            <tr v-for="(target, targetIndex) in list.targetList">
               <td></td>
               <td>
                 <table class="indicators">
                   <tr>
-                    <td class="color-green text-start" colspan="2">指標細項（一）</td>
+                    <td class="color-green text-start" colspan="2">指標細項（{{ chineseNumber(targetIndex + 1) }}）</td>
                   </tr>
                   <tr>
                     <td>細項名稱</td>
@@ -173,6 +173,7 @@
   import { computed, ref } from 'vue';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
   import { APICollection } from '../mixin/api.js';
+  import { chineseNumber } from '../mixin/mixin.js';
 
   const props = defineProps({
     allIndustry: {
@@ -218,7 +219,6 @@
   }
 
   const updateInputSetting = function(){
-    console.log(props.allIssue)
     APICollection.ExecESGData({
       allIssue: props.allIssue,
     });
