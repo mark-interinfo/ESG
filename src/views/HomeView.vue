@@ -77,7 +77,9 @@ const accountData = ref({
 const login = function(){
     (async() => {
         userStore.setUser(await APICollection.ESGLogin(accountData));
-    })()
+    })().catch(err=>{
+        alert(err.resultMessage);
+    });
 }
 
 const passwordCheck = function(){

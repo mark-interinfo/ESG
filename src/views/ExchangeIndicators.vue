@@ -42,7 +42,9 @@
     allType.value = apiData.allType;
     top.value = apiData.top;
     issueTypeSelected.value = top.value[0];
-  })();
+  })().catch(err=>{
+      alert(err.resultMessage);
+  });;
 
   const issueTypeSelected = ref();
 
