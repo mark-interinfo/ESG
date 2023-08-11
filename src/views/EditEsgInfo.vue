@@ -58,7 +58,9 @@
         let back = await APICollection.ExecReportData(data);
         console.log(back);
         alert(back.state);
-      })();
+      })().catch(err=>{
+        alert(err.resultMessage);
+      });
       
     };
 
@@ -79,26 +81,23 @@
 
           //匯入
           if(id == "inner"){
+            inner.value="";
             (async() => {
-              try{
-                let back = await APICollection.UploadRepotExcel(fileDetail);
-                console.log(back);
-                alert("匯入成功");
-              }catch(e){
-                alert("匯入失敗");
-              };
-              inner.value="";
-            })();
+              let back = await APICollection.UploadRepotExcel(fileDetail);
+              console.log(back);
+              alert("匯入成功");
+            })().catch(err=>{
+              alert(err.resultMessage);
+            });
           };
 
           //AI智能輸入
           if(id == "aiInner"){
+            aiInner.value = "";
             console.log(fileDetail);
             alert("AI智能輸入成功")
             /* let back = await APICollection.UploadRepotExcel(fileDetail);
             console.log(back); */
-
-            aiInner.value = "";
           };
       };
       fileReader.readAsDataURL(event.target.files[0]);

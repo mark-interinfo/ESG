@@ -80,7 +80,9 @@ const change = function() {
 
         queryYear.value = apiRequest.value.year;
         userStore.setYear(queryYear.value);
-    })();
+    })().catch(err=>{
+        alert(err.resultMessage);
+    });
 };
 
 // let uploadPDFResponseBody = {
