@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div v-if="targetList.type == 'D'">
-                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]" placeholder="請填寫">
                                 </div>
 
                                 <div v-if="targetList.type == 'E'">
