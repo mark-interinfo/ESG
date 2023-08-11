@@ -3,10 +3,19 @@
         <div>
             <CommonCompanyTitle/>
             <span id="buttonBox">
-                <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
-                <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="匯入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
+              <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
+
+              <span v-if="pathName1.includes(route.path)">
+                <label for="inner" class="button buttonColor3">匯入</label>
+                <input id="inner" type="file" accept=".csv,.xlsx" @input="FileInfo">
+              </span>
+
+              <span v-if="pathName1.includes(route.path)">
+                <label for="aiInner" class="button buttonColor3">AI智能輸入</label>
+                <input id="aiInner" type="file" accept=".pdf" @input="FileInfo">
+              </span>
+              
+              <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
             </span>
             <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
             <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
@@ -48,9 +57,43 @@
       (async() => {
         let back = await APICollection.ExecReportData(data);
         console.log(back);
+        alert(back.state);
       })();
       
     }
+
+    const FileInfo = (event) =>{
+      var id = event.target.id;
+      var file = event.target.files[0];
+      var fileDetail = {};
+      fileDetail.name = file.name;
+      fileDetail.size = file.size;
+      fileDetail.type = file.type;
+
+      var fileReader = new FileReader();
+      
+      fileReader.onload = function(e){
+          fileDetail.result = e.target.result;
+
+          //匯入
+          if(id == "inner"){
+            (async() => {
+              let back = await APICollection.UploadRepotExcel(fileDetail);
+              console.log(back);
+              alert("匯入成功")
+            })();
+          };
+
+          //AI智能輸入
+          if(id == "aiInner"){
+            console.log(fileDetail);
+            alert("AI智能輸入成功")
+            /* let back = await APICollection.UploadRepotExcel(fileDetail);
+            console.log(back); */
+          };
+      };
+      fileReader.readAsDataURL(event.target.files[0]);
+    };
 
 </script>
 
@@ -139,6 +182,7 @@
       font-size: 14px;
       border: 1px solid #EFEFEF;
       cursor: pointer;
+      
       + .issue-title {
         border-top: none;
       }
@@ -155,9 +199,13 @@
       }
     }
 
-    .issue-content {
+    .issue-title + .issue-content{
       height: 0;
       overflow: hidden;
+    }
+
+    .issue-content {
+      
 
       &[id^="E0"] select,
       &[id^="E0"] input[type="text"],
@@ -234,21 +282,7 @@
             }
           }
 
-          .items{
-            border:1px solid #efefef;
-            padding:8px 10px;
-            width:550px;
-            border-radius: 3px;
-            background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
-
-            span{
-              background: #F5FDF9;
-              color:#2FB86D;
-              font-size: 12px;
-              padding:4px 8px;
-            }
-
-          }
+          
         }
 
         tr > td:first-of-type {
@@ -274,9 +308,8 @@
             padding: 0;
           }
 
-          > div{
+          > div:not[class]{
               padding:5px 0;
-
 
               + div{
                 margin-top: 10px;

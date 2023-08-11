@@ -1,14 +1,3 @@
-document.body.onclick = function(event){
-  if(event.target.tagName == "SELECT"){
-    if(event.target.value != ""){
-      event.target.classList.add("selected");
-    }else{
-      event.target.classList.remove("selected");
-    };
-  };
-};
-
-
 const unicodeToString = function(unicode){
   unicode = unicode.split("\\u");
   unicode.shift();
@@ -42,7 +31,9 @@ const switchOpen = function(){
         items[i].classList.remove("opening");
       };
 
-      toggle.dataset.name = open;
+      if(toggle){
+        toggle.dataset.name = open;
+      };
 
       if(document.querySelector("#issue-tags .selected")){
         document.querySelector("#issue-tags .selected").classList.remove("selected");
@@ -66,35 +57,37 @@ const switchOpen = function(){
       };
     };
   };
-
+  
   var toggle = document.querySelector("#issue-toggle");
-  toggle.dataset.name = open;
+  if(toggle){
+    toggle.dataset.name = open;
 
-  var listTitle = document.querySelectorAll(".issue-title")
+    var listTitle = document.querySelectorAll(".issue-title")
 
-  for(let i=0;i<listTitle.length;i++){
-    listTitle[i].onclick = function(){
-      this.parentNode.classList.toggle("opening");
-      var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
-      var type = open;
-      if(itemOpen.length == 0){
-        type = close;
+    for(let i=0;i<listTitle.length;i++){
+      listTitle[i].onclick = function(){
+        this.parentNode.classList.toggle("opening");
+        var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
+        var type = open;
+        if(itemOpen.length == 0){
+          type = close;
+        };
+        toggle.dataset.name = type;
       };
-      toggle.dataset.name = type;
     };
-  };
 
-  toggle.onclick = function(){
-    if(this.dataset.name == open){
-      for(let i=0;i<items.length;i++){
-        items[i].classList.add("opening");
+    toggle.onclick = function(){
+      if(this.dataset.name == open){
+        for(let i=0;i<items.length;i++){
+          items[i].classList.add("opening");
+        };
+        this.dataset.name = close;
+      }else{
+        for(let i=0;i<items.length;i++){
+          items[i].classList.remove("opening");
+        };
+        this.dataset.name = open;
       };
-      this.dataset.name = close;
-    }else{
-      for(let i=0;i<items.length;i++){
-        items[i].classList.remove("opening");
-      };
-      this.dataset.name = open;
     };
   };
 

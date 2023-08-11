@@ -3,26 +3,29 @@
         <div>
             <CommonCompanyTitle/>
             <span id="buttonBox">
-                <input class="button buttonColor3" id="downloadTemplate" type="button" value="下載範本">
+                <a download="ESG申報範本" href="http://192.168.10.108/poc/samples/ESGReportData.xls" class="button buttonColor3" id="downloadTemplate">下載範本</a>
             </span>
             <div id="searchBar">
-                <input id="searchInput" type="text" placeholder="請輸入民國年份"
-                v-model.number="apiRequest.year"
-                @change="change"
+                <input id="searchInput" 
+                    type="text" 
+                    placeholder="請輸入民國年份"
+                    v-model.number="apiRequest.year"
+                    @change="change"
                 >
                 <input
-                type="button"
-                id="searchButton"
-                class="button buttonColor1"
-                @click="change"
+                    type="button"
+                    id="searchButton"
+                    class="button buttonColor1"
+                    @click="change"
                 >
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
                 <ul>
                     <!-- 有資料 -->
-                    <li id="edit"
-                    :class="{'show': hasData === 'YES'}"
+                    <li
+                        id="edit"
+                        :class="{'show': hasData === 'YES'}"
                     >
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
@@ -34,7 +37,7 @@
                     </li>
                     <!-- 無資料 -->
                     <li id="apply"
-                    :class="{'show': hasData === 'NO'}"
+                        :class="{'show': hasData === 'NO'}"
                     >
                         <span>{{queryYear}}年ESG資料尚未申請</span>
                         <span>

@@ -11,6 +11,10 @@ body{
     color:#272727;
 }
 
+a{
+    text-decoration: none;
+}
+
 section{
     min-height:calc(100% - 356px);
     background: url(../src/assets/images/bg.png) center/cover fixed ;
@@ -24,12 +28,12 @@ section:has(#login){
     height: 40px;
     padding: 9px 20px;
     font-size: 16px;
-    font-weight: 400;
     border-radius: 3px;
     transition: .3s;
     cursor:pointer;
     vertical-align: middle;
     margin:2px;
+    box-sizing: border-box;
 }
 
 .center{
@@ -112,21 +116,14 @@ select{
     font-size: 16px;
     border-radius:3px;
     appearance: none;
-    color:#bebebe;
+    color:#333;
     background: url(/src/assets/images/select.svg) #FAFAFA calc(100% - 10px) center/auto no-repeat;
 }
 
-select.selected{
-    color: #333;
-}
 
 select:focus{
     outline: none;
     border:1px solid #37d880!important;
-}
-
-select::placeholder{
-    color:#999;
 }
 
 input[type="radio"] + span{
@@ -159,15 +156,10 @@ input[type="password"]:focus{
     border:1px solid #37d880!important;
 }
 
-a{
-    color: #fff;
-    text-decoration: none;
-}
 
-/* Nav Hover效果為顏色差異 非底線 */
-/* a:hover{
-    text-decoration: underline;
-} */
+label + input[type="file"]{
+    display: none;
+}
 
 span{display:inline-block;}
 
@@ -179,7 +171,12 @@ span{display:inline-block;}
 
 ::placeholder{color:#bebebe;}
 
-label{
+label.button{
+    display:inline-block;
+    line-height: 20px;;
+}
+
+label:not([class]){
     display: block;
 }
 
@@ -208,4 +205,38 @@ label{
     width: 16px;
     cursor: pointer;
     margin-left: 5px;
+}
+
+.items{
+    border:1px solid #efefef;
+    box-sizing: border-box;
+    padding:8px 10px;
+    width:570px;
+    border-radius: 3px;
+    background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
+}
+
+.items span{
+    background: #F5FDF9;
+    color:#2FB86D;
+    font-size: 12px;
+    padding:4px 8px;
+}
+
+.items:empty:before{
+    content:"請選擇";
+    display:inline-block;
+    color:#bebebe;
+    font-size: 12px;
+    padding:0 10px;
+}
+
+.noData{
+    text-align: center;
+    padding:40px;
+}
+
+.noData h2{
+    color: #808080;
+    font-weight: inherit;
 }

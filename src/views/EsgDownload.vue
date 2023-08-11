@@ -11,9 +11,9 @@
             <td>1</td>
             <td>
               <span class="file download">
-                <span>
+                <a download="ESG資訊矩陣" href="">
                   ESG資訊矩陣.excel
-                </span>
+                </a>
               </span>
             </td>
           </tr>
@@ -21,9 +21,19 @@
             <td>2</td>
             <td>
               <span class="file download">
-                <span>
+                <a download="ESG資訊矩陣" href="">
                   ESG資訊矩陣.pdf
-                </span>
+                </a>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <span class="file download">
+                <a download="ESG資訊矩陣" href="">
+                  ESG資訊矩陣.XBRL
+                </a>
               </span>
             </td>
           </tr>
@@ -74,14 +84,15 @@
         text-align: center;
         width: 32px;
       }
+      a{
+        color:#272727;
+        transition: .3s;
+      }
       td:last-of-type{
         .file{
           display: flex;
           align-items: center;
           
-          span{
-            transition: .3s;
-          }
 
           &.download:after{
             content:"";
@@ -102,7 +113,7 @@
               background:url(../assets/images/downloadHover.svg)center/cover no-repeat;
             }
 
-            span{
+            a{
               color: #37D880;
             }
           }

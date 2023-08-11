@@ -5,11 +5,10 @@
         <div class="issue-tag pointer" 
         v-for="item in issueType"
         :key="item.key"
-        :id="item.key">
+        :data-id="item.key">
           {{ item.name }}
         </div>
       </div>
-      <div id="issue-toggle" class="pointer"></div>
     </div>
     <template v-if="issueTypeSelected === 'environment'">
       <EsgMatrixContent />
@@ -46,6 +45,7 @@
 
     select{
       background-color:#fff;
+      width: 550px;
     }
 
     .add:before{

@@ -42,7 +42,11 @@ const APICollection = {
   GetPDFData: ((requestBody) => callAPI('GetPDFData', requestBody)),
   QueryReportData: ((requestBody) => callAPI('QueryReportData', requestBody)),
   ExecReportData: ((requestBody) => callAPI('ExecReportData', requestBody)),
+<<<<<<< HEAD
   ExecESGData: ((requestBody) => callAPI('ExecESGData', requestBody)),
+=======
+  UploadRepotExcel: ((requestBody) => callAPI('UploadRepotExcel', requestBody)),
+>>>>>>> 7c7c68898e87aec7bd3ac757acffc4b8725c606b
 };
 
 export { APICollection };
