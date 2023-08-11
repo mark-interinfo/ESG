@@ -60,7 +60,7 @@
         alert(back.state);
       })();
       
-    }
+    };
 
     const FileInfo = (event) =>{
       var id = event.target.id;
