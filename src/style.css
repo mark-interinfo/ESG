@@ -24,12 +24,12 @@ section:has(#login){
     height: 40px;
     padding: 9px 20px;
     font-size: 16px;
-    font-weight: 400;
     border-radius: 3px;
     transition: .3s;
     cursor:pointer;
     vertical-align: middle;
     margin:2px;
+    box-sizing: border-box;
 }
 
 .center{
@@ -159,6 +159,10 @@ input[type="password"]:focus{
     border:1px solid #37d880!important;
 }
 
+input[type="file"]#inner{
+    display: none;
+}
+
 a{
     color: #fff;
     text-decoration: none;
@@ -179,7 +183,12 @@ span{display:inline-block;}
 
 ::placeholder{color:#bebebe;}
 
-label{
+label.button{
+    display:inline-block;
+    line-height: 20px;;
+}
+
+label:not([class]){
     display: block;
 }
 

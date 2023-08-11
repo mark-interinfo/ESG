@@ -4,8 +4,9 @@
             <CommonCompanyTitle/>
             <span id="buttonBox">
                 <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
-                <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="匯入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="inner" type="button" value="AI智能輸入">
+                <label v-if="pathName1.includes(route.path)" for="inner" class="button buttonColor3">匯入</label>
+                <input v-if="pathName1.includes(route.path)" id="inner" type="file" @input="FileInfo">
+                <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="aiInner" type="button" value="AI智能輸入">
                 <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
             </span>
             <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
@@ -51,6 +52,28 @@
       })();
       
     }
+
+    const FileInfo = (event) =>{
+      var file = event.target.files[0]
+      var fileDetail = {};
+      fileDetail.name = file.name;
+      fileDetail.size = file.size;
+      fileDetail.type = file.type;
+
+      var fileReader = new FileReader();
+      
+      fileReader.onload = function(e){
+          fileDetail.result = e.target.result;
+          console.log(fileDetail)
+
+          /* (async() => {
+            let back = await APICollection.ExecReportData(fileDetail);
+            console.log(back);
+          })(); */
+
+      };
+      fileReader.readAsDataURL(event.target.files[0]);
+    };
 
 </script>
 
