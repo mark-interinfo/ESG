@@ -87,7 +87,7 @@ input[type="password"]{
     padding: 0 10px;
     box-sizing: border-box;
     font-size: 16px;
-    background: #efefef;
+    background: #fafafa;
     border-radius:3px;
 }
 
@@ -120,7 +120,7 @@ select{
     background: url(/src/assets/images/select.svg) #FAFAFA calc(100% - 10px) center/auto no-repeat;
 }
 
-select.selected{
+select{
     color: #333;
 }
 
