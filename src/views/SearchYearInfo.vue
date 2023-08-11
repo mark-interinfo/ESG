@@ -37,7 +37,7 @@
                     </li>
                     <!-- 無資料 -->
                     <li id="apply"
-                    :class="{'show': hasData === 'NO'}"
+                        :class="{'show': hasData === 'NO'}"
                     >
                         <span>{{queryYear}}年ESG資料尚未申請</span>
                         <span>
