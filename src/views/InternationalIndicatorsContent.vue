@@ -6,14 +6,7 @@
   :data-item ="issue.key"
   >
     
-    <div class="issue-title" v-if="issue.name != ''">
-      <span>
-        {{ issue.name }}
-      </span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+    
     <div v-if="issue.id === 'GRI'"  id="GRI" class="issue-content">
       <table class="indicators">
           <tr>
@@ -67,7 +60,7 @@
       </table>
     </div>
     <div v-if="issue.id === 'SASB'"  id="SASB" class="issue-content">
-      <table>
+      <table class="indicators">
           <tr>
               <td>
                 適用產業別
