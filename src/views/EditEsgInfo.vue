@@ -199,6 +199,58 @@
         border-spacing: 1px;
         width: 100%;
 
+        &.indicators{
+          border-spacing: 0;
+          background: #fafafa;
+
+          tr > td:first-of-type {
+            background: none;
+            width:80px;
+            line-height: 40px;
+          }
+
+          td{
+            background:none;
+          }
+
+          select{
+            background: #efefef;
+          }
+
+          input[type="text"],
+          select{
+            width:570px;
+          }
+
+          input.year{
+            width:140px;
+            margin-left:10px;
+            padding-right:20px!important;
+            box-sizing: border-box;
+
+            + .unit{
+              width:20px;
+              margin-left:-30px;
+            }
+          }
+
+          .items{
+            border:1px solid #efefef;
+            padding:8px 10px;
+            width:550px;
+            border-radius: 3px;
+            background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
+
+            span{
+              background: #F5FDF9;
+              color:#2FB86D;
+              font-size: 12px;
+              padding:4px 8px;
+            }
+
+          }
+        }
+
         tr > td:first-of-type {
           background: #fafafa;
           vertical-align: text-top;

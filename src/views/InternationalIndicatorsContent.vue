@@ -15,7 +15,7 @@
       </svg>
     </div>
     <div v-if="issue.id === 'GRI'"  id="GRI" class="issue-content">
-      <table>
+      <table class="indicators">
           <tr>
               <td>
                 適用產業別

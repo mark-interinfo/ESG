@@ -13,24 +13,25 @@
         <img src="../assets/images/select.svg" alt="">
       </div>
       <div class="issue-content" id="ExchangeIndicators">
-        <table>
-          <template v-for="item in issue.issueList">
-            {{ item }}
+        <table class="indicators">
+          <template v-if="true">
+            
+            <tr>
+                <td>
+                  指標代號
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+            </tr>
             <tr>
                 <td>
                   適用產業別
                 </td>
                 <td>
-                  <select>
-                      <option>請選擇</option>
-                      <option
-                      v-for="item in props.allIndustry"
-                      :key="item.value"
-                      :value="item.value"
-                      >
-                        {{item.name}}
-                      </option>
-                  </select>
+                  <div class="items">
+                    <span>全部產業別</span>
+                  </div>
                 </td>
             </tr>
             <tr>
@@ -38,56 +39,33 @@
                   指標名稱
                 </td>
                 <td>
-                  <select>
-                      <option>請填寫</option>
-                      <option selected :value="item.targetTitle">{{ item.targetTitle }}</option>
-                  </select>
+                  <input type="text">
                 </td>
             </tr>
-            <tr v-for="(input,index) in item.targetList">
+            <tr>
                 <td>
-                  指標細項 {{index + 1}}
+                  指標備註
                 </td>
                 <td>
-                  <ul>
-                  <li>
-                    <span>
-                      使用狀態
-                    </span>
-                    <div>
-                        <span>
-                          <input type="radio" name="a">
-                          <span>開啟</span>
-                        </span>
-                        <span>
-                          <input type="radio" name="a">
-                          <span>停用</span>
-                        </span>
-                    </div>
-                  </li>
-                  <li>
-                    <span>
-                      細項名稱
-                    </span>
-                    <div>
-                        <input type="text" placeholder="請填寫"
-                        :value="input.title">
-                    </div>
-                  </li>
-                  <li>
-                    <span>
-                      輸入方式
-                    </span>
-                    <div>
-                        <input
-                        type="button"
-                        class="button buttonColor3"
-                        :value="inputMethodComputed(input.type)"
-                        @click="openDialog"
-                        >
-                    </div>
-                  </li>
-                </ul>
+                  <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  使用狀態
+                </td>
+                <td>
+                  <div>
+                    <input type="radio">
+                    <span>開啟</span>
+                  </div>
+                  <div>
+                    <input type="radio">
+                    <span>停用，自</span>
+                    <input type="text" class="year" placeholder="請輸入民國年">
+                    <span class="unit">年</span>
+                    <span>起停用此項目</span>
+                  </div>
                 </td>
             </tr>
           </template>
