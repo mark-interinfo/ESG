@@ -7,7 +7,7 @@
 
               <span v-if="pathName1.includes(route.path)">
                 <label for="inner" class="button buttonColor3">匯入</label>
-                <input id="inner" type="file" accept=".csv,.xlsx" @input="FileInfo">
+                <input id="inner" type="file" accept=".csv,.xls,.xlsx" @input="FileInfo">
               </span>
 
               <span v-if="pathName1.includes(route.path)">
@@ -73,14 +73,21 @@
       var fileReader = new FileReader();
       
       fileReader.onload = function(e){
-          fileDetail.result = e.target.result;
+          fileDetail.result = e.target.result.split(",")[1];
+
+          //console.log(fileDetail)
 
           //匯入
           if(id == "inner"){
             (async() => {
-              let back = await APICollection.UploadRepotExcel(fileDetail);
-              console.log(back);
-              alert("匯入成功")
+              try{
+                let back = await APICollection.UploadRepotExcel(fileDetail);
+                console.log(back);
+                alert("匯入成功");
+              }catch(e){
+                alert("匯入失敗");
+              };
+              inner.value="";
             })();
           };
 
@@ -90,6 +97,8 @@
             alert("AI智能輸入成功")
             /* let back = await APICollection.UploadRepotExcel(fileDetail);
             console.log(back); */
+
+            aiInner.value = "";
           };
       };
       fileReader.readAsDataURL(event.target.files[0]);

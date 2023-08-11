@@ -6,7 +6,8 @@
                 <a download="ESG申報範本" href="http://192.168.10.108/poc/samples/ESGReportData.xls" class="button buttonColor3" id="downloadTemplate">下載範本</a>
             </span>
             <div id="searchBar">
-                <input id="searchInput" 
+                <input 
+                    id="searchInput" 
                     type="text" 
                     placeholder="請輸入民國年份"
                     v-model.number="apiRequest.year"
