@@ -41,10 +41,17 @@
                                 :info="targetList.note"
                                 :position="'center'"
                                 />
-                                
+
                                 <div v-if="targetList.type == 'A'">
                                     <span v-for="option in targetList.optionList">
                                         <input type="radio" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
+                                        <span>{{option.name}}</span>
+                                    </span>
+                                </div>
+
+                                <div v-if="targetList.type == 'B'">
+                                    <span v-for="option in targetList.optionList">
+                                        <input type="checkbox" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
                                         <span>{{option.name}}</span>
                                     </span>
                                 </div>
@@ -102,12 +109,9 @@
 
   (async() => {
       data.value = await APICollection.QueryReportData(apiRequest);
-      console.log(await APICollection.QueryReportData(apiRequest))
-
+      console.log(data.value)
   })();
 
-  
-  
   onUpdated(()=>{
     switchOpen();
 

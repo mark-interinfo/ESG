@@ -2,8 +2,8 @@
   <div id="issue" class="InternationalIndicatorsContent">
     <div id="issue-header">
       <div id="issue-tags">
-        <div class="issue-tag pointer" 
-        :class="{ 'selected': item.key === issueTypeSelected }" 
+        <div class="issue-tag pointer"
+        :class="{ 'selected': item.key === issueTypeSelected }"
         v-for="item in issueType"
         :key="item.key"
         :id="item.key">

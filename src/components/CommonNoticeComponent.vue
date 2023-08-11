@@ -65,13 +65,12 @@ const hiddenNoticeInfo = function(){
     width: 400px;
     visibility: hidden;
     &.show{
-      opacity: .6;
+      opacity: 1;
       visibility:inherit;
     }
     &.position-center{
       left: 50%;
       transform: translate(-50%, -100%);
-      
       &::before{
         top: 100%;
         left: 50%;
