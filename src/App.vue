@@ -1,7 +1,7 @@
 <template>
   <div class="body" ref="bodyRef" @scroll="scroll($event)">
     <CommonHeaderContainer  v-if="route.path !== '/HomeView'"/>
-    <section>
+    <section> 
       <div id="bread-crumbs"  v-if="!['/','/HomeView'].includes(route.path)">
         <!-- 麵包屑少首頁 -->
         <span>首頁</span>
