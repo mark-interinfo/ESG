@@ -15,7 +15,7 @@
       </svg>
     </div>
     <div v-if="issue.id === 'M001'"  id="M001" class="issue-content">
-      <table class="indicators">
+      <table>
         <tr>
           <td rowspan="2">
             (ㄧ)
