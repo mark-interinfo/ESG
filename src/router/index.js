@@ -23,12 +23,12 @@ const routes = [
   },
   {
     path: "/ApplyEsgInfo",
-    name: "110年度ESG揭露",
+    name: "年度ESG揭露",
     component: () => import("../views/EditEsgInfo.vue"),
   },
   {
     path: "/EditEsgInfo",
-    name: "109年度ESG揭露",
+    name: "年度ESG揭露 ",
     component: () => import("../views/EditEsgInfo.vue"),
   },
   {

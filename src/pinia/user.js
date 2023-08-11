@@ -32,7 +32,8 @@ export const useUserStore = defineStore('userStore', () => {
     setUser,
     returnUser,
     getYear,
-    setYear
+    setYear,
+    searchYear
   };
 },
 {
