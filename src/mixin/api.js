@@ -42,6 +42,7 @@ const APICollection = {
   GetPDFData: ((requestBody) => callAPI('GetPDFData', requestBody)),
   QueryReportData: ((requestBody) => callAPI('QueryReportData', requestBody)),
   ExecReportData: ((requestBody) => callAPI('ExecReportData', requestBody)),
+  UploadRepotExcel: ((requestBody) => callAPI('UploadRepotExcel', requestBody)),
 };
 
 export { APICollection };

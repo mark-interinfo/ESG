@@ -34,10 +34,9 @@
             (範疇二)
           </td>
           <td>
-            <select>
-              <option value>請選擇</option>
-              <option value="1">選擇1</option>
-            </select>
+            <div class="items">
+              
+            </div>
           </td>
         </tr>
         </table>

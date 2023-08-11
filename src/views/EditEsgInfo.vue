@@ -3,11 +3,19 @@
         <div>
             <CommonCompanyTitle/>
             <span id="buttonBox">
-                <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
-                <label v-if="pathName1.includes(route.path)" for="inner" class="button buttonColor3">匯入</label>
-                <input v-if="pathName1.includes(route.path)" id="inner" type="file" @input="FileInfo">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor3" id="aiInner" type="button" value="AI智能輸入">
-                <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
+              <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
+
+              <span v-if="pathName1.includes(route.path)">
+                <label for="inner" class="button buttonColor3">匯入</label>
+                <input id="inner" type="file" accept=".csv,.xlsx" @input="FileInfo">
+              </span>
+
+              <span v-if="pathName1.includes(route.path)">
+                <label for="aiInner" class="button buttonColor3">AI智能輸入</label>
+                <input id="aiInner" type="file" accept=".pdf" @input="FileInfo">
+              </span>
+              
+              <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
             </span>
             <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
             <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
@@ -54,7 +62,8 @@
     }
 
     const FileInfo = (event) =>{
-      var file = event.target.files[0]
+      var id = event.target.id;
+      var file = event.target.files[0];
       var fileDetail = {};
       fileDetail.name = file.name;
       fileDetail.size = file.size;
@@ -64,13 +73,21 @@
       
       fileReader.onload = function(e){
           fileDetail.result = e.target.result;
-          console.log(fileDetail)
 
-          /* (async() => {
-            let back = await APICollection.ExecReportData(fileDetail);
-            console.log(back);
-          })(); */
+          //匯入
+          if(id == "inner"){
+            (async() => {
+              let back = await APICollection.UploadRepotExcel(fileDetail);
+              console.log(back);
+            })();
+          };
 
+          //AI智能輸入
+          if(id == "aiInner"){
+            console.log(fileDetail);
+            /* let back = await APICollection.UploadRepotExcel(fileDetail);
+            console.log(back); */
+          };
       };
       fileReader.readAsDataURL(event.target.files[0]);
     };

@@ -159,7 +159,8 @@ input[type="password"]:focus{
     border:1px solid #37d880!important;
 }
 
-input[type="file"]#inner{
+
+label + input[type="file"]{
     display: none;
 }
 
@@ -223,7 +224,7 @@ label:not([class]){
     border:1px solid #efefef;
     box-sizing: border-box;
     padding:8px 10px;
-    width:550px;
+    width:570px;
     border-radius: 3px;
     background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;
 }
@@ -233,4 +234,12 @@ label:not([class]){
     color:#2FB86D;
     font-size: 12px;
     padding:4px 8px;
+}
+
+.items:empty:before{
+    content:"請選擇";
+    display:inline-block;
+    color:#bebebe;
+    font-size: 12px;
+    padding:0 10px;
 }
