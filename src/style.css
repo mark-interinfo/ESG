@@ -105,7 +105,7 @@ input[type="checkbox"]:checked{
 }
 
 select{
-    height: 40px;
+    height: 44px;
     border: 1px solid #efefef;
     padding: 0 40px 0 10px;
     box-sizing: border-box;
