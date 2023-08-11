@@ -181,6 +181,9 @@ p{
 }
 // page setting
 header{
+  a{
+    color: #fff;
+  }
   #header-top{
     display: flex;
     justify-content: space-between;
@@ -258,7 +261,7 @@ header{
         .dropdown{
           visibility: hidden;
           position: absolute;
-          top: calc(100% + 1px);
+          top: 100%;
           left: 50%;
           transform: translate(-50%, 0);
           z-index: 1;

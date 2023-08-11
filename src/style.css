@@ -11,6 +11,10 @@ body{
     color:#272727;
 }
 
+a{
+    text-decoration: none;
+}
+
 section{
     min-height:calc(100% - 356px);
     background: url(../src/assets/images/bg.png) center/cover fixed ;
@@ -164,11 +168,6 @@ label + input[type="file"]{
     display: none;
 }
 
-a{
-    color: #fff;
-    text-decoration: none;
-}
-
 /* Nav Hover效果為顏色差異 非底線 */
 /* a:hover{
     text-decoration: underline;
@@ -242,4 +241,14 @@ label:not([class]){
     color:#bebebe;
     font-size: 12px;
     padding:0 10px;
+}
+
+.noData{
+    text-align: center;
+    padding:40px;
+}
+
+.noData h2{
+    color: #808080;
+    font-weight: inherit;
 }

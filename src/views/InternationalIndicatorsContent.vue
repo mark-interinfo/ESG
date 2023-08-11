@@ -6,7 +6,7 @@
   :data-item ="issue.key"
   >
     
-    <div class="issue-title">
+    <div class="issue-title" v-if="issue.name != ''">
       <span>
         {{ issue.name }}
       </span>
@@ -119,56 +119,10 @@
       </table>
     </div>
     <div v-if="issue.id === 'TCFD'"  id="TCFD" class="issue-content">
-      <table>
-          <tr>
-              <td>
-                適用產業別
-              </td>
-              <td>
-                <span>
-                    <select>
-                        <option>請選擇</option>
-                    </select>
-                </span>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                指標代碼
-              </td>
-              <td>
-                <span>
-                    <input type="text" placeholder="請填寫">
-                </span>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                使用狀態
-              </td>
-              <td>
-                <span>
-                    <span><input type="radio" name="a"><span>開啟</span></span>
-                    <span><input type="radio" name="a"><span>停用</span></span>
-                </span>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                指標名稱
-              </td>
-              <td>
-                <span>
-                  <input type="text" placeholder="請描述">
-                </span>
-              </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <input type="button" value="更新設定" class="button buttonColor1">
-            </td>
-          </tr>
-      </table>
+      <div class="noData">
+        <h2>尚無資料 請點擊按鈕</h2>
+        <input type="button" class="button buttonColor3" value="新增議題">
+      </div>
     </div>
   </div>
   
@@ -176,16 +130,9 @@
 <script setup>
   import { ref } from 'vue';
   const issueList = ref([
-    { id:'GRI',key:'environment', name:'國際準則 GRI'},
-    { id:'SASB',key:'environment', name:'國際準則 SASB'},
-    { id:'TCFD',key:'environment', name:'國際準則 TCFD'},
+    { id:'GRI',key:'GRI', name:'國際準則 GRI'},
+    { id:'SASB',key:'SASB', name:'國際準則 SASB'},
+    { id:'TCFD',key:'TCFD', name:''},
 
-    { id:'GRI',key:'society', name:'國際準則 GRI'},
-    { id:'SASB',key:'society', name:'國際準則 SASB'},
-    { id:'TCFD',key:'society', name:'國際準則 TCFD'},
-    
-    { id:'GRI',key:'governance', name:'國際準則 GRI'},
-    { id:'SASB',key:'governance', name:'國際準則 SASB'},
-    { id:'TCFD',key:'governance', name:'國際準則 TCFD'},
   ]);
 </script>
