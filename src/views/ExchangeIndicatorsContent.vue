@@ -14,7 +14,7 @@
       </div>
       <div class="issue-content" id="ExchangeIndicators">
         <table class="indicators">
-          <template v-for="list in issue.issueList" :key="list.targetType">
+          <template v-for="(list, listIndex) in issue.issueList" :key="list.targetType">
             <tr>
                 <td>
                   指標代號
@@ -28,8 +28,10 @@
                   適用產業別
                 </td>
                 <td>
-                  <div class="items">
-                    <span>全部產業別</span>
+                  <div class="items pointer" @click="openDialogSelecter(list.targetCodeArray, issue.issueType, listIndex)">
+                    <span v-for="industry in list.targetCodeArray">
+                      {{ props.allIndustry.find(item => item.value === industry).name }}
+                    </span>
                   </div>
                 </td>
             </tr>
@@ -167,11 +169,20 @@
     @closeDialog="closeDialog"
     @inputSetting="inputSetting"
     />
+    <CommonDialogSelecterComponent
+    :isShowDialogSelecter="isShowDialogSelecter"
+    :selectMulti="true"
+    :option="props.allIndustry"
+    :selected="targetIndustry"
+    @closeDialogSelecter="closeDialogSelecter"
+    @industrySetting="industrySetting"
+    />
   </div>
 </template>
 <script setup>
   import { computed, ref } from 'vue';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
+  import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
   import { APICollection } from '../mixin/api.js';
   import { chineseNumber } from '../mixin/mixin.js';
 
@@ -207,15 +218,32 @@
     targetInputMethod.value = inputMethod;
     changeTarget.value = target;
   }
-
   const closeDialog = function(){
     isShowDialog.value = false;
   }
-
   const inputSetting = function(data){
     isShowDialog.value = false;
     changeTarget.value.optionList = data.optionSetting;
     changeTarget.value.type = data.inputMethod;
+  }
+
+  const targetIndustry = ref([]);
+  const targetIssueType = ref('');
+  const targetIssueListIndex = ref('');
+
+  const isShowDialogSelecter = ref(false);
+  const openDialogSelecter = function(industry, issueType, targetTypeIndex){
+    isShowDialogSelecter.value = true;
+    targetIndustry.value = industry;
+    targetIssueType.value = issueType;
+    targetIssueListIndex.value = targetTypeIndex;
+  }
+  const closeDialogSelecter = function(){
+    isShowDialogSelecter.value = false;
+  }
+  const industrySetting = function(data){
+    isShowDialogSelecter.value = false;
+    props.allIssue.find(item => item.issueType === targetIssueType.value).issueList[targetIssueListIndex.value].targetCodeArray = data
   }
 
   const updateInputSetting = function(){

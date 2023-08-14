@@ -5,8 +5,6 @@
   :key="issue.id"
   :data-item ="issue.key"
   >
-    
-    
     <div v-if="issue.id === 'GRI'"  id="GRI" class="issue-content">
       <table class="indicators">
           <tr>
