@@ -153,6 +153,10 @@ const linkGroup = ref([
         name: '申請資料更正',
         href: '/'
       },
+      {
+        name: 'XBRL下載',
+        href: '/XbrlDownload'
+      },
     ]
   },
 ]);

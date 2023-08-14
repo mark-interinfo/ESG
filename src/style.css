@@ -34,6 +34,7 @@ section:has(#login){
     vertical-align: middle;
     margin:2px;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 .center{
@@ -106,6 +107,10 @@ input[type="checkbox"]{
 
 input[type="checkbox"]:checked{
     background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
+}
+
+input[type="checkbox"][disabled]{
+    background: url(/src/assets/images/checkbox-gray.svg) center/100% no-repeat;
 }
 
 select{

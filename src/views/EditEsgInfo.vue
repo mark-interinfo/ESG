@@ -77,7 +77,7 @@
       fileReader.onload = function(e){
           fileDetail.result = e.target.result.split(",")[1];
 
-          //console.log(fileDetail)
+          console.log(fileDetail)
 
           //匯入
           if(id == "inner"){
@@ -85,6 +85,18 @@
             (async() => {
               let back = await APICollection.UploadRepotExcel(fileDetail);
               console.log(back);
+
+              for(var i=0;i<Object.keys(back.data).length;i++){
+                let name = Object.keys(back.data)[i];
+                let value = back.data[name];
+
+                if(document.querySelector("input[name='"+name+"'][type='radio']")){
+                  document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
+                }else{
+                  document.querySelector("[name='"+name+"']").value = value;
+                }
+              };
+
               alert("匯入成功");
             })().catch(err=>{
               alert(err.resultMessage);
