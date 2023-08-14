@@ -15,7 +15,7 @@
     import { useRoute } from 'vue-router';
     const route = useRoute();
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
-    const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate"]);
+    const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
 
     import { useUserStore } from '../pinia/user.js';
     const year = useUserStore().getYear();

@@ -52,6 +52,11 @@ const routes = [
     component: () => import("../views/EsgDownload.vue"),
   },
   {
+    path: "/XbrlDownload",
+    name: "XBRL下載",
+    component: () => import("../views/XbrlDownload.vue"),
+  },
+  {
     path: "/EsgTemplate",
     name: "永續報告書套表",
     component: () => import("../views/EsgTemplate.vue"),

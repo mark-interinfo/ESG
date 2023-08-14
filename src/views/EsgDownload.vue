@@ -1,5 +1,5 @@
 <template>
-  <div id="download">
+  <div id="EsgDownload">
     <div>
       <h1>{{route.name}}</h1>
       <table>
@@ -48,9 +48,9 @@
 <style lang="scss">
 
 // page setting
-#download{
+#EsgDownload{
   padding: 20px 40px 40px;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
   width: 1000px;
   max-width: 90%;
   margin: 20px auto;
