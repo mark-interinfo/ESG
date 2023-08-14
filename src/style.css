@@ -35,6 +35,7 @@ section:has(#login){
     margin:2px;
     box-sizing: border-box;
     display: inline-block;
+    line-height: 20px;
 }
 
 .center{
