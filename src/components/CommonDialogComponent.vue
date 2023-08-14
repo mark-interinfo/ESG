@@ -97,7 +97,7 @@
                 <tr>
                   <td></td>
                   <td>
-                    <input type="text" placeholder="請輸入 例:公噸">
+                    <input type="text" placeholder="請輸入 例:公噸" v-model="optionSetting[0].unit">
                   </td>
                 </tr>
                 <!-- integerLength -->
@@ -110,7 +110,7 @@
                 <tr>
                   <td></td>
                   <td>
-                    <input type="text" placeholder="請輸入">
+                    <input type="text" placeholder="請輸入" v-model="optionSetting[0].integerLength">
                   </td>
                 </tr>
                 <!-- decimalLength -->
@@ -123,20 +123,21 @@
                 <tr>
                   <td></td>
                   <td>
-                    <input type="text" placeholder="請輸入">
+                    <input type="text" placeholder="請輸入" v-model="optionSetting[0].decimalLength">
                   </td>
                 </tr>
                 <!-- allowZero -->
                 <tr>
                   <td>
-                    <input type="checkbox" v-model="optionSetting.allowZero" :value="true">
+                    <input type="checkbox" v-model="optionSetting[0].allowZero" :value="true">
+                    {{optionSetting.allowZero}}
                   </td>
                   <td>允許0（選填）</td>
                 </tr>
                 <!-- allowNegative -->
                 <tr>
                   <td>
-                    <input type="checkbox" v-model="optionSetting.allowNegative" :value="true">
+                    <input type="checkbox" v-model="optionSetting[0].allowNegative" :value="true">
                   </td>
                   <td>允許負值（選填）</td>
                 </tr>
