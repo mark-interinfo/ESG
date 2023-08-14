@@ -9,7 +9,7 @@ function callAPI(apiName, requestBody, method='POST'){
     requestBody = requestBody.value;
   }
   return new Promise((resolve, reject) => {
-    
+
     let fetchBody = `requestBody=${ encodeURI( JSON.stringify(requestBody))}&requestHeader=${JSON.stringify(userStore.returnUser())}`;
 
     if(apiName === 'ESGLogin'){
