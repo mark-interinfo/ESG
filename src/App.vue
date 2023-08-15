@@ -1,7 +1,7 @@
 <template>
   <div class="body" ref="bodyRef" @scroll="scroll($event)">
     <CommonHeaderContainer  v-if="route.path !== '/HomeView'"/>
-    <section> 
+    <section>
       <div id="bread-crumbs"  v-if="!['/','/HomeView'].includes(route.path)">
         <!-- 麵包屑少首頁 -->
         <span>首頁</span>
@@ -24,8 +24,10 @@ import { ref } from 'vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import { useRoute } from 'vue-router';
+import { useUserStore } from './pinia/user.js';
 
 const route = useRoute();
+const userStore = useUserStore();
 
 const bodyRef = ref(null);
 const toTopDistance = ref(0);
@@ -37,7 +39,9 @@ const scrollToTop = function(){
     top: 0,
     behavior: 'smooth',
   });
-}
+};
+
+userStore.setUserByStorage();
 
 </script>
 <style lang="scss">

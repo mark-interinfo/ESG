@@ -1,8 +1,8 @@
 <template>
   <div
   class="dialog-background"
-  v-if="props.isShowDialog"
-  @click.self="closeDialog"
+  v-if="props.isShowDialogSelecter"
+  @click.self="closeDialogSelecter"
   id="selectList"
   >
     <div class="dialog">
@@ -10,7 +10,7 @@
         <div class="selected-area" v-if="selected.length > 0">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
-              {{ item }}
+              {{ props.option.find(option => option.value === item).name }}
             </span>
           </template>
           <span v-else>
@@ -28,7 +28,7 @@
         >
         <div class="option">
           <div
-          v-for="item in option"
+          v-for="item in props.option"
           :key="item.name"
           >
             <label
@@ -47,17 +47,17 @@
         </div>
       </div>
       <div class="dialog-footer">
-        <button class="button buttonColor2" @click="closeDialog">取消</button>
-        <button class="button buttonColor1">確認</button>
+        <button class="button buttonColor2" @click="closeDialogSelecter">取消</button>
+        <button class="button buttonColor1" @click="industrySetting">確認</button>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
-  isShowDialog: {
+  isShowDialogSelecter: {
     type: Boolean,
   },
   selectMulti: {
@@ -67,32 +67,35 @@ const props = defineProps({
     type: Array,
   },
   selected: {
-    type: Array | String,
+    type: Array || String,
   }
 });
 
-const emits = defineEmits(['closeDialog']);
+const emits = defineEmits(['closeDialogSelecter', 'industrySetting']);
 
 const searcher = ref('');
 const selected = ref('');
-const option = ref([
-  {name: '蘋果', value: 'apple'},
-  {name: '香蕉', value: 'banana'},
-  {name: '櫻桃', value: 'cherry'},
-  {name: '棗子', value: 'date'},
-  {name: '雞蛋', value: 'egg'},
-]);
+
+watch(props, ()=>{
+  if(props){
+    selected.value = props.selected;
+  }
+});
 
 const selectedClear = function(){
-  if(props.selectMulti){
+  if( props.selectMulti ){
     selected.value = [];
   } else {
     selected.value = '';
   }
 };
 
-const closeDialog = function(){
-  emits('closeDialog');
+const closeDialogSelecter = function(){
+  emits('closeDialogSelecter');
+};
+
+const industrySetting = function(){
+  emits('industrySetting', selected.value);
 }
 
 const addStyle = function(){
@@ -122,15 +125,24 @@ const search = function(event){
 <style lang="scss" scoped>
 .dialog-background{
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #0000004d;
+  z-index: 1;
 
-  .option[data-msg]:before{
-    content:attr(data-msg);
+  .option{
+    height: 400px;
+    overflow: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    &[data-msg]:before{
+      content:attr(data-msg);
+    }
   }
 
   .dialog{

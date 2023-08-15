@@ -20,7 +20,7 @@
           :class="{'unSelect': inputMethod === 'unSelect'}"
           v-model="inputMethod"
           >
-            <option value="unSelect">請選擇</option>
+            <!-- <option value="unSelect">請選擇</option> -->
             <option
             v-for="item in inputOption"
             :key="item.value"
@@ -47,9 +47,13 @@
           <!-- 單選、多選、下拉選單 -->
           <template v-if="['A', 'B', 'C'].includes(inputMethod)">
             <p class="label-title">
-              選項名稱
+              <span>
+                選項名稱
+              </span>
+              <span>
+                停用設定
+              </span>
             </p>
-            {{ optionSetting }}
             <div
             v-for="(option, i) in optionSetting"
             :key="option.value"
@@ -83,7 +87,6 @@
           <template v-if="inputMethod === 'E'">
             <p class="label-title">
               設定值
-              {{ optionSetting }}
             </p>
             <div class="input-group">
               <table>
