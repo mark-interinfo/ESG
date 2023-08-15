@@ -1,11 +1,18 @@
 <template>
+  
   <div id="issue-body">
     <div
     class="issue-item pointer"
-    v-for="issue in issueList"
+    v-for="issue in props.allMatrix"
     :key="issue.id"
-    :data-item ="issue.key"
-    >
+    :data-item ="issue.ISSUE_NO"
+    >{{issue.ISSUE_NO}}
+      <div class="issue-title">
+        <span>
+          {{ issue.TAR_NAME }}
+        </span>
+        <img src="../assets/images/select.svg" alt="">
+      </div>
       
       <div class="issue-content">
         <table>
@@ -51,7 +58,15 @@
 <script setup>
 import { ref } from 'vue';
 
-const issueList = ref([
-  { id:'M001', key: 'environment', name:'溫室氣體排放'},
-]);
+const props = defineProps({
+  allInternationalTarget: {
+    type: Object,
+  },
+  allMatrix: {
+    type: Array,
+  },
+  top: {
+    type: Array,
+  },
+});
 </script>

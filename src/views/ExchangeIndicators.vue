@@ -30,7 +30,10 @@
   import { APICollection } from '../mixin/api.js';
   import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
 
-  const apiRequest = ref({});
+  const apiRequest = ref({
+      companyId: "1101",
+      year: '112'
+  });
 
   const allIndustry = ref({});
   const allIssue = ref([]);
