@@ -50,6 +50,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
+
 const issueList = ref([
   { id:'M001', key: 'environment', name:'溫室氣體排放'},
 ]);

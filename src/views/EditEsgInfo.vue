@@ -23,9 +23,9 @@
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
-          <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
-          <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
-          <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
+          <ExchangeIndicators @watchData="watchData" @safeData="safeData" v-if="['/ExchangeIndicators'].includes(route.path)"/>
+          <InternationalIndicators @watchData="watchData" @safeData="safeData" v-if="['/InternationalIndicators'].includes(route.path)"/>
+          <EsgMatrix @watchData="watchData" @safeData="safeData" v-if="['/EsgMatrix'].includes(route.path)"/>
       </div>
       <div id="esgExposeInfo">
           <EsgExposeInfo @watchData="watchData" @safeData="safeData" v-if="pathName.includes(route.path)"/>
@@ -55,8 +55,10 @@
     };
 
     const safeData = () =>{
+
+      console.log(getData.value)
       
-      const data={};
+      let data={};
       data.year = getData.value.year;
       data.data = getData.value.data;
       data.companyId = getData.value.companyId;
