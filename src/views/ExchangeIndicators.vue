@@ -5,6 +5,7 @@
         <div class="issue-tag pointer"
         :class="{ 'selected': item === issueTypeSelected }"
         v-for="item in top"
+        :data-item="issue.issueKind"
         :data-id="item"
         :key="item"
         :id="item"

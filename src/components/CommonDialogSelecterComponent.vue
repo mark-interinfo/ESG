@@ -7,7 +7,7 @@
   >
     <div class="dialog">
       <div class="dialog-content">
-        <div class="selected-area" v-if="selected.length > 0">
+        <div class="selected-area">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
               {{ props.option.find(option => option.value === item).name }}

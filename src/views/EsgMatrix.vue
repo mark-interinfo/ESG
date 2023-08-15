@@ -3,10 +3,11 @@
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer"
-        :class="{ 'selected': item.key === issueTypeSelected }"
-        v-for="item in top"
-        :key="item.key"
-        :data-id="item.key">
+          :class="{ 'selected': item.key === issueTypeSelected }"
+          v-for="item in top"
+          :data-id="item"
+          :key="item.key"
+        >
           {{ item }}
         </div>
       </div>
@@ -39,7 +40,7 @@
     allInternationalTarget.value = data.value.allInternationalTarget;
     allMatrix.value = data.value.allMatrix;
     top.value = data.value.top;
-
+    top.value.push("+");
     issueTypeSelected.value = top.value[0];
     console.log(await APICollection.QueryMatrixData(apiRequest))
   })().catch(err=>{
@@ -57,6 +58,10 @@
 
   .EsgMatrix{
     margin-top:20px!important;
+
+    .items{
+      height:45px;
+    }
 
     select{
       background-color:#fff;
