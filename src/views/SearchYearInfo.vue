@@ -1,6 +1,6 @@
 <template>
-    <div id="searchYearInfo" class="content">
-        <div>
+    <div id="searchYearInfo">
+        <div class="issues-content">
             <CommonCompanyTitle/>
             <span id="buttonBox">
                 <a download="ESG申報範本" href="http://192.168.10.108/poc/samples/ESGReportData.xls" class="button buttonColor3" id="downloadTemplate">下載範本</a>

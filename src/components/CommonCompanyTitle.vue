@@ -1,6 +1,5 @@
 <template>
-    <span id="company">
-        
+    <span>
         <h1 v-if="pathName1.includes(route.path)">{{year + route.name}}</h1>
         <h1 v-else>{{route.name}}</h1>
         <span v-if="pathName2.includes(route.path)">

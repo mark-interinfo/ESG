@@ -1,5 +1,5 @@
 <template>
-  <div id="issue" class="ExchangeIndicators">
+  <div id="issue">
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer"
@@ -14,11 +14,13 @@
       </div>
       <div id="issue-toggle" class="pointer"></div>
     </div>
-    <ExchangeIndicatorsContent
-    :allIndustry="allIndustry"
-    :allIssue="allIssue"
-    :allType="allType"
-    />
+    <div id="issue-body">
+      <ExchangeIndicatorsContent
+      :allIndustry="allIndustry"
+      :allIssue="allIssue"
+      :allType="allType"
+      />
+    </div>
   </div>
 </template>
 
@@ -30,17 +32,19 @@
 
   const apiRequest = ref({});
 
-  const allIndustry = ref([]);
+  const allIndustry = ref({});
   const allIssue = ref([]);
   const allType = ref([]);
   const top = ref([]);
 
   (async() => {
     let apiData = await APICollection.QueryESGData(apiRequest);
+    console.log(apiData);
     allIndustry.value = apiData.allIndustry;
     allIssue.value = apiData.allIssue;
     allType.value = apiData.allType;
     top.value = apiData.top;
+    top.value.push("+");
     issueTypeSelected.value = top.value[0];
   })().catch(err=>{
       alert(err.resultMessage);

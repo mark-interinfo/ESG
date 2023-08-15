@@ -6,7 +6,6 @@
   :data-item ="issue.key"
   >
     
-    
     <div class="issue-content">
       <table>
         <tr>
@@ -40,6 +39,9 @@
           </td>
         </tr>
         </table>
+        <div class="buttonBox">
+          <input type="button" class="button buttonColor3" value="新增細項">
+        </div>
     </div>
     
   </div>

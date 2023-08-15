@@ -64,6 +64,11 @@ const switchOpen = function(){
   for(let i=0;i<titles.length;i++){
     titles[i].onclick = function(){
 
+      if(this.dataset.id == "+"){
+        alert("新增大類")
+        return;
+      };
+
       for(let i=0;i<items.length;i++){
         items[i].classList.remove("opening");
       };

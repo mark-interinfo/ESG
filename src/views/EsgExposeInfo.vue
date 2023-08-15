@@ -8,85 +8,86 @@
       </div>
       <div id="issue-toggle" class="pointer"></div>
     </div>
+    <div id="issue-body">
+      <div
+      class="issue-item pointer"
+      v-for="issue in data.allIssue"
+      :key="issue.issueType"
+      :data-item ="issue.issueKind"
+      >
+        <div class="issue-title">
+          <span>
+            {{ issue.issueType +"-"+ issue.issueTitle }}
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div :id="issue.issueType" class="issue-content">
+            <div>
+                <table>
+                    <tr v-for="list in issue.issueList">
+                        <td>
+                            {{list.targetTitle}}
+                        </td>
+                        <td>
+                            <ol>
+                                <li v-for="targetList in list.targetList">
+                                  <span>{{targetList.title}}</span>
+                                  <span v-if="targetList.required" class="fontRed">*</span>
 
-    <div
-    class="issue-item pointer"
-    v-for="issue in data.allIssue"
-    :key="issue.issueType"
-    :data-item ="issue.issueKind"
-    >
-      <div class="issue-title">
-        <span>
-          {{ issue.issueType +"-"+ issue.issueTitle }}
-        </span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div :id="issue.issueType" class="issue-content">
-          <div>
-              <table>
-                  <tr v-for="list in issue.issueList">
-                      <td>
-                          {{list.targetTitle}}
-                      </td>
-                      <td>
-                          <ol>
-                              <li v-for="targetList in list.targetList">
-                                <span>{{targetList.title}}</span>
-                                <span v-if="targetList.required" class="fontRed">*</span>
+                                  <CommonNoticeComponent
+                                  v-if="targetList.note"
+                                  :info="targetList.note"
+                                  :position="'center'"
+                                  />
 
-                                <CommonNoticeComponent
-                                v-if="targetList.note"
-                                :info="targetList.note"
-                                :position="'center'"
-                                />
-
-                                <div v-if="targetList.type == 'A'">
-                                    <span v-for="option in targetList.optionList">
-                                        <input type="radio" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
-                                        <span>{{option.name}}</span>
-                                    </span>
-                                </div>
-
-                                <div v-if="targetList.type == 'B'">
-                                    <span v-for="option in targetList.optionList">
-                                        <input type="checkbox" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
-                                        <span>{{option.name}}</span>
-                                    </span>
-                                </div>
-
-                                <div v-if="targetList.type == 'C'">
-                                    <select :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
-                                        <option v-for="option in targetList.optionList" :value="option.value">{{option.name}}</option>
-                                    </select>
-                                </div>
-
-                                <div v-if="targetList.type == 'D'">
-                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]" placeholder="請填寫">
-                                </div>
-
-                                <div v-if="targetList.type == 'E'">
-                                  <div v-for="option in targetList.optionList">
-                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
-                                    <span class="unit">{{option.unit}}</span>
+                                  <div v-if="targetList.type == 'A'">
+                                      <span v-for="option in targetList.optionList">
+                                          <input type="radio" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
+                                          <span>{{option.name}}</span>
+                                      </span>
                                   </div>
-                                </div>
 
-                                <div v-if="targetList.type == 'G'"  v-for="option in targetList.optionList">
-                                  <div>
-                                    <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                  <div v-if="targetList.type == 'B'">
+                                      <span v-for="option in targetList.optionList">
+                                          <input type="checkbox" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
+                                          <span>{{option.name}}</span>
+                                      </span>
                                   </div>
-                                </div>
-                              </li>
-                          </ol>
-                      </td>
-                  </tr>
 
-              </table>
-          </div>
+                                  <div v-if="targetList.type == 'C'">
+                                      <select :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                          <option v-for="option in targetList.optionList" :value="option.value">{{option.name}}</option>
+                                      </select>
+                                  </div>
+
+                                  <div v-if="targetList.type == 'D'">
+                                      <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]" placeholder="請填寫">
+                                  </div>
+
+                                  <div v-if="targetList.type == 'E'">
+                                    <div v-for="option in targetList.optionList">
+                                      <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                      <span class="unit">{{option.unit}}</span>
+                                    </div>
+                                  </div>
+
+                                  <div v-if="targetList.type == 'G'"  v-for="option in targetList.optionList">
+                                    <div>
+                                      <input type="text" :name="targetList.fieldId" v-model="data.data[targetList.fieldId]">
+                                    </div>
+                                  </div>
+                                </li>
+                            </ol>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        
       </div>
-      
     </div>
   </div>
 </template>
@@ -112,7 +113,7 @@
       console.log(data.value)
   })().catch(err=>{
       alert(err.resultMessage);
-  });;
+  });
 
   onUpdated(()=>{
     switchOpen();

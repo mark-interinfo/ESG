@@ -1,8 +1,11 @@
 <template>
-    <div id="esgInfoContent" class="content">
-        <div>
+    <div id="editEsgInfo">
+        <div class="content">
+          <div class="title">
             <CommonCompanyTitle/>
             <span id="buttonBox">
+              <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="del" type="button" value="下載範本">
+
               <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
 
               <span v-if="pathName1.includes(route.path)">
@@ -16,14 +19,18 @@
               </span>
               
               <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
+
+              <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
-            <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
-            <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
-            <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
-        </div>
-        <span>
-            <EsgExposeInfo @watchData="watchData" @safeData="safeData" v-if="pathName.includes(route.path)"/>
-        </span>
+          </div>
+          <ExchangeIndicators v-if="['/ExchangeIndicators'].includes(route.path)"/>
+          <InternationalIndicators v-if="['/InternationalIndicators'].includes(route.path)"/>
+          <EsgMatrix v-if="['/EsgMatrix'].includes(route.path)"/>
+      </div>
+      <div id="esgExposeInfo">
+          <EsgExposeInfo @watchData="watchData" @safeData="safeData" v-if="pathName.includes(route.path)"/>
+      </div>
+        
     </div>
 </template>
 <script setup>
@@ -38,7 +45,8 @@
 
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
-    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators"]);
+    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
+    const pathName2 = ref(["/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
 
     const getData = ref();
 
@@ -85,19 +93,8 @@
             (async() => {
               let back = await APICollection.UploadRepotExcel(fileDetail);
               console.log(back);
-
-              for(var i=0;i<Object.keys(back.data).length;i++){
-                let name = Object.keys(back.data)[i];
-                let value = back.data[name];
-
-                if(document.querySelector("input[name='"+name+"'][type='radio']")){
-                  document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
-                }else{
-                  document.querySelector("[name='"+name+"']").value = value;
-                }
-              };
-
-              alert("匯入成功");
+              back.data && setInputValue(back.data);
+              alert(back.msg);
             })().catch(err=>{
               alert(err.resultMessage);
             });
@@ -106,10 +103,27 @@
           //AI智能輸入
           if(id == "aiInner"){
             aiInner.value = "";
-            console.log(fileDetail);
-            alert("AI智能輸入成功")
-            /* let back = await APICollection.UploadRepotExcel(fileDetail);
-            console.log(back); */
+            (async() => {
+              let back = await APICollection.UploadPDF(fileDetail);
+              console.log(back);
+              back.data && setInputValue(back.data);
+              alert(back.msg);
+            })().catch(err=>{
+              alert(err.resultMessage);
+            });
+          };
+
+          const setInputValue = (data) => {
+            for(var i=0;i<Object.keys(data).length;i++){
+              let name = Object.keys(data)[i];
+              let value = data[name];
+
+              if(document.querySelector("input[name='"+name+"'][type='radio']")){
+                document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
+              }else{
+                document.querySelector("[name='"+name+"']").value = value;
+              };
+            };
           };
       };
       fileReader.readAsDataURL(event.target.files[0]);
@@ -118,12 +132,27 @@
 </script>
 
 <style lang="scss">
+
+  .content:has( > .title + #issue){
+    width:880px;
+    margin:0 auto;
+    padding:20px 40px;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    border-radius: 3px;;
+  }
+
+  .title:has( + #issue){
+    width:100%;
+    padding: 0;
+  }
+
+
+
   #issue {
-    width: 1000px;
-    max-width: 90%;
+    width: 960px;
+    max-width: 100%;
     margin: 20px auto;
 
-    box-shadow: 1px 1px 8px rgba(0,0,0,.1);
 
     #issue-header {
       display: flex;
@@ -171,12 +200,16 @@
       }
     }
 
+    #issue-body{
+      box-shadow: 0 5px 5px rgba(0,0,0,.2);
+    }
+
     .issue-item {
 
       &.opening {
         background: #ebfbf2;
 
-        .issue-content{
+        .content{
           height:auto;
           overflow: inherit;
         }
@@ -224,8 +257,13 @@
       overflow: hidden;
     }
 
+    .opening > .issue-content {
+      height: auto;
+      overflow: inherit;
+    }
+    
+
     .issue-content {
-      
 
       &[id^="E0"] select,
       &[id^="E0"] input[type="text"],
@@ -236,14 +274,11 @@
 
       &[id="ExchangeIndicators"] select,
       &[id="ExchangeIndicators"] input[type="text"],
-      &[id="ExchangeIndicators"] div > .button{
+      &[id="ExchangeIndicators"] div:not[class] > .button{
         width: 400px;
       }
 
-      &.opening {
-        height: auto;
-        overflow: inherit;
-      }
+      
 
       .issue-group {
         display: flex;
@@ -273,8 +308,9 @@
 
           tr > td:first-of-type {
             background: none;
-            width:80px;
+            width:100px;
             line-height: 40px;
+            padding:12px 20px;
           }
 
           td{
@@ -405,4 +441,5 @@
     }
 
   }
+
 </style>

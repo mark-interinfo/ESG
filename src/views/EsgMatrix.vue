@@ -27,6 +27,7 @@
     { name: '環境', key: 'environment' },
     { name: '社會', key: 'society' },
     { name: '治理', key: 'governance' },
+    { name: '+', key: '+' },
   ]);
 
   onMounted(()=>{

@@ -35,7 +35,6 @@ section:has(#login){
     margin:2px;
     box-sizing: border-box;
     display: inline-block;
-    line-height: 20px;
 }
 
 .center{
@@ -186,25 +185,35 @@ label:not([class]){
     display: block;
 }
 
-.content > div{
-    padding: 20px 40px;
-    /* 陰影值請改0.2 */
-    box-shadow: 1px 1px 8px rgba(0,0,0,.2);
-    width: 920px;
-    max-width:100%;
-    margin: 0 auto 20px;
-    border-radius: 3px;
-    background: #fff;
-    position: relative;
+.content{
+    background:#fff;
 }
 
-#buttonBox{
-    position: absolute;
-    width:60%!important;
-    right:10px;
-    top:20px;
-    text-align: right;
+.title{
+    width: 880px;
+    margin:0 auto;
+    padding:20px 40px 40px;
+    border-radius: 3px;
+
+    > span{
+        width:calc(100% - 400px);
+        vertical-align: middle;
+    }
+
+    > span + #buttonBox{
+        width:400px;
+        text-align: right;
+    }
 }
+
+.title:not(:has( + #issue)){
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+
+.title h1{
+    margin:0;
+}
+
 
 .notice-icon {
     height: 16px;

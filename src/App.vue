@@ -54,7 +54,7 @@ const scrollToTop = function(){
   margin: 0 auto;
   padding:20px 0;
   font-size: 14px;
-  width: 1000px;
+  width: 960px;
   max-width: 90%;
   color:#808080;
 
