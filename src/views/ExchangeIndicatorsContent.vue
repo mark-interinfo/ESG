@@ -247,9 +247,12 @@
   });
 
   // CommonDialogComponent
+  // 欄位設定
   const targetOptionList = ref();
   const targetInputMethod = ref();
   const changeTarget = ref();
+
+  // 新增指標
 
   const dailogType = ref('');
   const isShowDialog = ref(false);
