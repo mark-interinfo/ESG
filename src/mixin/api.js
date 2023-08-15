@@ -49,7 +49,7 @@ const APICollection = {
   QueryInternationalData: ((requestBody) => callAPI('QueryInternationalData', requestBody)),
   QueryMatrixData: ((requestBody) => callAPI('QueryMatrixData', requestBody)),
   // 儲存國際準則設定
-  allInternationalIssue: ((requestBody) => callAPI('allInternationalIssue', requestBody)),
+  ExecInternationalData: ((requestBody) => callAPI('ExecInternationalData', requestBody)),
 };
 
 export { APICollection };

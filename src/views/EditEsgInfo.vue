@@ -66,16 +66,27 @@
           data.companyId = getData.value.companyId;
           back = await APICollection.ExecReportData(data);
         }
-        // 指標設定
+        // 證交所核心指標設定
         if(route.path === '/ExchangeIndicators'){
           data = getData.value;
           back = await APICollection.ExecESGData(data);
         }
+        // 國際準則指標設定
+        if(route.path === '/InternationalIndicators'){
+          data = getData.value;
+          back = await APICollection.ExecInternationalData(data);
+        }
+        // ESG資訊矩陣設定
+        if(route.path === '/EsgMatrix'){
+          data = getData.value;
+          back = await APICollection.ExecESGData(data);
+        }
 
-        console.log(back);
-        alert(back.state);
+
+        // console.log(back);
+        // alert(back.state);
       })().catch(err=>{
-        alert(err.resultMessage);
+        // alert(err.resultMessage);
       });
     };
 

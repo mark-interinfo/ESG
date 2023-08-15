@@ -53,7 +53,7 @@
                 <input
                 type="text"
                 v-if="issue.internationalIssueList.length > 0"
-                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
+                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetName"
                 >
               </td>
           </tr>
@@ -65,7 +65,7 @@
                 <input
                 type="text"
                 v-if="issue.internationalIssueList.length > 0"
-                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).targetNote"
+                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
                 >
               </td>
           </tr>
@@ -91,7 +91,7 @@
                     >
                     <span>停用，自</span>
                     <input type="text" class="year" placeholder="請輸入民國年"
-                    :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === false"
+                    :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === true"
                     v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOnYear"
                     >
                     <span class="unit">年</span>

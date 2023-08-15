@@ -5,6 +5,7 @@
   @click.self="closeDialogSelecter"
   id="selectList"
   >
+  {{( typeof props.option)}}
     <div class="dialog">
       <div class="dialog-content">
         <div class="selected-area">
@@ -64,7 +65,7 @@ const props = defineProps({
     type: Boolean,
   },
   option: {
-    type: Array,
+    type: Array || Object,
   },
   selected: {
     type: Array || String,
