@@ -29,7 +29,7 @@
                     適用產業別
                   </td>
                   <td>
-                    <div class="items pointer" @click="openDialogSelecter(list.targetCodeArray, issue.issueType, listIndex)">
+                    <div class="items pointer" @click="openDialogSelecter(list.targetCodeArray, list)">
                       <span v-for="industry in list.targetCodeArray">
                         {{ props.allIndustry.find(item => item.value === industry).name }}
                       </span>
@@ -242,22 +242,20 @@
   }
 
   const targetIndustry = ref([]);
-  const targetIssueType = ref('');
-  const targetIssueListIndex = ref('');
+  const changeList = ref([]);
 
   const isShowDialogSelecter = ref(false);
-  const openDialogSelecter = function(industry, issueType, targetTypeIndex){
+  const openDialogSelecter = function(industry, list){
     isShowDialogSelecter.value = true;
     targetIndustry.value = industry;
-    targetIssueType.value = issueType;
-    targetIssueListIndex.value = targetTypeIndex;
+    changeList.value = list;
   }
   const closeDialogSelecter = function(){
     isShowDialogSelecter.value = false;
   }
   const industrySetting = function(data){
     isShowDialogSelecter.value = false;
-    props.allIssue.find(item => item.issueType === targetIssueType.value).issueList[targetIssueListIndex.value].targetCodeArray = data
+    changeList.value.targetCodeArray = data;
   }
 
   const updateInputSetting = function(){

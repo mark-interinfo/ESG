@@ -1,7 +1,7 @@
 <template>
     <div id="login">
         <div>
-            <img id="logo" src="../assets/ESG/Login_img/Login_title.png" @click="isShowDialog = true">
+            <img id="logo" src="../assets/ESG/Login_img/Login_title.png">
             <form id="form">
                 <div class="id">
                     <div>帳號</div>
@@ -47,11 +47,6 @@
                 </div>
             </form>
         </div>
-        <CommonDialogSelecterComponent
-        :isShowDialog="isShowDialog"
-        :selectMulti="false"
-        @closeDialog="closeDialog"
-        />
     </div>
 </template>
 <script setup>
@@ -59,13 +54,6 @@ import { ref } from 'vue';
 
 import { APICollection } from '../mixin/api.js';
 import { useUserStore } from '../pinia/user.js';
-
-import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
-
-const isShowDialog = ref(false);
-const closeDialog = function(){
-    isShowDialog.value = false;
-}
 
 const userStore = useUserStore();
 

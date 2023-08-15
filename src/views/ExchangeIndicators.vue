@@ -32,7 +32,7 @@
 
   const apiRequest = ref({});
 
-  const allIndustry = ref({});
+  const allIndustry = ref([]);
   const allIssue = ref([]);
   const allType = ref([]);
   const top = ref([]);
