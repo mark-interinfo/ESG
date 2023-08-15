@@ -238,6 +238,10 @@ label:not([class]){
     padding:4px 8px;
 }
 
+.items span + span{
+    margin-left:5px;
+}
+
 .items:empty:before{
     content:"請選擇";
     display:inline-block;

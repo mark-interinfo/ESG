@@ -35,7 +35,7 @@
                 <span 
                   v-for="target in issue.Matrix"
                 >
-                {{props.allInternationalTarget.GRI.find((item)=> item.value == target).name}}</span>
+                GRI-{{props.allInternationalTarget.GRI.find((item)=> item.value == target).name}}</span>
                 <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI">
               </div>
             </td>
