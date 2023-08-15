@@ -66,7 +66,7 @@
       color:#37D880;
     }
 
-    .title{
+    .tableHead{
       background-color:#fafafa!important;
 
       select{

@@ -140,10 +140,15 @@
     box-shadow: 0 0 5px rgba(0,0,0,.2);
     border-radius: 3px;;
   }
+  
 
   .title:has( + #issue){
     width:100%;
     padding: 0;
+  }
+
+  #editEsgInfo{
+    padding-bottom: 20px;
   }
 
 

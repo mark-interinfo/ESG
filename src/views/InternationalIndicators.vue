@@ -59,11 +59,9 @@
 
   .InternationalIndicatorsContent{
     margin-top:20px!important;
+    margin-bottom: 0!important;
     box-shadow: none!important;
 
-    .issue-title{
-      border-top: none!important;
-    }
 
     .issue-item{
 

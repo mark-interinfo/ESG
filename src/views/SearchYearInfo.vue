@@ -1,10 +1,12 @@
 <template>
     <div id="searchYearInfo">
-        <div class="issues-content">
-            <CommonCompanyTitle/>
-            <span id="buttonBox">
-                <a download="ESG申報範本" href="http://192.168.10.108/poc/samples/ESGReportData.xls" class="button buttonColor3" id="downloadTemplate">下載範本</a>
-            </span>
+        <div class="content">
+            <div class="title">
+                <CommonCompanyTitle/>
+                <span id="buttonBox">
+                    <a download="ESG申報範本" href="http://192.168.10.108/poc/samples/ESGReportData.xls" class="button buttonColor3" id="downloadTemplate">下載範本</a>
+                </span>
+            </div>
             <div id="searchBar">
                 <input 
                     id="searchInput" 
@@ -107,11 +109,27 @@ const change = function() {
     #searchYearInfo {
         margin: 0 20px 20px;
 
+        .content{
+            width: 880px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+
+        .title{
+            box-shadow: none;
+            width:auto;
+            padding:0;
+            
+        }
+
         > div {
 
             #searchBar {
                 display: flex;
-                margin-top:10px;
+                margin-top:20px;
+                margin-bottom: 40px;;
 
                 #searchInput {
                     height: 44px;
