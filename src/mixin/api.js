@@ -48,6 +48,7 @@ const APICollection = {
   UploadRepotExcel: ((requestBody) => callAPI('UploadRepotExcel', requestBody)),
   QueryInternationalData: ((requestBody) => callAPI('QueryInternationalData', requestBody)),
   QueryMatrixData: ((requestBody) => callAPI('QueryMatrixData', requestBody)),
+  UploadESGExcel: ((requestBody) => callAPI('UploadESGExcel', requestBody)),
 };
 
 export { APICollection };
