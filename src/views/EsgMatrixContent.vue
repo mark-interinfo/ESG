@@ -3,16 +3,8 @@
   <div id="issue-body">
     <div
     class="issue-item pointer"
-    v-for="issue in props.allMatrix"
-    :key="issue.id"
-    :data-item ="issue.ISSUE_NO"
-    >{{issue.ISSUE_NO}}
-      <div class="issue-title">
-        <span>
-          {{ issue.TAR_NAME }}
-        </span>
-        <img src="../assets/images/select.svg" alt="">
-      </div>
+    
+    >
       
       <div class="issue-content">
         <table>
@@ -21,42 +13,34 @@
               項目
             </td>
             <td>
-              國際準則
+              <span>
+                國際指標
+              </span>
             </td>
           </tr>
-          <tr>
+          <tr 
+            v-for="issue in props.allMatrix"
+            :key="issue.id"
+            :data-item ="issue.ISSUE_KIND"
+          >
             <td class="tableHead">
-              直接溫室氣體<br>
-              (範疇一)
+              {{ issue.TAR_NAME }}
             </td>
             <td>
               <div class="items">
-                <span>全部產業別</span>
+                <span v-for="target in issue.Matrix">{{props.allInternationalTarget.GRI.find((item)=> item.value == target).name}}</span>
+                <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI">
               </div>
             </td>
           </tr>
-          <tr>
-            <td class="tableHead">
-              能源間接<br>
-              (範疇二)
-            </td>
-            <td>
-              <div class="items">
-                
-              </div>
-            </td>
-          </tr>
+          
           </table>
-          <div class="buttonBox">
-            <input type="button" class="button buttonColor3" value="新增細項">
-          </div>
       </div>
       
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
 
 const props = defineProps({
   allInternationalTarget: {
