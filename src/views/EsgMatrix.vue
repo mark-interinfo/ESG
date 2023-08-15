@@ -2,8 +2,9 @@
   <div id="issue" class="EsgMatrix">
     <div id="issue-header">
       <div id="issue-tags">
-        <div class="issue-tag pointer" 
-        v-for="item in data.top"
+        <div class="issue-tag pointer"
+        :class="{ 'selected': item.key === issueTypeSelected }"
+        v-for="item in top"
         :key="item.key"
         :data-id="item.key">
           {{ item }}
@@ -27,22 +28,29 @@
   const userStore = useUserStore();
 
   const apiRequest = ref({});
-  const allInternationalTarget = ref([]);
-  const allMatrix = ref([]);
-  const top = ref([]);
-  const data = ref([]);
+  const allInternationalTarget = ref();
+  const allMatrix = ref();
+  const top = ref();
+  const data = ref();
 
   (async() => {
       
     data.value = await APICollection.QueryMatrixData(apiRequest);
-    console.log(data.value)
+    allInternationalTarget.value = data.value.allInternationalTarget;
+    allMatrix.value = data.value.allMatrix;
+    top.value = data.value.top;
+
+    issueTypeSelected.value = top.value[0];
+    console.log(await APICollection.QueryMatrixData(apiRequest))
   })().catch(err=>{
       alert(err.resultMessage);
   });
 
-  /* onUpdated(()=>{
+  const issueTypeSelected = ref();
+
+  onUpdated(()=>{
     switchOpen();
-  }); */
+  }); 
 
 </script>
 <style lang="scss">
