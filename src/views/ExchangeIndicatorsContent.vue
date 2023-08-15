@@ -36,154 +36,152 @@
                   指標代號
                 </td>
                 <td>
-                  <select v-model="showIssueList[issue.issueType]">
+                  <select v-model="showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
                     <option :value="item" v-for="item in issue.issueList.map(item => item.targetType)" :key="item">{{ item }}</option>
                   </select>
-                  <span class="color-green">
+                  <span class="color-green" @click="openDialog(); dailogType='addIssueList';">
                     新增指標代號
                   </span>
                 </td>
             </tr>
             <template v-if="issue.issueList.length > 0">
-                
-            <tr>
+              <tr>
+                  <td>
+                    適用產業別
+                  </td>
+                  <td>
+                    <div
+                    class="items pointer"
+                    @click="openDialogSelecter(issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray, issue.issueList[showIssueList[issue.issueType] - 1])"
+                    v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray"
+                    >
+                      <span v-for="industry in issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray">
+                        {{ props.allIndustry.find(item => item.value === industry).name }}
+                      </span>
+                    </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                    指標名稱
+                  </td>
+                  <td>
+                    <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetTitle">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                    指標備註
+                  </td>
+                  <td>
+                    <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetNote">
+                  </td>
+              </tr>
+              <tr>
+                  <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
+                    使用狀態
+                  </td>
+                  <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
+                    <div>
+                      <label>
+                        <input type="radio"
+                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
+                        :value="true"
+                        >
+                        <span>開啟</span>
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio"
+                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
+                        :value="false"
+                        >
+                        <span>停用，自</span>
+                        <input type="text" class="year" placeholder="請輸入民國年"
+                        :disabled="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
+                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
+                        >
+                        <span class="unit">年</span>
+                        <span>起停用此項目</span>
+                      </label>
+                    </div>
+                  </td>
+              </tr>
+              <tr v-for="(target, targetIndex) in issue.issueList[showIssueList[issue.issueType] - 1].targetList">
+                <td></td>
                 <td>
-                  適用產業別
-                </td>
-                <td>
-                  <div
-                  class="items pointer"
-                  @click="openDialogSelecter(issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray, issue.issueList[showIssueList[issue.issueType] - 1])"
-                  v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray"
-                  >
-                    <span v-for="industry in issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray">
-                      {{ props.allIndustry.find(item => item.value === industry).name }}
-                    </span>
-                  </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                  指標名稱
-                </td>
-                <td>
-                  <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetTitle">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                  指標備註
-                </td>
-                <td>
-                  <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetNote">
-                </td>
-            </tr>
-            <tr>
-                <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
-                  使用狀態
-                </td>
-                <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
-                  <div>
-                    <label>
-                      <input type="radio"
-                      v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
-                      :value="true"
-                      >
-                      <span>開啟</span>
-                    </label>
-                  </div>
-                  <div>
-                    <label>
-                      <input type="radio"
-                      v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
-                      :value="false"
-                      >
-                      <span>停用，自</span>
-                      <input type="text" class="year" placeholder="請輸入民國年"
-                      :disabled="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
-                      v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
-                      >
-                      <span class="unit">年</span>
-                      <span>起停用此項目</span>
-                    </label>
-                  </div>
-                </td>
-            </tr>
-            <tr v-for="(target, targetIndex) in issue.issueList[showIssueList[issue.issueType] - 1].targetList">
-              <td></td>
-              <td>
-                <table class="indicators">
-                  <tr>
-                    <td class="color-green text-start" colspan="2">
-                      指標細項（{{ chineseNumber(targetIndex + 1) }}）
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>細項名稱</td>
-                    <td>
-                      <input type="text" v-model="target.title">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>細項備註</td>
-                    <td>
-                      <input type="text" v-model="target.note">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>輸入方式</td>
-                    <td>
-                      <input
-                      type="button"
-                      class="button buttonColor3"
-                      :value="inputMethodComputed(target.type)"
-                      @click="openDialog(target.optionList, target.type, target); dailogType = 'input'"
-                      >
-                    </td>
-                  </tr>
-                  <tr>
+                  <table class="indicators">
+                    <tr>
+                      <td class="color-green text-start" colspan="2">
+                        指標細項（{{ chineseNumber(targetIndex + 1) }}）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>細項名稱</td>
                       <td>
-                        使用狀態
+                        <input type="text" v-model="target.title">
                       </td>
-                      <td v-if="target.status">
-                        <div>
-                          <label :for="`${target.fieldId}on`">
-                            <input type="radio"
-                            :id="`${target.fieldId}on`"
-                            v-model="target.status.isOn"
-                            :value="true"
-                            >
-                            <span>開啟</span>
-                          </label>
-                        </div>
-                        <div>
-                          <label :for="`${target.fieldId}off`">
-                            <input type="radio"
-                            :id="`${target.fieldId}off`"
-                            v-model="target.status.isOn"
-                            :value="false"
-                            >
-                            <span>停用，自</span>
-                            <input type="text" class="year" placeholder="請輸入民國年"
-                            :disabled="target.status.isOn === true"
-                            v-model="target.status.isOnYear"
-                            >
-                            <span class="unit">年</span>
-                            <span>起停用此項目</span>
-                          </label>
-                        </div>
+                    </tr>
+                    <tr>
+                      <td>細項備註</td>
+                      <td>
+                        <input type="text" v-model="target.note">
                       </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td class="buttonBox" colspan="2">
-                <input type="button" value="新增指標細項" class="button buttonColor3">
-              </td>
-            </tr>
+                    </tr>
+                    <tr>
+                      <td>輸入方式</td>
+                      <td>
+                        <input
+                        type="button"
+                        class="button buttonColor3"
+                        :value="inputMethodComputed(target.type)"
+                        @click="openDialog(target.optionList, target.type, target); dailogType = 'input'"
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                          使用狀態
+                        </td>
+                        <td v-if="target.status">
+                          <div>
+                            <label :for="`${target.fieldId}on`">
+                              <input type="radio"
+                              :id="`${target.fieldId}on`"
+                              v-model="target.status.isOn"
+                              :value="true"
+                              >
+                              <span>開啟</span>
+                            </label>
+                          </div>
+                          <div>
+                            <label :for="`${target.fieldId}off`">
+                              <input type="radio"
+                              :id="`${target.fieldId}off`"
+                              v-model="target.status.isOn"
+                              :value="false"
+                              >
+                              <span>停用，自</span>
+                              <input type="text" class="year" placeholder="請輸入民國年"
+                              :disabled="target.status.isOn === true"
+                              v-model="target.status.isOnYear"
+                              >
+                              <span class="unit">年</span>
+                              <span>起停用此項目</span>
+                            </label>
+                          </div>
+                        </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="buttonBox" colspan="2">
+                  <input type="button" value="新增指標細項" class="button buttonColor3">
+                </td>
+              </tr>
             </template>
-
           </table>
         </div>
       </div>
