@@ -3,40 +3,46 @@
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer" 
-        v-for="item in issueType"
+        v-for="item in data.top"
         :key="item.key"
         :data-id="item.key">
-          {{ item.name }}
+          {{ item }}
         </div>
       </div>
     </div>
-    <template v-if="issueTypeSelected === 'environment'">
-      <EsgMatrixContent />
-    </template>
+    <EsgMatrixContent
+    :allInternationalTarget="allInternationalTarget"
+    :allMatrix="allMatrix"
+    :top="top"
+    />
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  import { onUpdated ,onMounted} from 'vue';
+  import { ref ,onUpdated} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import EsgMatrixContent from './EsgMatrixContent.vue';
+  import { APICollection } from '../mixin/api';
+  import { useUserStore } from "../pinia/user.js";
+  const userStore = useUserStore();
 
-  const issueTypeSelected = ref('environment');
-  const issueType = ref([
-    { name: '環境', key: 'environment' },
-    { name: '社會', key: 'society' },
-    { name: '治理', key: 'governance' },
-    { name: '+', key: '+' },
-  ]);
+  const apiRequest = ref({});
+  const allInternationalTarget = ref([]);
+  const allMatrix = ref([]);
+  const top = ref([]);
+  const data = ref([]);
 
-  onMounted(()=>{
-    switchOpen();
+  (async() => {
+      
+    data.value = await APICollection.QueryMatrixData(apiRequest);
+    console.log(data.value)
+  })().catch(err=>{
+      alert(err.resultMessage);
   });
-  
-  onUpdated(()=>{
+
+  /* onUpdated(()=>{
     switchOpen();
-  });
+  }); */
 
 </script>
 <style lang="scss">

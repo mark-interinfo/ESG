@@ -109,6 +109,7 @@
   });
 
   (async() => {
+    console.log(apiRequest.value)
       data.value = await APICollection.QueryReportData(apiRequest);
       console.log(data.value)
   })().catch(err=>{
