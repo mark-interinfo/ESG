@@ -2,7 +2,7 @@
   
   <div id="issue-body">
     <div
-    class="issue-item pointer"
+    class="pointer"
     
     >
       
@@ -22,6 +22,7 @@
             v-for="issue in props.allMatrix"
             :key="issue.id"
             :data-item ="issue.ISSUE_KIND"
+            class="issue-item"
           >
             <td class="tableHead">
               {{ issue.TAR_NAME }}

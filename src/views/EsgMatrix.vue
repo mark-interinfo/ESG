@@ -40,7 +40,7 @@
     allInternationalTarget.value = data.value.allInternationalTarget;
     allMatrix.value = data.value.allMatrix;
     top.value = data.value.top;
-
+    top.value.push("+");
     issueTypeSelected.value = top.value[0];
     console.log(await APICollection.QueryMatrixData(apiRequest))
   })().catch(err=>{
