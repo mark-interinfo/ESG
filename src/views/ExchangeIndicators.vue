@@ -25,21 +25,21 @@
 </template>
 
 <script setup>
-  import { ref, onUpdated } from 'vue';
+  import { ref, onUpdated, watch } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api.js';
   import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
 
   const apiRequest = ref({});
+  const emits = defineEmits(['watchData']);
 
-  const allIndustry = ref({});
+  const allIndustry = ref([]);
   const allIssue = ref([]);
   const allType = ref([]);
   const top = ref([]);
 
   (async() => {
     let apiData = await APICollection.QueryESGData(apiRequest);
-    console.log(apiData);
     allIndustry.value = apiData.allIndustry;
     allIssue.value = apiData.allIssue;
     allType.value = apiData.allType;
@@ -52,7 +52,12 @@
 
   const issueTypeSelected = ref();
 
+  watch(allIssue, ()=>{
+    emits('watchData', { allIssue: allIssue.value });
+  }, {deep: true});
+
   onUpdated(()=>{
+    console.log('123')
     switchOpen();
   });
 

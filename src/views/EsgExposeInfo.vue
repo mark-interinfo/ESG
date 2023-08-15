@@ -86,7 +86,6 @@
                 </table>
             </div>
         </div>
-        
       </div>
     </div>
   </div>
@@ -99,6 +98,8 @@
   import { APICollection } from '../mixin/api';
   import CommonNoticeComponent from '../components/CommonNoticeComponent.vue';
 
+  const emits  = defineEmits(["watchData"]);
+
   const data = ref({
     top:[]
   });
@@ -109,9 +110,7 @@
   });
 
   (async() => {
-    console.log(apiRequest.value)
       data.value = await APICollection.QueryReportData(apiRequest);
-      console.log(data.value)
   })().catch(err=>{
       alert(err.resultMessage);
   });
@@ -132,9 +131,8 @@
   });
 
   watch(data, ()=>{
-    emits('watchData', data)
-  },{deep: true});
+    emits('watchData', data.value)
+  }, {deep: true});
 
-  const emits  = defineEmits(["watchData"]);
 
 </script>
