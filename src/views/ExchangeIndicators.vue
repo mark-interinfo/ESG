@@ -58,7 +58,6 @@
   }, {deep: true});
 
   onUpdated(()=>{
-    console.log('123')
     switchOpen();
   });
 
