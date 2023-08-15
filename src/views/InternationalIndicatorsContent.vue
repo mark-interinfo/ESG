@@ -3,13 +3,12 @@
     <div
     class="issue-item pointer"
     v-for="issue in props.allInternationalIssue"
-    :key="issue.guideLine"
+    :key="issue.internationalIssueName"
     :data-item ="issue.guideLine"
     >
     <div class="issue-title">
       <span>
         {{ issue.internationalIssueName }}
-        <!-- {{ issue.internationalIssueList }} -->
       </span>
       <img src="../assets/images/select.svg" alt="">
     </div>
@@ -32,8 +31,17 @@
                 適用產業別
               </td>
               <td>
-                <div class="items" v-if="issue.internationalIssueList.length > 0">
-                  <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">{{ target }}</span>
+                <div
+                class="items"
+                v-if="issue.internationalIssueList.length > 0"
+                @click="openDialogSelecter(
+                  issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray,
+                  issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])
+                )"
+                >
+                  <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">
+                    {{ props.allIndustry.find(item=> item.value === target).name }}
+                  </span>
                 </div>
               </td>
           </tr>
@@ -104,10 +112,20 @@
   <div class="buttonBox">
     <input type="button" class="button buttonColor3" value="新增指標議題">
   </div>
+  <CommonDialogSelecterComponent
+  :isShowDialogSelecter="isShowDialogSelecter"
+  :selectMulti="true"
+  :option="props.allIndustry"
+  :selected="targetIndustry"
+  @closeDialogSelecter="closeDialogSelecter"
+  @industrySetting="industrySetting"
+  />
 </div>
 </template>
 <script setup>
   import { ref, watch } from 'vue';
+  import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
+
   const props = defineProps({
     allInternationalIssue: {
       type: Array,
@@ -119,6 +137,25 @@
       type: Array,
     }
   });
+
+  const isShowDialogSelecter = ref(false);
+  const targetIndustry = ref([]);
+  const changeList = ref();
+
+  const openDialogSelecter = function(industry, list){
+    isShowDialogSelecter.value = true;
+    targetIndustry.value = industry;
+    changeList.value = list;
+  }
+
+  const closeDialogSelecter = function(){
+    isShowDialogSelecter.value = false;
+  }
+
+  const industrySetting = function(data){
+    isShowDialogSelecter.value = false;
+    changeList.value.internationalTargetCodeArray = data;
+  }
 
   const showInternationalIssue = ref({});
   watch(props, ()=>{

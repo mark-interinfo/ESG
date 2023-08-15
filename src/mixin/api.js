@@ -48,6 +48,8 @@ const APICollection = {
   UploadRepotExcel: ((requestBody) => callAPI('UploadRepotExcel', requestBody)),
   QueryInternationalData: ((requestBody) => callAPI('QueryInternationalData', requestBody)),
   QueryMatrixData: ((requestBody) => callAPI('QueryMatrixData', requestBody)),
+  // 儲存國際準則設定
+  allInternationalIssue: ((requestBody) => callAPI('allInternationalIssue', requestBody)),
 };
 
 export { APICollection };

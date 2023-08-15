@@ -23,10 +23,12 @@
 </template>
 
 <script setup>
-  import { ref , onUpdated} from 'vue';
+  import { ref , onUpdated, watch} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
   import { APICollection } from '../mixin/api.js';
+
+  const emits = defineEmits(['watchData']);
 
   const apiRequest = ref({});
   const allInternationalIssue = ref([]);
@@ -49,6 +51,10 @@
   });;
 
   const issueTypeSelected = ref();
+
+  watch(allInternationalIssue, ()=>{
+    emits('watchData', { allInternationalIssue: allInternationalIssue.value });
+  }, {deep: true});
 
   onUpdated(()=>{
     switchOpen();
