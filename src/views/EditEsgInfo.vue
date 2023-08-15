@@ -17,20 +17,19 @@
                 <label for="aiInner" class="button buttonColor3">AI智能輸入</label>
                 <input id="aiInner" type="file" accept=".pdf" @input="FileInfo">
               </span>
-              
+
               <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
 
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
-          <ExchangeIndicators @watchData="watchData" @safeData="safeData" v-if="['/ExchangeIndicators'].includes(route.path)"/>
-          <InternationalIndicators @watchData="watchData" @safeData="safeData" v-if="['/InternationalIndicators'].includes(route.path)"/>
-          <EsgMatrix @watchData="watchData" @safeData="safeData" v-if="['/EsgMatrix'].includes(route.path)"/>
+          <ExchangeIndicators @watchData="watchData" v-if="['/ExchangeIndicators'].includes(route.path)"/>
+          <InternationalIndicators @watchData="watchData" v-if="['/InternationalIndicators'].includes(route.path)"/>
+          <EsgMatrix @watchData="watchData" v-if="['/EsgMatrix'].includes(route.path)"/>
       </div>
       <div id="esgExposeInfo">
-          <EsgExposeInfo @watchData="watchData" @safeData="safeData" v-if="pathName.includes(route.path)"/>
+          <EsgExposeInfo @watchData="watchData" v-if="pathName.includes(route.path)"/>
       </div>
-        
     </div>
 </template>
 <script setup>
@@ -51,27 +50,33 @@
     const getData = ref();
 
     const watchData = (data) =>{
-      getData.value = data.value;
+      getData.value = data;
     };
 
     const safeData = () =>{
 
-      console.log(getData.value)
-      
       let data={};
-      data.year = getData.value.year;
-      data.data = getData.value.data;
-      data.companyId = getData.value.companyId;
-      console.log(data);
 
       (async() => {
-        let back = await APICollection.ExecReportData(data);
+        let back = '';
+        // 申報頁面
+        if(route.path === '/EditEsgInfo'){
+          data.year = getData.value.year;
+          data.data = getData.value.data;
+          data.companyId = getData.value.companyId;
+          back = await APICollection.ExecReportData(data);
+        }
+        // 指標設定
+        if(route.path === '/ExchangeIndicators'){
+          data = getData.value;
+          back = await APICollection.ExecESGData(data);
+        }
+
         console.log(back);
         alert(back.state);
       })().catch(err=>{
         alert(err.resultMessage);
       });
-      
     };
 
     const FileInfo = (event) =>{
