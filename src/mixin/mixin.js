@@ -57,7 +57,6 @@ const switchOpen = function(){
   monitor("body",back,option);
 
   function back(a,b){
-    console.log(a,b[0])
     if(b[0].addedNodes && b[0].addedNodes.length > 0){
       for(var i=0;i<b[0].addedNodes.length;i++){
         if(b[0].addedNodes[i].className.match("issue-item")){
