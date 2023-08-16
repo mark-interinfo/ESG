@@ -29,7 +29,7 @@
               >
                 <template v-for="(checkedList, type) in issue.Matrix">
                   <span v-for="checkedItem in checkedList">
-                    {{ props.allInternationalTarget[type].find(item => item.value === checkedItem).name }}
+                    {{ props.allMatrixTarget[type].find(item => item.value === checkedItem).name }}
                   </span>
                 </template>
                 <!-- <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI"> -->
@@ -41,7 +41,7 @@
       <CommonDialogSelecterComponent
       :isShowDialogSelecter="isShowDialogSelecter"
       :selectMulti="true"
-      :option="props.allInternationalTarget"
+      :option="props.allMatrixTarget"
       :optionType="'object'"
       :selected="targetIndustry"
       @closeDialogSelecter="closeDialogSelecter"
@@ -55,7 +55,7 @@
   import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
 
   const props = defineProps({
-    allInternationalTarget: {
+    allMatrixTarget: {
       type: Object,
     },
     allMatrix: {

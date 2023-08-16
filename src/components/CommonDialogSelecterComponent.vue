@@ -100,7 +100,7 @@ const props = defineProps({
     type: Boolean,
   },
   option: {
-    type: Array || Object,
+    type: [Array , Object],
   },
   optionType: {
     type: String,
