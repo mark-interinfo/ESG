@@ -322,6 +322,7 @@ const props = defineProps({
     tyep: String,
   },
   // selectInput
+  // 欄位設定
   inputOption: {
     type: Array,
   },
@@ -331,6 +332,11 @@ const props = defineProps({
   optionList: {
     type: Array || Object
   },
+  // addIssue
+  // 新增議題
+  dataLength: {
+    type: Number
+  }
 });
 
 const emits = defineEmits(['closeDialog', 'inputSetting', 'addNewIssue']);

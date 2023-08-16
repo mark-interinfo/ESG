@@ -7,7 +7,7 @@
   >
   <div class="dialog">
       <div class="dialog-content">
-        <div class="selected-area" v-if="(typeof props.option) === 'array'">
+        <div class="selected-area" v-if="props.optionType === 'array'">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
               {{ props.option.find(option => option.value === item).name }}
@@ -17,7 +17,7 @@
             {{ selected }}
           </span>
         </div>
-        <div class="selected-area" v-if="(typeof props.option) === 'object'">
+        <div class="selected-area" v-if="props.optionType === 'object'">
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
               <span>
@@ -38,7 +38,7 @@
         class="search"
         >
         <div class="option">
-          <template v-if="(typeof props.option) === 'array'">
+          <template v-if="props.optionType === 'array'">
             <div
             v-for="item in props.option"
             :key="item.name"
@@ -57,7 +57,7 @@
               </label>
             </div>
           </template>
-          <template v-if="(typeof props.option) === 'object'">
+          <template v-if="props.optionType === 'object'">
             <div
             v-for="(kind, key) in props.option"
             :key="key"
@@ -103,6 +103,10 @@ const props = defineProps({
   option: {
     type: Array || Object,
   },
+  optionType: {
+    type: String,
+    // array, object
+  },
   selected: {
   }
 });
@@ -119,10 +123,18 @@ watch(props, ()=>{
 });
 
 const selectedClear = function(){
-  if( props.selectMulti ){
+  // if( props.selectMulti ){
+  //   selected.value = [];
+  // } else {
+  //   selected.value = '';
+  // }
+  if(props.optionType === 'array'){
     selected.value = [];
-  } else {
-    selected.value = '';
+  }
+  if(props.optionType === 'object'){
+    Object.keys(selected.value).forEach((key)=>{
+      selected.value[key] = [];
+    })
   }
 };
 
