@@ -190,9 +190,11 @@
     });
 
     onUpdated(()=>{
-      switchOpen();
-      document.querySelector(".issue-tag").click();
-    });
+      setTimeout(()=>{
+        switchOpen();
+        document.querySelector(".issue-tag").click();
+      },100)
+    })
     
 
     // 共用方法
