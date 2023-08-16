@@ -39,7 +39,7 @@
                   <select v-model="props.showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
                     <option :value="item" v-for="item in issue.issueList.map(item => item.targetType)" :key="item">{{ item }}</option>
                   </select>
-                  <span class="color-green" @click="showAddIssueCodeDialog(issue.issueList.length, issueIndex); dailogType='addIssueList';">
+                  <span class="color-green pointer" @click="showAddIssueCodeDialog(issue.issueList.length, issueIndex); dailogType='addIssueList';">
                     新增指標代號
                   </span>
                 </td>
@@ -184,7 +184,9 @@
               </template>
               <tr>
                 <td class="buttonBox" colspan="2">
-                  <input type="button" value="新增指標細項" class="button buttonColor3">
+                  <input type="button" value="新增指標細項" class="button buttonColor3"
+                  @click="showAddIssueDetailDialog(issue.issueType, issue.issueList)"
+                  >
                 </td>
               </tr>
             </template>
@@ -195,6 +197,7 @@
     <div class="buttonBox">
       <input type="button" class="button buttonColor3" value="新增議題" @click="showAddIssueDialog(); dailogType = 'addIssue'">
     </div>
+
     <!-- 新增議題 -->
     <div
     class="dialog-background"
@@ -310,6 +313,73 @@
       </div>
     </div>
 
+    <!-- 新增指標細項 -->
+    <div
+    class="dialog-background"
+    :class="{'show': isShowAddIssueDetailDialog}"
+    @click.self="closeAddIssueDetailDialog()"
+    >
+      <div class="dialog-block">
+        <div class="dialog-content">
+          <div class="dialog-title">
+            <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.25" y="0.5" width="48" height="48" rx="24" fill="#F5FDF9"/>
+              <path d="M14.25 31.5V17.5C14.25 16.9696 14.4607 16.4609 14.8358 16.0858C15.2109 15.7107 15.7196 15.5 16.25 15.5H32.25C32.7804 15.5 33.2891 15.7107 33.6642 16.0858C34.0393 16.4609 34.25 16.9696 34.25 17.5V31.5C34.25 32.0304 34.0393 32.5391 33.6642 32.9142C33.2891 33.2893 32.7804 33.5 32.25 33.5H16.25C15.7196 33.5 15.2109 33.2893 14.8358 32.9142C14.4607 32.5391 14.25 32.0304 14.25 31.5Z" fill="#2FB86D" stroke="#2FB86D" stroke-width="1.5"/>
+              <path d="M14.25 19.5H34.25H14.25ZM21.25 26.5H24.25H21.25ZM27.25 26.5H24.25H27.25ZM24.25 26.5V23.5V26.5ZM24.25 26.5V29.5V26.5Z" fill="#2FB86D"/>
+              <path d="M14.25 19.5H34.25M21.25 26.5H24.25M24.25 26.5H27.25M24.25 26.5V23.5M24.25 26.5V29.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            新增指標細項
+          </div>
+          <div>
+            <p class="label-title">
+              指標名稱
+            </p>
+            <div class="input-group">
+              <input type="text" id="newIssueName" v-model="newIssueDetailTitle" placeholder="請填寫">
+            </div>
+          </div>
+          <div>
+            <p class="label-title">
+              輸入方式
+              {{newIssueDetailType}}
+            </p>
+            <input
+            type="button"
+            class="button buttonColor3"
+            :value="inputMethodComputed(newIssueDetailType)"
+            @click="openDialog(newIssueDetailOptionList, newIssueDetailType); dailogType = 'input';"
+            style="width: 100%"
+            >
+            <!-- :value="inputMethodComputed(target.type)"
+            @click="openDialog(target.optionList, target.type, target); dailogType = 'input'" -->
+          </div>
+          <div>
+            <p class="label-title">
+              指標備註（選填）
+            </p>
+            <div class="input-group">
+              <input type="text" id="newIssueName" v-model="newIssueDetailNote" placeholder="請填寫">
+            </div>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button
+          class="button buttonColor2"
+          @click="closeAddIssueDetailDialog"
+          >
+            取消
+          </button>
+          <button
+          class="button buttonColor1"
+          @click="addIssueDetailDialog"
+          >
+            確認
+          </button>
+        </div>
+      </div>
+    </div>
+
+
     <!-- 元件 -->
     <CommonDialogComponent
     :isShowDialog="isShowInputSetDialog"
@@ -319,7 +389,6 @@
     :inputMethod="targetInputMethod"
     @closeDialog="closeDialog"
     @inputSetting="inputSetting"
-    @addNewIssue="addNewIssue"
     />
     <CommonDialogSelecterComponent
     :isShowDialogSelecter="isShowDialogSelecter"
@@ -353,16 +422,9 @@
     }
   });
 
-  const emits = defineEmits(['addNewIssue', 'addNewIssueCode']);
+  const emits = defineEmits(['addNewIssue', 'addNewIssueCode', 'addIssueDetailDialog']);
 
   const allIssueComputed = computed(()=> props.allIssue);
-  console.log(props.showIssueList)
-
-  // const showIssueList = ref({});
-  // showIssueList.value = {};
-  // props.allIssue.forEach(issue => {
-  //   showIssueList.value[issue.issueType] = '1';
-  // });
 
   const inputMethodComputed = computed(()=>{
     return (inputType)=>{
@@ -405,6 +467,7 @@
     newIssueKind.value = '';
     newIssueType.value = '';
   }
+
   // 當前頁面的跳窗 新增指標代號
   const isShowAddIssueCodeDialog = ref(false);
   const targetIssueIndex = ref(-1);
@@ -434,6 +497,34 @@
         }
       }
     );
+  };
+
+  // 當前頁面的跳窗 新增指標細項
+  const isShowAddIssueDetailDialog = ref(false);
+  const newIssueDetailFieldId = ref('');
+  const newIssueDetailTitle = ref('');
+  const newIssueDetailType = ref('');
+  const newIssueDetailOptionList = ref([{}]);
+  const newIssueDetailNote = ref('');
+
+  const showAddIssueDetailDialog = function(issueType, issueList){
+    newIssueDetailFieldId.value = `${issueType}_${props.showIssueList[issueType]}`;
+    isShowAddIssueDetailDialog.value = true;
+  }
+  const closeAddIssueDetailDialog = function(){
+    isShowAddIssueDetailDialog.value = false;
+  }
+  const addIssueDetailDialog = function(){
+    isShowAddIssueDetailDialog.value = false;
+    emits('addIssueDetailDialog',
+      {
+        fieldId: newIssueDetailFieldId.value,
+        optionList: newIssueDetailOptionList.value,
+        note: newIssueDetailNote.value,
+        title: newIssueDetailTitle.value,
+        type: newIssueDetailType.value
+      }
+    );
   }
 
   // CommonDialogComponent
@@ -448,15 +539,22 @@
     isShowInputSetDialog.value = true;
     targetOptionList.value = optionList;
     targetInputMethod.value = inputMethod;
-    changeTarget.value = target;
+    if(target){
+      changeTarget.value = target;
+    }
   }
   const closeDialog = function(){
     isShowInputSetDialog.value = false;
   }
   const inputSetting = function(data){
     isShowInputSetDialog.value = false;
-    changeTarget.value.optionList = data.optionSetting;
-    changeTarget.value.type = data.inputMethod;
+    if(isShowAddIssueDetailDialog.value === true){
+      newIssueDetailOptionList.value = data.optionSetting;
+      newIssueDetailType.value = data.inputMethod;
+    } else {
+      changeTarget.value.optionList = data.optionSetting;
+      changeTarget.value.type = data.inputMethod;
+    }
   }
 
   // CommonDialogSelecterComponent
@@ -503,5 +601,9 @@
 .buttonBox{
   padding:10px;
   text-align:right;
+}
+
+.pointer{
+  cursor: pointer;
 }
 </style>
