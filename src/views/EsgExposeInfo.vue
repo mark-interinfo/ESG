@@ -97,7 +97,9 @@
   import { APICollection } from '../mixin/api';
   import CommonNoticeComponent from '../components/CommonNoticeComponent.vue';
   import { useRoute } from 'vue-router';
+  import { useUserStore } from '../pinia/user';
   const route = useRoute();
+  const userStore = useUserStore();
 
   const emits  = defineEmits(["watchData"]);
 
@@ -107,14 +109,12 @@
 
   const apiRequest = ref({
       companyId: "1101",
-      year: '112'
+      year: userStore.getYear()
   });
 
   (async() => {
+    console.log(apiRequest.value)
       data.value = await APICollection.QueryReportData(apiRequest);
-      if(route.path == "/ApplyEsgInfo"){
-        data.value.data={};
-      }
   })().catch(err=>{
       alert(err.resultMessage);
   });

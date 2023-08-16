@@ -544,9 +544,7 @@
             background:none;
           }
 
-          select{
-            background: #efefef;
-          }
+          
 
           input[type="text"],
           select{

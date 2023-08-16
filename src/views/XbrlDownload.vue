@@ -1,8 +1,10 @@
 <template>
 
   <div id="XbrlDownload">
-    <div>
-      <CommonCompanyTitle/>
+    <div id="issue-body">
+      <div class="title">
+        <CommonCompanyTitle/>
+      </div>
       <div class="content">
         <span>
           選擇年度
@@ -33,6 +35,17 @@
     margin: 20px auto;
     border-radius: 3px;
     box-sizing: border-box;
+
+    #issue-body{
+      background:#fff;
+    }
+
+    .title{
+      box-shadow: none;
+      width:auto;
+      border-bottom:1px solid #efefef;
+      padding:20px 40px 20px;
+    }
 
     #company{
       padding:20px 0 10px;
