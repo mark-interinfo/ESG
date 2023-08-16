@@ -13,7 +13,7 @@
                 <input id="inner" type="file" accept=".csv,.xls,.xlsx" @input="FileInfo">
               </span>
 
-              <span v-if="pathName1.includes(route.path)">
+              <span v-if="pathName.includes(route.path)">
                 <label for="aiInner" class="button buttonColor3">AI智能輸入</label>
                 <input id="aiInner" type="file" accept=".pdf" @input="FileInfo">
               </span>

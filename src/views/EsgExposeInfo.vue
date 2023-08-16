@@ -124,7 +124,9 @@
       if(document.querySelector("input[name='"+name+"'][type='radio']")){
         document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
       }else{
-        document.querySelector("[name='"+name+"']").value = value;
+        if(document.querySelector("[name='"+name+"']")){
+          document.querySelector("[name='"+name+"']").value = value;
+        };
       }
     };
   });
