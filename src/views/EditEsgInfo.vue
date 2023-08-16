@@ -193,9 +193,6 @@
               };
               alert(back.msg);
 
-              setTimeout(function(){
-                switchOpen();
-              },500);
             })().catch(err=>{
               alert("error : " + err.resultMessage);
             });
