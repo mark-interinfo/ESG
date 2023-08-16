@@ -42,10 +42,10 @@
                     <li id="apply"
                         :class="{'show': hasData === 'NO'}"
                     >
-                        <span>{{queryYear}}年ESG資料尚未申請</span>
+                        <span>{{queryYear}}年ESG資料尚未申報</span>
                         <span>
                             <router-link to="/ApplyEsgInfo">
-                                <input class="button buttonColor1" type="button" value="申請ESG資料">
+                                <input class="button buttonColor1" type="button" value="申報ESG資料">
                             </router-link>
                         </span>
                     </li>

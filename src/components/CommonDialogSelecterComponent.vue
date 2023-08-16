@@ -208,8 +208,7 @@ const search = function(event){
         padding-right:40px;
       }
       .selected-area{
-        max-width: 70vw;
-        width: calc(100% - 8px);
+        width: 70vw;
         padding: 8px 4px;
         min-height: 24px;
         margin-bottom: 4px;

@@ -59,7 +59,7 @@ const switchOpen = function(){
   function back(a,b){
     if(b[0].addedNodes && b[0].addedNodes.length > 0){
       for(var i=0;i<b[0].addedNodes.length;i++){
-        if(b[0].addedNodes[i].className.match("issue-item")){
+        if(b[0].addedNodes[i].className && b[0].addedNodes[i].className.match("issue-item")){
           run()
         };
       };
