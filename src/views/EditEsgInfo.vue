@@ -174,9 +174,24 @@
             (async() => {
               let back = await APICollection.UploadESGExcel(fileDetail);
 
-              //allIssue.value.push(back.allIssue)
-
               console.log(back.allIssue)
+
+              for(var i=0;i<back.allIssue.length;i++){
+                var key = back.allIssue[i].issueType;
+                var cont = 0;
+                for(var a=0;a<allIssue.value.length;a++){
+                  if(allIssue.value[a].issueType == key){
+                    allIssue.value[a] = back.allIssue[i];
+                    continue;
+                  };
+                  cont+=1;
+                };
+                console.log(cont,allIssue.length)
+                if(cont == allIssue.value.length){
+                  allIssue.value.push(back.allIssue[i]);
+                };
+              };
+
 
               console.log(allIssue.value)
 
