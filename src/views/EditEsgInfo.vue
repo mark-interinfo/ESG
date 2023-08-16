@@ -225,24 +225,8 @@
         document.querySelector(".issue-tag").click();
       },100)
     })
-    
 
     // 共用方法
-
-    const addNewIssue = function(newIssue){
-      allIssue.value.push(newIssue);
-    };
-
-    const addNewIssueCode = function(info){
-      let data = info.data;
-      console.log(info)
-      data.targetStatus = {
-        isOnYear: "",
-        isOn: true
-      }
-      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
-      allIssue.value[info.issueIndex].issueList.push(data);
-    }
 
     const watchData = (data) =>{
       getData.value = data;
