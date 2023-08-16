@@ -1,5 +1,5 @@
 <template>
-    <div id="editEsgInfo">
+    <div id="applyEsgInfo">
         <div class="content">
           <div class="title">
             <CommonCompanyTitle/>
@@ -411,7 +411,7 @@
 
     #issue-body{
       box-shadow: 0 5px 5px rgba(0,0,0,.2);
-      background:#fff;
+      background: #fff;;
     }
 
     .issue-item {

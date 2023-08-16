@@ -138,7 +138,7 @@ const linkGroup = ref([
     children: [
       {
         name: 'ESG資料申報',
-        href: '/'
+        href: '/SearchYearInfo'
       },
       // Nav申報作業 項目順序 套表在第二項
       {
