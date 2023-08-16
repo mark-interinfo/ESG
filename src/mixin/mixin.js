@@ -68,11 +68,9 @@ const switchOpen = function(){
     };
   };
 
-  if(issue.dataset.switch == "true"){
-    return;
-  };
+  
 
-  issue.dataset.switch = "true";
+  
 
   run();
   function run(){
@@ -154,9 +152,8 @@ const switchOpen = function(){
         };
       };
     };
-
-    titles[0].click();
   };
+
 };
 
 function monitor(obj,func,option){

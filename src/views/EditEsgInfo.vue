@@ -35,14 +35,13 @@
                 <div id="issue-header">
                   <div id="issue-tags">
                     <div class="issue-tag pointer"
-                    :class="{ 'selected': item === issueTypeSelected }"
-                    v-for="item in top"
-                    :data-item="item.issueKind"
-                    :data-id="item"
-                    :key="item"
-                    :id="item"
+                    v-for="item1 in top1"
+                    :data-item="item1.issueKind"
+                    :data-id="item1"
+                    :key="item1"
+                    :id="item1"
                     >
-                      {{ item }}
+                      {{ item1 }}
                     </div>
                   </div>
                   <div id="issue-toggle" class="pointer"></div>
@@ -60,18 +59,16 @@
 
           <!-- 國際準則指標設定 -->
           <template v-if="['/InternationalIndicators'].includes(route.path)">
-            <keep-alive>
               <div id="issue" class="InternationalIndicatorsContent">
                 <div id="issue-header">
                   <div id="issue-tags">
                     <div class="issue-tag pointer"
-                    :class="{ 'selected': item.key === issueTypeSelected }"
-                    v-for="item in top"
-                    :data-id="item"
-                    :key="item"
-                    :id="item"
+                    v-for="item2 in top2"
+                    :data-id="item2"
+                    :key="item2"
+                    :id="item2"
                     >
-                      {{ item }}
+                      {{ item2 }}
                     </div>
                   </div>
                   <div id="issue-toggle" class="pointer"></div>
@@ -83,32 +80,27 @@
                 @addInternationalIssue="addInternationalIssue"
                 />
               </div>
-            </keep-alive>
           </template>
 
           <!-- ESG資訊矩陣設定 -->
           <template v-if="['/EsgMatrix'].includes(route.path)">
-            <keep-alive>
               <div id="issue" class="EsgMatrix">
                 <div id="issue-header">
                   <div id="issue-tags">
                     <div class="issue-tag pointer"
-                      :class="{ 'selected': item.key === issueTypeSelected }"
-                      v-for="item in top"
-                      :data-id="item"
-                      :key="item.key"
+                      v-for="item3 in top3"
+                      :data-id="item3"
+                      :key="item3"
                     >
-                      {{ item }}
+                      {{ item3 }}
                     </div>
                   </div>
                 </div>
                 <EsgMatrixContent
-                :allInternationalTarget="allInternationalTarget"
+                :allMatrixTarget="allMatrixTarget"
                 :allMatrix="allMatrix"
-                :top="top"
                 />
               </div>
-            </keep-alive>
           </template>
       </div>
       <div id="esgExposeInfo">
@@ -123,7 +115,7 @@
     import EsgMatrixContent from './EsgMatrixContent.vue';
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
-    import { ref } from 'vue';
+    import { onMounted, onUpdated, ref } from 'vue';
     import { APICollection } from '../mixin/api';
     import { switchOpen } from '../mixin/mixin.js';
 
@@ -139,26 +131,22 @@
     const allIndustry = ref([]);
     const allIssue = ref([]);
     const allType = ref([]);
-    const top = ref([]);
+    const top1 = ref([]);
 
-    const issueTypeSelected = ref();
-
-    if(['/ExchangeIndicators'].includes(route.path)){
-      (async() => {
-        let apiData = await APICollection.QueryESGData({});
-        console.log(apiData)
-        allIndustry.value = apiData.allIndustry;
-        allIssue.value = apiData.allIssue;
-        allType.value = apiData.allType;
-        top.value = apiData.top;
-        top.value.push("+");
-        issueTypeSelected.value = top.value[0];
-      })().catch(err=>{
-        alert(err.resultMessage);
-      }).then(()=>{
-        switchOpen();
-      });
-    };
+    (async() => {
+      let apiData1 = await APICollection.QueryESGData({});
+      allIndustry.value = apiData1.allIndustry;
+      allIssue.value = apiData1.allIssue;
+      allType.value = apiData1.allType;
+      top1.value = apiData1.top;
+      top1.value.push("+");
+    })().catch(err=>{
+      alert("apiData1" + err.resultMessage);
+    }).then(()=>{
+      console.log(1)
+      switchOpen();
+    });
+    
 
     const addNewIssue = function(newIssue){
       allIssue.value.push(newIssue);
@@ -167,40 +155,45 @@
     // 國際準則指標設定
     const allInternationalIssue = ref([]);
     const allInternationalTarget = ref([]);
+    const top2 = ref([]);
 
-    if(['/InternationalIndicators'].includes(route.path)){
-      (async() => {
-        let apiData = await APICollection.QueryInternationalData({});
-        top.value = apiData.top;
-        top.value.push("+");
-        allInternationalIssue.value = apiData.allInternationalIssue;
-        allIndustry.value = apiData.allIndustry;
-        allInternationalTarget.value = apiData.allInternationalTarget;
-
-        issueTypeSelected.value = top.value[0];
-      })().catch(err=>{
-          alert(err.resultMessage);
-      }).then(()=>{
-        switchOpen();
-      })
-    }
-
+    (async() => {
+      let apiData2 = await APICollection.QueryInternationalData({});
+      allInternationalIssue.value = apiData2.allInternationalIssue;
+      allIndustry.value = apiData2.allIndustry;
+      allInternationalTarget.value = apiData2.allInternationalTarget;
+      top2.value = apiData2.top;
+      top2.value.push("+");
+    })().catch(err=>{
+        alert("apiData2" + err.resultMessage);
+    }).then(()=>{
+      switchOpen();
+    });
+    
+    
     // ESG資訊矩陣設定
     const allMatrix = ref();
+    const allMatrixTarget = ref([]);
+    const issueTypeSelected3 = ref();
+    const top3 = ref([]);
+    
+    (async() => {
+      let apiData3 = await APICollection.QueryMatrixData({});
+      console.log(apiData3)
+      allMatrixTarget.value = apiData3.allMatrixTarget;
+      allMatrix.value = apiData3.allMatrix;
+      top3.value = apiData3.top;
+    })().catch(err=>{
+        alert("apiData3" + err.resultMessage);
+    }).then(()=>{
+      switchOpen();
+    });
 
-    if(['/EsgMatrix'].includes(route.path)){
-      (async() => {
-        let apiData = await APICollection.QueryMatrixData({});
-        allInternationalTarget.value = apiData.allInternationalTarget;
-        allMatrix.value = apiData.allMatrix;
-        top.value = apiData.top;
-        issueTypeSelected.value = top.value[0];
-      })().catch(err=>{
-          alert(err.resultMessage);
-      }).then(()=>{
-        switchOpen();
-      })
-    }
+    onUpdated(()=>{
+      switchOpen();
+      document.querySelector(".issue-tag").click();
+    });
+    
 
     // 共用方法
 
@@ -370,6 +363,7 @@
     #issue-header {
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid #efefef;
 
       #issue-tags {
         font-size: 0;
@@ -446,7 +440,7 @@
       justify-content: space-between;
       padding: 13px 20px;
       font-size: 14px;
-      border: 1px solid #EFEFEF;
+      border-bottom: 1px solid #EFEFEF;
       cursor: pointer;
       
       + .issue-title {
