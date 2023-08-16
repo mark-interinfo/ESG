@@ -32,7 +32,9 @@
                     >
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
-                            <input class="button buttonColor2" type="button" value="閱覽">
+                            <router-link to="/LookEsgInfo">
+                                <input class="button buttonColor2" type="button" value="閱覽">
+                            </router-link>
                             <router-link to="/EditEsgInfo">
                                 <input class="button buttonColor2" type="button" value="編輯">
                             </router-link>

@@ -113,6 +113,9 @@ input[type="checkbox"][disabled]{
     background: url(/src/assets/images/checkbox-gray.svg) center/100% no-repeat;
 }
 
+input:not([disabled]),
+select:not([disabled]){cursor: pointer;}
+
 select{
     height: 40px;
     border: 1px solid #efefef;
@@ -122,7 +125,7 @@ select{
     border-radius:3px;
     appearance: none;
     color:#333;
-    background: url(/src/assets/images/select.svg) #FAFAFA calc(100% - 10px) center/auto no-repeat;
+    background: url(/src/assets/images/select.svg) #efefef calc(100% - 10px) center/auto no-repeat;
 }
 
 

@@ -13,7 +13,7 @@
     import { ref } from 'vue';
     import { useRoute } from 'vue-router';
     const route = useRoute();
-    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
+    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
     const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
 
     import { useUserStore } from '../pinia/user.js';
