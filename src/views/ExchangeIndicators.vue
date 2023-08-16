@@ -1,5 +1,5 @@
 <template>
-  <div id="issue">
+  <!-- <div id="issue">
     <div id="issue-header">
       <div id="issue-tags">
         <div class="issue-tag pointer"
@@ -22,50 +22,47 @@
       :allType="allType"
       />
     </div>
-  </div>
+  </div> -->
 </template>
-
 <script setup>
-  import { ref, onUpdated, watch } from 'vue';
-  import { switchOpen } from '../mixin/mixin.js';
-  import { APICollection } from '../mixin/api.js';
-  import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
+  // import { ref, onUpdated, watch } from 'vue';
+  // import { switchOpen } from '../mixin/mixin.js';
+  // import { APICollection } from '../mixin/api.js';
+  // import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
 
-  const apiRequest = ref({});
-  const emits = defineEmits(['watchData']);
+  // const apiRequest = ref({});
+  // const emits = defineEmits(['watchData']);
 
-  const allIndustry = ref([]);
-  const allIssue = ref([]);
-  const allType = ref([]);
-  const top = ref([]);
+  // const allIndustry = ref([]);
+  // const allIssue = ref([]);
+  // const allType = ref([]);
+  // const top = ref([]);
 
-  (async() => {
-    let apiData = await APICollection.QueryESGData(apiRequest);
-    allIndustry.value = apiData.allIndustry;
-    allIssue.value = apiData.allIssue;
-    allType.value = apiData.allType;
-    top.value = apiData.top;
-    top.value.push("+");
-    issueTypeSelected.value = top.value[0];
-  })().catch(err=>{
-      alert(err.resultMessage);
-  });;
-
-
-  watch(allIssue, ()=>{
-    emits('watchData', { allIssue: allIssue.value });
-  }, {deep: true});
+  // (async() => {
+  //   let apiData = await APICollection.QueryESGData(apiRequest);
+  //   allIndustry.value = apiData.allIndustry;
+  //   allIssue.value = apiData.allIssue;
+  //   allType.value = apiData.allType;
+  //   top.value = apiData.top;
+  //   top.value.push("+");
+  //   issueTypeSelected.value = top.value[0];
+  // })().catch(err=>{
+  //     alert(err.resultMessage);
+  // });;
 
 
+  // watch(allIssue, ()=>{
+  //   emits('watchData', { allIssue: allIssue.value });
+  // }, {deep: true});
 
 </script>
 <style lang="scss">
 
-  .ExchangeIndicators{
-    margin-top:20px!important;
+  // .ExchangeIndicators{
+  //   margin-top:20px!important;
 
-    span > input[type="button"]{width:350px;}
-    td[colspan]{text-align: right;}
-  }
+  //   span > input[type="button"]{width:350px;}
+  //   td[colspan]{text-align: right;}
+  // }
 
 </style>

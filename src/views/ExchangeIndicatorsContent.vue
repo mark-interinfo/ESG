@@ -203,14 +203,17 @@
             </svg>
             新增指標
           </div>
-          <div style="margin-bottom: 12px;">指標代號 : 1</div>
+          <div style="margin-bottom: 12px;">指標代號 : {{ newIssueNumber }}</div>
           <div style="margin-bottom: 12px;">
             <p class="label-title">
               適用產業別
             </p>
-            <div class="items pointer" style="max-width: 100%">
-              <span v-for="item in newIssueType" :key="item">
-                {{ item }}
+            <div class="items pointer"
+            style="max-width: 100%"
+            @click="openDialogSelecter(newIssueIndustry)"
+            >
+              <span v-for="industry in newIssueIndustry" :key="item">
+                {{ props.allIndustry.find(item => item.value === industry).name }}
               </span>
             </div>
           </div>
@@ -278,6 +281,8 @@
     },
   });
 
+  const emits = defineEmits(['addNewIssue']);
+
   const showIssueList = ref({});
   watch(props, ()=>{
     showIssueList.value = {};
@@ -298,20 +303,28 @@
   // 當前頁面的跳窗
   // 新增指標
   const isShowTargetDialog = ref(false);
+  const newIssueNumber = ref(0);
+  const newIssueKind = ref('');
+  const newIssueIndustry = ref([]);
+
   const showTargetDialog = function(){
     isShowTargetDialog.value = true;
+    newIssueNumber.value = document.querySelectorAll("#issue-body .issue-item:not([style*='none'])").length + 1;
+    newIssueKind.value = document.querySelector('')
   };
   const closeTargetDialog = function(){
     isShowTargetDialog.value = false;
   }
   const addNewIssue = function(data){
     isShowTargetDialog.value = false;
-    // props.allIssue.push({
-    //   issueKind: "環境",
-    //   issueList: [],
-    //   issueTitle: data,
-    //   issueType: 'E0005'
-    // });
+    emits('addNewIssue',
+      {
+        issueKind: "環境",
+        issueList: [],
+        issueTitle: data,
+        issueType: 'E0005'
+      }
+    );
   }
 
   // CommonDialogComponent
@@ -351,8 +364,12 @@
     isShowDialogSelecter.value = false;
   }
   const industrySetting = function(data){
+    if(isShowTargetDialog.value === true){
+      newIssueIndustry.value = data
+    } else {
+      changeList.value.targetCodeArray = data;
+    }
     isShowDialogSelecter.value = false;
-    changeList.value.targetCodeArray = data;
   }
 
 </script>

@@ -28,7 +28,6 @@
           </template>
           <div class="clear" @click="selectedClear"></div>
         </div>
-        
         <input
         type="text"
         v-model="searcher"
