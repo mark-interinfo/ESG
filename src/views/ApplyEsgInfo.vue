@@ -1,5 +1,5 @@
 <template>
-    <div id="editEsgInfo">
+    <div id="applyEsgInfo">
         <div class="content">
           <div class="title">
             <CommonCompanyTitle/>
@@ -51,9 +51,7 @@
                   :allIndustry="allIndustry"
                   :allIssue="allIssue"
                   :allType="allType"
-                  :showIssueList="showIssueList"
                   @addNewIssue="addNewIssue"
-                  @addNewIssueCode="addNewIssueCode"
                   />
                 </div>
               </div>
@@ -135,9 +133,6 @@
     const allType = ref([]);
     const top1 = ref([]);
 
-    const showIssueList = ref({});
-    const issueTypeSelected = ref();
-
     (async() => {
       let apiData1 = await APICollection.QueryESGData({});
       allIndustry.value = apiData1.allIndustry;
@@ -145,10 +140,6 @@
       allType.value = apiData1.allType;
       top1.value = apiData1.top;
       top1.value.push("+");
-
-      allIssue.value.forEach(issue=>{
-        showIssueList.value[issue.issueType] = '1';
-      });
     })().catch(err=>{
       alert("apiData1" + err.resultMessage);
     }).then(()=>{
@@ -160,17 +151,6 @@
     const addNewIssue = function(newIssue){
       allIssue.value.push(newIssue);
     };
-
-    const addNewIssueCode = function(info){
-      let data = info.data;
-      console.log(info)
-      data.targetStatus = {
-        isOnYear: "",
-        isOn: true
-      }
-      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
-      allIssue.value[info.issueIndex].issueList.push(data);
-    }
 
     // 國際準則指標設定
     const allInternationalIssue = ref([]);
@@ -431,7 +411,7 @@
 
     #issue-body{
       box-shadow: 0 5px 5px rgba(0,0,0,.2);
-      background:#fff;
+      background: #fff;;
     }
 
     .issue-item {

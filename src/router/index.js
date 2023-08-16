@@ -24,7 +24,7 @@ const routes = [
   {
     path: "/ApplyEsgInfo",
     name: "年度ESG揭露",
-    component: () => import("../views/EditEsgInfo.vue"),
+    component: () => import("../views/ApplyEsgInfo.vue"),
   },
   {
     path: "/EditEsgInfo",

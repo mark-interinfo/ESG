@@ -1,6 +1,6 @@
 <template>
-    <div id="EsgTemplate" class="content">
-        <div>
+    <div id="EsgTemplate">
+        <div class="content">
             <CommonCompanyTitle/>
             <div id="selectYear">
                 <span>選擇年度</span>
@@ -44,9 +44,17 @@
 
 </template>
 <style lang="scss" scoped>
+
+    .content{
+        width:880px;
+        margin:0 auto 20px;
+    }
+
     #selectYear{
         margin-top:10px;
         > span{vertical-align: middle;margin-right:20px;}
+
+        
     }
     #template{
         > div{
