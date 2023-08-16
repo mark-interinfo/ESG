@@ -31,7 +31,6 @@
 
           <!-- 證交所核心指標設定 -->
           <template v-if="['/ExchangeIndicators'].includes(route.path)">
-            <keep-alive>
               <div id="issue" >
                 <div id="issue-header">
                   <div id="issue-tags">
@@ -57,7 +56,6 @@
                   />
                 </div>
               </div>
-            </keep-alive>
           </template>
           <!--  -->
           <InternationalIndicators @watchData="watchData" v-if="['/InternationalIndicators'].includes(route.path)"/>
@@ -98,6 +96,7 @@
     if(['/ExchangeIndicators'].includes(route.path)){
       (async() => {
         let apiData = await APICollection.QueryESGData({});
+        console.log(apiData)
         allIndustry.value = apiData.allIndustry;
         allIssue.value = apiData.allIssue;
         allType.value = apiData.allType;
@@ -108,8 +107,8 @@
         alert(err.resultMessage);
       }).then(()=>{
         switchOpen();
-      })
-    }
+      });
+    };
 
     const addNewIssue = function(newIssue){
       allIssue.value.push(newIssue);
@@ -189,7 +188,6 @@
                   };
                   cont+=1;
                 };
-                console.log(cont,allIssue.length)
                 if(cont == allIssue.value.length){
                   allIssue.value.push(back.allIssue[i]);
                 };
@@ -198,6 +196,8 @@
 
             })().catch(err=>{
               alert("error : " + err.resultMessage);
+            }).then(()=>{
+              switchOpen();
             });
           };
 
