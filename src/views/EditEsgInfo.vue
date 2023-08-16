@@ -28,33 +28,36 @@
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
+
           <!-- 證交所核心指標設定 -->
           <template v-if="['/ExchangeIndicators'].includes(route.path)">
-            <div id="issue">
-              <div id="issue-header">
-                <div id="issue-tags">
-                  <div class="issue-tag pointer"
-                  :class="{ 'selected': item === issueTypeSelected }"
-                  v-for="item in top"
-                  :data-item="item.issueKind"
-                  :data-id="item"
-                  :key="item"
-                  :id="item"
-                  >
-                    {{ item }}
+            <keep-alive>
+              <div id="issue" >
+                <div id="issue-header">
+                  <div id="issue-tags">
+                    <div class="issue-tag pointer"
+                    :class="{ 'selected': item === issueTypeSelected }"
+                    v-for="item in top"
+                    :data-item="item.issueKind"
+                    :data-id="item"
+                    :key="item"
+                    :id="item"
+                    >
+                      {{ item }}
+                    </div>
                   </div>
+                  <div id="issue-toggle" class="pointer"></div>
                 </div>
-                <div id="issue-toggle" class="pointer"></div>
+                <div id="issue-body">
+                  <ExchangeIndicatorsContent
+                  :allIndustry="allIndustry"
+                  :allIssue="allIssue"
+                  :allType="allType"
+                  @addNewIssue="addNewIssue"
+                  />
+                </div>
               </div>
-              <div id="issue-body">
-                <ExchangeIndicatorsContent
-                :allIndustry="allIndustry"
-                :allIssue="allIssue"
-                :allType="allType"
-                @addNewIssue="addNewIssue"
-                />
-              </div>
-            </div>
+            </keep-alive>
           </template>
           <!--  -->
           <InternationalIndicators @watchData="watchData" v-if="['/InternationalIndicators'].includes(route.path)"/>
@@ -72,11 +75,12 @@
     import EsgMatrix from "../views/EsgMatrix.vue";
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
-    import { ref,onMounted } from 'vue';
+    import { ref } from 'vue';
     import { APICollection } from '../mixin/api';
     import { switchOpen } from '../mixin/mixin.js';
 
     const route = useRoute();
+
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
     const pathName2 = ref(["/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
@@ -94,7 +98,6 @@
     if(['/ExchangeIndicators'].includes(route.path)){
       (async() => {
         let apiData = await APICollection.QueryESGData({});
-        console.log(apiData)
         allIndustry.value = apiData.allIndustry;
         allIssue.value = apiData.allIssue;
         allType.value = apiData.allType;
@@ -246,6 +249,7 @@
       };
       fileReader.readAsDataURL(event.target.files[0]);
     };
+
 </script>
 
 <style lang="scss">
@@ -257,7 +261,6 @@
     box-shadow: 0 0 5px rgba(0,0,0,.2);
     border-radius: 3px;;
   }
-  
 
   .title:has( + #issue){
     width:100%;
