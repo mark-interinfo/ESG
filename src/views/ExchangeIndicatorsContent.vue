@@ -3,7 +3,7 @@
     <div>
       <div
       class="issue-item pointer"
-      v-for="issue in props.allIssue"
+      v-for="(issue, issueIndex) in allIssueComputed"
       :key="issue.issueType"
       :data-item="issue.issueKind"
       >
@@ -36,10 +36,10 @@
                   指標代號
                 </td>
                 <td>
-                  <select v-model="showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
+                  <select v-model="props.showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
                     <option :value="item" v-for="item in issue.issueList.map(item => item.targetType)" :key="item">{{ item }}</option>
                   </select>
-                  <span class="color-green" @click="openDialog(); dailogType='addIssueList';">
+                  <span class="color-green" @click="showAddIssueCodeDialog(issue.issueList.length, issueIndex); dailogType='addIssueList';">
                     新增指標代號
                   </span>
                 </td>
@@ -52,10 +52,10 @@
                   <td>
                     <div
                     class="items pointer"
-                    @click="openDialogSelecter(issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray, issue.issueList[showIssueList[issue.issueType] - 1])"
-                    v-if="issue.issueList[showIssueList[issue.issueType] - 1] && issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray"
+                    @click="openDialogSelecter(issue.issueList[props.showIssueList[issue.issueType] - 1].targetCodeArray, issue.issueList[props.showIssueList[issue.issueType] - 1])"
+                    v-if="issue.issueList[props.showIssueList[issue.issueType] - 1] && issue.issueList[props.showIssueList[issue.issueType] - 1].targetCodeArray"
                     >
-                      <span v-for="industry in issue.issueList[showIssueList[issue.issueType] - 1].targetCodeArray">
+                      <span v-for="industry in issue.issueList[props.showIssueList[issue.issueType] - 1].targetCodeArray">
                         {{ props.allIndustry.find(item => item.value === industry).name }}
                       </span>
                     </div>
@@ -66,8 +66,8 @@
                     指標名稱
                   </td>
                   <td>
-                    <template v-if="issue.issueList[showIssueList[issue.issueType] - 1]">
-                      <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetTitle">
+                    <template v-if="issue.issueList[props.showIssueList[issue.issueType] - 1]">
+                      <input type="text" v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetTitle">
                     </template>
                   </td>
               </tr>
@@ -76,20 +76,20 @@
                     指標備註
                   </td>
                   <td>
-                    <template v-if="issue.issueList[showIssueList[issue.issueType] - 1]">
-                      <input type="text" v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetNote">
+                    <template v-if="issue.issueList[props.showIssueList[issue.issueType] - 1]">
+                      <input type="text" v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetNote">
                     </template>
                   </td>
               </tr>
-              <tr v-if="issue.issueList[showIssueList[issue.issueType] - 1]">
-                  <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
-                    使用狀態
-                  </td>
-                  <td v-if="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus">
+              <tr v-if="issue.issueList[props.showIssueList[issue.issueType] - 1]">
+                <td v-if="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus">
+                  使用狀態
+                </td>
+                <td v-if="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus">
                     <div>
                       <label>
                         <input type="radio"
-                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
+                        v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn"
                         :value="true"
                         >
                         <span>開啟</span>
@@ -98,13 +98,13 @@
                     <div>
                       <label>
                         <input type="radio"
-                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn"
+                        v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn"
                         :value="false"
                         >
                         <span>停用，自</span>
                         <input type="text" class="year" placeholder="請輸入民國年"
-                        :disabled="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
-                        v-model="issue.issueList[showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
+                        :disabled="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
+                        v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
                         >
                         <span class="unit">年</span>
                         <span>起停用此項目</span>
@@ -112,8 +112,8 @@
                     </div>
                   </td>
               </tr>
-              <template v-if="issue.issueList[showIssueList[issue.issueType] - 1]">
-                <tr v-for="(target, targetIndex) in issue.issueList[showIssueList[issue.issueType] - 1].targetList">
+              <template v-if="issue.issueList[props.showIssueList[issue.issueType] - 1]">
+                <tr v-for="(target, targetIndex) in issue.issueList[props.showIssueList[issue.issueType] - 1].targetList">
                   <td></td>
                   <td>
                     <table class="indicators">
@@ -193,36 +193,26 @@
       </div>
     </div>
     <div class="buttonBox">
-      <input type="button" class="button buttonColor3" value="新增議題" @click="showTargetDialog(); dailogType = 'addIssue'">
+      <input type="button" class="button buttonColor3" value="新增議題" @click="showAddIssueDialog(); dailogType = 'addIssue'">
     </div>
     <!-- 新增議題 -->
     <div
     class="dialog-background"
-    :class="{'show': isShowTargetDialog}"
+    :class="{'show': isShowAddIssueDialog}"
+    @click.self="closeAddIssueDialog()"
     >
       <div class="dialog-block">
         <div class="dialog-content">
           <div class="dialog-title">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="48" rx="24" fill="#F5FDF9"/>
-              <path d="M24.0023 28.2C22.8884 28.2 21.8202 27.7575 21.0325 26.9698C20.2448 26.1822 19.8023 25.1139 19.8023 24C19.8023 22.8861 20.2448 21.8178 21.0325 21.0302C21.8202 20.2425 22.8884 19.8 24.0023 19.8C25.1163 19.8 26.1845 20.2425 26.9722 21.0302C27.7598 21.8178 28.2023 22.8861 28.2023 24C28.2023 25.1139 27.7598 26.1822 26.9722 26.9698C26.1845 27.7575 25.1163 28.2 24.0023 28.2ZM32.9183 25.164C32.9663 24.78 33.0023 24.396 33.0023 24C33.0023 23.604 32.9663 23.208 32.9183 22.8L35.4503 20.844C35.6783 20.664 35.7383 20.34 35.5943 20.076L33.1943 15.924C33.0503 15.66 32.7263 15.552 32.4623 15.66L29.4743 16.86C28.8503 16.392 28.2023 15.984 27.4463 15.684L27.0023 12.504C26.978 12.3627 26.9043 12.2345 26.7945 12.1423C26.6847 12.05 26.5458 11.9996 26.4023 12H21.6023C21.3023 12 21.0503 12.216 21.0023 12.504L20.5583 15.684C19.8023 15.984 19.1543 16.392 18.5303 16.86L15.5423 15.66C15.2783 15.552 14.9543 15.66 14.8103 15.924L12.4103 20.076C12.2543 20.34 12.3263 20.664 12.5543 20.844L15.0863 22.8C15.0383 23.208 15.0023 23.604 15.0023 24C15.0023 24.396 15.0383 24.78 15.0863 25.164L12.5543 27.156C12.3263 27.336 12.2543 27.66 12.4103 27.924L14.8103 32.076C14.9543 32.34 15.2783 32.436 15.5423 32.34L18.5303 31.128C19.1543 31.608 19.8023 32.016 20.5583 32.316L21.0023 35.496C21.0503 35.784 21.3023 36 21.6023 36H26.4023C26.7023 36 26.9543 35.784 27.0023 35.496L27.4463 32.316C28.2023 32.004 28.8503 31.608 29.4743 31.128L32.4623 32.34C32.7263 32.436 33.0503 32.34 33.1943 32.076L35.5943 27.924C35.7383 27.66 35.6783 27.336 35.4503 27.156L32.9183 25.164Z" fill="#2FB86D"/>
+            <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.25" y="0.5" width="48" height="48" rx="24" fill="#F5FDF9"/>
+              <path d="M14.25 31.5V17.5C14.25 16.9696 14.4607 16.4609 14.8358 16.0858C15.2109 15.7107 15.7196 15.5 16.25 15.5H32.25C32.7804 15.5 33.2891 15.7107 33.6642 16.0858C34.0393 16.4609 34.25 16.9696 34.25 17.5V31.5C34.25 32.0304 34.0393 32.5391 33.6642 32.9142C33.2891 33.2893 32.7804 33.5 32.25 33.5H16.25C15.7196 33.5 15.2109 33.2893 14.8358 32.9142C14.4607 32.5391 14.25 32.0304 14.25 31.5Z" fill="#2FB86D" stroke="#2FB86D" stroke-width="1.5"/>
+              <path d="M14.25 19.5H34.25H14.25ZM21.25 26.5H24.25H21.25ZM27.25 26.5H24.25H27.25ZM24.25 26.5V23.5V26.5ZM24.25 26.5V29.5V26.5Z" fill="#2FB86D"/>
+              <path d="M14.25 19.5H34.25M21.25 26.5H24.25M24.25 26.5H27.25M24.25 26.5V23.5M24.25 26.5V29.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             新增指標
           </div>
           <div style="margin-bottom: 12px;">指標代號 : {{ newIssueNumber }}</div>
-          <!-- <div style="margin-bottom: 12px;">
-            <p class="label-title">
-              適用產業別
-            </p>
-            <div class="items pointer"
-            style="max-width: 100%"
-            @click="openDialogSelecter(newIssueIndustry)"
-            >
-              <span v-for="industry in newIssueIndustry" :key="item">
-                {{ props.allIndustry.find(item => item.value === industry).name }}
-              </span>
-            </div>
-          </div> -->
           <label for="newIssueName">
             <p class="label-title">
               指標名稱
@@ -235,7 +225,7 @@
         <div class="dialog-footer">
           <button
           class="button buttonColor2"
-          @click="closeTargetDialog()"
+          @click="closeAddIssueDialog()"
           >
             取消
           </button>
@@ -248,6 +238,79 @@
         </div>
       </div>
     </div>
+
+    <!-- 新增指標代號 -->
+    <div
+    class="dialog-background"
+    :class="{'show': isShowAddIssueCodeDialog}"
+    @click.self="closeAddIssueCodeDialog"
+    >
+      <div class="dialog-block">
+        <div class="dialog-content">
+          <div class="dialog-title">
+            <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.25" y="0.5" width="48" height="48" rx="24" fill="#F5FDF9"/>
+              <path d="M14.25 31.5V17.5C14.25 16.9696 14.4607 16.4609 14.8358 16.0858C15.2109 15.7107 15.7196 15.5 16.25 15.5H32.25C32.7804 15.5 33.2891 15.7107 33.6642 16.0858C34.0393 16.4609 34.25 16.9696 34.25 17.5V31.5C34.25 32.0304 34.0393 32.5391 33.6642 32.9142C33.2891 33.2893 32.7804 33.5 32.25 33.5H16.25C15.7196 33.5 15.2109 33.2893 14.8358 32.9142C14.4607 32.5391 14.25 32.0304 14.25 31.5Z" fill="#2FB86D" stroke="#2FB86D" stroke-width="1.5"/>
+              <path d="M14.25 19.5H34.25H14.25ZM21.25 26.5H24.25H21.25ZM27.25 26.5H24.25H27.25ZM24.25 26.5V23.5V26.5ZM24.25 26.5V29.5V26.5Z" fill="#2FB86D"/>
+              <path d="M14.25 19.5H34.25M21.25 26.5H24.25M24.25 26.5H27.25M24.25 26.5V23.5M24.25 26.5V29.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            新增指標代號
+          </div>
+          <label>
+            <div style="margin-bottom: 12px;">
+              <p class="label-title">
+                指標代號 {{ newIssueCodeNumber }}
+              </p>
+            </div>
+            <div style="margin-bottom: 12px;">
+              <p class="label-title">
+                適用產業別
+              </p>
+              <div class="items pointer"
+              style="max-width: 100%"
+              @click="openDialogSelecter(newIssueCodeIndustry)"
+              >
+                <span v-for="industry in newIssueCodeIndustry" :key="item">
+                  {{ props.allIndustry.find(item => item.value === industry).name }}
+                </span>
+              </div>
+            </div>
+            <div style="margin-bottom: 12px;">
+              <p class="label-title">
+                指標名稱
+              </p>
+              <div class="input-group">
+                <input type="text" v-model="newIssueCodeName" placeholder="請填寫">
+              </div>
+            </div>
+            <div style="margin-bottom: 12px;">
+              <p class="label-title">
+                指標備註（選填）
+              </p>
+              <div class="input-group">
+                <input type="text" v-model="newIssueCodeNote" placeholder="請填寫">
+              </div>
+            </div>
+          </label>
+        </div>
+        <div class="dialog-footer">
+          <button
+          class="button buttonColor2"
+          @click="closeAddIssueCodeDialog()"
+          >
+            取消
+          </button>
+          <button
+          class="button buttonColor1"
+          @click="addNewIssueCode()"
+          >
+            確認
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 元件 -->
     <CommonDialogComponent
     :isShowDialog="isShowInputSetDialog"
     :dailogType="dailogType"
@@ -285,17 +348,21 @@
     allType: {
       type: Array,
     },
+    showIssueList: {
+      type: Object
+    }
   });
 
-  const emits = defineEmits(['addNewIssue']);
+  const emits = defineEmits(['addNewIssue', 'addNewIssueCode']);
 
-  const showIssueList = ref({});
-  watch(props, ()=>{
-    showIssueList.value = {};
-    props.allIssue.forEach(issue => {
-      showIssueList.value[issue.issueType] = '1';
-    });
-  });
+  const allIssueComputed = computed(()=> props.allIssue);
+  console.log(props.showIssueList)
+
+  // const showIssueList = ref({});
+  // showIssueList.value = {};
+  // props.allIssue.forEach(issue => {
+  //   showIssueList.value[issue.issueType] = '1';
+  // });
 
   const inputMethodComputed = computed(()=>{
     return (inputType)=>{
@@ -308,24 +375,23 @@
 
   // 當前頁面的跳窗
   // 當前頁面的跳窗 新增指標
-  const isShowTargetDialog = ref(false);
+  const isShowAddIssueDialog = ref(false);
   const newIssueNumber = ref(0);
   const newIssueName = ref('');
   const newIssueKind = ref('');
   const newIssueType = ref('');
-  const newIssueIndustry = ref([]);
 
-  const showTargetDialog = function(){
-    isShowTargetDialog.value = true;
+  const showAddIssueDialog = function(){
+    isShowAddIssueDialog.value = true;
     newIssueNumber.value = document.querySelectorAll("#issue-body .issue-item:not([style*='none'])").length + 1;
     newIssueKind.value = [...document.querySelectorAll("#issue-body .issue-item:not([style*='none'])")].at(-1).dataset.item;
     newIssueType.value = [...document.querySelectorAll("#issue-body .issue-item:not([style*='none'])")].at(-1).querySelector('.issue-title span').innerText.split(' ')[0].slice(0, 1);
   };
-  const closeTargetDialog = function(){
-    isShowTargetDialog.value = false;
+  const closeAddIssueDialog = function(){
+    isShowAddIssueDialog.value = false;
   }
   const addNewIssue = function(){
-    isShowTargetDialog.value = false;
+    isShowAddIssueDialog.value = false;
     emits('addNewIssue',
       {
         issueKind: newIssueKind.value,
@@ -338,10 +404,37 @@
     newIssueName.value = '';
     newIssueKind.value = '';
     newIssueType.value = '';
-    newIssueIndustry.value = [];
   }
-  // 當前頁面的跳窗 新增指標
+  // 當前頁面的跳窗 新增指標代號
+  const isShowAddIssueCodeDialog = ref(false);
+  const targetIssueIndex = ref(-1);
+  const newIssueCodeNumber = ref(0);
+  const newIssueCodeIndustry = ref([]);
+  const newIssueCodeName = ref('');
+  const newIssueCodeNote = ref('');
 
+  const showAddIssueCodeDialog = function(optionLength, issueIndex){
+    isShowAddIssueCodeDialog.value = true;
+    newIssueCodeNumber.value = optionLength + 1;
+    console.log(optionLength);
+    targetIssueIndex.value = issueIndex;
+  }
+  const closeAddIssueCodeDialog = function(){
+    isShowAddIssueCodeDialog.value = false;
+  }
+  const addNewIssueCode = function(){
+    isShowAddIssueCodeDialog.value = false;
+    emits('addNewIssueCode',
+      {
+        issueIndex: targetIssueIndex.value,
+        data: {
+          targetCodeArray: newIssueCodeIndustry.value,
+          targetTitle: newIssueCodeName.value,
+          targetNote: newIssueCodeNote.value,
+        }
+      }
+    );
+  }
 
   // CommonDialogComponent
   // 欄位設定
@@ -380,8 +473,8 @@
     isShowDialogSelecter.value = false;
   }
   const industrySetting = function(data){
-    if(isShowTargetDialog.value === true){
-      newIssueIndustry.value = data
+    if(isShowAddIssueCodeDialog.value === true){
+      newIssueCodeIndustry.value = data
     } else {
       changeList.value.targetCodeArray = data;
     }

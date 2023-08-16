@@ -53,7 +53,9 @@
                   :allIndustry="allIndustry"
                   :allIssue="allIssue"
                   :allType="allType"
+                  :showIssueList="showIssueList"
                   @addNewIssue="addNewIssue"
+                  @addNewIssueCode="addNewIssueCode"
                   />
                 </div>
               </div>
@@ -143,6 +145,9 @@
     const allType = ref([]);
     const top = ref([]);
 
+    // 內部顯示使用
+    const showIssueList = ref({});
+
     const issueTypeSelected = ref();
 
     if(['/ExchangeIndicators'].includes(route.path)){
@@ -154,6 +159,10 @@
         top.value = apiData.top;
         top.value.push("+");
         issueTypeSelected.value = top.value[0];
+
+        allIssue.value.forEach(issue=>{
+          showIssueList.value[issue.issueType] = '1';
+        });
       })().catch(err=>{
         alert(err.resultMessage);
       }).then(()=>{
@@ -164,6 +173,17 @@
     const addNewIssue = function(newIssue){
       allIssue.value.push(newIssue);
     };
+
+    const addNewIssueCode = function(info){
+      let data = info.data;
+      console.log(info)
+      data.targetStatus = {
+        isOnYear: "",
+        isOn: true
+      }
+      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
+      allIssue.value[info.issueIndex].issueList.push(data);
+    }
 
     // 國際準則指標設定
     const allInternationalIssue = ref([]);
