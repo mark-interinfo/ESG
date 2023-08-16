@@ -83,10 +83,10 @@
         }
 
 
-        // console.log(back);
-        // alert(back.state);
+        console.log(back);
+        alert(back.state);
       })().catch(err=>{
-        // alert(err.resultMessage);
+        alert(err.resultMessage);
       });
     };
 
@@ -99,7 +99,7 @@
       fileDetail.type = file.type;
 
       var fileReader = new FileReader();
-      
+
       fileReader.onload = function(e){
           fileDetail.result = e.target.result.split(",")[1];
           console.log(route.path)

@@ -205,6 +205,7 @@
     :isShowDialogSelecter="isShowDialogSelecter"
     :selectMulti="true"
     :option="props.allIndustry"
+    :optionType="'array'"
     :selected="targetIndustry"
     @closeDialogSelecter="closeDialogSelecter"
     @industrySetting="industrySetting"
@@ -252,11 +253,9 @@
   const targetInputMethod = ref();
   const changeTarget = ref();
 
-  // 新增指標
-
   const dailogType = ref('');
   const isShowDialog = ref(false);
-  const openDialog = function(optionList, inputMethod, target){
+  const openDialogByInp = function(optionList, inputMethod, target){
     isShowDialog.value = true;
     targetOptionList.value = optionList;
     targetInputMethod.value = inputMethod;
@@ -270,6 +269,8 @@
     changeTarget.value.optionList = data.optionSetting;
     changeTarget.value.type = data.inputMethod;
   }
+
+  // 新增指標
   const addNewIssue = function(data){
     isShowDialog.value = false;
     props.allIssue.push({

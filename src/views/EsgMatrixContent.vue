@@ -42,6 +42,7 @@
       :isShowDialogSelecter="isShowDialogSelecter"
       :selectMulti="true"
       :option="props.allInternationalTarget"
+      :optionType="'object'"
       :selected="targetIndustry"
       @closeDialogSelecter="closeDialogSelecter"
       @industrySetting="industrySetting"
@@ -52,7 +53,6 @@
 <script setup>
   import { ref } from 'vue';
   import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
-  
 
   const props = defineProps({
     allInternationalTarget: {

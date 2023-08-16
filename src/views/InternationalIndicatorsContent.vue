@@ -26,80 +26,82 @@
                 </select>
               </td>
           </tr>
-          <tr>
-              <td>
-                適用產業別
-              </td>
-              <td>
-                <div
-                class="items"
-                v-if="issue.internationalIssueList.length > 0"
-                @click="openDialogSelecter(
-                  issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray,
-                  issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])
-                )"
-                >
-                  <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">
-                    {{ props.allIndustry.find(item=> item.value === target).name }}
-                  </span>
-                </div>
-              </td>
-          </tr>
-          <tr>
-              <td>
-                指標名稱
-              </td>
-              <td>
-                <input
-                type="text"
-                v-if="issue.internationalIssueList.length > 0"
-                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetName"
-                >
-              </td>
-          </tr>
-          <tr>
-              <td>
-                指標備註
-              </td>
-              <td>
-                <input
-                type="text"
-                v-if="issue.internationalIssueList.length > 0"
-                v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
-                >
-              </td>
-          </tr>
-          <tr>
-              <td>
-                使用狀態
-              </td>
-              <td v-if="issue.internationalIssueList.length > 0">
-                <div>
-                  <label>
-                    <input type="radio"
-                    v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
-                    :value="true"
-                    >
-                    <span>開啟</span>
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="radio"
-                    v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
-                    :value="false"
-                    >
-                    <span>停用，自</span>
-                    <input type="text" class="year" placeholder="請輸入民國年"
-                    :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === true"
-                    v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOnYear"
-                    >
-                    <span class="unit">年</span>
-                    <span>起停用此項目</span>
-                  </label>
-                </div>
-              </td>
-          </tr>
+          <template v-if="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])">
+            <tr>
+                <td>
+                  適用產業別
+                </td>
+                <td>
+                  <div
+                  class="items"
+                  v-if="issue.internationalIssueList.length > 0"
+                  @click="openDialogSelecter(
+                    issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray,
+                    issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])
+                  )"
+                  >
+                    <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">
+                      {{ props.allIndustry.find(item=> item.value === target).name }}
+                    </span>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標名稱
+                </td>
+                <td>
+                  <input
+                  type="text"
+                  v-if="issue.internationalIssueList.length > 0"
+                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetName"
+                  >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  指標備註
+                </td>
+                <td>
+                  <input
+                  type="text"
+                  v-if="issue.internationalIssueList.length > 0"
+                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
+                  >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  使用狀態
+                </td>
+                <td v-if="issue.internationalIssueList.length > 0">
+                  <div>
+                    <label>
+                      <input type="radio"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
+                      :value="true"
+                      >
+                      <span>開啟</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <input type="radio"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
+                      :value="false"
+                      >
+                      <span>停用，自</span>
+                      <input type="text" class="year" placeholder="請輸入民國年"
+                      :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === true"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOnYear"
+                      >
+                      <span class="unit">年</span>
+                      <span>起停用此項目</span>
+                    </label>
+                  </div>
+                </td>
+            </tr>
+          </template>
           <tr>
             <td colspan="2">
               <input type="button" value="新增指標細項" class="button buttonColor3">
@@ -116,6 +118,7 @@
   :isShowDialogSelecter="isShowDialogSelecter"
   :selectMulti="true"
   :option="props.allIndustry"
+  :optionType="'array'"
   :selected="targetIndustry"
   @closeDialogSelecter="closeDialogSelecter"
   @industrySetting="industrySetting"
