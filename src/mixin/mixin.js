@@ -57,10 +57,12 @@ const switchOpen = function(){
   monitor("body",back,option);
 
   function back(a,b){
-    if(b[0].addedNodes && b[0].addedNodes.length > 0){
-      for(var i=0;i<b[0].addedNodes.length;i++){
-        if(b[0].addedNodes[i].className && b[0].addedNodes[i].className.match("issue-item")){
-          run()
+    for(var i=0;i<b.length;i++){
+      if(b[i].addedNodes && b[i].addedNodes.length > 0){
+        for(var a=0;a<b[i].addedNodes.length;a++){
+          if(b[i].addedNodes[a].className && b[i].addedNodes[a].className.match("issue-item")){
+            run()
+          };
         };
       };
     };
@@ -179,6 +181,7 @@ function monitor(obj,func,option){
       //records.map(function(record){console.log(record);});
       var X = [];
       records.map(function(record){X.push(record.type)});
+      console.log(X)
       if(X.length > 0){
           func(obj,records,triggerEvent);
       };
