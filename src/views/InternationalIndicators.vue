@@ -18,17 +18,16 @@
     :allInternationalIssue="allInternationalIssue"
     :allIndustry="allIndustry"
     :allInternationalTarget="allInternationalTarget"
+    @addInternationalIssue="addInternationalIssue"
     />
   </div>
 </template>
 
 <script setup>
-  import { ref , onUpdated, watch} from 'vue';
+  import { ref , onUpdated} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
   import { APICollection } from '../mixin/api.js';
-
-  const emits = defineEmits(['watchData']);
 
   const apiRequest = ref({});
   const allInternationalIssue = ref([]);
@@ -38,7 +37,6 @@
 
   (async() => {
     let apiData = await APICollection.QueryInternationalData(apiRequest);
-    console.log(apiData)
     top.value = apiData.top;
     top.value.push("+");
     allInternationalIssue.value = apiData.allInternationalIssue;
@@ -52,9 +50,9 @@
 
   const issueTypeSelected = ref();
 
-  watch(allInternationalIssue, ()=>{
-    emits('watchData', { allInternationalIssue: allInternationalIssue.value });
-  }, {deep: true});
+  const addInternationalIssue = function(newIssue){
+    allInternationalIssue.value.push(newIssue);
+  }
 
   onUpdated(()=>{
     switchOpen();

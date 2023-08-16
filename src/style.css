@@ -257,3 +257,43 @@ label:not([class]){
     color: #808080;
     font-weight: inherit;
 }
+
+.dialog-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0000004d;
+    width:100%;
+    max-width: unset !important;
+    height: 100%;
+    display: none;
+    z-index: 1;
+    &.show{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .dialog-block{
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 3px;
+      width: 100%;
+      max-width: 480px;
+      .dialog-content{
+        padding: 20px;
+        .dialog-title{
+          display: flex;
+          align-items: center;
+          color: #37D880;
+        }
+      }
+      .dialog-footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        background: #FAFAFA;
+      }
+    }
+  }

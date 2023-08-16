@@ -28,7 +28,7 @@
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
-          <!--  -->
+          <!-- 證交所核心指標設定 -->
           <template v-if="['/ExchangeIndicators'].includes(route.path)">
             <div id="issue">
               <div id="issue-header">
@@ -51,6 +51,7 @@
                 :allIndustry="allIndustry"
                 :allIssue="allIssue"
                 :allType="allType"
+                @addNewIssue="addNewIssue"
                 />
               </div>
             </div>
@@ -106,15 +107,18 @@
         switchOpen();
       })
     }
-    // /證交所核心指標設定
 
+    const addNewIssue = function(newIssue){
+      allIssue.value.push(newIssue);
+    };
+
+    // /證交所核心指標設定
 
     const watchData = (data) =>{
       getData.value = data;
     };
 
     const safeData = () =>{
-
       let data={};
 
       (async() => {
@@ -128,8 +132,7 @@
         }
         // 證交所核心指標設定
         if(route.path === '/ExchangeIndicators'){
-          data = getData.value;
-          back = await APICollection.ExecESGData(data);
+          back = await APICollection.ExecESGData({ allIssue: allIssue.value });
         }
         // 國際準則指標設定
         if(route.path === '/InternationalIndicators'){
@@ -141,7 +144,6 @@
           data = getData.value;
           back = await APICollection.ExecMatrixData(data);
         }
-
 
         console.log(back);
         alert(back.state);
@@ -247,8 +249,6 @@
       };
       fileReader.readAsDataURL(event.target.files[0]);
     };
-
-    
 </script>
 
 <style lang="scss">
