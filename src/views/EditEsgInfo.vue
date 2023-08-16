@@ -79,7 +79,7 @@
         // ESG資訊矩陣設定
         if(route.path === '/EsgMatrix'){
           data = getData.value;
-          back = await APICollection.ExecESGData(data);
+          back = await APICollection.ExecMatrixData(data);
         }
 
 

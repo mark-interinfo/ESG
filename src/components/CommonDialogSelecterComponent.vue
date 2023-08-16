@@ -5,10 +5,9 @@
   @click.self="closeDialogSelecter"
   id="selectList"
   >
-  {{( typeof props.option)}}
-    <div class="dialog">
+  <div class="dialog">
       <div class="dialog-content">
-        <div class="selected-area">
+        <div class="selected-area" v-if="(typeof props.option) === 'array'">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
               {{ props.option.find(option => option.value === item).name }}
@@ -17,6 +16,13 @@
           <span v-else>
             {{ selected }}
           </span>
+        </div>
+        <div class="selected-area" v-if="(typeof props.option) === 'object'">
+          <template v-for="(list, key) in selected">
+            <span v-for="item in list">
+              {{ props.option[key].find(option => option.value === item).name }}
+            </span>
+          </template>
         </div>
         <div class="clear">
           <span @click="selectedClear">清除已選項目</span>
@@ -28,23 +34,49 @@
         @keyup.enter="search($event)"
         >
         <div class="option">
-          <div
-          v-for="item in props.option"
-          :key="item.name"
-          >
-            <label
-            :data-info="`${item.name} ${item.value}`"
-            :for="item.name"
+          <template v-if="(typeof props.option) === 'array'">
+            <div
+            v-for="item in props.option"
+            :key="item.name"
             >
-              <input
-              :type="props.selectMulti ? 'checkbox' : 'radio'"
-              :id="item.name"
-              :value="item.value"
-              v-model="selected"
+              <label
+              :data-info="`${item.name} ${item.value}`"
+              :for="item.name"
               >
-              {{item.name}}
-            </label>
-          </div>
+                <input
+                :type="props.selectMulti ? 'checkbox' : 'radio'"
+                :id="item.name"
+                :value="item.value"
+                v-model="selected"
+                >
+                {{item.name}}
+              </label>
+            </div>
+          </template>
+          <template v-if="(typeof props.option) === 'object'">
+            <div
+            v-for="(kind, key) in props.option"
+            :key="key"
+            >
+              <div
+              v-for="item in kind"
+              :key="item.value"
+              >
+                <label
+                :data-info="`${item.name} ${item.value}`"
+                :for="item.name"
+                >
+                  <input
+                  :type="props.selectMulti ? 'checkbox' : 'radio'"
+                  :id="item.name"
+                  :value="item.value"
+                  v-model="selected[key]"
+                  >
+                  {{item.name}}
+                </label>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
       <div class="dialog-footer">
@@ -68,14 +100,13 @@ const props = defineProps({
     type: Array || Object,
   },
   selected: {
-    type: Array || String,
   }
 });
 
 const emits = defineEmits(['closeDialogSelecter', 'industrySetting']);
 
 const searcher = ref('');
-const selected = ref('');
+const selected = ref([]);
 
 watch(props, ()=>{
   if(props){

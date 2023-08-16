@@ -1,11 +1,6 @@
 <template>
-  
   <div id="issue-body">
-    <div
-    class="pointer"
-    
-    >
-      
+    <div class="pointer">
       <div class="issue-content">
         <table>
           <tr>
@@ -18,7 +13,7 @@
               </span>
             </td>
           </tr>
-          <tr 
+          <tr
             v-for="issue in props.allMatrix"
             :key="issue.id"
             :data-item ="issue.ISSUE_KIND"
@@ -30,28 +25,27 @@
             <td>
               <div
                 class="items"
-                @click="openDialogSelecter(issue.Matrix.GRI,issue)"
+                @click="openDialogSelecter(issue.Matrix, issue)"
               >
-                <span 
-                  v-for="target in issue.Matrix"
-                >
-                {{props.allInternationalTarget.GRI.find((item)=> item.value == target).name}}</span>
-                <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI">
+                <template v-for="(checkedList, type) in issue.Matrix">
+                  <span v-for="checkedItem in checkedList">
+                    {{ props.allInternationalTarget[type].find(item => item.value === checkedItem).name }}
+                  </span>
+                </template>
+                <!-- <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI"> -->
               </div>
             </td>
           </tr>
-          
-          </table>
+        </table>
       </div>
       <CommonDialogSelecterComponent
       :isShowDialogSelecter="isShowDialogSelecter"
       :selectMulti="true"
-      :option="props.allInternationalTarget && props.allInternationalTarget.GRI"
+      :option="props.allInternationalTarget"
       :selected="targetIndustry"
       @closeDialogSelecter="closeDialogSelecter"
       @industrySetting="industrySetting"
       />
-      
     </div>
   </div>
 </template>
@@ -77,7 +71,7 @@
   const changeList = ref([]);
   const isShowDialogSelecter = ref(false);
 
-  const openDialogSelecter = function(industry,list){
+  const openDialogSelecter = function(industry, list){
     targetIndustry.value = industry;
     isShowDialogSelecter.value = true;
     changeList.value = list;

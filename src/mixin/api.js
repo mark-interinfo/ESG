@@ -50,6 +50,8 @@ const APICollection = {
   QueryMatrixData: ((requestBody) => callAPI('QueryMatrixData', requestBody)),
   // 儲存國際準則設定
   ExecInternationalData: ((requestBody) => callAPI('ExecInternationalData', requestBody)),
+  // ESG資訊矩陣設定
+  ExecMatrixData: ((requestBody) => callAPI('ExecMatrixData', requestBody)),
 };
 
 export { APICollection };

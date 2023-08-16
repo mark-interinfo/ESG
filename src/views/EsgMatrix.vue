@@ -21,12 +21,12 @@
 </template>
 
 <script setup>
-  import { ref ,onUpdated} from 'vue';
+  import { ref ,onUpdated, watch} from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import EsgMatrixContent from './EsgMatrixContent.vue';
   import { APICollection } from '../mixin/api';
-  import { useUserStore } from "../pinia/user.js";
-  const userStore = useUserStore();
+
+  const emits = defineEmits(['watchData']);
 
   const apiRequest = ref({});
   const allInternationalTarget = ref();
@@ -35,23 +35,25 @@
   const data = ref();
 
   (async() => {
-      
     data.value = await APICollection.QueryMatrixData(apiRequest);
     allInternationalTarget.value = data.value.allInternationalTarget;
     allMatrix.value = data.value.allMatrix;
     top.value = data.value.top;
     top.value.push("+");
     issueTypeSelected.value = top.value[0];
-    console.log(await APICollection.QueryMatrixData(apiRequest))
   })().catch(err=>{
       alert(err.resultMessage);
   });
 
   const issueTypeSelected = ref();
 
+  watch(allMatrix, ()=>{
+    emits('watchData', { allMatrix: allMatrix.value });
+  }, {deep: true});
+
   onUpdated(()=>{
     switchOpen();
-  }); 
+  });
 
 </script>
 <style lang="scss">
