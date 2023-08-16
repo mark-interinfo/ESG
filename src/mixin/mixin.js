@@ -181,7 +181,7 @@ function monitor(obj,func,option){
       //records.map(function(record){console.log(record);});
       var X = [];
       records.map(function(record){X.push(record.type)});
-      console.log(X)
+      //console.log(X)
       if(X.length > 0){
           func(obj,records,triggerEvent);
       };
