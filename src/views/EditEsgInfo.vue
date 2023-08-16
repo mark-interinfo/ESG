@@ -162,8 +162,8 @@
 
       fileReader.onload = function(e){
           fileDetail.result = e.target.result.split(",")[1];
-          console.log(route.path)
-          console.log(fileDetail)
+          //console.log(route.path)
+          //console.log(fileDetail)
 
           //指標匯入
           if(id == "inner" && pathName2.value.includes(route.path)){
@@ -171,10 +171,17 @@
             inner.value="";
             (async() => {
               let back = await APICollection.UploadESGExcel(fileDetail);
-              console.log(back);
+
+              //allIssue.value.push(back.allIssue)
+
+              console.log(back.allIssue)
+
+              console.log(allIssue.value)
+
+
+
               alert(back.msg);
             })().catch(err=>{
-              console.log(err)
               alert("error : " + err.resultMessage);
             });
           };
