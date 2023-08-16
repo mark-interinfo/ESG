@@ -57,9 +57,59 @@
                 </div>
               </div>
           </template>
-          <!--  -->
-          <InternationalIndicators @watchData="watchData" v-if="['/InternationalIndicators'].includes(route.path)"/>
-          <EsgMatrix @watchData="watchData" v-if="['/EsgMatrix'].includes(route.path)"/>
+
+          <!-- 國際準則指標設定 -->
+          <template v-if="['/InternationalIndicators'].includes(route.path)">
+            <keep-alive>
+              <div id="issue" class="InternationalIndicatorsContent">
+                <div id="issue-header">
+                  <div id="issue-tags">
+                    <div class="issue-tag pointer"
+                    :class="{ 'selected': item.key === issueTypeSelected }"
+                    v-for="item in top"
+                    :data-id="item"
+                    :key="item"
+                    :id="item"
+                    >
+                      {{ item }}
+                    </div>
+                  </div>
+                  <div id="issue-toggle" class="pointer"></div>
+                </div>
+                <InternationalIndicatorsContent
+                :allInternationalIssue="allInternationalIssue"
+                :allIndustry="allIndustry"
+                :allInternationalTarget="allInternationalTarget"
+                @addInternationalIssue="addInternationalIssue"
+                />
+              </div>
+            </keep-alive>
+          </template>
+
+          <!-- ESG資訊矩陣設定 -->
+          <template v-if="['/EsgMatrix'].includes(route.path)">
+            <keep-alive>
+              <div id="issue" class="EsgMatrix">
+                <div id="issue-header">
+                  <div id="issue-tags">
+                    <div class="issue-tag pointer"
+                      :class="{ 'selected': item.key === issueTypeSelected }"
+                      v-for="item in top"
+                      :data-id="item"
+                      :key="item.key"
+                    >
+                      {{ item }}
+                    </div>
+                  </div>
+                </div>
+                <EsgMatrixContent
+                :allInternationalTarget="allInternationalTarget"
+                :allMatrix="allMatrix"
+                :top="top"
+                />
+              </div>
+            </keep-alive>
+          </template>
       </div>
       <div id="esgExposeInfo">
           <EsgExposeInfo @watchData="watchData" v-if="pathName.includes(route.path)"/>
@@ -69,8 +119,8 @@
 <script setup>
     import EsgExposeInfo from "../views/EsgExposeInfo.vue";
     import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
-    import InternationalIndicators from "../views/InternationalIndicators.vue";
-    import EsgMatrix from "../views/EsgMatrix.vue";
+    import InternationalIndicatorsContent from './InternationalIndicatorsContent.vue';
+    import EsgMatrixContent from './EsgMatrixContent.vue';
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
     import { ref } from 'vue';
@@ -114,7 +164,45 @@
       allIssue.value.push(newIssue);
     };
 
-    // /證交所核心指標設定
+    // 國際準則指標設定
+    const allInternationalIssue = ref([]);
+    const allInternationalTarget = ref([]);
+
+    if(['/InternationalIndicators'].includes(route.path)){
+      (async() => {
+        let apiData = await APICollection.QueryInternationalData({});
+        top.value = apiData.top;
+        top.value.push("+");
+        allInternationalIssue.value = apiData.allInternationalIssue;
+        allIndustry.value = apiData.allIndustry;
+        allInternationalTarget.value = apiData.allInternationalTarget;
+
+        issueTypeSelected.value = top.value[0];
+      })().catch(err=>{
+          alert(err.resultMessage);
+      }).then(()=>{
+        switchOpen();
+      })
+    }
+
+    // ESG資訊矩陣設定
+    const allMatrix = ref();
+
+    if(['/EsgMatrix'].includes(route.path)){
+      (async() => {
+        let apiData = await APICollection.QueryMatrixData({});
+        allInternationalTarget.value = apiData.allInternationalTarget;
+        allMatrix.value = apiData.allMatrix;
+        top.value = apiData.top;
+        issueTypeSelected.value = top.value[0];
+      })().catch(err=>{
+          alert(err.resultMessage);
+      }).then(()=>{
+        switchOpen();
+      })
+    }
+
+    // 共用方法
 
     const watchData = (data) =>{
       getData.value = data;
@@ -139,12 +227,12 @@
         // 國際準則指標設定
         if(route.path === '/InternationalIndicators'){
           data = getData.value;
-          back = await APICollection.ExecInternationalData(data);
+          back = await APICollection.ExecInternationalData({ allInternationalIssue: allInternationalIssue.value});
         }
         // ESG資訊矩陣設定
         if(route.path === '/EsgMatrix'){
           data = getData.value;
-          back = await APICollection.ExecMatrixData(data);
+          back = await APICollection.ExecMatrixData({ allMatrix: allMatrix.value});
         }
 
         console.log(back);
