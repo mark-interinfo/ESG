@@ -96,6 +96,8 @@
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api';
   import CommonNoticeComponent from '../components/CommonNoticeComponent.vue';
+  import { useRoute } from 'vue-router';
+  const route = useRoute();
 
   const emits  = defineEmits(["watchData"]);
 
@@ -110,25 +112,32 @@
 
   (async() => {
       data.value = await APICollection.QueryReportData(apiRequest);
+      if(route.path == "/ApplyEsgInfo"){
+        data.value.data={};
+      }
   })().catch(err=>{
       alert(err.resultMessage);
   });
 
   onUpdated(()=>{
-    switchOpen();
 
-    for(var i=0;i<Object.keys(data.value.data).length;i++){
-      let name = Object.keys(data.value.data)[i];
-      let value = data.value.data[name];
-
-      if(document.querySelector("input[name='"+name+"'][type='radio']")){
-        document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
-      }else{
-        if(document.querySelector("[name='"+name+"']")){
-          document.querySelector("[name='"+name+"']").value = value;
-        };
-      }
+    if(route.path == "/LookEsgInfo"){
+      var input = document.querySelectorAll("input");
+      console.log
+      for(var i=0;i<input.length;i++){
+        input[i].setAttribute("disabled","disabled");
+      };
+      var select = document.querySelectorAll("select");
+      for(var i=0;i<select.length;i++){
+        select[i].setAttribute("disabled","disabled");
+      };
     };
+
+    setTimeout(()=>{
+      switchOpen();
+      document.querySelector(".issue-tag").click();
+    },100)
+    
   });
 
   watch(data, ()=>{

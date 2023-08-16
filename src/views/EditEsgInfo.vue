@@ -6,7 +6,7 @@
             <span id="buttonBox">
 
               <!--下載範本-->
-              <a download href="https://192.168.10.108/poc/samples/ESGReportData.xls" v-if="pathName.includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.108/poc/samples/ESGReportData.xls" v-if="pathName3.includes(route.path)" class="button buttonColor3">下載範本</a>
               <a download href="https://192.168.10.108/poc/samples/CoreESGData.xls" v-if="['/ExchangeIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
               <a download href="https://192.168.10.108/poc/samples/InternationalData.xls" v-if="['/InternationalIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
               <a download href="https://192.168.10.108/poc/samples/ESGMatrixData.xls" v-if="['/EsgMatrix'].includes(route.path)" class="button buttonColor3">下載範本</a>
@@ -18,12 +18,12 @@
                 <input id="inner" type="file" accept=".csv,.xls,.xlsx" @input="FileInfo">
               </span>
 
-              <span v-if="pathName.includes(route.path)">
+              <span v-if="pathName3.includes(route.path)">
                 <label for="aiInner" class="button buttonColor3">AI智能輸入</label>
                 <input id="aiInner" type="file" accept=".pdf" @input="FileInfo">
               </span>
 
-              <input v-if="pathName.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
+              <input v-if="pathName3.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
 
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
@@ -123,9 +123,10 @@
 
     const route = useRoute();
 
-    const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
+    const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
     const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
     const pathName2 = ref(["/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
+    const pathName3 = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
 
     const getData = ref();
 
@@ -136,8 +137,7 @@
     const top1 = ref([]);
 
     const showIssueList = ref({});
-    const issueTypeSelected = ref();
-
+    
     (async() => {
       let apiData1 = await APICollection.QueryESGData({});
       allIndustry.value = apiData1.allIndustry;
@@ -152,26 +152,9 @@
     })().catch(err=>{
       alert("apiData1" + err.resultMessage);
     }).then(()=>{
-      console.log(1)
       switchOpen();
     });
     
-
-    const addNewIssue = function(newIssue){
-      allIssue.value.push(newIssue);
-    };
-
-    const addNewIssueCode = function(info){
-      let data = info.data;
-      console.log(info)
-      data.targetStatus = {
-        isOnYear: "",
-        isOn: true
-      }
-      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
-      allIssue.value[info.issueIndex].issueList.push(data);
-    }
-
     // 國際準則指標設定
     const allInternationalIssue = ref([]);
     const allInternationalTarget = ref([]);
@@ -190,7 +173,6 @@
       switchOpen();
     });
     
-    
     // ESG資訊矩陣設定
     const allMatrix = ref();
     const allMatrixTarget = ref([]);
@@ -199,7 +181,6 @@
     
     (async() => {
       let apiData3 = await APICollection.QueryMatrixData({});
-      console.log(apiData3)
       allMatrixTarget.value = apiData3.allMatrixTarget;
       allMatrix.value = apiData3.allMatrix;
       top3.value = apiData3.top;
@@ -219,6 +200,21 @@
 
     // 共用方法
 
+    const addNewIssue = function(newIssue){
+      allIssue.value.push(newIssue);
+    };
+
+    const addNewIssueCode = function(info){
+      let data = info.data;
+      console.log(info)
+      data.targetStatus = {
+        isOnYear: "",
+        isOn: true
+      }
+      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
+      allIssue.value[info.issueIndex].issueList.push(data);
+    }
+
     const watchData = (data) =>{
       getData.value = data;
     };
@@ -228,19 +224,20 @@
 
       (async() => {
         let back = '';
-        // 申報頁面
-        if(route.path === '/EditEsgInfo'){
+        // 申報編輯頁面
+        if(route.path == '/EditEsgInfo'|| route.path == '/ApplyEsgInfo'){
           data.year = getData.value.year;
           data.data = getData.value.data;
           data.companyId = getData.value.companyId;
           back = await APICollection.ExecReportData(data);
         }
+
         // 證交所核心指標設定
-        if(route.path === '/ExchangeIndicators'){
+        if(route.path == '/ExchangeIndicators'){
           back = await APICollection.ExecESGData({ allIssue: allIssue.value });
         }
         // 國際準則指標設定
-        if(route.path === '/InternationalIndicators'){
+        if(route.path == '/InternationalIndicators'){
           data = getData.value;
           back = await APICollection.ExecInternationalData({ allInternationalIssue: allInternationalIssue.value});
         }
