@@ -102,11 +102,25 @@
       
       fileReader.onload = function(e){
           fileDetail.result = e.target.result.split(",")[1];
-
+          console.log(route.path)
           console.log(fileDetail)
 
-          //匯入
-          if(id == "inner"){
+          //指標匯入
+          if(id == "inner" && pathName2.value.includes(route.path)){
+            console.log("指標匯入")
+            inner.value="";
+            (async() => {
+              let back = await APICollection.UploadESGExcel(fileDetail);
+              console.log(back);
+              back.data && setInputValue(back.data);
+              alert(back.msg);
+            })().catch(err=>{
+              alert(err.resultMessage);
+            });
+          };
+
+          //申報匯入
+          if(id == "inner" && pathName.value.includes(route.path)){
             inner.value="";
             (async() => {
               let back = await APICollection.UploadRepotExcel(fileDetail);
@@ -119,7 +133,7 @@
           };
 
           //AI智能輸入
-          if(id == "aiInner"){
+          if(id == "aiInner" && pathName.value.includes(route.path)){
             aiInner.value = "";
             (async() => {
               let back = await APICollection.UploadPDF(fileDetail);

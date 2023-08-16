@@ -52,6 +52,8 @@ const APICollection = {
   ExecInternationalData: ((requestBody) => callAPI('ExecInternationalData', requestBody)),
   // ESG資訊矩陣設定
   ExecMatrixData: ((requestBody) => callAPI('ExecMatrixData', requestBody)),
+  // 上傳excel
+  UploadESGExcel: ((requestBody) => callAPI('UploadESGExcel', requestBody)),
 };
 
 export { APICollection };
