@@ -105,7 +105,6 @@
           <tr>
             <td colspan="2">
               <input type="button" value="新增指標細項" class="button buttonColor3">
-              <input type="button" value="更新設定" class="button buttonColor1" @click="updateInputSetting">
             </td>
           </tr>
         </table>

@@ -301,11 +301,11 @@
       <div></div>
     </div>
 
-    <CommonDialogSelecterComponent
+    <!-- <CommonDialogSelecterComponent
     :isShowDialogSelecter="isShowDialogSelecter"
     :selectMulti="true"
     :selected="newIssueType"
-    />
+    /> -->
 
   </div>
 </template>

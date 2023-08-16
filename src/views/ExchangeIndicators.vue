@@ -51,15 +51,12 @@
       alert(err.resultMessage);
   });;
 
-  const issueTypeSelected = ref();
 
   watch(allIssue, ()=>{
     emits('watchData', { allIssue: allIssue.value });
   }, {deep: true});
 
-  onUpdated(()=>{
-    switchOpen();
-  });
+
 
 </script>
 <style lang="scss">

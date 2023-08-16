@@ -39,7 +39,6 @@
     allInternationalTarget.value = data.value.allInternationalTarget;
     allMatrix.value = data.value.allMatrix;
     top.value = data.value.top;
-    top.value.push("+");
     issueTypeSelected.value = top.value[0];
   })().catch(err=>{
       alert(err.resultMessage);

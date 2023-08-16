@@ -176,6 +176,7 @@ span{display:inline-block;}
 
 ::placeholder{color:#bebebe;}
 
+a.button,
 label.button{
     display:inline-block;
     line-height: 20px;;
@@ -196,12 +197,12 @@ label:not([class]){
     border-radius: 3px;
 
     > span{
-        width:calc(100% - 400px);
+        width:calc(100% - 500px);
         vertical-align: middle;
     }
 
     > span + #buttonBox{
-        width:400px;
+        width:500px;
         text-align: right;
     }
 }

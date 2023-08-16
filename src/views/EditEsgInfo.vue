@@ -4,7 +4,12 @@
           <div class="title">
             <CommonCompanyTitle/>
             <span id="buttonBox">
-              <input v-if="pathName1.includes(route.path)" class="button buttonColor3" id="del" type="button" value="下載範本">
+
+              <!--下載範本-->
+              <a download href="https://192.168.10.108/poc/samples/ESGReportData.xls" v-if="pathName.includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.108/poc/samples/CoreESGData.xls" v-if="['/ExchangeIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.108/poc/samples/InternationalData.xls" v-if="['/InternationalIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.108/poc/samples/ESGMatrixData.xls" v-if="['/EsgMatrix'].includes(route.path)" class="button buttonColor3">下載範本</a>
 
               <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
 
@@ -23,7 +28,34 @@
               <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
-          <ExchangeIndicators @watchData="watchData" v-if="['/ExchangeIndicators'].includes(route.path)"/>
+          <!--  -->
+          <template v-if="['/ExchangeIndicators'].includes(route.path)">
+            <div id="issue">
+              <div id="issue-header">
+                <div id="issue-tags">
+                  <div class="issue-tag pointer"
+                  :class="{ 'selected': item === issueTypeSelected }"
+                  v-for="item in top"
+                  :data-item="item.issueKind"
+                  :data-id="item"
+                  :key="item"
+                  :id="item"
+                  >
+                    {{ item }}
+                  </div>
+                </div>
+                <div id="issue-toggle" class="pointer"></div>
+              </div>
+              <div id="issue-body">
+                <ExchangeIndicatorsContent
+                :allIndustry="allIndustry"
+                :allIssue="allIssue"
+                :allType="allType"
+                />
+              </div>
+            </div>
+          </template>
+          <!--  -->
           <InternationalIndicators @watchData="watchData" v-if="['/InternationalIndicators'].includes(route.path)"/>
           <EsgMatrix @watchData="watchData" v-if="['/EsgMatrix'].includes(route.path)"/>
       </div>
@@ -34,13 +66,14 @@
 </template>
 <script setup>
     import EsgExposeInfo from "../views/EsgExposeInfo.vue";
-    import ExchangeIndicators from "../views/ExchangeIndicators.vue";
+    import ExchangeIndicatorsContent from './ExchangeIndicatorsContent.vue';
     import InternationalIndicators from "../views/InternationalIndicators.vue";
     import EsgMatrix from "../views/EsgMatrix.vue";
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
-    import { ref } from 'vue';
+    import { ref,onMounted } from 'vue';
     import { APICollection } from '../mixin/api';
+    import { switchOpen } from '../mixin/mixin.js';
 
     const route = useRoute();
     const pathName = ref(["/EditEsgInfo","/ApplyEsgInfo"]);
@@ -48,6 +81,33 @@
     const pathName2 = ref(["/ExchangeIndicators","/InternationalIndicators","/EsgMatrix"]);
 
     const getData = ref();
+
+    // 證交所核心指標設定
+    const allIndustry = ref([]);
+    const allIssue = ref([]);
+    const allType = ref([]);
+    const top = ref([]);
+
+    const issueTypeSelected = ref();
+
+    if(['/ExchangeIndicators'].includes(route.path)){
+      (async() => {
+        let apiData = await APICollection.QueryESGData({});
+        console.log(apiData)
+        allIndustry.value = apiData.allIndustry;
+        allIssue.value = apiData.allIssue;
+        allType.value = apiData.allType;
+        top.value = apiData.top;
+        top.value.push("+");
+        issueTypeSelected.value = top.value[0];
+      })().catch(err=>{
+        alert(err.resultMessage);
+      }).then(()=>{
+        switchOpen();
+      })
+    }
+    // /證交所核心指標設定
+
 
     const watchData = (data) =>{
       getData.value = data;
@@ -102,8 +162,8 @@
 
       fileReader.onload = function(e){
           fileDetail.result = e.target.result.split(",")[1];
-          console.log(route.path)
-          console.log(fileDetail)
+          //console.log(route.path)
+          //console.log(fileDetail)
 
           //指標匯入
           if(id == "inner" && pathName2.value.includes(route.path)){
@@ -111,49 +171,63 @@
             inner.value="";
             (async() => {
               let back = await APICollection.UploadESGExcel(fileDetail);
-              console.log(back);
-              back.data && setInputValue(back.data);
+
+              //allIssue.value.push(back.allIssue)
+
+              console.log(back.allIssue)
+
+              console.log(allIssue.value)
+
+
+
               alert(back.msg);
             })().catch(err=>{
-              alert(err.resultMessage);
+              alert("error : " + err.resultMessage);
             });
           };
 
           //申報匯入
           if(id == "inner" && pathName.value.includes(route.path)){
+            console.log("申報匯入")
             inner.value="";
             (async() => {
-              let back = await APICollection.UploadRepotExcel(fileDetail);
+              var back = await APICollection.UploadRepotExcel(fileDetail);
               console.log(back);
-              back.data && setInputValue(back.data);
+              console.log(allIssue);
+              setInputValue(back.data);
               alert(back.msg);
             })().catch(err=>{
-              alert(err.resultMessage);
+              alert("error : " + err.resultMessage);
             });
           };
 
           //AI智能輸入
           if(id == "aiInner" && pathName.value.includes(route.path)){
+            console.log("AI智能輸入")
             aiInner.value = "";
             (async() => {
               let back = await APICollection.UploadPDF(fileDetail);
               console.log(back);
-              back.data && setInputValue(back.data);
               alert(back.msg);
             })().catch(err=>{
-              alert(err.resultMessage);
+              alert("error : " + err.resultMessage);
             });
+            return;
           };
 
-          const setInputValue = (data) => {
+          var setInputValue = (data) => {
+            console.log(Object.keys(data))
             for(var i=0;i<Object.keys(data).length;i++){
-              let name = Object.keys(data)[i];
-              let value = data[name];
-
+              var name = Object.keys(data)[i];
+              var value = data[name];
               if(document.querySelector("input[name='"+name+"'][type='radio']")){
                 document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
               }else{
-                document.querySelector("[name='"+name+"']").value = value;
+                if(document.querySelector("[name='"+name+"']")){
+                  document.querySelector("[name='"+name+"']").value = value;
+                }else{
+                  console.log("無欄位---"+name);
+                };
               };
             };
           };
@@ -161,6 +235,7 @@
       fileReader.readAsDataURL(event.target.files[0]);
     };
 
+    
 </script>
 
 <style lang="scss">
