@@ -62,7 +62,7 @@
     margin-top:20px!important;
 
     .items{
-      height:45px;
+      min-height:45px;
     }
 
     select{

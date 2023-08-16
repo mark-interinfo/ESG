@@ -236,10 +236,7 @@ label:not([class]){
     color:#2FB86D;
     font-size: 12px;
     padding:4px 8px;
-}
-
-.items span + span{
-    margin-left:5px;
+    margin:2px;
 }
 
 .items:empty:before{

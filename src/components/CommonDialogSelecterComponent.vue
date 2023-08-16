@@ -20,18 +20,22 @@
         <div class="selected-area" v-if="(typeof props.option) === 'object'">
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
-              {{ props.option[key].find(option => option.value === item).name }}
+              <span>
+                {{ props.option[key].find(option => option.value === item).name }}
+              </span>
+              <span class="del"></span>
             </span>
           </template>
+          <div class="clear" @click="selectedClear"></div>
         </div>
-        <div class="clear">
-          <span @click="selectedClear">清除已選項目</span>
-        </div>
+        
         <input
         type="text"
         v-model="searcher"
         @focus="addStyle"
         @keyup.enter="search($event)"
+        placeholder="輸入關鍵字"
+        class="search"
         >
         <div class="option">
           <template v-if="(typeof props.option) === 'array'">
@@ -182,27 +186,57 @@ const search = function(event){
     border-radius: 3px;
     .dialog-content{
       padding: 12px 12px 0 12px;
+
+      .search{
+        background:#fff;
+        border:none;
+        border-bottom: 1px solid #efefef;
+        width: 100%;
+        background: url(../assets/images/search2.svg) right center/auto no-repeat;
+        padding-right:40px;
+      }
       .selected-area{
-        width: 200px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
+        max-width: 70vw;
+        width: calc(100% - 8px);
         padding: 8px 4px;
+        min-height: 24px;
         margin-bottom: 4px;
-        span{
-          color: #37D880;
+        position: relative;
+        border:1px solid #efefef;
+        border-radius: 3px;
+         > span {
           background: #F5FDF9;
-          font-size: 12px;
-          height: unset;
-          width: unset;
-          padding: 4px 8px;
+          padding:4px;
+          margin:2px;
+          border-radius: 3px;
+
+          > span{
+            vertical-align: middle;
+
+            + span{
+              width:12px;
+              height: 12px;
+              background: url(../assets/images/del.svg) center/140% no-repeat;
+              margin-left:4px;
+            }
+          }
+
+          > span:first-of-type{
+            color: #37D880;
+            font-size: 12px;
+          }
+          
         }
+
       }
       .clear{
-        text-align: end;
-        font-size: 12px;
-        margin-top: 4px;
-        margin-bottom: 4px;
+        background: url(../assets/images/del.svg) center/100% no-repeat;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 0;
+        top: 4px;
+        padding:8px;
         >span{
           cursor: pointer;
           color: #808080;
