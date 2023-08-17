@@ -111,6 +111,10 @@
 </script>
 <style lang="scss">
 
+  #EsgReport{
+    padding-bottom: 20px;
+  }
+
   .content:has( > .title + #issue){
     width:880px;
     margin:0 auto;
