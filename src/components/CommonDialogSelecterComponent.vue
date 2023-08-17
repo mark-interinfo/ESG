@@ -247,6 +247,7 @@ const search = function(event){
               height: 12px;
               background: url(../assets/images/del.svg) center/140% no-repeat;
               margin-left:4px;
+              cursor: pointer;
             }
           }
 
