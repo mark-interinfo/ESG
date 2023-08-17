@@ -22,6 +22,7 @@ const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTem
 
 const companyId = userStore.companyId;
 const companyName = userStore.companyName;
+const year = userStore.getYear();
 
 </script>
 <style lang="scss" scoped>
