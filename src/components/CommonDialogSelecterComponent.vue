@@ -236,7 +236,7 @@ const search = function(event){
         border-radius: 3px;
          > span {
           background: #F5FDF9;
-          padding:4px;
+          padding:0 4px;
           margin:2px;
           border-radius: 3px;
 

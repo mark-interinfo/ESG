@@ -129,7 +129,6 @@
 </template>
 <script setup>
   import { onMounted, onUpdated, ref } from 'vue';
-  import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
