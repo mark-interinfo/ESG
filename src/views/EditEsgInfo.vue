@@ -153,7 +153,6 @@
         showIssueList.value[issue.issueType] = '1';
       });
     })().catch(err=>{
-      alert("apiData1" + err.resultMessage);
     }).then(()=>{
       switchOpen();
     });
@@ -207,7 +206,6 @@
       });
 
     })().catch(err=>{
-        alert("apiData2" + err.resultMessage);
     }).then(()=>{
       switchOpen();
     });
@@ -237,7 +235,7 @@
       allMatrix.value = apiData3.allMatrix;
       top3.value = apiData3.top;
     })().catch(err=>{
-        alert("apiData3" + err.resultMessage);
+        alert(err.resultMessage);
     }).then(()=>{
       switchOpen();
     });
