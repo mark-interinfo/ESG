@@ -2,7 +2,7 @@
     <span>
         <h1 v-if="pathName1.includes(route.path)">{{year + route.name}}</h1>
         <h1 v-else>{{route.name}}</h1>
-        <span v-if="pathName2.includes(route.path)">
+        <span v-if="pathName2.includes(route.path)" class="companyInfo">
             <span>公司代號 : {{ companyId }}</span>
             <span>公司名稱 : {{ companyName }}</span>
         </span>
@@ -25,6 +25,10 @@ const companyName = userStore.companyName;
 
 </script>
 <style lang="scss" scoped>
+
+    .companyInfo > span + span{
+        margin-left:15px;
+    }
     #company {
 
         h1 {
