@@ -14,12 +14,10 @@
       </div>
       <div id="issue">
         <div id="issue-header">
-          {{ allSustainable }}
           <div id="issue-tags" v-for="sustainable in allSustainable">
-            <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">{{ sustainable.NO }}.{{ sustainable.NAME }}</div>
+            <div class="issue-tag pointer" :data-id="`${sustainable.NO}.${sustainable.NAME}`" :id="`${sustainable.NO}.${sustainable.NAME}`">{{ sustainable.NO }}.{{ sustainable.NAME }}</div>
 
-            <!-- <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">1.關於報告書</div>
-            <div class="issue-tag pointer" data-id="2.經營理念與永續策略" id="2.經營理念與永續策略">2.經營理念與永續策略</div>
+            <!-- <div class="issue-tag pointer" data-id="2.經營理念與永續策略" id="2.經營理念與永續策略">2.經營理念與永續策略</div>
             <div class="issue-tag pointer" data-id="3.重大主題鑑別" id="3.重大主題鑑別">3.重大主題鑑別</div>
             <div class="issue-tag pointer" data-id="4.所辨識出之重大主題" id="4.所辨識出之重大主題">4.所辨識出之重大主題</div>
             <div class="issue-tag pointer" data-id="5.治理面" id="5.治理面">5.治理面</div>
@@ -228,15 +226,6 @@
     isShowDialogSelecterSource.value = false;
   };
 
-  onMounted(()=>{
-    switchOpen();
-    document.querySelector(".issue-tag").click();
-  });
-
-  onUpdated(()=>{
-    switchOpen();
-    document.querySelector(".issue-tag").click();
-  });
 </script>
 <style lang="scss">
 
