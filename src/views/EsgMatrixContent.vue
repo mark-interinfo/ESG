@@ -29,7 +29,7 @@
               >
                 <template v-for="(checkedList, type) in issue.Matrix">
                   <span v-for="checkedItem in checkedList">
-                    {{ props.allMatrixTarget[type].find(item => item.value === checkedItem).name }}
+                    {{ type }} {{ props.allMatrixTarget[type].find(item => item.value === checkedItem).name }}
                   </span>
                 </template>
               </div>

@@ -55,7 +55,7 @@
                         <input type="button" class="button buttonColor3" value="+ 新增">
                         </span>
                       </td>
-                    </tr>                
+                    </tr>
                   </table>
                 </div>
               </div>
@@ -88,27 +88,97 @@
         </div>
       </div>
     </div>
+
+    <!-- 編輯標題（二）項目 -->
+    <div
+    class="dialog-background"
+    :class="{'show': isShowAddInternationalIssueDialog}"
+    @click.self="isShowAddInternationalIssueDialog = false"
+    >
+      <div class="dialog-block">
+        <div class="dialog-content">
+          <div class="dialog-title">
+            <svg width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.75" width="48" height="48" rx="24" fill="#F5FDF9"/>
+              <path d="M14.75 31V17C14.75 16.4696 14.9607 15.9609 15.3358 15.5858C15.7109 15.2107 16.2196 15 16.75 15H32.75C33.2804 15 33.7891 15.2107 34.1642 15.5858C34.5393 15.9609 34.75 16.4696 34.75 17V31C34.75 31.5304 34.5393 32.0391 34.1642 32.4142C33.7891 32.7893 33.2804 33 32.75 33H16.75C16.2196 33 15.7109 32.7893 15.3358 32.4142C14.9607 32.0391 14.75 31.5304 14.75 31Z" fill="#2FB86D" stroke="#2FB86D" stroke-width="1.5"/>
+              <path d="M14.75 19H34.75H14.75ZM21.75 26H24.75H21.75ZM27.75 26H24.75H27.75ZM24.75 26V23V26ZM24.75 26V29V26Z" fill="#2FB86D"/>
+              <path d="M14.75 19H34.75M21.75 26H24.75M24.75 26H27.75M24.75 26V23M24.75 26V29" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            編輯標題（二）項目
+          </div>
+          <div>
+            <p>
+              標題代號
+            </p>
+            <input type="text" placeholder="請填寫">
+          </div>
+          <div>
+            <p>
+              標題名稱
+            </p>
+            <input type="text" placeholder="請填寫">
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button class="button buttonColor1" @click="isShowAddInternationalIssueDialog = false">取消</button>
+          <button class="button buttonColor1" @click="addInternationalIssue">確認</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-  import { useRoute } from 'vue-router';
   import { onMounted, onUpdated, ref } from 'vue';
+  import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
   const route = useRoute();
 
+  const ESGReport = ref([
+    {
+      firstTitle: '關於本報告書',
+      secondSection: [
+        {
+          secondTitle: '報告書資訊',
+          secondIndex: '01',
+          thirdSection: [
+            {
+              thirdTitle: '基本資料',
+              thirdIndex: '01-1',
+              indicator: {
+                GRI: ['2-1', '2-6']
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      firstTitle: '經營者的話',
+      secondSection: [
+        {
+          thirdSection: [
+            {
+              indicator: {
+                GRI: ['2-1', '2-6']
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]);
+
   onMounted(()=>{
     switchOpen();
     document.querySelector(".issue-tag").click();
-  })
+  });
 
   onUpdated(()=>{
     switchOpen();
     document.querySelector(".issue-tag").click();
-  })
-
-
+  });
 </script>
 <style lang="scss">
 

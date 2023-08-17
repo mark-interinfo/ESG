@@ -97,13 +97,14 @@
 </template>
 
 <script setup>
-  import { ref ,watch} from 'vue';
+  import { ref, watch } from 'vue';
   import { onUpdated } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api';
   import CommonNoticeComponent from '../components/CommonNoticeComponent.vue';
   import { useRoute } from 'vue-router';
   import { useUserStore } from '../pinia/user';
+
   const route = useRoute();
   const userStore = useUserStore();
 
