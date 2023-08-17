@@ -2,14 +2,14 @@
   <div id="EsgReport">
     <div class="content">
       <div class="title">
-      <CommonCompanyTitle />
-      <span id="buttonBox">
-        <a download="" href="#" class="button buttonColor3">下載範本</a>
-        <span>
-          <label for="inner" class="button buttonColor3">匯入</label>
-          <input id="inner" type="file" accept=".csv,.xls,.xlsx">
-        </span>
-        <input class="button buttonColor3" id="submit" type="button" value="儲存">
+        <CommonCompanyTitle />
+        <span id="buttonBox">
+          <a download="" href="#" class="button buttonColor3">下載範本</a>
+          <span>
+            <label for="inner" class="button buttonColor3">匯入</label>
+            <input id="inner" type="file" accept=".csv,.xls,.xlsx">
+          </span>
+          <input class="button buttonColor3" id="submit" type="button" value="儲存">
         </span>
       </div>
       <div id="issue">
@@ -32,7 +32,7 @@
                   <span>1.關於報告書</span>
                   <img src="/src/assets/images/select.svg" alt="">
                 </div>
-                <div class="issue-content">
+                <div>
                   <table class="indicators">
                     <tr>
                       <td>標題 (一) 代號</td>
@@ -92,10 +92,11 @@
 </template>
 <script setup>
   import { useRoute } from 'vue-router';
-  const route = useRoute();
-  import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
   import { onMounted, onUpdated, ref } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
+  import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
+
+  const route = useRoute();
 
   onMounted(()=>{
     switchOpen();

@@ -123,7 +123,11 @@ const linkGroup = ref([
       {
         name: '申報情形控管表',
         href: '/'
-      }
+      },
+      {
+        name: '永續報告書維護',
+        href: '/EsgReport'
+      },
     ]
   },
   {
@@ -141,10 +145,6 @@ const linkGroup = ref([
       {
         name: '永續報告書申報',
         href: '/'
-      },
-      {
-        name: '永續報告書維護',
-        href: '/EsgReport'
       },
       {
         name: '申請資料更正',
