@@ -119,7 +119,6 @@
   });
 
   (async() => {
-    console.log(apiRequest.value)
       data.value = await APICollection.QueryReportData(apiRequest);
   })().catch(err=>{
       alert(err.resultMessage);
@@ -129,7 +128,6 @@
 
     if(route.path == "/LookEsgInfo"){
       var input = document.querySelectorAll("input");
-      console.log
       for(var i=0;i<input.length;i++){
         input[i].setAttribute("disabled","disabled");
       };
