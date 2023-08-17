@@ -123,6 +123,9 @@
     import { onUpdated, ref } from 'vue';
     import { APICollection } from '../mixin/api';
     import { switchOpen } from '../mixin/mixin.js';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
 
     const route = useRoute();
 
@@ -236,6 +239,7 @@
       top3.value = apiData3.top;
     })().catch(err=>{
         alert(err.resultMessage);
+        router.push("/HomeView");
     }).then(()=>{
       switchOpen();
     });

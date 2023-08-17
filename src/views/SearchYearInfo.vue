@@ -63,10 +63,12 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { APICollection } from '../mixin/api';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 import { useUserStore } from "../pinia/user.js";
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const userStore = useUserStore();
 
@@ -82,6 +84,14 @@ const apiRequest = ref({
 const queryYear = ref();
 
 const hasData = ref('');
+
+onMounted(()=>{
+    if(!userStore.uid){
+        router.push("/HomeView");
+        alert("請登入帳號!");
+    };
+})
+
 const change = function() {
     // Nick
     (async() => {
