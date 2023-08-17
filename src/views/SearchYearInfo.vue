@@ -8,9 +8,9 @@
                 </span>
             </div>
             <div id="searchBar">
-                <input 
-                    id="searchInput" 
-                    type="text" 
+                <input
+                    id="searchInput"
+                    type="text"
                     placeholder="請輸入民國年份"
                     v-model.number="apiRequest.year"
                     @change="change"
@@ -68,16 +68,16 @@ import { APICollection } from '../mixin/api';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 import { useUserStore } from "../pinia/user.js";
 
+const userStore = useUserStore();
+
 const downloadXBRL = ref({
     href:"",
 });
 
 const apiRequest = ref({
-    companyId: "1101",
+    companyId: userStore.companyId,
     year: ''
 });
-
-const userStore = useUserStore();
 
 const queryYear = ref();
 

@@ -68,18 +68,20 @@ const accountData = ref({
 const login = function(){
     (async() => {
         let apiData = await APICollection.ESGLogin(accountData);
-        console.log(apiData);
-        if(apiData.responseHeader.resultCode === '500'){
-            alert(apiData.responseHeader.resultMessage)
-            return;
-        }
-        userStore.setUser(apiData);
-        if(userStore.uidType === 'monitor'){
+        return apiData;
+    })()
+    .then((res)=>{
+        userStore.setUser(res);
+        if(userStore.uidType == 'monitor'){
             router.push('/');
+        } else {
+            router.push('/SearchYearInfo');
         }
-        router.push('/SearchYearInfo');
-    })();
-}
+    })
+    .catch(err => {
+        alert(err.resultMessage)
+    })
+};
 
 const passwordCheck = function(){
 
