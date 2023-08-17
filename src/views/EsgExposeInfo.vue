@@ -139,10 +139,12 @@
       };
     };
 
-    setTimeout(()=>{
-      switchOpen();
-      document.querySelector(".issue-tag").click();
-    },100)
+    if(!document.querySelector(".selected")){
+      setTimeout(()=>{
+        switchOpen();
+        document.querySelector(".issue-tag").click();
+      },100)
+    };
     
   });
 
