@@ -14,13 +14,16 @@
       </div>
       <div id="issue">
         <div id="issue-header">
-          <div id="issue-tags">
-            <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">1.關於報告書</div>
+          {{ allSustainable }}
+          <div id="issue-tags" v-for="sustainable in allSustainable">
+            <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">{{ sustainable.NO }}.{{ sustainable.NAME }}</div>
+
+            <!-- <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">1.關於報告書</div>
             <div class="issue-tag pointer" data-id="2.經營理念與永續策略" id="2.經營理念與永續策略">2.經營理念與永續策略</div>
             <div class="issue-tag pointer" data-id="3.重大主題鑑別" id="3.重大主題鑑別">3.重大主題鑑別</div>
             <div class="issue-tag pointer" data-id="4.所辨識出之重大主題" id="4.所辨識出之重大主題">4.所辨識出之重大主題</div>
             <div class="issue-tag pointer" data-id="5.治理面" id="5.治理面">5.治理面</div>
-            <div class="issue-tag pointer" data-id="+" id="+">+</div>
+            <div class="issue-tag pointer" data-id="+" id="+">+</div> -->
           </div>
           <div id="issue-edit" class="pointer" data-name="編輯章節"></div>
         </div>
@@ -148,7 +151,7 @@
     <CommonDialogSelecterComponent
     :isShowDialogSelecter="isShowDialogSelecterReference"
     :selectMulti="true"
-    :option="referenceTemp"
+    :option="allInternationalTarget"
     :optionType="'object'"
     :selected="targetReference"
     @closeDialogSelecter="closeDialogSelecterReference"
@@ -159,7 +162,7 @@
     <CommonDialogSelecterComponent
     :isShowDialogSelecter="isShowDialogSelecterSource"
     :selectMulti="true"
-    :option="sourceTemp"
+    :option="allTarget"
     :optionType="'object'"
     :selected="targetSource"
     @closeDialogSelecter="closeDialogSelecterSource"
@@ -174,74 +177,20 @@
   import CommonDialogSelecterComponent from "../components/CommonDialogSelecterComponent.vue";
   import { APICollection } from '../mixin/api';
 
+  const allInternationalTarget = ref([]);
+  const allSustainable = ref([]);
+  const allTarget = ref([]);
+
   (async() => {
     let apiData = await APICollection.QuerySustainable({});
-    console.log(apiData)
-    
+    console.log(apiData);
+    allInternationalTarget.value = apiData.allInternationalTarget;
+    allSustainable.value = apiData.allSustainable;
+    allTarget.value = apiData.allTarget;
+
   })().catch(err=>{
   }).then(()=>{
     switchOpen();
-  });
-
-  const ESGReport = ref([
-    {
-      firstTitle: '關於本報告書',
-      secondSection: [
-        {
-          secondTitle: '報告書資訊',
-          secondIndex: '01',
-          thirdSection: [
-            {
-              thirdTitle: '基本資料',
-              thirdIndex: '01-1',
-              indicator: {
-                GRI: ['2-1', '2-6']
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      firstTitle: '經營者的話',
-      secondSection: [
-        {
-          thirdSection: [
-            {
-              indicator: {
-                GRI: ['2-1', '2-6']
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]);
-
-  const referenceTemp = ref({
-    GRI: [
-      {name: "2-1-組織詳細資訊", value: "2-1"},
-      {name: "2-2-組織永續報導中包含的實體", value: "2-2"},
-      {name: "2-3-報導期間、頻率及聯絡人", value: "2-3"},
-    ],
-    SASB: [
-      {name: "3-1-組織詳細資訊", value: "3-1"},
-      {name: "3-2-組織永續報導中包含的實體", value: "3-2"},
-      {name: "3-3-報導期間、頻率及聯絡人", value: "3-3"},
-    ],
-  });
-
-  const sourceTemp = ref({
-    E: [
-      {name: "溫室氣體排放1", value: "E0001"},
-      {name: "溫室氣體排放2", value: "E0002"},
-      {name: "溫室氣體排放3", value: "E0003"},
-    ],
-    S: [
-      {name: "人力發展1", value: "S0001"},
-      {name: "人力發展2", value: "S0002"},
-      {name: "人力發展3", value: "S0003"},
-    ],
   });
 
   // 編輯標題（二）項目
@@ -268,8 +217,9 @@
   // CommonDialogSelecterComponent 資料來源
   const isShowDialogSelecterSource = ref(false);
   const targetSource = ref({
-    E: [],
-    S: [],
+    環境: [],
+    社會: [],
+    治理: [],
   });
   const showDialogSelecterSource = function(){
     isShowDialogSelecterSource.value = true;
