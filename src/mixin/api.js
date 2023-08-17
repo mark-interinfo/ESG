@@ -37,7 +37,7 @@ function callAPI(apiName, requestBody, method='POST'){
       ()=>{
         setTimeout(function(){
           loadingClose();
-        },500);
+        },300);
       }
     );
   })
