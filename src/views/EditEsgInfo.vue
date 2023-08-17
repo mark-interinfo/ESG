@@ -343,6 +343,11 @@
                     allInternationalIssue.value.push(back.allInternationalIssue[i]);
                   };
                 };
+
+                showInternationalIssue.value = {};
+                allInternationalIssue.value.forEach((issue)=>{
+                  showInternationalIssue.value[issue.internationalIssueNo] = `${issue.internationalIssueNo}-1`;
+                });
                 console.log(allInternationalIssue.value)
               };
 
