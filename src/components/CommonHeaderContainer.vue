@@ -143,6 +143,10 @@ const linkGroup = ref([
         href: '/'
       },
       {
+        name: '永續報告書維護',
+        href: '/EsgReport'
+      },
+      {
         name: '申請資料更正',
         href: '/'
       },
