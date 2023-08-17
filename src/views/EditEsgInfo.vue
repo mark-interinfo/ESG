@@ -354,11 +354,12 @@
               if(route.path == "/EsgMatrix"){
                 back = await APICollection.UploadMatrixExcel(fileDetail);
                 console.log(back)
-                for(var i=0;i<back.allMatrixTarget.length;i++){
-                  var key = back.allMatrixTarget[i].issueType;
+                /* for(var i=0;i<back.allMatrix.length;i++){
+                  var key = back.allMatrix[i].ISSUE_NO;
+                  var no = back.allMatrix[i].TAR_NO;
                   var cont = 0;
                   for(var a=0;a<allMatrix.value.length;a++){
-                    if(allMatrix.value[a].issueType == key){
+                    if(allMatrix.value[a].ISSUE_NO == key && allMatrix.value[a].TAR_NO){
                       allMatrix.value[a] = back.allMatrixTarget[i];
                       continue;
                     };
@@ -367,7 +368,7 @@
                   if(cont == allMatrix.value.length){
                     allMatrix.value.push(back.allMatrixTarget[i]);
                   };
-                };
+                }; */
               };
               
               alert(back.msg);
