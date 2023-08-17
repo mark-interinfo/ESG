@@ -132,8 +132,6 @@
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 
-  const route = useRoute();
-
   const ESGReport = ref([
     {
       firstTitle: '關於本報告書',
