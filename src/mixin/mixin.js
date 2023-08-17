@@ -47,6 +47,30 @@ const chineseNumber = function(number){
   return chineseLower[number];
 }
 
+const loading = () => {
+
+  if(document.querySelector("#loading")){
+      return;
+  };
+  
+  var InpBox = document.createElement("div");
+  InpBox.setAttribute("id","loading");
+  
+  var loading = document.createElement("img");
+  loading.src = "../../src/assets/images/loading.svg";
+
+  InpBox.appendChild(loading);
+
+  document.body.appendChild(InpBox);
+  
+};
+
+const loadingClose = () => {
+  if(document.querySelector("#loading")){
+      document.querySelector("#loading").remove();
+  };
+};
+
 const switchOpen = function(){
 
   var option={
@@ -200,5 +224,7 @@ export {
   unicodeToString,
   chineseNumber,
   switchOpen,
+  loading,
+  loadingClose,
 }
 

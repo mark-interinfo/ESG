@@ -306,3 +306,21 @@ label:not([class]){
       }
     }
   }
+
+#loading{
+    position: fixed;
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%!important;
+    height: 100%!important;
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;animation: fadeIn .5s both;
+    user-select: none;
+}
+#loading img{
+    width:70px;
+    user-select:none;
+}

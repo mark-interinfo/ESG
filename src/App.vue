@@ -20,10 +20,12 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref} from 'vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import { useRoute } from 'vue-router';
+
+
 
 const route = useRoute();
 

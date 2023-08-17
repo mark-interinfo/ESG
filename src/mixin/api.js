@@ -1,10 +1,14 @@
 import { useUserStore } from '../pinia/user';
+import {loading,loadingClose} from '../mixin/mixin.js'
 
 const userStore = useUserStore();
 
 let base = 'http://192.168.10.108/servlet/apiM/esg/V1/interfaces/';
 
 function callAPI(apiName, requestBody, method='POST'){
+  console.log(111)
+  loading();
+
   if(requestBody.value){
     requestBody = requestBody.value;
   }
@@ -30,7 +34,13 @@ function callAPI(apiName, requestBody, method='POST'){
       }
       return reject(result.responseHeader);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err)).finally(
+      ()=>{
+        setTimeout(function(){
+          loadingClose();
+        },500);
+      }
+    );
   })
 };
 
