@@ -306,7 +306,7 @@ label:not([class]){
 }
 
 .dialog-content .option > div{
-    min-height: 32px;;
+    height: 32px;;
 }
 
 .dialog-content .option label > input{
