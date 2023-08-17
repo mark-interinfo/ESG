@@ -34,13 +34,11 @@
                 class="submit"
                 @click="login"
                 >
-                    <router-link to="/">
-                        <input
-                        type="button"
-                        value="登入"
-                        class="button buttonColor1"
-                        >
-                    </router-link>
+                    <input
+                    type="button"
+                    value="登入"
+                    class="button buttonColor1"
+                    >
                 </div>
                 <div class="forget">
                     <a href="javascript:;">忘記密碼?</a>
@@ -55,7 +53,12 @@ import { ref } from 'vue';
 import { APICollection } from '../mixin/api.js';
 import { useUserStore } from '../pinia/user.js';
 
+import { useRouter } from 'vue-router';
+
 const userStore = useUserStore();
+const router = useRouter();
+
+userStore.resetUser();
 
 const accountData = ref({
     uid: "",
@@ -64,10 +67,18 @@ const accountData = ref({
 
 const login = function(){
     (async() => {
-        userStore.setUser(await APICollection.ESGLogin(accountData));
-    })().catch(err=>{
-        alert(err.resultMessage);
-    });
+        let apiData = await APICollection.ESGLogin(accountData);
+        console.log(apiData);
+        if(apiData.responseHeader.resultCode === '500'){
+            alert(apiData.responseHeader.resultMessage)
+            return;
+        }
+        userStore.setUser(apiData);
+        if(userStore.uidType === 'monitor'){
+            router.push('/');
+        }
+        router.push('/SearchYearInfo');
+    })();
 }
 
 const passwordCheck = function(){

@@ -120,7 +120,7 @@
     import EsgMatrixContent from './EsgMatrixContent.vue';
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import { useRoute } from 'vue-router';
-    import { onMounted, onUpdated, ref } from 'vue';
+    import { onUpdated, ref } from 'vue';
     import { APICollection } from '../mixin/api';
     import { switchOpen } from '../mixin/mixin.js';
 
