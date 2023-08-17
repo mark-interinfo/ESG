@@ -54,6 +54,8 @@ const APICollection = {
   ExecMatrixData: ((requestBody) => callAPI('ExecMatrixData', requestBody)),
   // 上傳excel
   UploadESGExcel: ((requestBody) => callAPI('UploadESGExcel', requestBody)),
+  UploadInternationalExcel: ((requestBody) => callAPI('UploadInternationalExcel', requestBody)),
+  UploadMatrixExcel: ((requestBody) => callAPI('UploadMatrixExcel', requestBody)),
 };
 
 export { APICollection };

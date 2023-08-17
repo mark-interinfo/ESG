@@ -37,13 +37,6 @@
             </div>
           </div>
         </template>
-        <router-link
-        class="main-link pointer color-black"
-        to="/EsgDownload"
-        @click="showLink(-1)"
-        >
-          ESG資訊下載
-        </router-link>
       </div>
       <router-link to="/HomeView">
         <img src="../assets/images/account1.svg" alt="">
@@ -153,10 +146,7 @@ const linkGroup = ref([
         name: '申請資料更正',
         href: '/'
       },
-      {
-        name: 'XBRL下載',
-        href: '/XbrlDownload'
-      },
+      
     ]
   },
 ]);
