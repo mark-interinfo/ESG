@@ -97,13 +97,14 @@
 </template>
 
 <script setup>
-  import { ref ,watch} from 'vue';
+  import { ref, watch } from 'vue';
   import { onUpdated } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import { APICollection } from '../mixin/api';
   import CommonNoticeComponent from '../components/CommonNoticeComponent.vue';
   import { useRoute } from 'vue-router';
   import { useUserStore } from '../pinia/user';
+
   const route = useRoute();
   const userStore = useUserStore();
 
@@ -119,7 +120,6 @@
   });
 
   (async() => {
-    console.log(apiRequest.value)
       data.value = await APICollection.QueryReportData(apiRequest);
   })().catch(err=>{
       alert(err.resultMessage);
@@ -127,23 +127,21 @@
 
   onUpdated(()=>{
 
-    if(route.path == "/LookEsgInfo"){
-      var input = document.querySelectorAll("input");
-      console.log
-      for(var i=0;i<input.length;i++){
-        input[i].setAttribute("disabled","disabled");
-      };
-      var select = document.querySelectorAll("select");
-      for(var i=0;i<select.length;i++){
-        select[i].setAttribute("disabled","disabled");
-      };
-    };
+    // if(route.path == "/LookEsgInfo"){
+    //   var input = document.querySelectorAll("input");
+    //   for(var i=0;i<input.length;i++){
+    //     input[i].setAttribute("disabled","disabled");
+    //   };
+    //   var select = document.querySelectorAll("select");
+    //   for(var i=0;i<select.length;i++){
+    //     select[i].setAttribute("disabled","disabled");
+    //   };
+    // };
 
-    setTimeout(()=>{
-      switchOpen();
-      document.querySelector(".issue-tag").click();
-    },100)
-    
+    // setTimeout(()=>{
+    //   switchOpen();
+    //   document.querySelector(".issue-tag").click();
+    // },100)
   });
 
   watch(data, ()=>{

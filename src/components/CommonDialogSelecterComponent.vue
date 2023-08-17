@@ -28,6 +28,7 @@
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
               <span>
+                {{ key }}
                 {{ props.option[key].find(option => option.value === item).name }}
               </span>
               <span class="del" @click="selectedRemove(item,key)"></span>
