@@ -35,11 +35,11 @@
                 <div id="issue-header">
                   <div id="issue-tags">
                     <div class="issue-tag pointer"
-                    v-for="item1 in top1"
-                    :data-item="item1.issueKind"
-                    :data-id="item1"
-                    :key="item1"
-                    :id="item1"
+                      v-for="item1 in top1"
+                      :data-item="item1.issueKind"
+                      :data-id="item1"
+                      :key="item1"
+                      :id="item1"
                     >
                       {{ item1 }}
                     </div>
@@ -48,13 +48,13 @@
                 </div>
                 <div id="issue-body">
                   <ExchangeIndicatorsContent
-                  :allIndustry="allIndustry"
-                  :allIssue="allIssue"
-                  :allType="allType"
-                  :showIssueList="showIssueList"
-                  @addNewIssue="addNewIssue"
-                  @addNewIssueCode="addNewIssueCode"
-                  @addIssueDetailDialog="addIssueDetailDialog"
+                    :allIndustry="allIndustry"
+                    :allIssue="allIssue"
+                    :allType="allType"
+                    :showIssueList="showIssueList"
+                    @addNewIssue="addNewIssue"
+                    @addNewIssueCode="addNewIssueCode"
+                    @addIssueDetailDialog="addIssueDetailDialog"
                   />
                 </div>
               </div>
@@ -77,12 +77,12 @@
                   <div id="issue-toggle" class="pointer"></div>
                 </div>
                 <InternationalIndicatorsContent
-                :allInternationalIssue="allInternationalIssue"
-                :allIndustry="allIndustry"
-                :allInternationalTarget="allInternationalTarget"
-                :showInternationalIssue="showInternationalIssue"
-                @addInternationalIssue="addInternationalIssue"
-                @addInternationalTargetNo="addInternationalTargetNo"
+                  :allInternationalIssue="allInternationalIssue"
+                  :allIndustry="allIndustry"
+                  :allInternationalTarget="allInternationalTarget"
+                  :showInternationalIssue="showInternationalIssue"
+                  @addInternationalIssue="addInternationalIssue"
+                  @addInternationalTargetNo="addInternationalTargetNo"
                 />
               </div>
           </template>
@@ -102,14 +102,17 @@
                   </div>
                 </div>
                 <EsgMatrixContent
-                :allMatrixTarget="allMatrixTarget"
-                :allMatrix="allMatrix"
+                  :allMatrixTarget="allMatrixTarget"
+                  :allMatrix="allMatrix"
                 />
               </div>
           </template>
       </div>
       <div id="esgExposeInfo">
-          <EsgExposeInfo @watchData="watchData" v-if="pathName.includes(route.path)"/>
+          <EsgExposeInfo 
+            @watchData="watchData" 
+            v-if="pathName.includes(route.path)"
+          />
       </div>
     </div>
 </template>
