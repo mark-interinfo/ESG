@@ -178,6 +178,17 @@
                             </div>
                           </td>
                       </tr>
+                      <tr>
+                        <td>
+                          項目類別
+                        </td>
+                        <td>
+                          <label :for="`${target.fieldId}notIsCore`">
+                            <input type="checkbox" :id="`${target.fieldId}notIsCore`" v-model="target.notIsCore">
+                            設定為非核心指標
+                          </label>
+                        </td>
+                      </tr>
                     </table>
                   </td>
                 </tr>

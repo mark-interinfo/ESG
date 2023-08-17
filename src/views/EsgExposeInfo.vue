@@ -31,14 +31,14 @@
                             {{list.targetTitle}}
                         </td>
                         <td>
-                            <p class="notIsCore" style="text-align: end; margin-top: 0;">
+                            <p class="notIsCore" style="text-align: end; margin-top: 0; color: #1D8844;">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="12" height="12" fill="#1D8844"/>
                                 </svg>
                                 文字綠色為非核心指標
                             </p>
                             <ol>
-                                <li v-for="targetList in list.targetList" :class="{'notIsCore': targetList.notIsCore === false}">
+                                <li v-for="targetList in list.targetList" :class="{'notIsCore': targetList.notIsCore === true}">
                                   <span>{{targetList.title}}</span>
                                   <span v-if="targetList.required" class="fontRed">*</span>
 
