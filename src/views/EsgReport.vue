@@ -131,6 +131,16 @@
   import { onMounted, onUpdated, ref } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
+  import { APICollection } from '../mixin/api';
+
+  (async() => {
+    let apiData = await APICollection.QuerySustainable({});
+    console.log(apiData)
+    
+  })().catch(err=>{
+  }).then(()=>{
+    switchOpen();
+  });
 
   const ESGReport = ref([
     {
