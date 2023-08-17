@@ -102,7 +102,6 @@ const change = function() {
         userStore.setYear(queryYear.value);
 
         downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
-        console.log(downloadXBRL.value.href)
     })().catch(err=>{
         alert(err.resultMessage);
     });

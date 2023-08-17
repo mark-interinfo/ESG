@@ -127,21 +127,24 @@
 
   onUpdated(()=>{
 
-    // if(route.path == "/LookEsgInfo"){
-    //   var input = document.querySelectorAll("input");
-    //   for(var i=0;i<input.length;i++){
-    //     input[i].setAttribute("disabled","disabled");
-    //   };
-    //   var select = document.querySelectorAll("select");
-    //   for(var i=0;i<select.length;i++){
-    //     select[i].setAttribute("disabled","disabled");
-    //   };
-    // };
+    if(route.path == "/LookEsgInfo"){
+      var input = document.querySelectorAll("input");
+      for(var i=0;i<input.length;i++){
+        input[i].setAttribute("disabled","disabled");
+      };
+      var select = document.querySelectorAll("select");
+      for(var i=0;i<select.length;i++){
+        select[i].setAttribute("disabled","disabled");
+      };
+    };
 
-    // setTimeout(()=>{
-    //   switchOpen();
-    //   document.querySelector(".issue-tag").click();
-    // },100)
+    if(!document.querySelector(".selected")){
+      setTimeout(()=>{
+        switchOpen();
+        document.querySelector(".issue-tag").click();
+      },100)
+    };
+    
   });
 
   watch(data, ()=>{
