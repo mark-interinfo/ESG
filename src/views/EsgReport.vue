@@ -46,7 +46,7 @@
                       <td colspan="2">
                         <span>
                           <div>標題 (二) 項目</div>
-                          <input type="button" class="button buttonColor3" value="01-2董事會結構及運作情形">
+                          <input type="button" class="button buttonColor3" value="01-2董事會結構及運作情形" @click="showSecondDialog">
                           <input type="button" class="button buttonColor3" value="+ 新增">
                         </span>
                         <span>
@@ -92,8 +92,8 @@
     <!-- 編輯標題（二）項目 -->
     <div
     class="dialog-background"
-    :class="{'show': isShowAddInternationalIssueDialog}"
-    @click.self="isShowAddInternationalIssueDialog = false"
+    :class="{'show': isShowSecondDialog}"
+    @click.self="isShowSecondDialog = false"
     >
       <div class="dialog-block">
         <div class="dialog-content">
@@ -118,22 +118,60 @@
             </p>
             <input type="text" placeholder="請填寫">
           </div>
+
+          <div>
+            <p>參考依據</p>
+            <div class="items" @click="showDialogSelecterReference">
+            </div>
+          </div>
+          <div>
+            <p>資料來源</p>
+            <div class="items" @click="showDialogSelecterSource">
+            </div>
+          </div>
+
+          <div>
+            <p>
+              備註 (自訂參考依據說明)
+            </p>
+            <input type="text" placeholder="請填寫">
+          </div>
         </div>
         <div class="dialog-footer">
-          <button class="button buttonColor1" @click="isShowAddInternationalIssueDialog = false">取消</button>
+          <button class="button buttonColor1" @click="isShowSecondDialog = false">取消</button>
           <button class="button buttonColor1" @click="addInternationalIssue">確認</button>
         </div>
       </div>
     </div>
+
+    <!-- CommonDialogSelecterComponent 參考依據 -->
+    <CommonDialogSelecterComponent
+    :isShowDialogSelecter="isShowDialogSelecterReference"
+    :selectMulti="true"
+    :option="referenceTemp"
+    :optionType="'object'"
+    :selected="targetReference"
+    @closeDialogSelecter="closeDialogSelecterReference"
+    @industrySetting=""
+    />
+
+    <!-- CommonDialogSelecterComponent 資料來源 -->
+    <CommonDialogSelecterComponent
+    :isShowDialogSelecter="isShowDialogSelecterSource"
+    :selectMulti="true"
+    :option="sourceTemp"
+    :optionType="'object'"
+    :selected="targetSource"
+    @closeDialogSelecter="closeDialogSelecterSource"
+    @industrySetting=""
+    />
   </div>
 </template>
 <script setup>
   import { onMounted, onUpdated, ref } from 'vue';
-  import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
-
-  const route = useRoute();
+  import CommonDialogSelecterComponent from "../components/CommonDialogSelecterComponent.vue";
 
   const ESGReport = ref([
     {
@@ -169,6 +207,66 @@
       ]
     }
   ]);
+
+  const referenceTemp = ref({
+    GRI: [
+      {name: "2-1-組織詳細資訊", value: "2-1"},
+      {name: "2-2-組織永續報導中包含的實體", value: "2-2"},
+      {name: "2-3-報導期間、頻率及聯絡人", value: "2-3"},
+    ],
+    SASB: [
+      {name: "3-1-組織詳細資訊", value: "3-1"},
+      {name: "3-2-組織永續報導中包含的實體", value: "3-2"},
+      {name: "3-3-報導期間、頻率及聯絡人", value: "3-3"},
+    ],
+  });
+
+  const sourceTemp = ref({
+    E: [
+      {name: "溫室氣體排放1", value: "E0001"},
+      {name: "溫室氣體排放2", value: "E0002"},
+      {name: "溫室氣體排放3", value: "E0003"},
+    ],
+    S: [
+      {name: "人力發展1", value: "S0001"},
+      {name: "人力發展2", value: "S0002"},
+      {name: "人力發展3", value: "S0003"},
+    ],
+  });
+
+  // 編輯標題（二）項目
+  const isShowSecondDialog = ref(false);
+  const targetSecondNote = ref('');
+
+  const showSecondDialog = function(){
+    isShowSecondDialog.value = true;
+  };
+
+  // CommonDialogSelecterComponent 參考依據
+  const isShowDialogSelecterReference = ref(false);
+  const targetReference = ref({
+    GRI: [],
+    SASB: [],
+  });
+  const showDialogSelecterReference = function(){
+    isShowDialogSelecterReference.value = true;
+  };
+  const closeDialogSelecterReference = function(){
+    isShowDialogSelecterReference.value = false;
+  };
+
+  // CommonDialogSelecterComponent 資料來源
+  const isShowDialogSelecterSource = ref(false);
+  const targetSource = ref({
+    E: [],
+    S: [],
+  });
+  const showDialogSelecterSource = function(){
+    isShowDialogSelecterSource.value = true;
+  };
+  const closeDialogSelecterSource = function(){
+    isShowDialogSelecterSource.value = false;
+  };
 
   onMounted(()=>{
     switchOpen();
