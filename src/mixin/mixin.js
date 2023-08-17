@@ -123,21 +123,6 @@ const switchOpen = function(){
     var toggle = document.querySelector("#issue-toggle");
     if(toggle){
       toggle.dataset.name = open;
-
-      var listTitle = document.querySelectorAll(".issue-title")
-
-      for(let i=0;i<listTitle.length;i++){
-        listTitle[i].onclick = function(){
-          this.parentNode.classList.toggle("opening");
-          var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
-          var type = open;
-          if(itemOpen.length == 0){
-            type = close;
-          };
-          toggle.dataset.name = type;
-        };
-      };
-
       toggle.onclick = function(){
         if(this.dataset.name == open){
           for(let i=0;i<items.length;i++){
@@ -151,9 +136,24 @@ const switchOpen = function(){
           this.dataset.name = open;
         };
       };
-    };
-  };
+    }
 
+    var listTitle = document.querySelectorAll(".issue-title")
+
+    for(let i=0;i<listTitle.length;i++){
+      listTitle[i].onclick = function(){
+        this.parentNode.classList.toggle("opening");
+        var itemOpen = document.querySelectorAll(".issue-item:not([style*='none']):not(.opening)");
+        var type = open;
+        if(itemOpen.length == 0){
+          type = close;
+        };
+        toggle.dataset.name = type;
+      };
+    };
+
+    
+  };
 };
 
 function monitor(obj,func,option){
