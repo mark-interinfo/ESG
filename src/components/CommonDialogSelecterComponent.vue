@@ -11,12 +11,16 @@
         <div class="selected-area" v-if="props.optionType === 'array'">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
-              {{ props.option.find(option => option.value === item).name }}
+              <span>
+                {{ props.option.find(option => option.value === item).name }}
+              </span>
+              <span class="del" @click="selectedRemove(item)"></span>
             </span>
           </template>
           <span v-else>
             {{ selected }}
           </span>
+          <div class="clear" @click="selectedClear"></div>
         </div>
 
         <!-- selected Object -->
@@ -26,7 +30,7 @@
               <span>
                 {{ props.option[key].find(option => option.value === item).name }}
               </span>
-              <span class="del"></span>
+              <span class="del" @click="selectedRemove(item,key)"></span>
             </span>
           </template>
           <div class="clear" @click="selectedClear"></div>
@@ -133,11 +137,6 @@ watch(props, ()=>{
 });
 
 const selectedClear = function(){
-  // if( props.selectMulti ){
-  //   selected.value = [];
-  // } else {
-  //   selected.value = '';
-  // }
   if(props.optionType === 'array'){
     selected.value = [];
   }
@@ -147,6 +146,15 @@ const selectedClear = function(){
     })
   }
 };
+
+const selectedRemove = function(id, key){
+  if(props.optionType === 'array'){
+    selected.value = selected.value.filter(item => item !== id);
+  }
+  if(props.optionType === 'object'){
+    selected.value[key] = selected.value[key].filter(item => item !== id);
+  }
+}
 
 const closeDialogSelecter = function(){
   emits('closeDialogSelecter');
