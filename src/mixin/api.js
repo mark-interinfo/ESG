@@ -6,7 +6,6 @@ const userStore = useUserStore();
 let base = 'http://192.168.10.108/servlet/apiM/esg/V1/interfaces/';
 
 function callAPI(apiName, requestBody, method='POST'){
-  console.log(111)
   loading();
 
   if(requestBody.value){

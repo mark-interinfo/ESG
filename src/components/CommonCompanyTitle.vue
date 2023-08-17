@@ -1,6 +1,6 @@
 <template>
     <span>
-        <h1 v-if="pathName1.includes(route.path)">{{searchYear + route.name}}</h1>
+        <h1 v-if="pathName1.includes(route.path)">{{year + route.name}}</h1>
         <h1 v-else>{{route.name}}</h1>
         <span v-if="pathName2.includes(route.path)" class="companyInfo">
             <span>公司代號 : {{ companyId }}</span>
@@ -22,7 +22,7 @@ const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTem
 
 const companyId = userStore.companyId;
 const companyName = userStore.companyName;
-const searchYear = userStore.searchYear;
+const year = userStore.getYear();
 
 </script>
 <style lang="scss" scoped>

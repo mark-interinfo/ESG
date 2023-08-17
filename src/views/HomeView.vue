@@ -1,7 +1,7 @@
 <template>
     <div id="login">
         <div>
-            <img id="logo" src="../assets/ESG/Login_img/Login_title.png">
+            <img title="回首頁" id="logo" src="../assets/ESG/Login_img/Login_title.png" @click="router.push('/')">
             <form id="form">
                 <div class="id">
                     <div>帳號</div>
@@ -105,7 +105,7 @@ const passwordCheck = function(){
 
         > div {display: flex;justify-content: center;width: 65vw;align-items: center;flex-direction: column;}
         
-        #logo {width: 30%;}
+        #logo {width: 30%;cursor: pointer;}
         input:not([type="button"]){background:#efefef;border:1px solid #efefef;height:48px;border-radius:3px;width: 100%;padding:0 10px;}
         input::placeholder{font-size:16px;color:#aaa;}
 
