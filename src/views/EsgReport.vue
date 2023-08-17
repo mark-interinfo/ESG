@@ -14,74 +14,75 @@
       </div>
       <div id="issue">
         <div id="issue-header">
-          <div id="issue-tags" v-for="sustainable in allSustainable">
-            <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">{{ sustainable.NO }}.{{ sustainable.NAME }}</div>
-
-            <!-- <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">1.關於報告書</div>
-            <div class="issue-tag pointer" data-id="2.經營理念與永續策略" id="2.經營理念與永續策略">2.經營理念與永續策略</div>
-            <div class="issue-tag pointer" data-id="3.重大主題鑑別" id="3.重大主題鑑別">3.重大主題鑑別</div>
-            <div class="issue-tag pointer" data-id="4.所辨識出之重大主題" id="4.所辨識出之重大主題">4.所辨識出之重大主題</div>
-            <div class="issue-tag pointer" data-id="5.治理面" id="5.治理面">5.治理面</div>
-            <div class="issue-tag pointer" data-id="+" id="+">+</div> -->
+          <div id="issue-tags" v-for="sustainable in top">
+            <div class="issue-tag pointer" :data-id="sustainable" :id="sustainable">{{ sustainable }}</div>
           </div>
           <div id="issue-edit" class="pointer" data-name="編輯章節"></div>
         </div>
         <div id="issue-body">
-          <div class="issue-content">
+          <div>
             <div>
-              <div class="issue-item pointer" data-item="1.關於報告書">
-                <div class="issue-title">
-                  <span>1.關於報告書</span>
-                  <img src="/src/assets/images/select.svg" alt="">
-                </div>
-                <div>
-                  <table class="indicators">
-                    <tr>
-                      <td>標題 (一) 代號</td>
-                      <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                      <td>標題 (一) 名稱</td>
-                      <td><input type="text"></td>
-                    </tr>
-                    <tr class="listItem">
-                      <td colspan="2">
-                        <span>
-                          <div>標題 (二) 項目</div>
-                          <input type="button" class="button buttonColor3" value="01-2董事會結構及運作情形" @click="showSecondDialog">
-                          <input type="button" class="button buttonColor3" value="+ 新增">
-                        </span>
-                        <span>
-                          <div>標題 (三) 項目</div>
-                        <input type="button" class="button buttonColor3" value="+ 新增">
-                        <input type="button" class="button buttonColor3" value="+ 新增">
-                        </span>
-                      </td>
-                    </tr>
-                  </table>
+              <div class="issue-item pointer" :data-item="sustainable.NO +'.'+ sustainable.NAME"  v-for="(sustainable) in allSustainable">
+                <div v-for="item in sustainable.CAP_NO1List">
+                  <div class="issue-title">
+                    <span>{{item.NO1 + item.NAME1}}</span>
+                    <img src="/src/assets/images/select.svg" alt="">
+                  </div>
+                  <div class="issue-content">
+                    <table class="indicators">
+                      <tr>
+                        <td>標題 (一) 代號</td>
+                        <td><input type="text" :value="item.NO1" disabled></td>
+                      </tr>
+                      <tr>
+                        <td>標題 (一) 名稱</td>
+                        <td><input type="text" :value="item.NAME1" disabled></td>
+                      </tr>
+                      <tr class="listItem">
+                        <td colspan="2">
+                          <span>
+                            <div>標題 (二) 項目</div>
+                            <input v-for="item1 in item.CAP_NO2List" type="button" class="button buttonColor3" :value="(item1.NO2 +''+ item1.NAME2)" @click="showSecondDialog">
+                          </span>
+                          <span>
+                            <div>標題 (三) 項目</div>
+                            <div v-for="item in allSustainable">
+                              <div v-for="item1 in item.CAP_NO1List">
+                              <div v-for="item2 in item1.CAP_NO2List">
+                                <div v-for="item3 in item2.CAP_NO3List">
+                                  <input type="button" class="button buttonColor3" :value="(item3.NO3 +''+ item3.NAME3)" @click="showSecondDialog">
+                                </div>
+                              </div>
+                              </div>
+                            </div>
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
 
-                <div class="issue-item pointer" data-item="1.關於報告書">
-                  <div class="issue-title">
-                    <span>02.法規遵循</span>
-                    <img src="/src/assets/images/select.svg" alt="">
-                  </div>
+              <div class="issue-item pointer" data-item="1.關於報告書">
+                <div class="issue-title">
+                  <span>02.法規遵循</span>
+                  <img src="/src/assets/images/select.svg" alt="">
                 </div>
+              </div>
 
-                <div class="issue-item pointer" data-item="1.關於報告書">
-                  <div class="issue-title">
-                    <span>03.參與各類社團組織</span>
-                    <img src="/src/assets/images/select.svg" alt="">
-                  </div>
+              <div class="issue-item pointer" data-item="1.關於報告書">
+                <div class="issue-title">
+                  <span>03.參與各類社團組織</span>
+                  <img src="/src/assets/images/select.svg" alt="">
                 </div>
+              </div>
 
-                <div class="issue-item pointer" data-item="1.關於報告書">
-                  <div class="issue-title">
-                    <span>04.其他</span>
-                    <img src="/src/assets/images/select.svg" alt="">
-                  </div>
+              <div class="issue-item pointer" data-item="1.關於報告書">
+                <div class="issue-title">
+                  <span>04.其他</span>
+                  <img src="/src/assets/images/select.svg" alt="">
                 </div>
+              </div>
             </div>
             <div class="buttonBox">
               <input type="button" class="button buttonColor3" value="新增議題">
@@ -179,6 +180,7 @@
   const allInternationalTarget = ref([]);
   const allSustainable = ref([]);
   const allTarget = ref([]);
+  const top = ref([]);
 
   (async() => {
     let apiData = await APICollection.QuerySustainable({});
@@ -186,6 +188,7 @@
     allInternationalTarget.value = apiData.allInternationalTarget;
     allSustainable.value = apiData.allSustainable;
     allTarget.value = apiData.allTarget;
+    top.value = apiData.top;
 
   })().catch(err=>{
   }).then(()=>{
@@ -227,12 +230,38 @@
     isShowDialogSelecterSource.value = false;
   };
 
+  onUpdated(()=>{
+    if(!document.querySelector(".selected")){
+      setTimeout(()=>{
+        switchOpen();
+        document.querySelector(".issue-tag").click();
+      },100);
+    };
+  })
+
   
 </script>
 <style lang="scss">
 
   #EsgReport{
     padding-bottom: 20px;
+
+    #issue-header{
+      padding-right:100px;
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: inherit!important;
+
+      > div{
+        white-space: nowrap;
+      }
+    }
+
+    #issue-edit{
+      position: absolute;
+      right:0;
+      bottom:0;
+    }
   }
 
   .content:has( > .title + #issue){
@@ -242,6 +271,8 @@
     box-shadow: 0 0 5px rgba(0,0,0,.2);
     border-radius: 3px;;
   }
+
+  
 
   #issue-edit:before{
     content:attr(data-name);
@@ -253,9 +284,13 @@
     display: inline-block;
   }
 
+  .listItem input[type="button"]{
+    width:100%;
+  }
 
   .listItem > td > span{
     width:calc(50% - 20px);
+    vertical-align: top!important;
   }
 
   .listItem > td > span + span{

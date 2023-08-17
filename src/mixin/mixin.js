@@ -172,7 +172,7 @@ const switchOpen = function(){
         if(itemOpen.length == 0){
           type = close;
         };
-        toggle.dataset.name = type;
+        toggle && (toggle.dataset.name = type);
       };
     };
 
