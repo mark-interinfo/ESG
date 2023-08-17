@@ -35,7 +35,7 @@ function callAPI(apiName, requestBody, method='POST'){
 };
 
 const APICollection = {
-  // 監控端登入
+  // 登入
   ESGLogin: ((requestBody) => callAPI('ESGLogin', requestBody)),
   // 申報端年度查找
   QueryYear: ((requestBody) => callAPI('QueryYear', requestBody)),

@@ -3,21 +3,25 @@
         <h1 v-if="pathName1.includes(route.path)">{{year + route.name}}</h1>
         <h1 v-else>{{route.name}}</h1>
         <span v-if="pathName2.includes(route.path)">
-            <!-- 代號改1532 公司名稱 勤美 -->
-            <span>公司代號 : 1532</span>
-            <span>公司名稱 : 勤美</span>
+            <span>公司代號 : {{ companyId }}</span>
+            <span>公司名稱 : {{ companyName }}</span>
         </span>
     </span>
 </template>
 <script setup>
-    import { ref } from 'vue';
-    import { useRoute } from 'vue-router';
-    const route = useRoute();
-    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
-    const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useUserStore } from '../pinia/user.js';
 
-    import { useUserStore } from '../pinia/user.js';
-    const year = useUserStore().getYear();
+const userStore = useUserStore();
+
+const route = useRoute();
+const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
+const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
+
+
+const companyId = userStore.companyId;
+const companyName = userStore.companyName;
 
 </script>
 <style lang="scss" scoped>

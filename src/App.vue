@@ -24,10 +24,8 @@ import { ref } from 'vue';
 import CommonFooterContainer  from './components/CommonFooterContainer.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import { useRoute } from 'vue-router';
-import { useUserStore } from './pinia/user.js';
 
 const route = useRoute();
-const userStore = useUserStore();
 
 const bodyRef = ref(null);
 const toTopDistance = ref(0);
@@ -40,8 +38,6 @@ const scrollToTop = function(){
     behavior: 'smooth',
   });
 };
-
-userStore.setUserByStorage();
 
 </script>
 <style lang="scss">
