@@ -201,6 +201,7 @@
       top2.value = apiData2.top;
       top2.value.push("+");
 
+      showInternationalIssue.value = {};
       allInternationalIssue.value.forEach((issue)=>{
         showInternationalIssue.value[issue.internationalIssueNo] = `${issue.internationalIssueNo}-1`;
       });
@@ -216,7 +217,13 @@
     }
 
     const addInternationalTargetNo = function(info){
-      allInternationalIssue.value
+      console.log(info)
+      allInternationalIssue.value.find(item=> (item.guideLine === info.guideLine) && (item.internationalIssueNo === info.issueNo)).internationalIssueList.push(info.data);
+
+      showInternationalIssue.value = {};
+      allInternationalIssue.value.forEach((issue)=>{
+        showInternationalIssue.value[issue.internationalIssueNo] = `${issue.internationalIssueNo}-1`;
+      });
     }
 
     // ESG資訊矩陣設定

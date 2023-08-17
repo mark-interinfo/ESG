@@ -105,11 +105,6 @@
                 </td>
             </tr>
           </template>
-          <tr>
-            <td colspan="2">
-              <input type="button" value="新增指標" class="button buttonColor3">
-            </td>
-          </tr>
         </table>
     </div>
   </div>
@@ -145,13 +140,6 @@
           </svg>
           新增議題
         </div>
-        <p>
-          議題代號
-          <span>
-            （選填）
-          </span>
-        </p>
-        <input type="text" placeholder="請填寫" v-model="internationalIssueNo">
         <p>
           議題名稱
         </p>
@@ -221,7 +209,7 @@
       <div class="dialog-footer">
         <button
         class="button buttonColor2"
-        @click="closeAddIssueCodeDialog()"
+        @click="isShowAddInternationalTargetNoDialog = false"
         >
           取消
         </button>
@@ -303,24 +291,26 @@
   const newTargetNote = ref('');
   const newTargetCodeArray = ref([]);
 
-  const showAddInternationalTargetNoDialog = function(IssueListLength, targetGuideLine, targetInternationalIssueNo){
+  const showAddInternationalTargetNoDialog = function(IssueListLength, guideLine, internationalIssueNo){
     isShowAddInternationalTargetNoDialog.value = true;
-    targetGuideLine.value = targetGuideLine;
-    targetInternationalIssueNo.value = targetInternationalIssueNo;
+    targetGuideLine.value = guideLine;
+    targetInternationalIssueNo.value = internationalIssueNo;
     newTargetNo.value = IssueListLength + 1;
   };
 
   const addInternationalTargetNo = function(){
     emits('addInternationalTargetNo', {
-      issueIndex: targetInternationalIssueNo.value,
+      issueNo: targetInternationalIssueNo.value,
       guideLine: targetGuideLine.value,
       data: {
-        internationalTargetNo: newTargetNo.value,
+        internationalTargetNo: `${targetInternationalIssueNo.value}-${newTargetNo.value}`,
         internationalTargetName: newTargetName.value,
         internationalTargetNote: newTargetNote.value,
         internationalTargetCodeArray: newTargetCodeArray.value,
+        internationalTargetStatus: {isOnYear: "", isOn: true},
       }
-    })
+    });
+    isShowAddInternationalTargetNoDialog.value = false;
   }
 
   // 跳窗篩選器
