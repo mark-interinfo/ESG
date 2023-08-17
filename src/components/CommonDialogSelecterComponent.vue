@@ -7,6 +7,7 @@
   >
   <div class="dialog">
       <div class="dialog-content">
+        <!-- selected Array -->
         <div class="selected-area" v-if="props.optionType === 'array'">
           <template v-if="props.selectMulti === true">
             <span v-for="item in selected">
@@ -17,6 +18,8 @@
             {{ selected }}
           </span>
         </div>
+
+        <!-- selected Object -->
         <div class="selected-area" v-if="props.optionType === 'object'">
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
@@ -28,6 +31,7 @@
           </template>
           <div class="clear" @click="selectedClear"></div>
         </div>
+
         <input
         type="text"
         v-model="searcher"
@@ -37,6 +41,7 @@
         class="search"
         >
         <div class="option">
+          <!-- option Array -->
           <template v-if="props.optionType === 'array'">
             <div
             v-for="item in props.option"
@@ -56,11 +61,17 @@
               </label>
             </div>
           </template>
+
+          <!-- option Object -->
           <template v-if="props.optionType === 'object'">
             <div
             v-for="(kind, key) in props.option"
             :key="key"
             >
+              <p style="margin: 0;">
+                {{ key }}
+              </p>
+              <hr>
               <div
               v-for="item in kind"
               :key="item.value"

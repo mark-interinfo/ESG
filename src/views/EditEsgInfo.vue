@@ -233,7 +233,6 @@
     
     (async() => {
       let apiData3 = await APICollection.QueryMatrixData({});
-      console.log(apiData3)
       allMatrixTarget.value = apiData3.allMatrixTarget;
       allMatrix.value = apiData3.allMatrix;
       top3.value = apiData3.top;

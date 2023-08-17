@@ -28,11 +28,10 @@
                 @click="openDialogSelecter(issue.Matrix, issue)"
               >
                 <template v-for="(checkedList, type) in issue.Matrix">
-                  <!-- <span v-for="checkedItem in checkedList">
+                  <span v-for="checkedItem in checkedList">
                     {{ props.allMatrixTarget[type].find(item => item.value === checkedItem).name }}
-                  </span> -->
+                  </span>
                 </template>
-                <!-- <input type="hidden" :name="issue.ISSUE_NO" v-model="issue.Matrix.GRI"> -->
               </div>
             </td>
           </tr>
