@@ -38,8 +38,8 @@
                                 文字綠色為非核心指標
                             </p>
                             <ol>
-                                <li v-for="targetList in list.targetList">
-                                  <span :class="{'notIsCore': targetList.notIsCore === false}">{{targetList.title}}</span>
+                                <li v-for="targetList in list.targetList" :class="{'notIsCore': targetList.notIsCore === false}">
+                                  <span>{{targetList.title}}</span>
                                   <span v-if="targetList.required" class="fontRed">*</span>
 
                                   <CommonNoticeComponent
@@ -153,7 +153,8 @@
 
 </script>
 <style lang="scss">
-.notIsCore{
+.notIsCore::marker,
+.notIsCore > span{
   color: #1D8844;
 }
 </style>
