@@ -54,6 +54,7 @@
                   :showIssueList="showIssueList"
                   @addNewIssue="addNewIssue"
                   @addNewIssueCode="addNewIssueCode"
+                  @addIssueDetailDialog="addIssueDetailDialog"
                   />
                 </div>
               </div>
@@ -154,7 +155,35 @@
     }).then(()=>{
       switchOpen();
     });
-    
+
+    const addNewIssue = function(newIssue){
+      allIssue.value.push(newIssue);
+    };
+
+    const addNewIssueCode = function(info){
+      let data = info.data;
+      data.targetStatus = {
+        isOnYear: "",
+        isOn: true
+      }
+      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
+      allIssue.value[info.issueIndex].issueList.push(data);
+    }
+
+    const addIssueDetailDialog = function(data){
+      let [issueKind, targetType] = data.fieldId.split('_');
+      let fieldLength = allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target=>target.targetType === targetType).targetList.length;
+      allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target=>target.targetType === targetType).targetList.push({
+        fieldId: `${data.fieldId}_${fieldLength + 1}`,
+        note: data.note,
+        optionList: data.optionList,
+        required: false,
+        status: {isOnYear: "", isOn: true},
+        title: data.title,
+        type: data.type
+      })
+    }
+
     // 國際準則指標設定
     const allInternationalIssue = ref([]);
     const allInternationalTarget = ref([]);
@@ -197,24 +226,8 @@
         document.querySelector(".issue-tag").click();
       },100)
     })
-    
 
     // 共用方法
-
-    const addNewIssue = function(newIssue){
-      allIssue.value.push(newIssue);
-    };
-
-    const addNewIssueCode = function(info){
-      let data = info.data;
-      console.log(info)
-      data.targetStatus = {
-        isOnYear: "",
-        isOn: true
-      }
-      data.targetType = allIssue.value[info.issueIndex].issueList.length + 1;
-      allIssue.value[info.issueIndex].issueList.push(data);
-    }
 
     const watchData = (data) =>{
       getData.value = data;
