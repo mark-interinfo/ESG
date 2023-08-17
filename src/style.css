@@ -277,35 +277,55 @@ label:not([class]){
     height: 100%;
     display: none;
     z-index: 1;
-    &.show{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .dialog-block{
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      border-radius: 3px;
-      width: 100%;
-      max-width: 480px;
-      .dialog-content{
-        padding: 20px;
-        .dialog-title{
-          display: flex;
-          align-items: center;
-          color: #37D880;
-        }
-      }
-      .dialog-footer{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 20px;
-        background: #FAFAFA;
-      }
-    }
-  }
+}
+
+.dialog-background.show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-block{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.dialog-content{
+    padding: 20px;
+}
+
+.dialog-content input[type="text"]{
+    width:100%;
+    background: #fafafa;
+    border:1px solid #fafafa;
+}
+
+.dialog-content .option > div{
+    height: 32px;;
+}
+
+.dialog-content .option label > input{
+    vertical-align: text-bottom;
+}
+
+.dialog-title{
+    display: flex;
+    align-items: center;
+    color: #37D880;
+}
+
+
+.dialog-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #FAFAFA;
+}
 
 #loading{
     position: fixed;

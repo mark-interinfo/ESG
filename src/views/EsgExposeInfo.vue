@@ -151,11 +151,10 @@
     emits('watchData', data.value)
   }, {deep: true});
 
-
 </script>
 <style lang="scss">
-.notIsCore::marker,
-.notIsCore > span{
-  color: #1D8844;
-}
+  .notIsCore::marker,
+  .notIsCore > span{
+    color: #1D8844;
+  }
 </style>

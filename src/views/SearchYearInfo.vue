@@ -63,65 +63,65 @@
     </div>
 </template>
 <script setup>
-import { ref,onMounted } from 'vue';
-import { APICollection } from '../mixin/api';
-import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
-import { useUserStore } from "../pinia/user.js";
-import { useRouter } from 'vue-router';
-const router = useRouter();
+    import { ref,onMounted } from 'vue';
+    import { APICollection } from '../mixin/api';
+    import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
+    import { useUserStore } from "../pinia/user.js";
+    import { useRouter } from 'vue-router';
+    const router = useRouter();
 
-const userStore = useUserStore();
+    const userStore = useUserStore();
 
-const downloadXBRL = ref({
-    href:"",
-});
-
-const apiRequest = ref({
-    companyId: userStore.companyId,
-    year: ''
-});
-
-const queryYear = ref();
-
-const hasData = ref('');
-
-onMounted(()=>{
-    if(!userStore.uid){
-        router.push("/HomeView");
-        alert("請登入帳號!");
-    };
-})
-
-const change = function() {
-    // Nick
-    (async() => {
-        hasData.value = await APICollection.QueryYear(apiRequest);
-        hasData.value = hasData.value.dataExist.value;
-
-        queryYear.value = apiRequest.value.year;
-        userStore.setYear(queryYear.value);
-
-        downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
-    })().catch(err=>{
-        alert(err.resultMessage);
+    const downloadXBRL = ref({
+        href:"",
     });
-};
 
-// let uploadPDFResponseBody = {
-//     fileName:"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
-// };
-// (async() => {
-//     console.log(await APICollection.UploadPDF(uploadPDFResponseBody));
-// })();
+    const apiRequest = ref({
+        companyId: userStore.companyId,
+        year: "",
+    });
 
-// let GetPDFDataResponseBody = {
-//     keyWord: "有關廢棄物的議題",
-// };
-// let theWord = ref('');
-// (async() => {
-//     theWord.value = (await APICollection.GetPDFData(GetPDFDataResponseBody)).msg;
-//     theWord.value = unicodeToString(theWord.value)
-// })();
+    const queryYear = ref();
+
+    const hasData = ref("");
+
+    onMounted(()=>{
+        if(!userStore.uid){
+            router.push("/HomeView");
+            alert("請登入帳號!");
+        };
+    })
+
+    const change = function() {
+        // Nick
+        (async() => {
+            hasData.value = await APICollection.QueryYear(apiRequest);
+            hasData.value = hasData.value.dataExist.value;
+
+            queryYear.value = apiRequest.value.year;
+            userStore.setYear(queryYear.value);
+
+            downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
+        })().catch(err=>{
+            alert(err.resultMessage);
+        });
+    };
+
+    // let uploadPDFResponseBody = {
+    //     fileName:"C:/Users/maxhaung/Desktop/ESG_POC/1532_勤美_2021.pdf"
+    // };
+    // (async() => {
+    //     console.log(await APICollection.UploadPDF(uploadPDFResponseBody));
+    // })();
+
+    // let GetPDFDataResponseBody = {
+    //     keyWord: "有關廢棄物的議題",
+    // };
+    // let theWord = ref('');
+    // (async() => {
+    //     theWord.value = (await APICollection.GetPDFData(GetPDFDataResponseBody)).msg;
+    //     theWord.value = unicodeToString(theWord.value)
+    // })();
 
 </script>
 <style lang="scss" scoped>

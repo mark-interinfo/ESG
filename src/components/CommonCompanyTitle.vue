@@ -9,20 +9,19 @@
     </span>
 </template>
 <script setup>
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { useUserStore } from '../pinia/user.js';
+    import { ref } from 'vue';
+    import { useRoute } from 'vue-router';
+    import { useUserStore } from '../pinia/user.js';
 
-const userStore = useUserStore();
+    const userStore = useUserStore();
+    const route = useRoute();
 
-const route = useRoute();
-const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
-const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
+    const pathName1 = ref(["/EditEsgInfo","/ApplyEsgInfo","/LookEsgInfo"]);
+    const pathName2 = ref(["/EditEsgInfo","/ApplyEsgInfo","/SearchYearInfo","/EsgTemplate","/XbrlDownload"]);
 
-
-const companyId = userStore.companyId;
-const companyName = userStore.companyName;
-const year = userStore.getYear();
+    const companyId = userStore.companyId;
+    const companyName = userStore.companyName;
+    const year = userStore.getYear();
 
 </script>
 <style lang="scss" scoped>

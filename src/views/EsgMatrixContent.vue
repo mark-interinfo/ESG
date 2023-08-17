@@ -38,13 +38,13 @@
         </table>
       </div>
       <CommonDialogSelecterComponent
-      :isShowDialogSelecter="isShowDialogSelecter"
-      :selectMulti="true"
-      :option="props.allMatrixTarget"
-      :optionType="'object'"
-      :selected="targetIndustry"
-      @closeDialogSelecter="closeDialogSelecter"
-      @industrySetting="industrySetting"
+        :isShowDialogSelecter="isShowDialogSelecter"
+        :selectMulti="true"
+        :option="props.allMatrixTarget"
+        :optionType="'object'"
+        :selected="targetIndustry"
+        @closeDialogSelecter="closeDialogSelecter"
+        @industrySetting="industrySetting"
       />
     </div>
   </div>
