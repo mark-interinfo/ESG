@@ -181,6 +181,7 @@
     
     (async() => {
       let apiData3 = await APICollection.QueryMatrixData({});
+      console.log(apiData3)
       allMatrixTarget.value = apiData3.allMatrixTarget;
       allMatrix.value = apiData3.allMatrix;
       top3.value = apiData3.top;
@@ -274,28 +275,71 @@
             console.log("指標匯入")
             inner.value="";
             (async() => {
-              let back = await APICollection.UploadESGExcel(fileDetail);
 
-              console.log(back.allIssue)
+              let back;
 
-              for(var i=0;i<back.allIssue.length;i++){
-                var key = back.allIssue[i].issueType;
-                var cont = 0;
-                for(var a=0;a<allIssue.value.length;a++){
-                  if(allIssue.value[a].issueType == key){
-                    allIssue.value[a] = back.allIssue[i];
-                    continue;
+              if(route.path == "/ExchangeIndicators"){
+                back = await APICollection.UploadESGExcel(fileDetail);
+                for(var i=0;i<back.allIssue.length;i++){
+                  var key = back.allIssue[i].issueType;
+                  var cont = 0;
+                  for(var a=0;a<allIssue.value.length;a++){
+                    if(allIssue.value[a].issueType == key){
+                      allIssue.value[a] = back.allIssue[i];
+                      continue;
+                    };
+                    cont+=1;
                   };
-                  cont+=1;
-                };
-                if(cont == allIssue.value.length){
-                  allIssue.value.push(back.allIssue[i]);
+                  if(cont == allIssue.value.length){
+                    allIssue.value.push(back.allIssue[i]);
+                  };
                 };
               };
+
+
+              if(route.path == "/InternationalIndicators"){
+                back = await APICollection.UploadInternationalExcel(fileDetail);
+                console.log(back)
+                for(var i=0;i<back.allInternationalIssue.length;i++){
+                  var key = back.allInternationalIssue[i].internationalIssueName;
+                  var cont = 0;
+                  for(var a=0;a<allInternationalIssue.value.length;a++){
+                    if(allInternationalIssue.value[a].internationalIssueName == key){
+                      allInternationalIssue.value[a] = back.allInternationalIssue[i];
+                      continue;
+                    };
+                    cont+=1;
+                  };
+                  if(cont == allInternationalIssue.value.length){
+                    allInternationalIssue.value.push(back.allInternationalIssue[i]);
+                  };
+                };
+                console.log(allInternationalIssue.value)
+              };
+
+              if(route.path == "/EsgMatrix"){
+                back = await APICollection.UploadMatrixExcel(fileDetail);
+                console.log(back)
+                for(var i=0;i<back.allMatrixTarget.length;i++){
+                  var key = back.allMatrixTarget[i].issueType;
+                  var cont = 0;
+                  for(var a=0;a<allMatrix.value.length;a++){
+                    if(allMatrix.value[a].issueType == key){
+                      allMatrix.value[a] = back.allMatrixTarget[i];
+                      continue;
+                    };
+                    cont+=1;
+                  };
+                  if(cont == allMatrix.value.length){
+                    allMatrix.value.push(back.allMatrixTarget[i]);
+                  };
+                };
+              };
+              
               alert(back.msg);
 
             })().catch(err=>{
-              alert("error : " + err.resultMessage);
+              alert("error : " + err);
             }).then(()=>{
               switchOpen();
             });
@@ -665,6 +709,10 @@
       display: block;
     }
 
+  }
+  
+  .InternationalIndicatorsContent td[colspan]{
+    text-align: right;
   }
 
 </style>

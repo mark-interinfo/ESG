@@ -32,6 +32,8 @@
                     >
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
+                            <input type="button" class="button buttonColor2 download" value="XBRL">
+                            <input type="button" class="button buttonColor2 download" value="矩陣">
                             <router-link to="/LookEsgInfo">
                                 <input class="button buttonColor2" type="button" value="閱覽">
                             </router-link>
@@ -117,6 +119,11 @@ const change = function() {
             padding: 20px 40px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             border-radius: 3px;
+        }
+
+        .download{
+            background: url(../assets/images/download.svg)left center/30px no-repeat;
+            padding-left:30px;
         }
 
         .title{
