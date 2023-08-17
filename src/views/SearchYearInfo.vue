@@ -32,7 +32,7 @@
                     >
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
-                            <input type="button" class="button buttonColor2 download" value="XBRL">
+                            <a download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
                             <input type="button" class="button buttonColor2 download" value="矩陣">
                             <router-link to="/LookEsgInfo">
                                 <input class="button buttonColor2" type="button" value="閱覽">
@@ -68,6 +68,10 @@ import { APICollection } from '../mixin/api';
 import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
 import { useUserStore } from "../pinia/user.js";
 
+const downloadXBRL = ref({
+    href:"",
+});
+
 const apiRequest = ref({
     companyId: "1101",
     year: ''
@@ -86,6 +90,9 @@ const change = function() {
 
         queryYear.value = apiRequest.value.year;
         userStore.setYear(queryYear.value);
+
+        downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
+        console.log(downloadXBRL.value.href)
     })().catch(err=>{
         alert(err.resultMessage);
     });

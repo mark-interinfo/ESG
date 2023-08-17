@@ -56,6 +56,7 @@ const APICollection = {
   UploadESGExcel: ((requestBody) => callAPI('UploadESGExcel', requestBody)),
   UploadInternationalExcel: ((requestBody) => callAPI('UploadInternationalExcel', requestBody)),
   UploadMatrixExcel: ((requestBody) => callAPI('UploadMatrixExcel', requestBody)),
+  DownloadXBRL: ((requestBody) => callAPI('DownloadXBRL', requestBody)),
 };
 
 export { APICollection };
