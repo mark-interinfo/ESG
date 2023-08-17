@@ -125,7 +125,7 @@
     import { onUpdated, ref } from 'vue';
     import { APICollection } from '../mixin/api';
     import { switchOpen } from '../mixin/mixin.js';
-    import { useRouter } from 'vue-router';
+    import { useRouter,useRoute } from 'vue-router';
 
     const router = useRouter();
 
