@@ -14,7 +14,6 @@
       </div>
       <div id="issue">
         <div id="issue-header">
-          {{ allSustainable }}
           <div id="issue-tags" v-for="sustainable in allSustainable">
             <div class="issue-tag pointer" data-id="1.關於報告書" id="1.關於報告書">{{ sustainable.NO }}.{{ sustainable.NAME }}</div>
 
@@ -228,15 +227,7 @@
     isShowDialogSelecterSource.value = false;
   };
 
-  onMounted(()=>{
-    switchOpen();
-    document.querySelector(".issue-tag").click();
-  });
-
-  onUpdated(()=>{
-    switchOpen();
-    document.querySelector(".issue-tag").click();
-  });
+  
 </script>
 <style lang="scss">
 
