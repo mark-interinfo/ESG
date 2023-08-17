@@ -180,7 +180,7 @@ const search = function(event){
   justify-content: center;
   align-items: center;
   background: #0000004d;
-  z-index: 1;
+  z-index: 2;
 
   .option{
     height: 400px;

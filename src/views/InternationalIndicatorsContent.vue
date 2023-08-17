@@ -19,14 +19,17 @@
                 指標代號
               </td>
               <td>
-                <select v-model="showInternationalIssue[issue.internationalIssueNo]">
+                <select v-model="props.showInternationalIssue[issue.internationalIssueNo]" style="margin-right: 12px;">
                   <option v-for="option in issue.internationalIssueList" :value="option.internationalTargetNo">
                     {{option.internationalTargetNo}}
                   </option>
                 </select>
+                <span class="color-green pointer" @click="showAddInternationalTargetNoDialog(issue.internationalIssueList.length, issue.guideLine, issue.internationalIssueNo)">
+                  新增指標代號
+                </span>
               </td>
           </tr>
-          <template v-if="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])">
+          <template v-if="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo])">
             <tr>
                 <td>
                   適用產業別
@@ -36,11 +39,11 @@
                   class="items"
                   v-if="issue.internationalIssueList.length > 0"
                   @click="openDialogSelecter(
-                    issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray,
-                    issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo])
+                    issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray,
+                    issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo])
                   )"
                   >
-                    <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">
+                    <span v-for="target in issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetCodeArray">
                       {{ props.allIndustry.find(item=> item.value === target).name }}
                     </span>
                   </div>
@@ -54,7 +57,7 @@
                   <input
                   type="text"
                   v-if="issue.internationalIssueList.length > 0"
-                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetName"
+                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetName"
                   >
                 </td>
             </tr>
@@ -66,7 +69,7 @@
                   <input
                   type="text"
                   v-if="issue.internationalIssueList.length > 0"
-                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
+                  v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetNote"
                   >
                 </td>
             </tr>
@@ -78,7 +81,7 @@
                   <div>
                     <label>
                       <input type="radio"
-                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
                       :value="true"
                       >
                       <span>開啟</span>
@@ -87,13 +90,13 @@
                   <div>
                     <label>
                       <input type="radio"
-                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn"
                       :value="false"
                       >
                       <span>停用，自</span>
                       <input type="text" class="year" placeholder="請輸入民國年"
-                      :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === true"
-                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOnYear"
+                      :disabled="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOn === true"
+                      v-model="issue.internationalIssueList.find(item => item.internationalTargetNo === props.showInternationalIssue[issue.internationalIssueNo]).internationalTargetStatus.isOnYear"
                       >
                       <span class="unit">年</span>
                       <span>起停用此項目</span>
@@ -104,7 +107,7 @@
           </template>
           <tr>
             <td colspan="2">
-              <input type="button" value="新增指標細項" class="button buttonColor3">
+              <input type="button" value="新增指標" class="button buttonColor3">
             </td>
           </tr>
         </table>
@@ -112,8 +115,8 @@
   </div>
   <div class="buttonBox">
     <input
-    type="button" class="button buttonColor3" value="新增指標議題"
-    @click="showDialog()"
+    type="button" class="button buttonColor3" value="新增議題"
+    @click="showAddInternationalIssueDialog()"
     >
   </div>
   <CommonDialogSelecterComponent
@@ -125,13 +128,12 @@
   @closeDialogSelecter="closeDialogSelecter"
   @industrySetting="industrySetting"
   />
-  <!-- 彈跳視窗 -->
+  <!-- 新增議題 -->
   <div
   class="dialog-background"
-  :class="{'show': isShowDialog}"
-  @click.self="isShowDialog = false"
+  :class="{'show': isShowAddInternationalIssueDialog}"
+  @click.self="isShowAddInternationalIssueDialog = false"
   >
-    <!-- 新增指標 -->
     <div class="dialog-block">
       <div class="dialog-content">
         <div class="dialog-title">
@@ -156,15 +158,88 @@
         <input type="text" placeholder="請填寫" v-model="internationalIssueName">
       </div>
       <div class="dialog-footer">
-        <button class="button buttonColor1" @click="isShowDialog = false">取消</button>
+        <button class="button buttonColor1" @click="isShowAddInternationalIssueDialog = false">取消</button>
         <button class="button buttonColor1" @click="addInternationalIssue">確認</button>
       </div>
     </div>
   </div>
+
+  <!-- 新增指標代號 -->
+  <div
+  class="dialog-background"
+  :class="{'show': isShowAddInternationalTargetNoDialog}"
+  @click.self="isShowAddInternationalTargetNoDialog = false"
+  >
+    <div class="dialog-block">
+      <div class="dialog-content">
+        <div class="dialog-title">
+          <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.25" y="0.5" width="48" height="48" rx="24" fill="#F5FDF9"/>
+            <path d="M14.25 31.5V17.5C14.25 16.9696 14.4607 16.4609 14.8358 16.0858C15.2109 15.7107 15.7196 15.5 16.25 15.5H32.25C32.7804 15.5 33.2891 15.7107 33.6642 16.0858C34.0393 16.4609 34.25 16.9696 34.25 17.5V31.5C34.25 32.0304 34.0393 32.5391 33.6642 32.9142C33.2891 33.2893 32.7804 33.5 32.25 33.5H16.25C15.7196 33.5 15.2109 33.2893 14.8358 32.9142C14.4607 32.5391 14.25 32.0304 14.25 31.5Z" fill="#2FB86D" stroke="#2FB86D" stroke-width="1.5"/>
+            <path d="M14.25 19.5H34.25H14.25ZM21.25 26.5H24.25H21.25ZM27.25 26.5H24.25H27.25ZM24.25 26.5V23.5V26.5ZM24.25 26.5V29.5V26.5Z" fill="#2FB86D"/>
+            <path d="M14.25 19.5H34.25M21.25 26.5H24.25M24.25 26.5H27.25M24.25 26.5V23.5M24.25 26.5V29.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          新增指標代號
+        </div>
+        <label>
+          <div style="margin-bottom: 12px;">
+            <p class="label-title">
+              指標代號 {{ newTargetNo }}
+            </p>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <p class="label-title">
+              適用產業別
+            </p>
+            <div class="items pointer"
+            style="max-width: 100%"
+            @click="openDialogSelecter(newTargetCodeArray)"
+            >
+              <span v-for="industry in newTargetCodeArray" :key="item">
+                {{ props.allIndustry.find(item => item.value === industry).name }}
+              </span>
+            </div>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <p class="label-title">
+              指標名稱
+            </p>
+            <div class="input-group">
+              <input type="text" v-model="newTargetName" placeholder="請填寫">
+            </div>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <p class="label-title">
+              指標備註（選填）
+            </p>
+            <div class="input-group">
+              <input type="text" v-model="newTargetNote" placeholder="請填寫">
+            </div>
+          </div>
+        </label>
+      </div>
+      <div class="dialog-footer">
+        <button
+        class="button buttonColor2"
+        @click="closeAddIssueCodeDialog()"
+        >
+          取消
+        </button>
+        <button
+        class="button buttonColor1"
+        @click="addInternationalTargetNo()"
+        >
+          確認
+        </button>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 </template>
 <script setup>
-  import { ref, watch } from 'vue';
+  import { ref } from 'vue';
   import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
 
   const props = defineProps({
@@ -176,18 +251,23 @@
     },
     allInternationalTarget: {
       type: Array,
+    },
+    showInternationalIssue: {
+      type: Object
     }
   });
 
-  const emits = defineEmits(['addInternationalIssue'])
+  const emits = defineEmits(['addInternationalIssue', 'addInternationalTargetNo'])
 
-  const isShowDialog = ref(false);
-  const showDialog = function(){
-    isShowDialog.value = true;
-  }
-  // 跳窗新增指標
+  // 當前頁面的跳窗
+  // 當前頁面的跳窗 新增議題
+  const isShowAddInternationalIssueDialog = ref(false);
   const internationalIssueName = ref('');
   const internationalIssueNo = ref('');
+
+  const showAddInternationalIssueDialog = function(){
+    isShowAddInternationalIssueDialog.value = true;
+  }
   const addInternationalIssue = function(){
     let systemNo = 1;
     if(props.allInternationalIssue.find(item => item.internationalIssueNo === internationalIssueNo.value)){
@@ -211,7 +291,36 @@
         internationalIssueList: [],
       }
     );
-    isShowDialog.value = false;
+    isShowAddInternationalIssueDialog.value = false;
+  }
+
+  // 當前頁面的跳窗 新增指標代號
+  const isShowAddInternationalTargetNoDialog = ref(false);
+  const targetInternationalIssueNo = ref('0');
+  const targetGuideLine = ref('');
+  const newTargetNo = ref(0);
+  const newTargetName = ref('');
+  const newTargetNote = ref('');
+  const newTargetCodeArray = ref([]);
+
+  const showAddInternationalTargetNoDialog = function(IssueListLength, targetGuideLine, targetInternationalIssueNo){
+    isShowAddInternationalTargetNoDialog.value = true;
+    targetGuideLine.value = targetGuideLine;
+    targetInternationalIssueNo.value = targetInternationalIssueNo;
+    newTargetNo.value = IssueListLength + 1;
+  };
+
+  const addInternationalTargetNo = function(){
+    emits('addInternationalTargetNo', {
+      issueIndex: targetInternationalIssueNo.value,
+      guideLine: targetGuideLine.value,
+      data: {
+        internationalTargetNo: newTargetNo.value,
+        internationalTargetName: newTargetName.value,
+        internationalTargetNote: newTargetNote.value,
+        internationalTargetCodeArray: newTargetCodeArray.value,
+      }
+    })
   }
 
   // 跳窗篩選器
@@ -220,6 +329,7 @@
   const changeList = ref();
 
   const openDialogSelecter = function(industry, list){
+
     isShowDialogSelecter.value = true;
     targetIndustry.value = industry;
     changeList.value = list;
@@ -231,16 +341,19 @@
 
   const industrySetting = function(data){
     isShowDialogSelecter.value = false;
-    changeList.value.internationalTargetCodeArray = data;
+    if(isShowAddInternationalTargetNoDialog.value === true){
+      newTargetCodeArray.value = data;
+    } else {
+      changeList.value.internationalTargetCodeArray = data;
+    }
   }
 
-  const showInternationalIssue = ref({});
-  watch(props, ()=>{
-    props.allInternationalIssue.forEach((issue)=>{
-      showInternationalIssue.value[issue.internationalIssueNo] = `${issue.internationalIssueNo}-1`;
-    });
-  })
 </script>
 <style lang="scss">
-
+.color-green{
+  color: #2FB86D !important;
+}
+.pointer{
+  cursor: pointer;
+}
 </style>

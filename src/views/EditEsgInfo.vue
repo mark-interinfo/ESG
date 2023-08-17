@@ -80,7 +80,9 @@
                 :allInternationalIssue="allInternationalIssue"
                 :allIndustry="allIndustry"
                 :allInternationalTarget="allInternationalTarget"
+                :showInternationalIssue="showInternationalIssue"
                 @addInternationalIssue="addInternationalIssue"
+                @addInternationalTargetNo="addInternationalTargetNo"
                 />
               </div>
           </template>
@@ -138,7 +140,7 @@
     const top1 = ref([]);
 
     const showIssueList = ref({});
-    
+
     (async() => {
       let apiData1 = await APICollection.QueryESGData({});
       allIndustry.value = apiData1.allIndustry;
@@ -189,6 +191,8 @@
     const allInternationalTarget = ref([]);
     const top2 = ref([]);
 
+    const showInternationalIssue = ref({});
+
     (async() => {
       let apiData2 = await APICollection.QueryInternationalData({});
       allInternationalIssue.value = apiData2.allInternationalIssue;
@@ -196,16 +200,28 @@
       allInternationalTarget.value = apiData2.allInternationalTarget;
       top2.value = apiData2.top;
       top2.value.push("+");
+
+      allInternationalIssue.value.forEach((issue)=>{
+        showInternationalIssue.value[issue.internationalIssueNo] = `${issue.internationalIssueNo}-1`;
+      });
+
     })().catch(err=>{
         alert("apiData2" + err.resultMessage);
     }).then(()=>{
       switchOpen();
     });
-    
+
+    const addInternationalIssue = function(data){
+      allInternationalIssue.value.push(data);
+    }
+
+    const addInternationalTargetNo = function(info){
+      allInternationalIssue.value
+    }
+
     // ESG資訊矩陣設定
     const allMatrix = ref();
     const allMatrixTarget = ref([]);
-    const issueTypeSelected3 = ref();
     const top3 = ref([]);
     
     (async() => {
