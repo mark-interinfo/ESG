@@ -129,6 +129,10 @@
     #searchYearInfo {
         margin: 0 20px 20px;
 
+        .title:not(:has(+ #issue)){
+            max-width:100%;
+        }
+
         .content{
             width: 880px;
             margin: 0 auto;

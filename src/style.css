@@ -201,23 +201,29 @@ label:not([class]){
 
 .content{
     background:#fff;
+    max-width:calc(100% - 80px);
 }
 
 .title{
     width: 880px;
+    max-width:calc(100% - 120px);
     margin:0 auto;
     padding:20px 40px 40px;
     border-radius: 3px;
 
     > span{
-        width:calc(100% - 500px);
+        width:50%;
         vertical-align: middle;
     }
 
     > span + #buttonBox{
-        width:500px;
+        width:50%;
         text-align: right;
     }
+}
+
+@media (max-width:800px){
+    .title{max-width:100%;}
 }
 
 .title:not(:has( + #issue)){
@@ -240,7 +246,6 @@ label:not([class]){
     border:1px solid #efefef;
     box-sizing: border-box;
     padding:8px 10px;
-    width:570px;
     max-width:100%;
     border-radius: 3px;
     background: url(/src/assets/images/select.svg)calc(100% - 10px) center/auto no-repeat;

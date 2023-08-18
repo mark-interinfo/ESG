@@ -1,6 +1,6 @@
 <template>
     <div id="editEsgInfo">
-        <div class="content">
+        <div>
           <div class="title">
             <CommonCompanyTitle/>
             <span id="buttonBox">
@@ -450,6 +450,10 @@
     border-radius: 3px;;
   }
 
+  .title:not(:has( + #issue)){
+    max-width:calc(100% - 120px);
+  }
+
   .title:has( + #issue){
     width:100%;
     padding: 0;
@@ -463,7 +467,7 @@
 
   #issue {
     width: 960px;
-    max-width: 100%;
+    max-width: calc(100% - 40px);
     margin: 20px auto;
 
 
@@ -636,7 +640,7 @@
 
           input[type="text"],
           select{
-            width:570px;
+            max-width: calc(100% - 150px);
           }
 
           input.year{
