@@ -11,14 +11,15 @@ export const useUserStore = defineStore('userStore', () => {
   const companyName = ref('');
 
   const setUser = function(data){
-    uid.value = data.uid;
-    uidCode.value = data.uidCode;
-    uidType.value = data.uidType;
+    data.uid && (uid.value = data.uid);
+    data.uidCode && (uidCode.value = data.uidCode);
+    data.uidType && (uidType.value = data.uidType);
 
-    companyFitCode.value = data.companyFitCode;
-    companyId.value = data.companyId;
-    companyName.value = data.companyName;
+    data.companyFitCode && (companyFitCode.value = data.companyFitCode);
+    data.companyId && (companyId.value = data.companyId);
+    data.companyName && (companyName.value = data.companyName);
   };
+  
   const returnUser = function(){
     return {
       uid: uid.value,

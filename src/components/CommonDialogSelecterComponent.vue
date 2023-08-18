@@ -223,6 +223,9 @@ const search = function(event){
   .dialog{
     background: #fff;
     border-radius: 3px;
+
+    max-width:80vw;
+    
     .dialog-content{
       padding: 12px 12px 0 12px;
 

@@ -348,6 +348,7 @@
 
   .content:has( > .title + #issue){
     width:880px;
+    max-width: calc(100% - 80px);
     margin:0 auto;
     padding:20px 40px;
     box-shadow: 0 0 5px rgba(0,0,0,.2);
@@ -385,7 +386,7 @@
   }
 
   .title:has( + #issue){
-    width:100%;
+    max-width:100%;
     padding: 0;
   }
 
@@ -524,12 +525,14 @@
       &[id^="G0"] select,
       &[id^="G0"] input[type="text"] {
         width: 460px;
+        max-width:100%;
       }
 
       &[id="ExchangeIndicators"] select,
       &[id="ExchangeIndicators"] input[type="text"],
       &[id="ExchangeIndicators"] div:not[class] > .button{
         width: 400px;
+        max-width:100%;
       }
 
       
@@ -562,9 +565,14 @@
 
           tr > td:first-of-type {
             background: none;
-            width:100px;
+            min-width:100px;
+
             line-height: 40px;
             padding:12px 20px;
+          }
+
+          tr > td[colspan]{
+            width:auto;
           }
 
           td{
@@ -575,7 +583,7 @@
 
           input[type="text"],
           select{
-            width:570px;
+            width:calc(100% - 20px);
           }
 
           input.year{

@@ -120,77 +120,87 @@
                   <td>
                     <table class="indicators">
                       <tr>
-                        <td class="color-green text-start" colspan="2">
-                          指標細項（{{ chineseNumber(targetIndex + 1) }}）
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>細項名稱</td>
-                        <td>
-                          <input type="text" v-model="target.title">
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>細項備註</td>
-                        <td>
-                          <input type="text" v-model="target.note">
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>輸入方式</td>
-                        <td>
-                          <input
-                          type="button"
-                          class="button buttonColor3"
-                          :value="inputMethodComputed(target.type)"
-                          @click="openDialog(target.optionList, target.type, target); dailogType = 'input'"
-                          >
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>
-                            使用狀態
-                          </td>
-                          <td v-if="target.status">
-                            <div>
-                              <label :for="`${target.fieldId}on`">
-                                <input type="radio"
-                                :id="`${target.fieldId}on`"
-                                v-model="target.status.isOn"
-                                :value="true"
-                                >
-                                <span>開啟</span>
-                              </label>
+                        <td class="color-green text-start detailList" colspan="2">
+                          <div class="issue-item">
+                            <div class="issue-title">
+                              <span>指標細項（{{ chineseNumber(targetIndex + 1) }}）</span>
+                              <img src="/src/assets/images/select.svg" alt="">
                             </div>
-                            <div>
-                              <label :for="`${target.fieldId}off`">
-                                <input type="radio"
-                                :id="`${target.fieldId}off`"
-                                v-model="target.status.isOn"
-                                :value="false"
-                                >
-                                <span>停用，自</span>
-                                <input type="text" class="year" placeholder="請輸入民國年"
-                                :disabled="target.status.isOn === true"
-                                v-model="target.status.isOnYear"
-                                >
-                                <span class="unit">年</span>
-                                <span>起停用此項目</span>
-                              </label>
+                            <div class="issue-content">
+                              <table>
+                                <tr>
+                                  <td>細項名稱</td>
+                                  <td>
+                                    <input type="text" v-model="target.title">
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>細項備註</td>
+                                  <td>
+                                    <input type="text" v-model="target.note">
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>輸入方式</td>
+                                  <td>
+                                    <input
+                                    type="button"
+                                    class="button buttonColor3"
+                                    :value="inputMethodComputed(target.type)"
+                                    @click="openDialog(target.optionList, target.type, target); dailogType = 'input'"
+                                    >
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                      使用狀態
+                                    </td>
+                                    <td v-if="target.status">
+                                      <div>
+                                        <label :for="`${target.fieldId}on`">
+                                          <input type="radio"
+                                          :id="`${target.fieldId}on`"
+                                          v-model="target.status.isOn"
+                                          :value="true"
+                                          >
+                                          <span>開啟</span>
+                                        </label>
+                                      </div>
+                                      <div>
+                                        <label :for="`${target.fieldId}off`">
+                                          <input type="radio"
+                                          :id="`${target.fieldId}off`"
+                                          v-model="target.status.isOn"
+                                          :value="false"
+                                          >
+                                          <span>停用，自</span>
+                                          <input type="text" class="year" placeholder="請輸入民國年"
+                                          :disabled="target.status.isOn === true"
+                                          v-model="target.status.isOnYear"
+                                          >
+                                          <span class="unit">年</span>
+                                          <span>起停用此項目</span>
+                                        </label>
+                                      </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    項目類別
+                                  </td>
+                                  <td>
+                                    <label :for="`${target.fieldId}notIsCore`">
+                                      <input type="checkbox" :id="`${target.fieldId}notIsCore`" v-model="target.notIsCore">
+                                      設定為非核心指標
+                                    </label>
+                                  </td>
+                                </tr>
+                              </table>
                             </div>
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          項目類別
-                        </td>
-                        <td>
-                          <label :for="`${target.fieldId}notIsCore`">
-                            <input type="checkbox" :id="`${target.fieldId}notIsCore`" v-model="target.notIsCore">
-                            設定為非核心指標
-                          </label>
+                          </div>
                         </td>
                       </tr>
+                      
                     </table>
                   </td>
                 </tr>
@@ -619,5 +629,24 @@
 
 .pointer{
   cursor: pointer;
+}
+
+.detailList {
+  padding: 0!important;
+  line-height: inherit!important;
+}
+
+.detailList .issue-item{
+  display:block!important;
+}
+
+.detailList table{
+  background: #fff!important;
+}
+
+
+.detailList .opening .issue-title{
+  background:#ebfbf2;
+  
 }
 </style>

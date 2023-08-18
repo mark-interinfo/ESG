@@ -12,6 +12,7 @@
       <div id="header-links">
         <template v-for="(mainLink, mainLinkIndex) in linkGroup" :key="mainLink.name">
           <div
+          v-if="userStore.uidType == 'monitor' ? manage.includes(mainLink.name) : userStore.uidType == 'user' && common.includes(mainLink.name)"
           class="main-link pointer"
           @click="showLink(mainLinkIndex)"
           >
@@ -64,6 +65,13 @@
 </template>
 <script setup>
 import { ref } from 'vue';
+import { useUserStore } from '../pinia/user.js';
+
+const userStore = useUserStore();
+console.log(userStore)
+
+const manage = ['系統管理','帳號與權限','指標維護','申報管理'];
+const common = ['申報作業'];
 
 const linkGroup = ref([
   {

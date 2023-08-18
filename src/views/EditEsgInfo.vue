@@ -1,6 +1,6 @@
 <template>
     <div id="editEsgInfo">
-        <div class="content">
+        <div>
           <div class="title">
             <CommonCompanyTitle/>
             <span id="buttonBox">
@@ -450,20 +450,28 @@
     border-radius: 3px;;
   }
 
+  .title:not(:has( + #issue)){
+    max-width:calc(100% - 120px);
+  }
+
   .title:has( + #issue){
     width:100%;
+    max-width:calc(100% - 40px);
     padding: 0;
   }
 
   #editEsgInfo{
     padding-bottom: 20px;
+    width:960px;
+    max-width:calc(100% - 40px);
+    margin:0 auto;
   }
 
 
 
   #issue {
     width: 960px;
-    max-width: 100%;
+    max-width: calc(100% - 40px);
     margin: 20px auto;
 
 
@@ -520,28 +528,25 @@
     }
 
     .issue-item {
+      & + .issue-item .issue-title{
+        border-top:none;
+      }
+    }
 
-      &.opening {
+    .opening > .issue-title {
         background: #ebfbf2;
 
         .content{
           height:auto;
           overflow: inherit;
         }
-        .issue-title{
-          svg {
-            transform: rotate(180deg);
-          }
-          img {
-            transform: rotate(180deg);
-          }
+        >svg {
+          transform: rotate(180deg);
+        }
+        >img {
+          transform: rotate(180deg);
         }
       }
-
-      & + .issue-item .issue-title{
-        border-top:none;
-      }
-    }
 
     .issue-title {
       display: flex;
@@ -636,7 +641,8 @@
 
           input[type="text"],
           select{
-            width:570px;
+            max-width: calc(100% - 150px);
+            width:100%;
           }
 
           input.year{

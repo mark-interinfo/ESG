@@ -105,11 +105,13 @@ const passwordCheck = function(){
 
         > div {display: flex;justify-content: center;width: 65vw;align-items: center;flex-direction: column;}
         
-        #logo {width: 30%;cursor: pointer;}
+        #logo {width:300px;cursor: pointer;}
         input:not([type="button"]){background:#efefef;border:1px solid #efefef;height:48px;border-radius:3px;width: 100%;padding:0 10px;}
         input::placeholder{font-size:16px;color:#aaa;}
 
-        #form{width:40%;
+        #form{
+            width:50%;
+
             > div{
                 margin-top: 4%;
 
