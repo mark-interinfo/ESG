@@ -456,11 +456,15 @@
 
   .title:has( + #issue){
     width:100%;
+    max-width:calc(100% - 40px);
     padding: 0;
   }
 
   #editEsgInfo{
     padding-bottom: 20px;
+    width:960px;
+    max-width:calc(100% - 40px);
+    margin:0 auto;
   }
 
 
