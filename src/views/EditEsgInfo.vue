@@ -528,28 +528,25 @@
     }
 
     .issue-item {
+      & + .issue-item .issue-title{
+        border-top:none;
+      }
+    }
 
-      &.opening {
+    .opening > .issue-title {
         background: #ebfbf2;
 
         .content{
           height:auto;
           overflow: inherit;
         }
-        .issue-title{
-          svg {
-            transform: rotate(180deg);
-          }
-          img {
-            transform: rotate(180deg);
-          }
+        >svg {
+          transform: rotate(180deg);
+        }
+        >img {
+          transform: rotate(180deg);
         }
       }
-
-      & + .issue-item .issue-title{
-        border-top:none;
-      }
-    }
 
     .issue-title {
       display: flex;
