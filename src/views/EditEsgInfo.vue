@@ -645,6 +645,7 @@
           input[type="text"],
           select{
             max-width: calc(100% - 150px);
+            width:100%;
           }
 
           input.year{
