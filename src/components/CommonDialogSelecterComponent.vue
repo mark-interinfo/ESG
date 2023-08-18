@@ -28,7 +28,7 @@
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
               <span>
-                {{ key }}
+                <!-- {{ key }} -->
                 {{ props.option[key].find(option => option.value === item).name }}
               </span>
               <span class="del" @click="selectedRemove(item,key)"></span>
@@ -74,7 +74,12 @@
             :key="key"
             >
               <p style="margin: 0;">
-                {{ key }}
+                <template v-if="props.keyWord">
+                  {{ props.keyWord[key] }}
+                </template>
+                <template v-else>
+                  {{ key }}
+                </template>
               </p>
               <hr>
               <div
@@ -123,6 +128,9 @@ const props = defineProps({
     // array, object
   },
   selected: {
+  },
+  keyWord: {
+    type: Object,
   }
 });
 
