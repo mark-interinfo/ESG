@@ -8,6 +8,16 @@
                 </span>
             </div>
             <div id="searchBar">
+                <template v-if="userStore.uidType == 'monitor'">
+                    <input
+                        id="company"
+                        type="text"
+                        placeholder="請輸入公司代號"
+                        v-model.number="apiRequest.companyId"
+                    >
+                    <br>
+                    <br>
+                </template>
                 <input
                     id="searchInput"
                     type="text"
@@ -30,6 +40,9 @@
                         id="edit"
                         :class="{'show': hasData === 'YES'}"
                     >
+                    <div v-if="userStore.companyName">
+                        公司名稱 : {{userStore.companyName}}
+                    </div>
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
                             <a download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
@@ -96,10 +109,18 @@
         // Nick
         (async() => {
             hasData.value = await APICollection.QueryYear(apiRequest);
+            console.log(hasData.value.companyName)
+            let company = hasData.value.companyName;
             hasData.value = hasData.value.dataExist.value;
 
             queryYear.value = apiRequest.value.year;
             userStore.setYear(queryYear.value);
+
+            var data = {
+                companyName : company,
+            };
+            console.log(data)
+            userStore.setUser(data);
 
             downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
         })().catch(err=>{
@@ -156,11 +177,10 @@
         > div {
 
             #searchBar {
-                display: flex;
                 margin-top:20px;
                 margin-bottom: 40px;;
 
-                #searchInput {
+                input[type="text"] {
                     height: 44px;
                     border: 1px solid #dfdfdf;
                     padding: 0 10px;
@@ -184,6 +204,7 @@
                     background-repeat:no-repeat;
                     border-radius: 0 3px 3px 0;
                     margin:0;
+                    vertical-align: top;
                 }
             }
 

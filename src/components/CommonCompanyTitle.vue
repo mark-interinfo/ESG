@@ -3,8 +3,10 @@
         <h1 v-if="pathName1.includes(route.path)">{{year + route.name}}</h1>
         <h1 v-else>{{route.name}}</h1>
         <span v-if="pathName2.includes(route.path)" class="companyInfo">
-            <span>公司代號 : {{ companyId }}</span>
-            <span>公司名稱 : {{ companyName }}</span>
+            <template  v-if="userStore.uidType != 'monitor'">
+                <span>公司代號 : {{ companyId }}</span>
+                <span>公司名稱 : {{ companyName }}</span>
+            </template>
         </span>
     </span>
 </template>
