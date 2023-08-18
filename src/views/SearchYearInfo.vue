@@ -23,13 +23,12 @@
                     type="text"
                     placeholder="請輸入民國年份"
                     v-model.number="apiRequest.year"
-                    @change="change"
                 >
                 <input
                     type="button"
                     id="searchButton"
                     class="button buttonColor1"
-                    @click="change"
+                    @click="send"
                 >
             </div>
             <div id="queryInfo">
@@ -105,21 +104,18 @@
         };
     })
 
-    const change = function() {
+    const send = function() {
         // Nick
         (async() => {
             hasData.value = await APICollection.QueryYear(apiRequest);
-            console.log(hasData.value.companyName)
             let company = hasData.value.companyName;
             hasData.value = hasData.value.dataExist.value;
-
             queryYear.value = apiRequest.value.year;
             userStore.setYear(queryYear.value);
 
             var data = {
                 companyName : company,
             };
-            console.log(data)
             userStore.setUser(data);
 
             downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
