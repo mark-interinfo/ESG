@@ -37,7 +37,9 @@
                 </td>
                 <td>
                   <select v-model="props.showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
-                    <option :value="item" v-for="item in issue.issueList.map(item => item.targetType)" :key="item">{{ item }}</option>
+                    <option :value="item.targetType" v-for="item in issue.issueList" :key="item">
+                      {{ item.targetType }}. {{ item.targetTitle.length > 30 ? `${item.targetTitle.slice(0, 30)}...`  : item.targetTitle}}
+                    </option>
                   </select>
                   <span class="color-green pointer" @click="showAddIssueCodeDialog(issue.issueList.length, issueIndex); dailogType='addIssueList';">
                     新增指標代號

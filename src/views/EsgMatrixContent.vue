@@ -23,10 +23,7 @@
               {{ issue.TAR_NAME }}
             </td>
             <td>
-              <div
-                class="items"
-                @click="openDialogSelecter(issue.Matrix, issue)"
-              >
+              <div class="items" @click="openDialogSelecter(issue.Matrix, issue)">
                 <template v-for="(checkedList, type) in issue.Matrix">
                   <span v-for="checkedItem in checkedList">
                     {{ type }} {{ props.allMatrixTarget[type].find(item => item.value === checkedItem).name }}

@@ -38,23 +38,50 @@
                         <td>標題 (一) 名稱</td>
                         <td><input type="text" :value="item.NAME1" disabled></td>
                       </tr>
+                      <template v-if="item.CAP_NO2List && item.CAP_NO2List.length === 0">
+                        <tr>
+                          <td>標題 (一) 參考依據</td>
+                          <td>
+                            <div class="items">
+                              <span>
+                                123
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>標題 (一) 資料來源</td>
+                          <td>
+                            <div class="items">
+                              <span>
+                                123
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </template>
                       <tr class="listItem">
                         <td colspan="2">
                           <span>
                             <div>標題 (二) 項目</div>
-                            <input v-for="item1 in item.CAP_NO2List" type="button" class="button buttonColor3" :value="(item1.NO2 +''+ item1.NAME2)" @click="showSecondDialog">
+                            <template v-for="item1 in item.CAP_NO2List">
+                              <input
+                              type="button" class="button buttonColor3"
+                              :value="(item1.NO2 +''+ item1.NAME2)" @click="showSecondDialog(item1.NO2, item1.NAME2, item1.ACCORDING2, item1.SOURCE2, item1)"
+                              >
+                            </template>
                           </span>
                           <span>
                             <div>標題 (三) 項目</div>
-                            <div v-for="item in allSustainable">
-                              <div v-for="item1 in item.CAP_NO1List">
-                              <div v-for="item2 in item1.CAP_NO2List">
-                                <div v-for="item3 in item2.CAP_NO3List">
-                                  <input type="button" class="button buttonColor3" :value="(item3.NO3 +''+ item3.NAME3)" @click="showSecondDialog">
-                                </div>
-                              </div>
-                              </div>
-                            </div>
+                            <template v-for="item in allSustainable">
+                              <template v-for="item1 in item.CAP_NO1List">
+                                <template v-for="item2 in item1.CAP_NO2List">
+                                  <template v-for="item3 in item2.CAP_NO3List">
+                                    <input type="button" class="button buttonColor3" :value="(item3.NO3 +''+ item3.NAME3)">
+                                  </template>
+                                </template>
+                              </template>
+                            </template>
                           </span>
                         </td>
                       </tr>
@@ -113,23 +140,33 @@
             <p>
               標題代號
             </p>
-            <input type="text" placeholder="請填寫">
+            <input type="text" placeholder="請填寫" v-model="targetSecondNo" disabled>
           </div>
           <div>
             <p>
               標題名稱
             </p>
-            <input type="text" placeholder="請填寫">
+            <input type="text" placeholder="請填寫" v-model="targetSecondName" disabled>
           </div>
 
           <div>
             <p>參考依據</p>
-            <div class="items" @click="showDialogSelecterReference">
+            <div class="items" @click="showDialogSelecterAccording()">
+              <template v-for="(target, key) in targetAccording">
+                <span v-for="checkedItem in target">
+                  {{ allInternationalTarget[key].find(item => item.value === checkedItem).name }}
+                </span>
+              </template>
             </div>
           </div>
           <div>
             <p>資料來源</p>
-            <div class="items" @click="showDialogSelecterSource">
+            <div class="items" @click="showDialogSelecterSource()">
+              <template v-for="(target, key) in targetSource">
+                <span v-for="checkedItem in target">
+                  {{ allTarget[key].find(item => item.value === checkedItem).name }}
+                </span>
+              </template>
             </div>
           </div>
 
@@ -142,20 +179,20 @@
         </div>
         <div class="dialog-footer">
           <button class="button buttonColor1" @click="isShowSecondDialog = false">取消</button>
-          <button class="button buttonColor1" @click="addInternationalIssue">確認</button>
+          <button class="button buttonColor1" @click="updateAllSustainable">確認</button>
         </div>
       </div>
     </div>
 
     <!-- CommonDialogSelecterComponent 參考依據 -->
     <CommonDialogSelecterComponent
-    :isShowDialogSelecter="isShowDialogSelecterReference"
+    :isShowDialogSelecter="isShowDialogSelecterAccording"
     :selectMulti="true"
     :option="allInternationalTarget"
     :optionType="'object'"
-    :selected="targetReference"
-    @closeDialogSelecter="closeDialogSelecterReference"
-    @industrySetting=""
+    :selected="JSON.parse(JSON.stringify(targetAccording))"
+    @closeDialogSelecter="closeDialogSelecterAccording"
+    @industrySetting="updateTargetAccording"
     />
 
     <!-- CommonDialogSelecterComponent 資料來源 -->
@@ -164,14 +201,16 @@
     :selectMulti="true"
     :option="allTarget"
     :optionType="'object'"
-    :selected="targetSource"
+    :selected="JSON.parse(JSON.stringify(targetSource))"
+    :keyWord="keyWord"
     @closeDialogSelecter="closeDialogSelecterSource"
-    @industrySetting=""
+    @industrySetting="updateTargetSource"
     />
+
   </div>
 </template>
 <script setup>
-  import { onMounted, onUpdated, ref } from 'vue';
+  import { onUpdated, ref } from 'vue';
   import { switchOpen } from '../mixin/mixin.js';
   import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
   import CommonDialogSelecterComponent from "../components/CommonDialogSelecterComponent.vue";
@@ -181,15 +220,15 @@
   const allSustainable = ref([]);
   const allTarget = ref([]);
   const top = ref([]);
+  const keyWord = ref({});
 
   (async() => {
     let apiData = await APICollection.QuerySustainable({});
-    console.log(apiData);
     allInternationalTarget.value = apiData.allInternationalTarget;
     allSustainable.value = apiData.allSustainable;
     allTarget.value = apiData.allTarget;
     top.value = apiData.top;
-
+    keyWord.value = apiData.keyWord;
   })().catch(err=>{
   }).then(()=>{
     switchOpen();
@@ -197,37 +236,81 @@
 
   // 編輯標題（二）項目
   const isShowSecondDialog = ref(false);
-  const targetSecondNote = ref('');
+  const targetSecondNo = ref('');
+  const targetSecondName = ref('');
+  const targetAddress = ref({});
 
-  const showSecondDialog = function(){
+  const showSecondDialog = function(no, name, according, source, objAddress){
     isShowSecondDialog.value = true;
+    targetSecondNo.value = no;
+    targetSecondName.value = name;
+
+    Object.keys(allInternationalTarget.value).forEach((key)=>{
+      targetAccording.value[key] = [];
+    });
+    according.forEach((item)=>{
+      if(targetAccording.value[item.split('_')[0]]){
+        targetAccording.value[item.split('_')[0]].push(item);
+      }
+    });
+
+    Object.keys(allTarget.value).forEach((key)=>{
+      targetSource.value[key] = [];
+    });
+    source.forEach((item)=>{
+      Object.keys(targetSource.value).forEach(key=>{
+        if(item.startsWith(key)){
+          targetSource.value[key].push(item);
+        }
+      })
+      targetSource.value
+    });
+
+    targetAddress.value = objAddress;
   };
 
+  const updateAllSustainable = function(){
+    isShowSecondDialog.value = false;
+  };
+
+  // 編輯標題（二）項目
   // CommonDialogSelecterComponent 參考依據
-  const isShowDialogSelecterReference = ref(false);
-  const targetReference = ref({
-    GRI: [],
-    SASB: [],
-  });
-  const showDialogSelecterReference = function(){
-    isShowDialogSelecterReference.value = true;
+  const isShowDialogSelecterAccording = ref(false);
+  const targetAccording = ref({});
+  const showDialogSelecterAccording = function(){
+    isShowDialogSelecterAccording.value = true;
   };
-  const closeDialogSelecterReference = function(){
-    isShowDialogSelecterReference.value = false;
+  const closeDialogSelecterAccording = function(){
+    isShowDialogSelecterAccording.value = false;
+  };
+  const updateTargetAccording = function(data){
+    let result = [];
+    isShowDialogSelecterAccording.value = false;
+    targetAccording.value = data;
+    Object.values(data).forEach(item=>{
+      result = [...result, ...item];
+    });
+    targetAddress.value.ACCORDING2 = result;
   };
 
+  // 編輯標題（二）項目
   // CommonDialogSelecterComponent 資料來源
   const isShowDialogSelecterSource = ref(false);
-  const targetSource = ref({
-    環境: [],
-    社會: [],
-    治理: [],
-  });
+  const targetSource = ref({});
   const showDialogSelecterSource = function(){
     isShowDialogSelecterSource.value = true;
   };
   const closeDialogSelecterSource = function(){
     isShowDialogSelecterSource.value = false;
+  };
+  const updateTargetSource = function(data){
+    let result = [];
+    isShowDialogSelecterSource.value = false;
+    targetSource.value = data;
+    Object.values(data).forEach(item=>{
+      result = [...result, ...item];
+    });
+    targetAddress.value.SOURCE2 = result;
   };
 
   onUpdated(()=>{
@@ -237,9 +320,8 @@
         document.querySelector(".issue-tag").click();
       },100);
     };
-  })
+  });
 
-  
 </script>
 <style lang="scss">
 

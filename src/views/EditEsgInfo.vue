@@ -109,8 +109,8 @@
           </template>
       </div>
       <div id="esgExposeInfo">
-          <EsgExposeInfo 
-            @watchData="watchData" 
+          <EsgExposeInfo
+            @watchData="watchData"
             v-if="pathName.includes(route.path)"
           />
       </div>

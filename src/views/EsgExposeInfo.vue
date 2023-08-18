@@ -115,7 +115,7 @@
   });
 
   const apiRequest = ref({
-      companyId: "1101",
+      companyId: userStore.companyId,
       year: userStore.getYear()
   });
 

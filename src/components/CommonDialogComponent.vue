@@ -89,7 +89,6 @@
           <template v-if="inputMethod === 'E'">
             <p class="label-title">
               設定值
-              {{ optionSetting[0] }}
             </p>
             <div class="input-group">
               <table>
@@ -261,27 +260,27 @@ watch(props, ()=>{
   inputMethod.value = props.inputMethod;
 });
 watch(inputMethod, ()=>{
-  // if(optionSetting.value){
-  //   return;
-  // }
-  // if(['A', 'B', 'C'].includes(inputMethod)){
-  //   optionSetting.value = [];
-  // }
-  // if(inputMethod === 'D'){
-  // }
-  // if(inputMethod === 'E'){
-  //   optionSetting.value = [
-  //     {
-  //       unit: '',
-  //       integerLength: 0,
-  //       decimalLength: 0,
-  //       allowZero: false,
-  //       allowNegative: false,
-  //     }
-  //   ]
-  // }
-  // if(inputMethod === 'F'){
-  // }
+  if(optionSetting.value){
+    return;
+  }
+  if(['A', 'B', 'C'].includes(inputMethod)){
+    optionSetting.value = [];
+  }
+  if(inputMethod === 'D'){
+  }
+  if(inputMethod === 'E'){
+    optionSetting.value = [
+      {
+        unit: '',
+        integerLength: 0,
+        decimalLength: 0,
+        allowZero: false,
+        allowNegative: false,
+      }
+    ]
+  }
+  if(inputMethod === 'F'){
+  }
 });
 
 // 文字
