@@ -29,7 +29,6 @@
                     <img src="/src/assets/images/select.svg" alt="">
                   </div>
                   <div class="issue-content">
-
                     <div class="issue-title">
                       <span>01-1公司治理架構</span>
                     </div>
@@ -43,7 +42,7 @@
                             @click="openDialogSelecter(newTargetCodeArray)"
                             >
                               <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
-                            </div>  
+                            </div>
                           </td>
                         </tr>
                         <tr>
@@ -58,17 +57,14 @@
                             <div class="items">
                               <span>直接氣體排放</span>
                               <span>廢棄物</span>
-                            </div>  
+                            </div>
                           </td>
                         </tr>
                       </table>
                     </div>
-
                   </div>
                 </div>
               </div>
-
-              
             </div>
             <div class="buttonBox">
               <input type="button" class="button buttonColor3" value="新增議題">

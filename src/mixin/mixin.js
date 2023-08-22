@@ -72,7 +72,6 @@ const loadingClose = () => {
 };
 
 const switchOpen = function(){
-
   var option={
       childList: true,
       subtree : true

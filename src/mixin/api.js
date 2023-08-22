@@ -68,6 +68,8 @@ const APICollection = {
   DownloadXBRL: ((requestBody) => callAPI('DownloadXBRL', requestBody)),
   DownloadMatrix: ((requestBody) => callAPI('DownloadMatrix', requestBody)),
   QuerySustainable: ((requestBody) => callAPI('QuerySustainable', requestBody)),
+  // 上傳永續報告書維護
+  ExceSustainable: ((requestBody) => callAPI('ExceSustainable', requestBody)),
 };
 
 export { APICollection };
