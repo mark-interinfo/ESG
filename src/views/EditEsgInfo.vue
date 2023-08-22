@@ -284,7 +284,7 @@
         if(route.path === '/EsgMatrix'){
           data = getData.value;
           back = await APICollection.ExecMatrixData({ allMatrix: allMatrix.value});
-        }
+        };
 
         console.log(back);
         alert(back.state);
@@ -318,6 +318,7 @@
 
               if(route.path == "/ExchangeIndicators"){
                 back = await APICollection.UploadESGExcel(fileDetail);
+
                 for(var i=0;i<back.allIssue.length;i++){
                   var key = back.allIssue[i].issueType;
                   var cont = 0;
@@ -395,9 +396,15 @@
             inner.value="";
             (async() => {
               var back = await APICollection.UploadRepotExcel(fileDetail);
-              console.log(back);
-              console.log(allIssue);
-              setInputValue(back.data);
+              
+              for(var i=0;i<Object.keys(back.data).length;i++){
+                var key = Object.keys(back.data)[i];
+                var value = back.data[key];
+                getData.value.data[key] = value;
+              }
+              setTimeout(function(){
+                setInputValue(back.data);
+              },500);
               alert(back.msg);
             })().catch(err=>{
               alert("error : " + err.resultMessage);
@@ -419,19 +426,28 @@
           };
 
           var setInputValue = (data) => {
-            console.log(Object.keys(data))
             for(var i=0;i<Object.keys(data).length;i++){
               var name = Object.keys(data)[i];
               var value = data[name];
+
               if(document.querySelector("input[name='"+name+"'][type='radio']")){
                 document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
-              }else{
-                if(document.querySelector("[name='"+name+"']")){
-                  document.querySelector("[name='"+name+"']").value = value;
-                }else{
-                  console.log("無欄位---"+name);
-                };
+                continue;
               };
+
+              if(document.querySelector("input[name='"+name+"'][type='checkbox']")){
+                console.log(name,value)
+                console.log(document.querySelector("[name='"+name+"'][value='"+value+"']"))
+                document.querySelector("[name='"+name+"'][value='"+value+"']").checked = true;
+                continue;
+              };
+
+              if(document.querySelector("[name='"+name+"']")){
+                document.querySelector("[name='"+name+"']").value = value;
+              }else{
+                console.log("無欄位---"+name);
+              };
+              
             };
           };
       };
