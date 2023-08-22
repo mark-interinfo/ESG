@@ -82,6 +82,10 @@ const switchOpen = function(){
   function back(a,b){
     for(var i=0;i<b.length;i++){
       if(b[i].addedNodes && b[i].addedNodes.length > 0){
+        if(b[i].target.querySelector(".issue-item")){
+          run();
+
+        };
         for(var a=0;a<b[i].addedNodes.length;a++){
           if(b[i].addedNodes[a].className && b[i].addedNodes[a].className.match("issue-item")){
             run()
