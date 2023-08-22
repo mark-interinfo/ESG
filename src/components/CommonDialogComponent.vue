@@ -86,8 +86,7 @@
               </div>
               <div class="option-stop" v-for="(option, i) in optionSetting">
                 <div class="is-stop">
-                  <input type="checkbox" :checked="false" v-model="option.isOn">
-                  {{ option.isOn }}
+                  <input type="checkbox" class="stopItem" :checked="false" v-model="option.isOn">
                 </div>
                 <div class="name">
                   {{ option.name }}
@@ -503,6 +502,15 @@ select{
     }
   }
 }
+
+.stopItem:checked{
+    background: url(/src/assets/images/checkbox.svg) #FAFAFA center/100% no-repeat;
+}
+.stopItem{
+    background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
+}
+
+
 
 @keyframes progress {from {width: 0;}100% {width: 100%;}}
 </style>
