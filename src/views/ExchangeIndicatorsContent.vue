@@ -236,12 +236,12 @@
               <path d="M14.25 19.5H34.25H14.25ZM21.25 26.5H24.25H21.25ZM27.25 26.5H24.25H27.25ZM24.25 26.5V23.5V26.5ZM24.25 26.5V29.5V26.5Z" fill="#2FB86D"/>
               <path d="M14.25 19.5H34.25M21.25 26.5H24.25M24.25 26.5H27.25M24.25 26.5V23.5M24.25 26.5V29.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            新增指標
+            新增議題
           </div>
-          <div style="margin-bottom: 12px;">指標代號 : {{ newIssueNumber }}</div>
+          <div style="margin-bottom: 12px;">議題代號 : {{ newIssueNumber }}</div>
           <label for="newIssueName">
             <p class="label-title">
-              指標名稱
+              議題名稱
             </p>
             <div class="input-group">
               <input type="text" id="newIssueName" v-model="newIssueName" placeholder="請填寫">
@@ -358,7 +358,7 @@
               指標名稱
             </p>
             <div class="input-group">
-              <input type="text" id="newIssueName" v-model="newIssueDetailTitle" placeholder="請填寫">
+              <input type="text" v-model="newIssueDetailTitle" placeholder="請填寫">
             </div>
           </div>
           <div>
@@ -373,15 +373,13 @@
             @click="openDialog(newIssueDetailOptionList, newIssueDetailType); dailogType = 'input';"
             style="width: 100%"
             >
-            <!-- :value="inputMethodComputed(target.type)"
-            @click="openDialog(target.optionList, target.type, target); dailogType = 'input'" -->
           </div>
           <div>
             <p class="label-title">
               指標備註（選填）
             </p>
             <div class="input-group">
-              <input type="text" id="newIssueName" v-model="newIssueDetailNote" placeholder="請填寫">
+              <input type="text" v-model="newIssueDetailNote" placeholder="請填寫">
             </div>
           </div>
         </div>
@@ -474,7 +472,8 @@
   };
   const closeAddIssueDialog = function(){
     isShowAddIssueDialog.value = false;
-  }
+    issueReset();
+  };
   const addNewIssue = function(){
     isShowAddIssueDialog.value = false;
     emits('addNewIssue',
@@ -485,6 +484,9 @@
         issueType: `${newIssueType.value}${String(newIssueNumber.value).padStart(4, '0')}`
       }
     );
+    issueReset();
+  };
+  const issueReset = function(){
     newIssueNumber.value = 0;
     newIssueName.value = '';
     newIssueKind.value = '';
