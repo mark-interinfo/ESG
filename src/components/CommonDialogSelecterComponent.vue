@@ -125,7 +125,6 @@ const props = defineProps({
   },
   optionType: {
     type: String,
-    // array, object
   },
   selected: {
   },
