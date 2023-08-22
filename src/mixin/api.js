@@ -66,6 +66,7 @@ const APICollection = {
   UploadInternationalExcel: ((requestBody) => callAPI('UploadInternationalExcel', requestBody)),
   UploadMatrixExcel: ((requestBody) => callAPI('UploadMatrixExcel', requestBody)),
   DownloadXBRL: ((requestBody) => callAPI('DownloadXBRL', requestBody)),
+  DownloadMatrix: ((requestBody) => callAPI('DownloadMatrix', requestBody)),
   QuerySustainable: ((requestBody) => callAPI('QuerySustainable', requestBody)),
 };
 

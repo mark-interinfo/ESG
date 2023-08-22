@@ -29,63 +29,65 @@
                     <img src="/src/assets/images/select.svg" alt="">
                   </div>
                   <div class="issue-content">
+
+                    <!--只有一層
                     <table class="indicators">
                       <tr>
-                        <td>標題 (一) 代號</td>
-                        <td><input type="text" :value="item.NO1" disabled></td>
+                        <td>參考依據</td>
+                        <td>
+                          <div class="items">
+                            <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
+                          </div>  
+                        </td>
                       </tr>
                       <tr>
-                        <td>標題 (一) 名稱</td>
-                        <td><input type="text" :value="item.NAME1" disabled></td>
+                        <td>備註</td>
+                        <td>
+                          <input type="text" placeholder="請填寫"> 
+                        </td>
                       </tr>
-                      <template v-if="item.CAP_NO2List && item.CAP_NO2List.length === 0">
-                        <tr>
-                          <td>標題 (一) 參考依據</td>
-                          <td>
-                            <div class="items">
-                              <span>
-                                123
-                              </span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>標題 (一) 資料來源</td>
-                          <td>
-                            <div class="items">
-                              <span>
-                                123
-                              </span>
-                            </div>
-                          </td>
-                        </tr>
-                      </template>
-                      <tr class="listItem">
-                        <td colspan="2">
-                          <span>
-                            <div>標題 (二) 項目</div>
-                            <template v-for="item1 in item.CAP_NO2List">
-                              <input
-                              type="button" class="button buttonColor3"
-                              :value="(item1.NO2 +''+ item1.NAME2)" @click="showSecondDialog(item1.NO2, item1.NAME2, item1.ACCORDING2, item1.SOURCE2, item1)"
-                              >
-                            </template>
-                          </span>
-                          <span>
-                            <div>標題 (三) 項目</div>
-                            <template v-for="item in allSustainable">
-                              <template v-for="item1 in item.CAP_NO1List">
-                                <template v-for="item2 in item1.CAP_NO2List">
-                                  <template v-for="item3 in item2.CAP_NO3List">
-                                    <input type="button" class="button buttonColor3" :value="(item3.NO3 +''+ item3.NAME3)">
-                                  </template>
-                                </template>
-                              </template>
-                            </template>
-                          </span>
+                      <tr>
+                        <td>資料來源</td>
+                        <td>
+                          <div class="items">
+                            <span>直接氣體排放</span>
+                            <span>廢棄物</span>
+                          </div>  
                         </td>
                       </tr>
                     </table>
+                  -->
+
+                    <div class="issue-title">
+                      <span>01-1公司治理架構</span>
+                    </div>
+                    <div class="issue-content">
+                      <table class="indicators">
+                        <tr>
+                          <td>參考依據</td>
+                          <td>
+                            <div class="items">
+                              <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
+                            </div>  
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>備註</td>
+                          <td>
+                            <input type="text" placeholder="請填寫"> 
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>資料來源</td>
+                          <td>
+                            <div class="items">
+                              <span>直接氣體排放</span>
+                              <span>廢棄物</span>
+                            </div>  
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -475,6 +477,8 @@
           img {
             transform: rotate(180deg);
           }
+
+          
         }
       }
 
@@ -533,6 +537,15 @@
       &[id="ExchangeIndicators"] div:not[class] > .button{
         width: 400px;
         max-width:100%;
+      }
+
+      .issue-title > span:before{
+        content:"";
+        display:inline-block;
+        vertical-align: middle;
+        width:24px;
+        height: 24px;
+        background: url(../assets/images/childList.svg) center/cover no-repeat;
       }
 
       

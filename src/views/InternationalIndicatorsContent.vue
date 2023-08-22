@@ -232,7 +232,7 @@
 
   const props = defineProps({
     allInternationalIssue: {
-      type: Array,
+      type: Object,
     },
     allIndustry: {
       type: Array,

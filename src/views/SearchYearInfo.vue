@@ -45,8 +45,7 @@
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
                             <a download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
-                            <input type="button" class="button buttonColor2 download" value="矩陣">
-                            <router-link to="/LookEsgInfo">
+                            <a download target="_blank" type="button" :href="downloadMatrix.href" class="button buttonColor2 download">矩陣</a>                            <router-link to="/LookEsgInfo">
                                 <input class="button buttonColor2" type="button" value="閱覽">
                             </router-link>
                             <router-link to="/EditEsgInfo">
@@ -88,6 +87,10 @@
         href:"",
     });
 
+    const downloadMatrix = ref({
+        href:"",
+    });
+
     const apiRequest = ref({
         companyId: userStore.companyId,
         year: "",
@@ -119,9 +122,11 @@
             userStore.setUser(data);
 
             downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
+            downloadMatrix.value = await APICollection.DownloadMatrix(apiRequest);
         })().catch(err=>{
             alert(err.resultMessage);
         });
+
     };
 
     // let uploadPDFResponseBody = {

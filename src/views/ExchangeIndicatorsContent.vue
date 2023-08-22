@@ -36,7 +36,7 @@
                   指標代號
                 </td>
                 <td>
-                  <select v-model="props.showIssueList[issue.issueType]" style="margin: 0 12px 0 0;">
+                  <select v-model="props.showIssueList[issue.issueType]" @change="switchOpen" style="margin: 0 12px 0 0;">
                     <option :value="item.targetType" v-for="item in issue.issueList" :key="item">
                       {{ item.targetType }}. {{ item.targetTitle.length > 30 ? `${item.targetTitle.slice(0, 30)}...`  : item.targetTitle}}
                     </option>
@@ -428,7 +428,7 @@
   import { computed, ref, watch } from 'vue';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
   import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
-  import { chineseNumber } from '../mixin/mixin.js';
+  import { chineseNumber,switchOpen } from '../mixin/mixin.js';
 
   const props = defineProps({
     allIndustry: {
