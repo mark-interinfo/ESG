@@ -38,7 +38,10 @@
                         <tr>
                           <td>參考依據</td>
                           <td>
-                            <div class="items">
+                            <div
+                            class="items"
+                            @click="openDialogSelecter(newTargetCodeArray)"
+                            >
                               <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
                             </div>  
                           </td>
@@ -60,31 +63,12 @@
                         </tr>
                       </table>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
 
-              <div class="issue-item pointer" data-item="1.關於報告書">
-                <div class="issue-title">
-                  <span>02.法規遵循</span>
-                  <img src="/src/assets/images/select.svg" alt="">
-                </div>
-              </div>
-
-              <div class="issue-item pointer" data-item="1.關於報告書">
-                <div class="issue-title">
-                  <span>03.參與各類社團組織</span>
-                  <img src="/src/assets/images/select.svg" alt="">
-                </div>
-              </div>
-
-              <div class="issue-item pointer" data-item="1.關於報告書">
-                <div class="issue-title">
-                  <span>04.其他</span>
-                  <img src="/src/assets/images/select.svg" alt="">
-                </div>
-              </div>
+              
             </div>
             <div class="buttonBox">
               <input type="button" class="button buttonColor3" value="新增議題">
