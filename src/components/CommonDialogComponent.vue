@@ -48,41 +48,55 @@
 
           <!-- 單選、多選、下拉選單 -->
           <template v-if="['A', 'B', 'C'].includes(inputMethod)">
-            <p class="label-title">
-              <span>
-                選項名稱
-              </span>
-              <span>
-                停用設定
-              </span>
-            </p>
-            <div
-            v-for="(option, i) in optionSetting"
-            :key="option.value"
-            class="input-group"
-            >
-              <input
-              type="text"
-              placeholder="請輸入選項名稱"
-              :value="option.name"
-              @blur="setOption($event, i)"
-              >
-            </div>
-            <div class="add-group">
+            <template v-if="!isStopMode">
+              <p class="label-title">
+                <span>
+                  選項名稱
+                </span>
+                <span class="fontGreen pointer" @click="isStopMode = true">
+                  停用設定
+                </span>
+              </p>
               <div
-              class="add-button"
-              @click="addOption"
+              v-for="(option, i) in optionSetting"
+              :key="option.value"
+              class="input-group option-setting"
               >
-                ＋ 新增項目
+                <input
+                type="text"
+                placeholder="請輸入選項名稱"
+                :value="option.name"
+                @blur="setOption($event, i)"
+                >
               </div>
-              <div
-              class="del-button"
-              v-if="optionSetting && optionSetting.length > 1"
-              @click="delOption"
-              >
-                刪除
+              <div class="add-group">
+                <div
+                class="add-button"
+                @click="addOption"
+                >
+                  ＋ 新增項目
+                </div>
               </div>
-            </div>
+            </template>
+            <template v-else>
+              <div class="option-stop">
+                <div class="is-stop">停用</div>
+                <div class="name">選項名稱</div>
+                <div class="stop-year">停用起始年</div>
+              </div>
+              <div class="option-stop" v-for="(option, i) in optionSetting">
+                <div class="is-stop">
+                  <input type="checkbox" :checked="false" v-model="option.isOn">
+                  {{ option.isOn }}
+                </div>
+                <div class="name">
+                  {{ option.name }}
+                </div>
+                <div class="stop-year">
+                  <input type="text" placeholder="民國年" v-model="option.isOnYear">
+                </div>
+              </div>
+            </template>
           </template>
 
           <!-- 數值 -->
@@ -299,9 +313,8 @@ const addOption = function(){
     isOn: true
   })
 };
-const delOption = function(){
-  optionSetting.value.pop();
-};
+const isStopMode = ref(false);
+
 const setOption = function(e, optionIndex){
   if(['A', 'B', 'C'].includes(inputMethod.value)){
     optionSetting.value[optionIndex].name = e.target.value;
@@ -354,6 +367,10 @@ const inputSetting = function(){
 .label-title{
   margin-top: 0;
   margin-bottom: 4px;
+  &:has(span){
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .input-group{
   position: relative;
@@ -368,6 +385,29 @@ const inputSetting = function(){
     right: 12px;
     transform: translate(-50%, -50%);
   }
+}
+.option-stop{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 8px;
+  .is-stop{
+    flex: 0 0 32px;
+    text-align: center;
+  }
+  .name{
+    flex: 1 1 100%;
+  }
+  .stop-year{
+    flex: 0 0 80px;
+    input{
+      width: 100%;
+    }
+  }
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 select{
@@ -402,7 +442,7 @@ select{
       padding:20px 40px;
       flex-direction: column;
       text-align: center;
-      
+
       > div{
         border-radius:2px;
         height:4px;
