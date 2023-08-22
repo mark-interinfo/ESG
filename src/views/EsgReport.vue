@@ -30,34 +30,6 @@
                   </div>
                   <div class="issue-content">
 
-                    <!--只有一層
-                    <table class="indicators">
-                      <tr>
-                        <td>參考依據</td>
-                        <td>
-                          <div class="items">
-                            <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
-                          </div>  
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>備註</td>
-                        <td>
-                          <input type="text" placeholder="請填寫"> 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>資料來源</td>
-                        <td>
-                          <div class="items">
-                            <span>直接氣體排放</span>
-                            <span>廢棄物</span>
-                          </div>  
-                        </td>
-                      </tr>
-                    </table>
-                  -->
-
                     <div class="issue-title">
                       <span>01-1公司治理架構</span>
                     </div>
@@ -88,6 +60,7 @@
                         </tr>
                       </table>
                     </div>
+                    
                   </div>
                 </div>
               </div>
