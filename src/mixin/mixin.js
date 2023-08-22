@@ -85,12 +85,6 @@ const switchOpen = function(){
       if(b[i].addedNodes && b[i].addedNodes.length > 0){
         if(b[i].target.querySelector(".issue-item")){
           run();
-
-        };
-        for(var a=0;a<b[i].addedNodes.length;a++){
-          if(b[i].addedNodes[a].className && b[i].addedNodes[a].className.match("issue-item")){
-            run()
-          };
         };
       };
     };
@@ -101,6 +95,7 @@ const switchOpen = function(){
 
     var titles = document.querySelectorAll(".issue-tag");
     var items = document.querySelectorAll(".issue-item");
+    var toggle = document.querySelector("#issue-toggle");
 
     var open = "全部展開";
     var close = "全部收合";
@@ -113,18 +108,22 @@ const switchOpen = function(){
           return;
         };
 
-        for(let i=0;i<items.length;i++){
-          items[i].classList.remove("opening");
-        };
-
+        //全部展開收合預設文字
         if(toggle){
           toggle.dataset.name = open;
         };
 
+        //全部區塊收合
+        for(let i=0;i<items.length;i++){
+          items[i].classList.remove("opening");
+        };
+
+        //清除選中頁簽
         if(document.querySelector("#issue-tags .selected")){
           document.querySelector("#issue-tags .selected").classList.remove("selected");
         };
 
+        //當下頁簽選中
         this.classList.add("selected");
         document.querySelector("#issue").dataset.open = this.dataset.id;
 
@@ -144,7 +143,7 @@ const switchOpen = function(){
       };
     };
     
-    var toggle = document.querySelector("#issue-toggle");
+    //全部展開收合行為
     if(toggle){
       toggle.dataset.name = open;
       toggle.onclick = function(){
@@ -160,8 +159,9 @@ const switchOpen = function(){
           this.dataset.name = open;
         };
       };
-    }
+    };
 
+    //抬頭點擊開關內容
     var listTitle = document.querySelectorAll(".issue-title")
 
     for(let i=0;i<listTitle.length;i++){
