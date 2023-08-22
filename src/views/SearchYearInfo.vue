@@ -4,7 +4,7 @@
             <div class="title">
                 <CommonCompanyTitle/>
                 <span id="buttonBox">
-                    <a download="永續報告書範本" href="" class="button buttonColor3" id="downloadTemplate">下載範本</a>
+                    <a v-if="userStore.uidType != 'monitor'" download="永續報告書範本" href="" class="button buttonColor3" id="downloadTemplate">下載範本</a>
                 </span>
             </div>
             <div id="searchBar">
@@ -23,6 +23,7 @@
                     type="text"
                     placeholder="請輸入民國年份"
                     v-model.number="apiRequest.year"
+                    v-on:keyup.enter="send"
                 >
                 <input
                     type="button"
@@ -44,11 +45,13 @@
                     </div>
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
-                            <a download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
-                            <a download target="_blank" type="button" :href="downloadMatrix.href" class="button buttonColor2 download">矩陣</a>                            <router-link to="/LookEsgInfo">
+                            <a v-if="userStore.uidType != 'monitor'" download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
+                            <a v-if="userStore.uidType != 'monitor'" download target="_blank" type="button" :href="downloadMatrix.href" class="button buttonColor2 download">矩陣</a>                            
+                            <router-link to="/LookEsgInfo">
                                 <input class="button buttonColor2" type="button" value="閱覽">
                             </router-link>
-                            <router-link to="/EditEsgInfo">
+                            
+                            <router-link to="/EditEsgInfo" v-if="userStore.uidType != 'monitor'">
                                 <input class="button buttonColor2" type="button" value="編輯">
                             </router-link>
                         </span>
@@ -59,7 +62,7 @@
                     >
                         <span>{{queryYear}}年ESG資料尚未申報</span>
                         <span>
-                            <router-link to="/ApplyEsgInfo">
+                            <router-link to="/ApplyEsgInfo" v-if="userStore.uidType != 'monitor'">
                                 <input class="button buttonColor1" type="button" value="申報ESG資料">
                             </router-link>
                         </span>
@@ -112,17 +115,21 @@
         (async() => {
             hasData.value = await APICollection.QueryYear(apiRequest);
             let company = hasData.value.companyName;
+            let companyId = hasData.value.companyId;
             hasData.value = hasData.value.dataExist.value;
             queryYear.value = apiRequest.value.year;
             userStore.setYear(queryYear.value);
 
             var data = {
                 companyName : company,
+                companyId : companyId,
             };
             userStore.setUser(data);
 
-            downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
-            downloadMatrix.value = await APICollection.DownloadMatrix(apiRequest);
+            if(hasData.value == "YES"){
+                downloadXBRL.value = await APICollection.DownloadXBRL(apiRequest);
+                downloadMatrix.value = await APICollection.DownloadMatrix(apiRequest);
+            };
         })().catch(err=>{
             alert(err.resultMessage);
         });

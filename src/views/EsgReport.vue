@@ -348,7 +348,7 @@
   });
 
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
   #EsgReport{
     padding-bottom: 20px;
@@ -565,7 +565,7 @@
       .issue-title > span:before{
         content:"";
         display:inline-block;
-        vertical-align: middle;
+        vertical-align: text-bottom;
         width:24px;
         height: 24px;
         background: url(../assets/images/childList.svg) center/cover no-repeat;
