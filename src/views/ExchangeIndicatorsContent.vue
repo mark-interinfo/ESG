@@ -425,7 +425,7 @@
   </div>
 </template>
 <script setup>
-  import { computed, ref, watch } from 'vue';
+  import { computed, ref, watch , onUpdated } from 'vue';
   import CommonDialogComponent from '../components/CommonDialogComponent.vue';
   import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
   import { chineseNumber,switchOpen } from '../mixin/mixin.js';
@@ -602,6 +602,9 @@
     }
     isShowDialogSelecter.value = false;
   }
+
+
+
 
 </script>
 <style lang="scss">
