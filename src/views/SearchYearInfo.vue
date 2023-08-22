@@ -9,28 +9,37 @@
             </div>
             <div id="searchBar">
                 <template v-if="userStore.uidType == 'monitor'">
-                    <input
-                        id="company"
-                        type="text"
-                        placeholder="請輸入公司代號"
-                        v-model.number="apiRequest.companyId"
-                    >
-                    <br>
-                    <br>
+                    <span id="companyNumber">
+                        <div>
+                            公司代號
+                        </div>
+                        <input
+                            id="company"
+                            type="text"
+                            placeholder="請輸入"
+                            v-model.number="apiRequest.companyId"
+                        >
+                    </span>
                 </template>
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="請輸入民國年份"
-                    v-model.number="apiRequest.year"
-                    v-on:keyup.enter="send"
-                >
-                <input
-                    type="button"
-                    id="searchButton"
-                    class="button buttonColor1"
-                    @click="send"
-                >
+                <span>
+                    <div>
+                        資料年度
+                    </div>
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="請輸入民國年份"
+                        v-model.number="apiRequest.year"
+                        v-on:keyup.enter="send"
+                    >
+                    <input
+                        type="button"
+                        id="searchButton"
+                        class="button buttonColor1"
+                        @click="send"
+                    >
+                </span>
+                
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
@@ -186,22 +195,46 @@
 
             #searchBar {
                 margin-top:20px;
-                margin-bottom: 40px;;
+                margin-bottom: 40px;
 
-                input[type="text"] {
+                > span > div{
+                    color:#808080;
+                    margin-bottom: 4px;
+                }
+
+                #company{
+                    width:100px;
+                    margin-right: 8px;
+                    
+                }
+
+                #companyNumber + span #searchInput{
+                    width:150px;
+                    margin-right:8px;
+                    border-radius: 3px;
+                }
+
+                #companyNumber + span #searchInput + #searchButton{
+                    border-radius: 3px;
+                }
+
+                #searchInput,
+                #company{
                     height: 44px;
                     border: 1px solid #dfdfdf;
                     padding: 0 10px;
                     box-sizing: border-box;
-                    width: 400px;
                     font-size: 16px;
                     background: #efefef;
-                    border-radius: 3px 0 0 3px;
 
                     &::placeholder {
                         color: #aaa
                     }
+                }
 
+                #searchInput {
+                    width: 400px;
+                    border-radius: 3px 0 0 3px;
                 }
 
                 #searchButton {

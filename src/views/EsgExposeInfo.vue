@@ -57,7 +57,7 @@
 
                                   <div v-if="targetList.type == 'B'">
                                       <span v-for="option in targetList.optionList">
-                                          <input type="checkbox" :name="targetList.fieldId" :value="option.value" v-model="data.data[targetList.fieldId]">
+                                          <input type="checkbox" :name="targetList.fieldId" :value="option.value" :checked="data.data[targetList.fieldId].includes(option.value)"  @change="checkboxValue">
                                           <span>{{option.name}}</span>
                                       </span>
                                   </div>
@@ -121,6 +121,7 @@
 
   (async() => {
       data.value = await APICollection.QueryReportData(apiRequest);
+      console.log(data.value)
   })().catch(err=>{
       alert(err.resultMessage);
   });
@@ -146,6 +147,21 @@
     };
     
   });
+
+  const checkboxValue = (event)=>{
+    var name = event.target.name;
+    var checkbox = document.querySelectorAll("[name='" + name + "']");
+    var value=[];
+    for(var i=0;i<checkbox.length;i++){
+      if(checkbox[i].checked){
+        value.push(checkbox[i].value)
+      };
+    };
+    console.log(value)
+
+    data.value.data[name] = value;
+    console.log(data.value)
+  }
 
   watch(data, ()=>{
     emits('watchData', data.value)
