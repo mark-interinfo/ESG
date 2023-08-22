@@ -146,7 +146,7 @@
         <input type="text" placeholder="請填寫" v-model="internationalIssueName">
       </div>
       <div class="dialog-footer">
-        <button class="button buttonColor1" @click="isShowAddInternationalIssueDialog = false">取消</button>
+        <button class="button buttonColor1" @click="closeAddInternationalIssueDialog">取消</button>
         <button class="button buttonColor1" @click="addInternationalIssue">確認</button>
       </div>
     </div>
@@ -172,8 +172,11 @@
         <label>
           <div style="margin-bottom: 12px;">
             <p class="label-title">
-              指標代號 {{ newTargetNo }}
+              指標代號
             </p>
+            <div class="input-group">
+              <input type="text" v-model="newTargetNo" placeholder="請填寫">
+            </div>
           </div>
           <div style="margin-bottom: 12px;">
             <p class="label-title">
@@ -209,7 +212,7 @@
       <div class="dialog-footer">
         <button
         class="button buttonColor2"
-        @click="isShowAddInternationalTargetNoDialog = false"
+        @click="closeAddInternationalTargetNoDialog"
         >
           取消
         </button>
@@ -256,6 +259,11 @@
   const showAddInternationalIssueDialog = function(){
     isShowAddInternationalIssueDialog.value = true;
   }
+  const closeAddInternationalIssueDialog = function(){
+    isShowAddInternationalIssueDialog.value = false;
+    internationalIssueNo.value = '';
+    internationalIssueName.value = '';
+  }
   const addInternationalIssue = function(){
     let systemNo = 1;
     if(props.allInternationalIssue.find(item => item.internationalIssueNo === internationalIssueNo.value)){
@@ -279,14 +287,14 @@
         internationalIssueList: [],
       }
     );
-    isShowAddInternationalIssueDialog.value = false;
+    closeAddInternationalIssueDialog();
   }
 
   // 當前頁面的跳窗 新增指標代號
   const isShowAddInternationalTargetNoDialog = ref(false);
   const targetInternationalIssueNo = ref('0');
   const targetGuideLine = ref('');
-  const newTargetNo = ref(0);
+  const newTargetNo = ref('');
   const newTargetName = ref('');
   const newTargetNote = ref('');
   const newTargetCodeArray = ref([]);
@@ -295,22 +303,29 @@
     isShowAddInternationalTargetNoDialog.value = true;
     targetGuideLine.value = guideLine;
     targetInternationalIssueNo.value = internationalIssueNo;
-    newTargetNo.value = IssueListLength + 1;
   };
-
+  const closeAddInternationalTargetNoDialog = function(){
+    isShowAddInternationalTargetNoDialog.value = false;
+    targetInternationalIssueNo.value = '0';
+    targetGuideLine.value = '';
+    newTargetNo.value = '';
+    newTargetName.value = '';
+    newTargetNote.value = '';
+    newTargetCodeArray.value = [];
+  }
   const addInternationalTargetNo = function(){
     emits('addInternationalTargetNo', {
       issueNo: targetInternationalIssueNo.value,
       guideLine: targetGuideLine.value,
       data: {
-        internationalTargetNo: `${targetInternationalIssueNo.value}-${newTargetNo.value}`,
+        internationalTargetNo: newTargetNo.value,
         internationalTargetName: newTargetName.value,
         internationalTargetNote: newTargetNote.value,
         internationalTargetCodeArray: newTargetCodeArray.value,
         internationalTargetStatus: {isOnYear: "", isOn: true},
       }
     });
-    isShowAddInternationalTargetNoDialog.value = false;
+    closeAddInternationalTargetNoDialog();
   }
 
   // 跳窗篩選器
