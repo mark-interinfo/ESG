@@ -23,16 +23,13 @@
           <div>
             <div>
               <div class="issue-item pointer" :data-item="sustainable.NO +'.'+ sustainable.NAME"  v-for="(sustainable) in allSustainable">
-                <div v-for="item in sustainable.CAP_NO1List">
+                <div v-for="item1 in sustainable.CAP_NO1List">
                   <div class="issue-title">
-                    <span>{{item.NO1 + item.NAME1}}</span>
+                    <span>{{item1.NO1 + item1.NAME1}}</span>
                     <img src="/src/assets/images/select.svg" alt="">
                   </div>
                   <div class="issue-content">
-                    <div class="issue-title">
-                      <span>01-1公司治理架構</span>
-                    </div>
-                    <div class="issue-content">
+                    <template v-if="item1.CAP_NO2List.length === 0">
                       <table class="indicators">
                         <tr>
                           <td>參考依據</td>
@@ -41,27 +38,100 @@
                             class="items"
                             @click="openDialogSelecter(newTargetCodeArray)"
                             >
-                              <span>GRI 305-2-能源間接（範疇二）溫室氣體排放</span>
+                              <span v-for="item2 in item1.ACCORDING1">{{ item2 }}</span>
                             </div>
                           </td>
                         </tr>
                         <tr>
                           <td>備註</td>
                           <td>
-                            <input type="text" placeholder="請填寫"> 
+                            <input type="text" placeholder="請填寫">
                           </td>
                         </tr>
                         <tr>
                           <td>資料來源</td>
                           <td>
                             <div class="items">
-                              <span>直接氣體排放</span>
-                              <span>廢棄物</span>
+                              <span v-for="item2 in item1.SOURCE1">{{ item2 }}</span>
                             </div>
                           </td>
                         </tr>
                       </table>
-                    </div>
+                    </template>
+                    <template v-for="item2 in item1.CAP_NO2List">
+                      <div>
+                        <div class="issue-title">
+                          <span>{{ item2.NO2 +  item2.NAME2}}</span>
+                        </div>
+                        <div class="issue-content">
+                          <template v-if="item2.CAP_NO3List.length === 0">
+                            <table class="indicators">
+                              <tr>
+                                <td>參考依據</td>
+                                <td>
+                                  <div
+                                  class="items"
+                                  @click="openDialogSelecter(newTargetCodeArray)"
+                                  >
+                                    <span v-for="item3 in item2.ACCORDING2">{{ item3 }}</span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>備註</td>
+                                <td>
+                                  <input type="text" placeholder="請填寫">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>資料來源</td>
+                                <td>
+                                  <div class="items">
+                                    <span v-for="item3 in item2.SOURCE2">{{ item3 }}</span>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </template>
+                          <template v-for="item3 in item2.CAP_NO3List">
+                            <div>
+                              <div class="issue-title">
+                                <span style="padding-left: 20px;">{{ item3.NO3 +  item3.NAME3}}</span>
+                              </div>
+                              <div class="issue-content">
+                                <table class="indicators">
+                                  <tr>
+                                    <td>參考依據</td>
+                                    <td>
+                                      <div
+                                      class="items"
+                                      @click="openDialogSelecter(newTargetCodeArray)"
+                                      >
+                                        <span v-for="item4 in item3.ACCORDING3">{{ item4 }}</span>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>備註</td>
+                                    <td>
+                                      <input type="text" placeholder="請填寫">
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>資料來源</td>
+                                    <td>
+                                      <div class="items">
+                                        <span v-for="item4 in item3.SOURCE3">{{ item4 }}</span>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </template>
+                        </div>
+                      </div>
+                    </template>
                   </div>
                 </div>
               </div>

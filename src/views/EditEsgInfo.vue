@@ -362,7 +362,7 @@
 
               if(route.path == "/EsgMatrix"){
                 back = await APICollection.UploadMatrixExcel(fileDetail);
-                console.log(back)
+                allMatrix.value = back.allMatrix;
                 /* for(var i=0;i<back.allMatrix.length;i++){
                   var key = back.allMatrix[i].ISSUE_NO;
                   var no = back.allMatrix[i].TAR_NO;
