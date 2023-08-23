@@ -234,7 +234,6 @@
 </template>
 <script setup>
 import { ref, watch } from "vue";
-import CommonDialogSelecterComponent from '../components/CommonDialogSelecterComponent.vue';
 
 const props = defineProps({
   isShowDialog: {
@@ -272,16 +271,20 @@ watch(props, ()=>{
   optionSetting.value = JSON.parse(JSON.stringify(props.optionList));
   inputMethod.value = props.inputMethod;
 });
-watch(inputMethod, ()=>{
-  if(optionSetting.value){
+
+watch(inputMethod, (n, o)=>{
+  if(!o){
     return;
   }
-  if(['A', 'B', 'C'].includes(inputMethod)){
-    optionSetting.value = [];
+
+  if(['A', 'B', 'C'].includes(n)){
+    optionSetting.value = [
+      { "isOnYear": "", "name": "", "value": "1", "isOn": true }
+    ];
   }
-  if(inputMethod === 'D'){
+  if(n === 'D'){
   }
-  if(inputMethod === 'E'){
+  if(n === 'E'){
     optionSetting.value = [
       {
         unit: '',
@@ -292,14 +295,17 @@ watch(inputMethod, ()=>{
       }
     ]
   }
-  if(inputMethod === 'F'){
+  if(n === 'F'){
   }
+  console.log(optionSetting.value);
 });
 
 // 文字
 const textLength = ref(0);
 
 // 選單
+const isStopMode = ref(false);
+
 const addOption = function(){
   let value = 0;
   if(optionSetting.value.at(-1)){
@@ -312,7 +318,6 @@ const addOption = function(){
     isOn: true
   })
 };
-const isStopMode = ref(false);
 
 const setOption = function(e, optionIndex){
   if(['A', 'B', 'C'].includes(inputMethod.value)){
@@ -342,18 +347,15 @@ const fileSettingOption = ref([
 const fileSettingSelected = ref('unSelect');
 const fileSettingSize = ref();
 
-// 新增議題
-const newIssueName = ref('');
-
-// 新增指標
-const newIssueListName = ref('');
-const newIssueType = ref(['000']);
-
 const closeDialog = function(){
   emits('closeDialog');
 };
 
 const inputSetting = function(){
+  if(isStopMode.value){
+    isStopMode.value = false;
+    return;
+  }
   emits('inputSetting', {
     optionSetting: optionSetting.value,
     inputMethod: inputMethod.value

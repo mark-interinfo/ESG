@@ -471,10 +471,12 @@
   };
   const closeAddIssueDialog = function(){
     isShowAddIssueDialog.value = false;
-    issueReset();
+    newIssueNumber.value = 0;
+    newIssueName.value = '';
+    newIssueKind.value = '';
+    newIssueType.value = '';
   };
   const addNewIssue = function(){
-    isShowAddIssueDialog.value = false;
     emits('addNewIssue',
       {
         issueKind: newIssueKind.value,
@@ -483,14 +485,8 @@
         issueType: `${newIssueType.value}${String(newIssueNumber.value).padStart(4, '0')}`
       }
     );
-    issueReset();
+    closeAddIssueDialog();
   };
-  const issueReset = function(){
-    newIssueNumber.value = 0;
-    newIssueName.value = '';
-    newIssueKind.value = '';
-    newIssueType.value = '';
-  }
 
   // 當前頁面的跳窗 新增指標代號
   const isShowAddIssueCodeDialog = ref(false);
@@ -503,14 +499,17 @@
   const showAddIssueCodeDialog = function(optionLength, issueIndex){
     isShowAddIssueCodeDialog.value = true;
     newIssueCodeNumber.value = optionLength + 1;
-    console.log(optionLength);
     targetIssueIndex.value = issueIndex;
   }
   const closeAddIssueCodeDialog = function(){
     isShowAddIssueCodeDialog.value = false;
+    targetIssueIndex.value = -1;
+    newIssueCodeNumber.value = 0;
+    newIssueCodeIndustry.value = [];
+    newIssueCodeName.value = '';
+    newIssueCodeNote.value = '';
   }
   const addNewIssueCode = function(){
-    isShowAddIssueCodeDialog.value = false;
     emits('addNewIssueCode',
       {
         issueIndex: targetIssueIndex.value,
@@ -521,6 +520,7 @@
         }
       }
     );
+    closeAddIssueCodeDialog();
   };
 
   // 當前頁面的跳窗 新增指標細項
@@ -534,12 +534,16 @@
   const showAddIssueDetailDialog = function(issueType, issueList){
     newIssueDetailFieldId.value = `${issueType}_${props.showIssueList[issueType]}`;
     isShowAddIssueDetailDialog.value = true;
-  }
+  };
   const closeAddIssueDetailDialog = function(){
     isShowAddIssueDetailDialog.value = false;
-  }
+    newIssueDetailFieldId.value = '';
+    newIssueDetailNote.value = '';
+    newIssueDetailTitle.value = '';
+    newIssueDetailOptionList.value = [{}];
+    newIssueDetailType.value = '';
+  };
   const addIssueDetailDialog = function(){
-    isShowAddIssueDetailDialog.value = false;
     emits('addIssueDetailDialog',
       {
         fieldId: newIssueDetailFieldId.value,
@@ -549,7 +553,8 @@
         type: newIssueDetailType.value
       }
     );
-  }
+    closeAddIssueDetailDialog();
+  };
 
   // CommonDialogComponent
   // 欄位設定
