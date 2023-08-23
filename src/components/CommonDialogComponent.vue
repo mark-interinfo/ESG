@@ -297,7 +297,6 @@ watch(inputMethod, (n, o)=>{
   }
   if(n === 'F'){
   }
-  console.log(optionSetting.value);
 });
 
 // 文字
@@ -434,6 +433,7 @@ select{
   }
   #dialog-block{
     display: flex;
+    justify-content: center;
     background: #fff;
     border-radius: 3px;
     width: 100%;
@@ -445,9 +445,10 @@ select{
       text-align: center;
 
       > div{
-        border-radius:2px;
-        height:4px;
-        background:#eee;width:400px;
+        border-radius: 2px;
+        height: 4px;
+        background:#eee;
+        width: 100%;
         position: relative;
         text-align: left;
 

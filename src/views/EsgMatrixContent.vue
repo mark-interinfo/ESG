@@ -20,6 +20,8 @@
             class="issue-item"
           >
             <td class="tableHead">
+              {{ issue.ISSUE_NO }}-{{ issue.TAR_NO }}
+              <br>
               {{ issue.TAR_NAME }}
             </td>
             <td>

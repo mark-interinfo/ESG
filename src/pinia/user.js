@@ -19,7 +19,7 @@ export const useUserStore = defineStore('userStore', () => {
     data.companyId && (companyId.value = data.companyId);
     data.companyName && (companyName.value = data.companyName);
   };
-  
+
   const returnUser = function(){
     return {
       uid: uid.value,

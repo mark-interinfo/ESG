@@ -6,7 +6,7 @@
         <!-- 麵包屑少首頁 -->
         <span>首頁</span>
         /
-        <span>申請作業</span>
+        <span>{{ pageName[route.path] }}</span>
         /
         <span id="bread-last">{{ route.name }}</span>
       </div>
@@ -25,8 +25,6 @@ import CommonFooterContainer  from './components/CommonFooterContainer.vue';
 import CommonHeaderContainer  from './components/CommonHeaderContainer.vue';
 import { useRoute } from 'vue-router';
 
-
-
 const route = useRoute();
 
 const bodyRef = ref(null);
@@ -41,6 +39,13 @@ const scrollToTop = function(){
   });
 };
 
+const pageName = ref({
+  '/ExchangeIndicators': '指標維護',
+  '/InternationalIndicators': '指標維護',
+  '/EsgMatrix': '指標維護',
+  '/SearchYearInfo': '申報作業',
+  '/EsgReport': '申報管理',
+});
 </script>
 <style lang="scss">
 @font-face {

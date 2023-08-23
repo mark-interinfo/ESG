@@ -5,14 +5,14 @@
             <div id="selectYear">
                 <span>選擇年度</span>
                 <select>
-                    <option>110永續報告書</option>
+                    <option>112永續報告書</option>
                 </select>
             </div>
             <div id="template">
                 <div>
                     <div>
                         <span>
-                            <input type="radio" name="a">
+                            <input type="radio" value="a" v-model="templateSelected">
                             <span>模板A</span>
                         </span>
                         <img @click="openDialog('img')" src="../assets/images/template1.png">
@@ -21,7 +21,7 @@
                 <div>
                     <div>
                         <span>
-                            <input type="radio" name="a">
+                            <input type="radio" value="b" v-model="templateSelected">
                             <span>模板B</span>
                         </span>
                         <img @click="openDialog('img')" src="../assets/images/template2.png">
@@ -31,18 +31,49 @@
             <div id="apply" @click="openDialog('loadingFile')" >
                 <input type="button" class="button buttonColor1" value="套用模板">
             </div>
-            
         </div>
 
         <CommonDialogComponent
         :isShowDialog="isShowDialog"
-        :dailogType = "type"
+        :dailogType="type"
         @closeDialog="closeDialog"
         />
 
     </div>
 
 </template>
+<script setup>
+    import { ref } from 'vue';
+    import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
+    import CommonDialogComponent from '../components/CommonDialogComponent.vue';
+    import { useUserStore } from "../pinia/user.js";
+
+    const userStore = useUserStore();
+
+    const type = ref();
+    const isShowDialog = ref(false);
+
+    const templateSelected = ref('');
+    const openDialog = function(value){
+        isShowDialog.value = true;
+        type.value = value;
+        console.log(
+            {
+                companyId: userStore.companyId,
+                year: userStore.searchYear,
+                template: templateSelected.value,
+            }
+        )
+        if(value == "loadingFile"){
+            setTimeout(function(){
+                closeDialog();
+            }, 2500);
+        }
+    }
+    const closeDialog = function(){
+        isShowDialog.value = false;
+    }
+</script>
 <style lang="scss" scoped>
 
     .content{
@@ -56,7 +87,6 @@
         margin-top:10px;
         > span{vertical-align: middle;margin-right:20px;}
 
-        
     }
     #template{
         > div{
@@ -80,24 +110,3 @@
     }
     #apply{text-align: right;}
 </style>
-
-<script setup>
-    import { ref } from 'vue';
-    import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
-    import CommonDialogComponent from '../components/CommonDialogComponent.vue';
-    const type = ref();
-    const isShowDialog = ref(false);
-    const openDialog = function(value){
-        isShowDialog.value = true;
-        type.value = value;
-
-        if(value == "loadingFile"){
-            setTimeout(function(){
-                closeDialog();
-            },2500);
-        }
-    }
-    const closeDialog = function(){
-        isShowDialog.value = false;
-    }
-</script>

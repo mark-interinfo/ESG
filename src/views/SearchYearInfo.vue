@@ -3,9 +3,9 @@
         <div class="content">
             <div class="title">
                 <CommonCompanyTitle/>
-                <span id="buttonBox">
+                <!-- <span id="buttonBox">
                     <a v-if="userStore.uidType != 'monitor'" download="永續報告書範本" href="" class="button buttonColor3" id="downloadTemplate">下載範本</a>
-                </span>
+                </span> -->
             </div>
             <div id="searchBar">
                 <template v-if="userStore.uidType == 'monitor'">
@@ -14,10 +14,10 @@
                             公司代號
                         </div>
                         <input
-                            id="company"
-                            type="text"
-                            placeholder="請輸入"
-                            v-model.number="apiRequest.companyId"
+                        id="company"
+                        type="text"
+                        placeholder="請輸入"
+                        v-model.number="apiRequest.companyId"
                         >
                     </span>
                 </template>
@@ -39,7 +39,6 @@
                         @click="send"
                     >
                 </span>
-                
             </div>
             <div id="queryInfo">
                 <h2>查詢結果</h2>
@@ -54,12 +53,15 @@
                     </div>
                         <span>{{queryYear}}年ESG資料</span>
                         <span>
-                            <a v-if="userStore.uidType != 'monitor'" download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">XBRL</a>
-                            <a v-if="userStore.uidType != 'monitor'" download target="_blank" type="button" :href="downloadMatrix.href" class="button buttonColor2 download">矩陣</a>                            
+                            <a download target="_blank" type="button" :href="downloadXBRL.href" class="button buttonColor2 download">
+                                XBRL
+                            </a>
+                            <a download target="_blank" type="button" :href="downloadMatrix.href" class="button buttonColor2 download">
+                                矩陣
+                            </a>
                             <router-link to="/LookEsgInfo">
                                 <input class="button buttonColor2" type="button" value="閱覽">
                             </router-link>
-                            
                             <router-link to="/EditEsgInfo" v-if="userStore.uidType != 'monitor'">
                                 <input class="button buttonColor2" type="button" value="編輯">
                             </router-link>
@@ -105,7 +107,7 @@
 
     const apiRequest = ref({
         companyId: userStore.companyId,
-        year: "",
+        year: userStore.searchYear,
     });
 
     const queryYear = ref();
@@ -116,6 +118,14 @@
         if(!userStore.uid){
             router.push("/HomeView");
             alert("請登入帳號!");
+        };
+
+        if( userStore.uidType == 'user' && userStore.searchYear){
+            send();
+        };
+
+        if( userStore.uidType == 'monitor' && userStore.searchYear && userStore.companyId){
+            send();
         };
     })
 

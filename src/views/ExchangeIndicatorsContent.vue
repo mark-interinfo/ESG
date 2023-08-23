@@ -157,6 +157,7 @@
                                     </td>
                                     <td v-if="target.status">
                                       <div>
+                                        {{ target }}
                                         <label :for="`${target.fieldId}on`">
                                           <input type="radio"
                                           :id="`${target.fieldId}on`"
@@ -399,7 +400,6 @@
       </div>
     </div>
 
-
     <!-- 元件 -->
     <CommonDialogComponent
     :isShowDialog="isShowInputSetDialog"
@@ -517,6 +517,7 @@
           targetCodeArray: newIssueCodeIndustry.value,
           targetTitle: newIssueCodeName.value,
           targetNote: newIssueCodeNote.value,
+          targetList: [],
         }
       }
     );
@@ -528,7 +529,7 @@
   const newIssueDetailFieldId = ref('');
   const newIssueDetailTitle = ref('');
   const newIssueDetailType = ref('');
-  const newIssueDetailOptionList = ref([{}]);
+  const newIssueDetailOptionList = ref([{isOn: true, isOnYear: ''}]);
   const newIssueDetailNote = ref('');
 
   const showAddIssueDetailDialog = function(issueType, issueList){
@@ -540,7 +541,7 @@
     newIssueDetailFieldId.value = '';
     newIssueDetailNote.value = '';
     newIssueDetailTitle.value = '';
-    newIssueDetailOptionList.value = [{}];
+    newIssueDetailOptionList.value = [{isOn: true, isOnYear: ''}];
     newIssueDetailType.value = '';
   };
   const addIssueDetailDialog = function(){
@@ -550,7 +551,9 @@
         optionList: newIssueDetailOptionList.value,
         note: newIssueDetailNote.value,
         title: newIssueDetailTitle.value,
-        type: newIssueDetailType.value
+        type: newIssueDetailType.value,
+        status: {isOnYear: "", isOn: true},
+        notIsCore: true,
       }
     );
     closeAddIssueDetailDialog();

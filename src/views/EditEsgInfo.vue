@@ -178,8 +178,8 @@
 
     const addIssueDetailDialog = function(data){
       let [issueKind, targetType] = data.fieldId.split('_');
-      let fieldLength = allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target=>target.targetType === targetType).targetList.length;
-      allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target=>target.targetType === targetType).targetList.push({
+      let fieldLength = allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target => target.targetType == targetType).targetList.length;
+      allIssue.value.find(issue => issue.issueType === issueKind).issueList.find(target=>target.targetType == targetType).targetList.push({
         fieldId: `${data.fieldId}_${fieldLength + 1}`,
         note: data.note,
         optionList: data.optionList,

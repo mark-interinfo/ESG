@@ -4,11 +4,11 @@
       <div class="title">
         <CommonCompanyTitle />
         <span id="buttonBox">
-          <a download="" href="#" class="button buttonColor3">下載範本</a>
-          <span>
+          <!-- <a download="" href="#" class="button buttonColor3">下載範本</a> -->
+          <!-- <span>
             <label for="inner" class="button buttonColor3">匯入</label>
             <input id="inner" type="file" accept=".csv,.xls,.xlsx">
-          </span>
+          </span> -->
           <input class="button buttonColor3" id="submit" type="button" value="儲存" @click="exceSustainable()">
         </span>
       </div>
@@ -41,7 +41,7 @@
                               <span v-for="item2 in item1.ACCORDING1">
                                 <template v-for="(internationalList) in allInternationalTarget">
                                   <template v-if="internationalList.find(child => child.value === item2)">
-                                    {{ item2 }} {{ internationalList.find(child => child.value === item2).name }}
+                                    {{ internationalList.find(child => child.value === item2).name }}
                                   </template>
                                 </template>
                               </span>
@@ -64,7 +64,7 @@
                               <span v-for="item2 in item1.SOURCE1">
                                 <template v-for="(list) in allTarget">
                                   <template v-if="list.find(child => child.value === item2)">
-                                    {{ item2 }} {{ list.find(child => child.value === item2).name }}
+                                    {{ list.find(child => child.value === item2).name }}
                                   </template>
                                 </template>
                               </span>
@@ -91,7 +91,7 @@
                                     <span v-for="item3 in item2.ACCORDING2">
                                       <template v-for="(internationalList) in allInternationalTarget">
                                         <template v-if="internationalList.find(child => child.value === item3)">
-                                          {{ item3 }} {{ internationalList.find(child => child.value === item3).name }}
+                                          {{ internationalList.find(child => child.value === item3).name }}
                                         </template>
                                       </template>
                                     </span>
@@ -114,7 +114,7 @@
                                     <span v-for="item3 in item2.SOURCE2">
                                       <template v-for="(list) in allTarget">
                                         <template v-if="list.find(child => child.value === item3)">
-                                          {{ item3 }} {{ list.find(child => child.value === item3).name }}
+                                          {{ list.find(child => child.value === item3).name }}
                                         </template>
                                       </template>
                                     </span>
@@ -140,7 +140,7 @@
                                         <span v-for="item4 in item3.ACCORDING3">
                                           <template v-for="(internationalList) in allInternationalTarget">
                                             <template v-if="internationalList.find(child => child.value === item4)">
-                                              {{ item4 }} {{ internationalList.find(child => child.value === item4).name }}
+                                              {{ internationalList.find(child => child.value === item4).name }}
                                             </template>
                                           </template>
                                         </span>
@@ -163,7 +163,7 @@
                                         <span v-for="item4 in item3.SOURCE3">
                                           <template v-for="(list) in allTarget">
                                             <template v-if="list.find(child => child.value === item4)">
-                                              {{ item4 }} {{ list.find(child => child.value === item4).name }}
+                                              {{ list.find(child => child.value === item4).name }}
                                             </template>
                                           </template>
                                         </span>
@@ -243,7 +243,7 @@
 
   const exceSustainable = async function(){
     await APICollection.ExceSustainable({ allSustainable: allSustainable.value});
-  }
+  };
 
 
   // CommonDialogSelecterComponent 參考依據
