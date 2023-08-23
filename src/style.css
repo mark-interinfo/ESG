@@ -113,7 +113,10 @@ input[type="checkbox"]:checked{
     background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
 }
 
-input[type="checkbox"][disabled],
+input[type="checkbox"][disabled]{
+    background: url(/src/assets/images/checkbox.svg) #FAFAFA center/100% no-repeat;
+    -webkit-filter:grayscale(1);
+}
 input[type="checkbox"][disabled]:checked{
     background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
     -webkit-filter:grayscale(1);
