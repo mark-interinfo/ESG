@@ -41,6 +41,11 @@ section:has(#login){
     display: inline-block;
 }
 
+input[type="text"][disabled]{
+    background: none;
+    border:none;
+}
+
 .center{
     text-align: center;
 }
