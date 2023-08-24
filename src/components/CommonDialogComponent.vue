@@ -220,7 +220,8 @@
     <!-- 顯示圖片 -->
     <!-- EsgTemplate.vue -->
     <div id="dialog-block" class="displayImg" v-if="props.dailogType == 'img'">
-      <img src="../assets/images/template1.jpg">
+      <!-- <img src="../assets/images/template1.png"> -->
+      <img style="width: 80vw" :src="'/src/assets/images/' + props.imgSrc">
     </div>
 
     <!-- 上傳進度條 -->
@@ -267,8 +268,12 @@ const props = defineProps({
   dataLength: {
     type: Number
   },
-  // download
+  // dailogType: download
   downloadHref: {
+    type: String,
+  },
+  // dailogType: img
+  imgSrc: {
     type: String,
   }
 });

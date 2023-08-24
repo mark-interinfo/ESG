@@ -130,7 +130,7 @@ const props = defineProps({
   },
   keyWord: {
     type: Object,
-  }
+  },
 });
 
 const emits = defineEmits(['closeDialogSelecter', 'industrySetting']);
