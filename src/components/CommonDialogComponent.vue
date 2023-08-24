@@ -220,7 +220,7 @@
     <!-- 顯示圖片 -->
     <!-- EsgTemplate.vue -->
     <div id="dialog-block" class="displayImg" v-if="props.dailogType == 'img'">
-      <img src="../assets/images/template1-1.png">
+      <img src="../assets/images/template1.png">
     </div>
 
     <!-- 上傳進度條 -->

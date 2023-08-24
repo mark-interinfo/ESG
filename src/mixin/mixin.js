@@ -57,7 +57,7 @@ const loading = () => {
   InpBox.setAttribute("id","loading");
   
   var loading = document.createElement("img");
-  loading.src = "../../src/assets/images/loading.svg";
+  loading.src = "/css/ESG/ESG/src/assets/images/loading.svg";
 
   InpBox.appendChild(loading);
 

@@ -6,10 +6,10 @@
             <span id="buttonBox">
 
               <!--下載範本-->
-              <a download href="https://192.168.10.108/poc/samples/ESGReportData.xls" v-if="pathName3.includes(route.path)" class="button buttonColor3">下載範本</a>
-              <a download href="https://192.168.10.108/poc/samples/CoreESGData.xls" v-if="['/ExchangeIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
-              <a download href="https://192.168.10.108/poc/samples/InternationalData.xls" v-if="['/InternationalIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
-              <a download href="https://192.168.10.108/poc/samples/ESGMatrixData.xls" v-if="['/EsgMatrix'].includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.141/poc/samples/ESGReportData.xls" v-if="pathName3.includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.141/poc/samples/CoreESGData.xls" v-if="['/ExchangeIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.141/poc/samples/InternationalData.xls" v-if="['/InternationalIndicators'].includes(route.path)" class="button buttonColor3">下載範本</a>
+              <a download href="https://192.168.10.141/poc/samples/ESGMatrixData.xls" v-if="['/EsgMatrix'].includes(route.path)" class="button buttonColor3">下載範本</a>
 
               <input v-if="['/EditEsgInfo'].includes(route.path)" class="button buttonColor3" id="del" type="button" value="刪除">
 
