@@ -25,7 +25,7 @@
 
               <input v-if="pathName3.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="送出" @click="safeData">
 
-              <input v-if="pathName2.includes(route.path)" class="button buttonColor3" id="submit" type="button" value="儲存" @click="safeData">
+              <input v-if="pathName2.includes(route.path)" class="button buttonColor1" id="submit" type="button" value="儲存" @click="safeData">
             </span>
           </div>
 
