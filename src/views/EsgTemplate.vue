@@ -24,7 +24,7 @@
                             <input type="radio" value="b" v-model="templateSelected">
                             <span>模板B</span>
                         </span>
-                        <img @click="openDialog('img')" src="../assets/images/template2.png">
+                        <img @click="openDialog('img')" src="../assets/images/template2.jpg">
                     </div>
                 </div>
             </div>
