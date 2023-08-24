@@ -70,6 +70,8 @@ const APICollection = {
   QuerySustainable: ((requestBody) => callAPI('QuerySustainable', requestBody)),
   // 上傳永續報告書維護
   ExceSustainable: ((requestBody) => callAPI('ExceSustainable', requestBody)),
+  // 下載套表
+  DownloadSustainability: ((requestBody) => callAPI('DownloadSustainability', requestBody)),
 };
 
 export { APICollection };

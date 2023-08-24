@@ -230,6 +230,14 @@
       <div></div>
     </div>
 
+    <!-- 下載檔案 -->
+    <div id="dialog-block" class="download" v-if="props.dailogType == 'download'" style="flex-direction: column; text-align: center;">
+      <p>套版已完成</p>
+      <div>
+        <a class="button buttonColor1" download :href="props.downloadHref">下載</a>
+      </div>
+    </div>
+
   </div>
 </template>
 <script setup>
@@ -258,6 +266,10 @@ const props = defineProps({
   // 新增議題
   dataLength: {
     type: Number
+  },
+  // download
+  downloadHref: {
+    type: String,
   }
 });
 

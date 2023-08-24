@@ -15,7 +15,7 @@
                             <input type="radio" value="a" v-model="templateSelected">
                             <span>模板A</span>
                         </span>
-                        <img @click="openDialog('img')" src="../assets/images/template1.png">
+                        <img @click="openDialog('img')" src="../assets/images/template1.jpg">
                     </div>
                 </div>
                 <div>
@@ -32,47 +32,56 @@
                 <input type="button" class="button buttonColor1" value="套用模板">
             </div>
         </div>
-
         <CommonDialogComponent
         :isShowDialog="isShowDialog"
-        :dailogType="type"
+        :dailogType="dailogType"
+        :downloadHref="downloadHref"
         @closeDialog="closeDialog"
         />
-
     </div>
-
 </template>
 <script setup>
     import { ref } from 'vue';
     import CommonCompanyTitle from "../components/CommonCompanyTitle.vue";
     import CommonDialogComponent from '../components/CommonDialogComponent.vue';
     import { useUserStore } from "../pinia/user.js";
+    import { APICollection } from "../mixin/api.js";
 
     const userStore = useUserStore();
 
-    const type = ref();
+    const dailogType = ref();
     const isShowDialog = ref(false);
 
     const templateSelected = ref('');
-    const openDialog = function(value){
+    const downloadHref = ref('');
+    const openDialog = async function(value){
         isShowDialog.value = true;
-        type.value = value;
-        console.log(
-            {
-                companyId: userStore.companyId,
-                year: userStore.searchYear,
-                template: templateSelected.value,
-            }
-        )
+        dailogType.value = value;
         if(value == "loadingFile"){
-            setTimeout(function(){
-                closeDialog();
-            }, 2500);
+            downloadFile();
         }
-    }
+    };
     const closeDialog = function(){
         isShowDialog.value = false;
-    }
+    };
+
+    const downloadFile = async function(){
+        let downloadMsg = '';
+        if(templateSelected.value === ''){
+            alert('必須選擇模板');
+            return;
+        }
+        downloadMsg = await APICollection.DownloadSustainability({
+            companyId: userStore.companyId,
+            year: userStore.searchYear,
+            template: templateSelected.value,
+        });
+        if(downloadMsg.href){
+            downloadHref.value = downloadMsg.href;
+            dailogType.value = 'download';
+        }
+    };
+
 </script>
 <style lang="scss" scoped>
 
