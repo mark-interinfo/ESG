@@ -3,7 +3,7 @@ import {loading,loadingClose} from '../mixin/mixin.js'
 
 const userStore = useUserStore();
 
-let base = 'http://192.168.10.108/servlet/apiM/esg/V1/interfaces/';
+let base = '/servlet/apiM/esg/V1/interfaces/';
 
 function callAPI(apiName, requestBody, method='POST'){
   loading();
