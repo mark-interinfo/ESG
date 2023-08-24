@@ -157,7 +157,6 @@
                                     </td>
                                     <td v-if="target.status">
                                       <div>
-                                        {{ target }}
                                         <label :for="`${target.fieldId}on`">
                                           <input type="radio"
                                           :id="`${target.fieldId}on`"

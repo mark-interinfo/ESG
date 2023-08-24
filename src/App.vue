@@ -46,6 +46,7 @@ const pageName = ref({
   '/SearchYearInfo': '申報作業',
   '/EsgReport': '申報管理',
   '/EsgTemplate': '申報作業',
+  '/LookEsgInfo': '申報作業',
 });
 </script>
 <style lang="scss">
