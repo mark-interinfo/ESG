@@ -217,6 +217,8 @@ const search = function(event){
     }
 
     p{
+      position: sticky;
+      top: 0;
       line-height: 30px;
       background:#37D880 ;
       color: #fff;
@@ -230,12 +232,9 @@ const search = function(event){
   .dialog{
     background: #fff;
     border-radius: 3px;
-
     max-width:80vw;
-    
     .dialog-content{
       padding: 12px 12px 0 12px;
-
       .search{
         background:#fff;
         border:none;
@@ -252,15 +251,13 @@ const search = function(event){
         position: relative;
         border:1px solid #efefef;
         border-radius: 3px;
-         > span {
+        > span {
           background: #F5FDF9;
           padding:0 4px;
           margin:2px;
           border-radius: 3px;
-
           > span{
             vertical-align: middle;
-
             + span{
               width:12px;
               height: 12px;
@@ -274,9 +271,7 @@ const search = function(event){
             color: #37D880;
             font-size: 12px;
           }
-          
         }
-
       }
       .clear{
         background: url(../assets/images/del.svg) center/100% no-repeat;
