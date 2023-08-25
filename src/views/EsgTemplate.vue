@@ -92,7 +92,7 @@
         width:880px;
         margin:0 auto 20px;
         padding:20px 40px;
-        box-shadow: 0 5px 5px rgba(0,0,0,.2);
+        box-shadow: 0 0 5px rgba(0,0,0,.2);
     }
 
     #selectYear{

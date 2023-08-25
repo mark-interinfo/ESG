@@ -228,7 +228,6 @@
     <!-- EsgTemplate.vue -->
     <div id="dialog-block" class="loadingFile" v-if="props.dailogType == 'loadingFile'">
       <h3>報告書製作中...</h3>
-      <div></div>
     </div>
 
     <!-- 下載檔案 -->
@@ -461,23 +460,7 @@ select{
       flex-direction: column;
       text-align: center;
 
-      > div{
-        border-radius: 2px;
-        height: 4px;
-        background:#eee;
-        width: 100%;
-        position: relative;
-        text-align: left;
-
-        &:before{
-          content:"";
-          display:block;
-          height:4px;
-          border-radius:2px;
-          background:#37D880;
-          animation: progress 50s both;
-        }
-      }
+      
     }
 
     &.selectInput{
