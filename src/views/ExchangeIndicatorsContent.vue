@@ -98,19 +98,25 @@
                       </label>
                     </div>
                     <div>
-                      <label>
+                      <label class="closeItem">
                         <input type="radio"
                         v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn"
                         :value="false"
                         >
-                        <span>停用，自</span>
-                        <input type="text" class="year" placeholder="請輸入民國年"
-                        :disabled="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
-                        v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
-                        >
-                        <span class="unit">年</span>
-                        <span>起停用此項目</span>
+                        <span>
+                          停用
+                        </span>
                       </label>
+                        <span>
+                          <span>，自</span>
+                          <input type="text" class="year" placeholder="請輸入民國年"
+                          :disabled="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOn === true"
+                          v-model="issue.issueList[props.showIssueList[issue.issueType] - 1].targetStatus.isOnYear"
+                          >
+                          <span class="unit">年</span>
+                          <span>起停用此項目</span>
+                        </span>
+                      
                     </div>
                   </td>
               </tr>
@@ -660,4 +666,6 @@
   background:#ebfbf2;
   
 }
+
+
 </style>

@@ -73,7 +73,7 @@
             v-for="(kind, key) in props.option"
             :key="key"
             >
-              <p style="margin: 0;">
+              <p>
                 <template v-if="props.keyWord">
                   {{ props.keyWord[key] }}
                 </template>
@@ -81,7 +81,6 @@
                   {{ key }}
                 </template>
               </p>
-              <hr>
               <div
               v-for="item in kind"
               :key="item.value"
@@ -216,6 +215,16 @@ const search = function(event){
     margin-bottom: 4px;
     &[data-msg]:before{
       content:attr(data-msg);
+    }
+
+    p{
+      line-height: 30px;
+      background:#37D880 ;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin:20px 0 10px;
+      letter-spacing: 1px;
     }
   }
 

@@ -55,9 +55,15 @@ const loading = () => {
   
   var InpBox = document.createElement("div");
   InpBox.setAttribute("id","loading");
+
+  let host = "/css/ESG/ESG"
+
+  if(location.host == "192.168.10.141:5173"){
+    host = "http://192.168.10.141:5173"
+  }
   
   var loading = document.createElement("img");
-  loading.src = "/css/ESG/ESG/src/assets/images/loading.svg";
+  loading.src = host + "/src/assets/images/loading.svg";
 
   InpBox.appendChild(loading);
 
