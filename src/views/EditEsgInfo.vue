@@ -412,6 +412,8 @@
           };
 
           //AI智能輸入
+          //pathName2 指標
+          //pathName 申報
           if(id == "aiInner" && pathName.value.includes(route.path)){
             console.log("AI智能輸入")
             aiInner.value = "";

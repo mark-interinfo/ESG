@@ -3,7 +3,13 @@ import {loading,loadingClose} from '../mixin/mixin.js'
 
 const userStore = useUserStore();
 
-let base = '/servlet/apiM/esg/V1/interfaces/';
+let host = ""
+
+if(location.host == "192.168.10.141:5173"){
+  host = "http://192.168.10.141"
+}
+
+let base = host + '/servlet/apiM/esg/V1/interfaces/';
 
 function callAPI(apiName, requestBody, method='POST'){
   loading();
@@ -72,6 +78,8 @@ const APICollection = {
   ExceSustainable: ((requestBody) => callAPI('ExceSustainable', requestBody)),
   // 下載套表
   DownloadSustainability: ((requestBody) => callAPI('DownloadSustainability', requestBody)),
+  
+  QueryReportStatus: ((requestBody) => callAPI('QueryReportStatus', requestBody)),
 };
 
 export { APICollection };

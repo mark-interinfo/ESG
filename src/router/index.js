@@ -66,6 +66,11 @@ const routes = [
     name: "永續報告書維護",
     component: () => import("../views/EsgReport.vue"),
   },
+  {
+    path: "/EsgComparison",
+    name: "申請情況控管表",
+    component: () => import("../views/EsgComparison.vue"),
+  },
 ]
 
 const router = createRouter({

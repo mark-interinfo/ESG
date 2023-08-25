@@ -365,3 +365,11 @@ label:not([class]){
     width:70px;
     user-select:none;
 }
+
+.closeItem + span{
+    display:none;
+  }
+  
+.closeItem:has( > input:checked) + span{
+display: inline-block;
+}

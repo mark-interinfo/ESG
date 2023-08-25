@@ -132,6 +132,10 @@ const linkGroup = ref([
         href: '/'
       },
       {
+        name: '申請情況控管表',
+        href: '/EsgComparison'
+      },
+      {
         name: '永續報告書維護',
         href: '/EsgReport'
       },

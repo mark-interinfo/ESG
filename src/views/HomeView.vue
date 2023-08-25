@@ -5,7 +5,7 @@
             <form id="form">
                 <div class="id">
                     <div>帳號</div>
-                    <input type="text" id="id" name="id" placeholder="帳號為SLL"
+                    <input type="text" id="id" name="id" placeholder="帳號為SII"
                     v-model="accountData.uid"
                     >
                 </div>
@@ -67,6 +67,7 @@ const accountData = ref({
 
 const login = function(){
     (async() => {
+        console.log(accountData.value)
         let apiData = await APICollection.ESGLogin(accountData);
         return apiData;
     })()
@@ -133,7 +134,7 @@ const passwordCheck = function(){
                 
                 #verifyBlock{border:1px solid #efefef;box-sizing:border-box;border-radius: 5px;width: calc(50% - 15px);margin-left: 15px;}
                 #verifyInput{width: 50%;}
-                #verifyImg{background: url(../assets/images/verify.png)center / 100% auto no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
+                #verifyImg{background: url(../assets/images/verify.jpg)center /auto 40px no-repeat #efefef;height: 100%;display: inline-block;width: calc(100% - 52px);}
                 #verifyChange{display:inline-block;height:100%;width: 48px;background: url(../assets/images/again.svg) center / 60% no-repeat;}
             }
 
