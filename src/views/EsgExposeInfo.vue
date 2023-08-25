@@ -9,6 +9,12 @@
       <div id="issue-toggle" class="pointer"></div>
     </div>
     <div id="issue-body">
+      <h4 class="notIsCore" style="color: #1D8844;margin:0;padding:10px;text-align:right;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="12" height="12" fill="#1D8844"/>
+        </svg>
+        文字綠色為非核心指標
+      </h4>
       <div
       class="issue-item pointer"
       v-for="issue in data.allIssue"
@@ -23,6 +29,7 @@
             <path d="M6 9.5L11.7778 14.5L18 9.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
+        
         <div :id="issue.issueType" class="issue-content">
             <div>
                 <table>
@@ -31,12 +38,6 @@
                             {{list.targetTitle}}
                         </td>
                         <td>
-                            <p class="notIsCore" style="text-align: end; margin-top: 0; color: #1D8844;">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="12" height="12" fill="#1D8844"/>
-                                </svg>
-                                文字綠色為非核心指標
-                            </p>
                             <ol>
                                 <li v-for="targetList in list.targetList" :class="{'notIsCore': targetList.notIsCore === true}">
                                   <span>{{targetList.title}}</span>

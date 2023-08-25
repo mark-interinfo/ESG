@@ -129,10 +129,6 @@ const linkGroup = ref([
       },
       {
         name: '申報情形控管表',
-        href: '/'
-      },
-      {
-        name: '申請情況控管表',
         href: '/EsgComparison'
       },
       {

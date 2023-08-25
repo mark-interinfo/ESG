@@ -8,7 +8,7 @@
     >
     <div class="issue-title">
       <span>
-        {{ issue.internationalIssueName }}
+        {{issue.internationalIssueNo + "-" + issue.internationalIssueName }}
       </span>
       <img src="../assets/images/select.svg" alt="">
     </div>
