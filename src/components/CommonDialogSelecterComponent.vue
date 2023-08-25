@@ -27,8 +27,7 @@
         <div class="selected-area" v-if="props.optionType === 'object'">
           <template v-for="(list, key) in selected">
             <span v-for="item in list">
-              <span>
-                <!-- {{ key }} -->
+              <span v-if="props.option[key].find(option => option.value === item)">
                 {{ props.option[key].find(option => option.value === item).name }}
               </span>
               <span class="del" @click="selectedRemove(item,key)"></span>
