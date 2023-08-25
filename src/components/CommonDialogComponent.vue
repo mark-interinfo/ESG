@@ -221,7 +221,7 @@
     <!-- EsgTemplate.vue -->
     <div id="dialog-block" class="displayImg" v-if="props.dailogType == 'img'">
       <!-- <img src="../assets/images/template1.png"> -->
-      <img style="width: 80vw" :src="'/src/assets/images/' + props.imgSrc">
+      <img style="width: 80vw" :src="'../src/assets/images/' + props.imgSrc">
     </div>
 
     <!-- 上傳進度條 -->
@@ -233,7 +233,7 @@
 
     <!-- 下載檔案 -->
     <div id="dialog-block" class="download" v-if="props.dailogType == 'download'" style="flex-direction: column; text-align: center;">
-      <p>套版已完成</p>
+      <h3>套版已完成</h3>
       <div>
         <a class="button buttonColor1" download :href="props.downloadHref">下載</a>
       </div>
@@ -469,7 +469,14 @@ select{
         position: relative;
         text-align: left;
 
-        &:before{content:"";display:block;height:4px;border-radius:2px;background:#37D880;animation: progress 2s both;}
+        &:before{
+          content:"";
+          display:block;
+          height:4px;
+          border-radius:2px;
+          background:#37D880;
+          animation: progress 50s both;
+        }
       }
     }
 
@@ -528,6 +535,10 @@ select{
 }
 .stopItem{
     background: url(/src/assets/images/checkbox-green.svg) center/100% no-repeat;
+}
+
+.download{
+    padding:20px;
 }
 
 

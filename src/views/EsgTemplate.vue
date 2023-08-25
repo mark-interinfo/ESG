@@ -15,7 +15,7 @@
                             <input type="radio" value="a" v-model="templateSelected">
                             <span>模板A</span>
                         </span>
-                        <img @click="openDialog('img'); imgSrc='template1.jpg'" src="../assets/images/template1.jpg">
+                        <img src="../assets/images/template1.jpg">
                     </div>
                 </div>
                 <div>
@@ -24,7 +24,7 @@
                             <input type="radio" value="b" v-model="templateSelected">
                             <span>模板B</span>
                         </span>
-                        <img @click="openDialog('img'); imgSrc='template2.jpg'" src="../assets/images/template2.jpg">
+                        <img src="../assets/images/template2.jpg">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,6 @@
 
             img{
                 width:100%;
-                cursor: pointer;
             }
 
             > div > span{
@@ -120,5 +119,10 @@
             }
         }
     }
-    #apply{text-align: right;}
+    
+    #apply{
+        text-align: right;
+    }
+
+    
 </style>
